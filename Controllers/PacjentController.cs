@@ -121,7 +121,15 @@ namespace triage_hcp.Controllers
             };
 
             return View(pacjentList);
-        }   
+        }
+
+        public IActionResult Data()
+        {
+            ViewBag.Name = "Zbigniew";
+            ViewData["Surname"] = "Stonoga";
+            TempData["Age"] = "65";
+            return View();
+        }
     }
 }
 
