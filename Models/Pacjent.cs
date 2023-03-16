@@ -7,10 +7,10 @@ namespace triage_hcp.Models
         public string? Id { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
+        public string? Pesel { get; set; }
         public string? Age { get; set; }
         public string? Gender { get; set; }
         public string? Room { get; set; }
-        public string? Place_number { get; set; }
         public string? Diagnosis { get; set; }
         public string? Color { get; set; }
         public DateTime DateTime
