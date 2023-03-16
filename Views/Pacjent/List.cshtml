@@ -1,0 +1,200 @@
+﻿@model IEnumerable<triage_hcp.Models.Pacjent>
+
+@{
+    ViewData["Title"] = "Lista";
+}
+
+<div class="container">
+    <div class="lista_pacjentow">
+        <div class="lista_bez_lekarza">
+            <p>Pacjenci bez przypisanego lekarza:</p>
+            @foreach (var pacjent in Model)
+            {
+                if (pacjent.Doctor == "No" & pacjent.Active == "Yes")
+                {
+                    <div class="pacjent" style="background-color: @pacjent.Color">
+                        <h3>@pacjent.Name @pacjent.Surname || przypisz lekarza!</h3>
+                        <p>@pacjent.Diagnosis</p>
+                        <p>@pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room @pacjent.Place_number</b></p>
+                        <h5>@pacjent.DateTime</h5>
+                    </div>
+                }
+            }
+            <br />
+        </div>
+
+        <div class="lista_z_lekarzem">
+            <p>Pacjenci z przypisanym lekarzem:</p>
+            @foreach (var pacjent in Model)
+            {
+                if (pacjent.Doctor == "Yes" & pacjent.Active == "Yes")
+                {
+                    <div class="pacjent" style="background-color: @pacjent.Color">
+                        <h3>@pacjent.Name @pacjent.Surname || w trakcie</h3>
+                        <p>@pacjent.Diagnosis</p>
+                        <p>@pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room @pacjent.Place_number</b></p>
+                        <h5>@pacjent.DateTime</h5>
+                    </div>
+                }
+            }
+            <br />
+        </div>
+        <div>
+            <p>Pacjenci z zakończoną obsługą w SOR:</p>
+            @foreach (var pacjent in Model)
+            {
+                if (pacjent.Active == "No")
+                {
+                    <div class="pacjent" style="background-color: @pacjent.Color">
+                        <h3>@pacjent.Name @pacjent.Surname || zakończono</h3>
+                        <p>@pacjent.Diagnosis</p>
+                        <p>@pacjent.Gender @pacjent.Age lat || przekazano do: <b> Oddział wewnętrzny</b></p>
+
+                    </div>
+                }
+            }
+            <br />
+        </div>
+    </div>
+
+    <div class="lista_lozek">
+        <div class="witus">
+            <p>WITuś:</p>
+            <div class="nr_lozka">
+                <p>R1</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>R2</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>R3</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <br />
+        </div>
+        <div class="wit">
+            <p>WIT:</p>
+            <div class="nr_lozka">
+                <p>W1</p>
+            </div>
+            <div class="pacjent_sala">
+                <p>Jan Kowalski</p>
+            </div>
+            <div class="nr_lozka">
+                <p>W2</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>W3</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>W4</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>4,5</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <br />
+        </div>
+        <div class="obs1">
+            <p>Obs 1:</p>
+            <div class="nr_lozka">
+                <p>O5</p>
+            </div>
+            <div class="pacjent_sala">
+                <p>Janina Spychalska</p>
+            </div>
+            <div class="nr_lozka">
+                <p>O6</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>O7</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <br />
+        </div>
+        <div class="obs2">
+            <p>Obs 2:</p>
+            <div class="nr_lozka">
+                <p>O8</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>O9</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>O10</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <br />
+        </div>
+        <div class="izo">
+            <p>Izolatki:</p>
+            <div class="nr_lozka">
+                <p>Z1</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>Z2</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>Z3</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <br />
+        </div>
+        <div class="dekontaminacja">
+            <p>Dekontaminacja:</p>
+            <div class="nr_lozka">
+                <p>D1</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <div class="nr_lozka">
+                <p>D2</p>
+            </div>
+            <div class="pacjent_sala">
+                <p></p>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

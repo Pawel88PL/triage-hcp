@@ -1,0 +1,74 @@
+
+@page
+
+@model IndexModel html {
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+div.container {
+    display: grid;
+    grid-template-columns: repeat(3);
+}
+
+div.lista_pacjentow {
+    grid-column: 1/1;
+}
+
+div.pacjent {
+    border-radius: 10px;
+    border-inline-color: black;
+    border: solid;
+    max-width: 600px;
+    padding: 10px;
+    margin: 10px;
+}
+
+div.lista_lozek {
+    grid-column: 3/3;
+}
+
+div.witus,
+div.wit,
+div.obs1,
+div.obs2,
+div.izo,
+div.dekontaminacja {
+    display: grid;
+    grid-template-columns: [first] 50px [sexond] 200px [third];
+}
+
+div.nr_lozka {
+    grid-column: 1/2;
+    border: solid;
+    border-radius: 10px;
+    max-width: 35px;
+    max-height: 35px;
+    text-align: center;
+    margin: 1px 5px;
+}
+
+div.pacjent_sala {
+    grid-column: 2/2;
+    border: solid;
+    border-radius: 10px;
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 35px;
+    text-align: center;
+    justify-self: end;
+}
