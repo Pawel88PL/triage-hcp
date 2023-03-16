@@ -1,19 +1,9 @@
 
-@page
-
-@model IndexModel html {
-    font-size: 12px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 12px;
-    }
-}
 
 html {
     position: relative;
     min-height: 100%;
+    font-size: 12px;
 }
 
 body {
@@ -47,7 +37,9 @@ div.wit,
 div.obs1,
 div.obs2,
 div.izo,
-div.dekontaminacja {
+div.dekontaminacja,
+div.poczekalnia,
+div.korytarz {
     display: grid;
     grid-template-columns: [first] 50px [sexond] 200px [third];
 }
@@ -57,18 +49,19 @@ div.nr_lozka {
     border: solid;
     border-radius: 10px;
     max-width: 35px;
-    max-height: 35px;
+    max-height: 30px;
     text-align: center;
-    margin: 1px 5px;
+    margin: 2px 5px;
 }
 
 div.pacjent_sala {
     grid-column: 2/2;
     border: solid;
     border-radius: 10px;
-    max-width: 200px;
-    min-width: 200px;
-    max-height: 35px;
+    max-width: 250px;
+    min-width: 150px;
+    max-height: 30px;
+    padding: 1px 0px 0px 0px;
     text-align: center;
-    justify-self: end;
+    margin: 2px;
 }
