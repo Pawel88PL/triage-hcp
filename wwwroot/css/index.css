@@ -1,0 +1,25 @@
+﻿
+div.index {
+    display: grid;
+    grid-template-columns: repeat(3);
+}
+
+div.welcome {
+    grid-row: 1/1;
+    grid-column: 2/2;
+}
+
+    div.welcome h1 {
+        color: darkblue;
+    }
+
+    div.welcome h3 {
+        color: crimson;
+    }
+
+div.logo {
+    grid-row: 1/1;
+    grid-column: 1/2;
+    align-self: center;
+    justify-self: center;
+}
