@@ -10,47 +10,64 @@
         <div class="shadow p-3 mb-5 bg-white rounded">
             @using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
             {
+                @Html.ValidationSummary()
                 <h5>Imię: </h5>
-
                 @Html.TextBoxFor(x => x.Name)
                 <br />
                 <br />
-                <h5>Nazwisko: </h5>
 
+                <h5>Nazwisko: </h5>
                 @Html.TextBoxFor(x => x.Surname)
                 <br />
                 <br />
-                <h5>PESEL: </h5>
 
+                <h5>PESEL: </h5>
                 @Html.TextBoxFor(x => x.Pesel)
                 <br />
                 <br />
-                <h5>Wiek: </h5>
 
+                <h5>Wiek: </h5>
                 @Html.TextBoxFor(x => x.Age)
                 <br />
                 <br />
-                <h5>Płeć: </h5>
 
+                <h5>Płeć: </h5>
                 @Html.TextBoxFor(x => x.Gender)
                 <br />
                 <br />
-                <h5>Lokalizacja: </h5>
 
+                <h5>Lokalizacja: </h5>
                 @Html.TextBoxFor(x => x.Room)
                 <br />
                 <br />
-                <h5>Objawy: </h5>
 
+                <h5>Objawy: </h5>
                 @Html.TextBoxFor(x => x.Diagnosis)
                 <br />
                 <br />
-                <h5>Kolor: </h5>
 
+                <h5>Kolor: </h5>
                 @Html.TextBoxFor(x => x.Color)
                 <br />
                 <br />
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-danger">Czerwony</button>
+                    <button type="button" class="btn btn-warning" style="background-color: orange">Pomarańczowy</button>
+                    <button type="button" class="btn btn-warning">Żółty</button>
+                    <button type="button" class="btn btn-success">Zielony</button>
+                    <button type="button" class="btn btn-primary">Niebieski</button>
+                </div>
+
+                <br />
+                <br />
+
                 <button type="submit">ZATWIERDŹ</button>
+
+                <br />
+                <br />
+                <p>Id po zatwierdzeniu (TempData): <b>@TempData["PacjentId"]</b></p>
+
             }
         </div>
     </div>

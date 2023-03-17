@@ -73,7 +73,7 @@ namespace triage_hcp.Controllers
                     Room = "OBS 5",
                     Diagnosis = "złamanie kości szyjki udowej, bolesność, noga zrotowana",
                     Color = "green",
-                    Doctor = "No",
+                    Doctor = "Yes",
                     Active = "Yes"
                 },
                 new Pacjent
@@ -116,6 +116,34 @@ namespace triage_hcp.Controllers
                     Diagnosis = "NZK w trakcie RKO przez ZRM, na Lucasie",
                     Color = "red",
                     Doctor = "Yes",
+                    Active = "Yes"
+                },
+                new Pacjent
+                {
+                    Id = "7",
+                    Name = "Agnieszka",
+                    Surname = "Nowakowska",
+                    Age = "43",
+                    Pesel = "80102858964",
+                    Gender = "Kobieta",
+                    Room = "korytarz",
+                    Diagnosis = "uraz PKD w okolicy stawu skokowego, poczuła jak coś chrupnęło w stopie",
+                    Color = "green",
+                    Doctor = "No",
+                    Active = "Yes"
+                },
+                new Pacjent
+                {
+                    Id = "8",
+                    Name = "Justyna",
+                    Surname = "Kalinowska",
+                    Age = "21",
+                    Pesel = "03172858964",
+                    Gender = "Kobieta",
+                    Room = "poczekalnia",
+                    Diagnosis = "rana do szycia palca III LKG, przecięła się nożem podczas krojenia cebuli",
+                    Color = "green",
+                    Doctor = "No",
                     Active = "Yes"
                 }
             };

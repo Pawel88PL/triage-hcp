@@ -328,7 +328,7 @@
             <div class="dekontaminacja">
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "dek" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "dekontaminacja" & pacjent.Active == "Yes")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -342,7 +342,7 @@
             <div class="poczekalnia">
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "pocz" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "poczekalnia" & pacjent.Active == "Yes")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -356,7 +356,7 @@
             <div class="korytarz">
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "kor" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "korytarz" & pacjent.Active == "Yes")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>

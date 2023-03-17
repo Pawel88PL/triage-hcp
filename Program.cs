@@ -1,3 +1,6 @@
+using triage_hcp.Services;
+using triage_hcp.Services.Interfaces;
+
 namespace triage_hcp
 {
     public class Program
@@ -8,6 +11,7 @@ namespace triage_hcp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<ITriageService, TriageService>();
 
             var app = builder.Build();
 
