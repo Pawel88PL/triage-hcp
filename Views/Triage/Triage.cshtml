@@ -4,25 +4,54 @@
     ViewData["Title"] = "Triage";
 }
 
-<h1>Triage</h1>
+<div class="triage">
+    <h1>Triage</h1>
+    <div class="forms">
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            @using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
+            {
+                <h5>Imię: </h5>
 
-@using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
-{
-    <h5>Imię: </h5>@Html.TextBoxFor(x => x.Name)
-    <br />
-    <h5>Nazwisko: </h5>@Html.TextBoxFor(x => x.Surname)
-    <br />
-    <h5>PESEL: </h5>@Html.TextBoxFor(x => x.Pesel)
-    <br />
-    <h5>Wiek: </h5>@Html.TextBoxFor(x => x.Age)
-    <br />
-    <h5>Płeć: </h5>@Html.TextBoxFor(x => x.Gender)
-    <br />
-    <h5>Lokalizacja: </h5>@Html.TextBoxFor(x => x.Room)
-    <br />
-    <h5>Objawy: </h5>@Html.TextBoxFor(x => x.Diagnosis)
-    <br />
-    <h5>Kolor: </h5>@Html.TextBoxFor(x => x.Color)
-    <br />
-    <button type="submit">ZATWIERDŹ</button>
-}
+                @Html.TextBoxFor(x => x.Name)
+                <br />
+                <br />
+                <h5>Nazwisko: </h5>
+
+                @Html.TextBoxFor(x => x.Surname)
+                <br />
+                <br />
+                <h5>PESEL: </h5>
+
+                @Html.TextBoxFor(x => x.Pesel)
+                <br />
+                <br />
+                <h5>Wiek: </h5>
+
+                @Html.TextBoxFor(x => x.Age)
+                <br />
+                <br />
+                <h5>Płeć: </h5>
+
+                @Html.TextBoxFor(x => x.Gender)
+                <br />
+                <br />
+                <h5>Lokalizacja: </h5>
+
+                @Html.TextBoxFor(x => x.Room)
+                <br />
+                <br />
+                <h5>Objawy: </h5>
+
+                @Html.TextBoxFor(x => x.Diagnosis)
+                <br />
+                <br />
+                <h5>Kolor: </h5>
+
+                @Html.TextBoxFor(x => x.Color)
+                <br />
+                <br />
+                <button type="submit">ZATWIERDŹ</button>
+            }
+        </div>
+    </div>
+</div>

@@ -8,54 +8,57 @@
 
 <div class="container">
     <div class="lista_pacjentow">
-        <div class="lista_bez_lekarza">
-            <p>Pacjenci bez przypisanego lekarza:</p>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Doctor == "No" & pacjent.Active == "Yes")
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class="lista_bez_lekarza">
+                <p>Pacjenci bez przypisanego lekarza:</p>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent" style="background-color: @pacjent.Color">
-                        <h4>@pacjent.Name @pacjent.Surname || przypisz lekarza!</h4>
-                        <p>@pacjent.Diagnosis</p>
-                        <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
-                        <h5>@pacjent.DateTime</h5>
-                    </div>
+                    if (pacjent.Doctor == "No" & pacjent.Active == "Yes")
+                    {
+                        <div class="pacjent" style="background-color: @pacjent.Color">
+                            <h5>@pacjent.Name @pacjent.Surname || --> przypisz lekarza!</h5>
+                            <p>@pacjent.Diagnosis</p>
+                            <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
+                            <h5>@pacjent.DateTime</h5>
+                        </div>
+                    }
                 }
-            }
-            <br />
-        </div>
+                <br />
+            </div>
 
-        <div class="lista_z_lekarzem">
-            <p>Pacjenci z przypisanym lekarzem:</p>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Doctor == "Yes" & pacjent.Active == "Yes")
+            <div class="lista_z_lekarzem">
+                <p>Pacjenci z przypisanym lekarzem:</p>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent" style="background-color: @pacjent.Color">
-                        <h4>@pacjent.Name @pacjent.Surname || w trakcie</h4>
-                        <p>@pacjent.Diagnosis</p>
-                        <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
-                        <h5>@pacjent.DateTime</h5>
-                    </div>
+                    if (pacjent.Doctor == "Yes" & pacjent.Active == "Yes")
+                    {
+                        <div class="pacjent" style="background-color: @pacjent.Color">
+                            <h5>@pacjent.Name @pacjent.Surname</h5>
+                            <p>@pacjent.Diagnosis</p>
+                            <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
+                            <h5>@pacjent.DateTime</h5>
+                        </div>
+                    }
                 }
-            }
-            <br />
-        </div>
-        <div>
-            <p>Pacjenci z zakończoną obsługą w SOR:</p>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Active == "No")
-                {
-                    <div class="pacjent" style="background-color: @pacjent.Color">
-                        <h5>@pacjent.Name @pacjent.Surname || zakończono</h5>
-                        <p>@pacjent.Diagnosis</p>
-                        <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
+                <br />
+            </div>
 
-                    </div>
+            <div>
+                <p>Pacjenci z zakończoną obsługą w SOR:</p>
+                @foreach (var pacjent in Model)
+                {
+                    if (pacjent.Active == "No")
+                    {
+                        <div class="pacjent" style="background-color: @pacjent.Color">
+                            <h6>@pacjent.Name @pacjent.Surname || zakończono</h6>
+                            <p>@pacjent.Diagnosis</p>
+                            <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
+
+                        </div>
+                    }
                 }
-            }
-            <br />
+                <br />
+            </div>
         </div>
     </div>
 
@@ -63,303 +66,305 @@
 
 
     <div class="lista_lozek">
-        <p><b>WITuś</b></p>
-        <div class="witus">
-            <div class="nr_lozka">
-                <p>R1</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "witus 1")
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <p><b>WITuś</b></p>
+            <div class="witus">
+                <div class="nr_lozka">
+                    <p>R1</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "witus 1" & pacjent.Active == "Yes")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>R2</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "witus 2")
+                <div class="nr_lozka">
+                    <p>R2</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "witus 2")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>R3</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "witus 3")
+                <div class="nr_lozka">
+                    <p>R3</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "witus 3")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>Rk1</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "witus Rk1")
+                <div class="nr_lozka">
+                    <p>Rk1</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "witus Rk1")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>Rk2</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "witus Rk2")
+                <div class="nr_lozka">
+                    <p>Rk2</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "witus Rk2")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <br />
-        </div>
+                <br />
+            </div>
 
 
-        <p><b>WIT</b></p>
-        <div class="wit">
-            <div class="nr_lozka">
-                <p>W1</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "WIT 1")
+            <p><b>WIT</b></p>
+            <div class="wit">
+                <div class="nr_lozka">
+                    <p>W1</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "WIT 1")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>W2</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "WIT 2")
+                <div class="nr_lozka">
+                    <p>W2</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "WIT 2")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>W3</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "WIT 3")
+                <div class="nr_lozka">
+                    <p>W3</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "WIT 3")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>W4</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "WIT 4")
+                <div class="nr_lozka">
+                    <p>W4</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "WIT 4")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>4,5</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "WIT 4,5")
+                <div class="nr_lozka">
+                    <p>4,5</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "WIT 4,5")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <br />
-        </div>
+                <br />
+            </div>
 
 
-        <p><b>Sala obserwacyjna 1</b></p>
-        <div class="obs1">
-            <div class="nr_lozka">
-                <p>O5</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "OBS 5")
+            <p><b>Sala obserwacyjna 1</b></p>
+            <div class="obs1">
+                <div class="nr_lozka">
+                    <p>O5</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "OBS 5")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>O6</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "OBS 6")
+                <div class="nr_lozka">
+                    <p>O6</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "OBS 6")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>O7</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "OBS 7")
+                <div class="nr_lozka">
+                    <p>O7</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "OBS 7")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <br />
-        </div>
+                <br />
+            </div>
 
 
-        <p><b>Sala obserwacyjna 2</b></p>
-        <div class="obs2">
-            <div class="nr_lozka">
-                <p>O8</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "OBS 8")
+            <p><b>Sala obserwacyjna 2</b></p>
+            <div class="obs2">
+                <div class="nr_lozka">
+                    <p>O8</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "OBS 8")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>O9</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "OBS 9")
+                <div class="nr_lozka">
+                    <p>O9</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "OBS 9")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>10</p>
-            </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "OBS 10")
+                <div class="nr_lozka">
+                    <p>10</p>
+                </div>
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "OBS 10")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <br />
-        </div>
+                <br />
+            </div>
 
 
-        <p><b>Izolatki:</b></p>
-        <div class="izo">
-            <div class="nr_lozka">
-                <p>Z1</p>
+            <p><b>Izolatki:</b></p>
+            <div class="izo">
+                <div class="nr_lozka">
+                    <p>Z1</p>
+                </div>
+                @foreach (var pacjent in Model)
+                {
+                    if (pacjent.Room == "izo 1")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
+                }
+                <div class="nr_lozka">
+                    <p>Z2</p>
+                </div>
+                @foreach (var pacjent in Model)
+                {
+                    if (pacjent.Room == "izo 2")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
+                }
+                <div class="nr_lozka">
+                    <p>Z3</p>
+                </div>
+                @foreach (var pacjent in Model)
+                {
+                    if (pacjent.Room == "izo 3")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
+                }
+                <br />
             </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "izo 1")
+
+            <p><b>Dekontaminacja</b></p>
+            <div class="dekontaminacja">
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "dek")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>Z2</p>
+                <br />
             </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "izo 2")
+
+            <p><b>Poczekalnia</b></p>
+            <div class="poczekalnia">
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "pocz")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <div class="nr_lozka">
-                <p>Z3</p>
+                <br />
             </div>
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "izo 3")
-                {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
-                }
-            }
-            <br />
-        </div>
 
-        <p><b>Dekontaminacja</b></p>
-        <div class="dekontaminacja">
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "dek")
+            <p><b>Korytarz</b></p>
+            <div class="korytarz">
+                @foreach (var pacjent in Model)
                 {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
+                    if (pacjent.Room == "kor")
+                    {
+                        <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                            <p>@pacjent.Name @pacjent.Surname</p>
+                        </div>
+                    }
                 }
-            }
-            <br />
-        </div>
-
-        <p><b>Poczekalnia</b></p>
-        <div class="poczekalnia">
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "pocz")
-                {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
-                }
-            }
-            <br />
-        </div>
-
-        <p><b>Korytarz</b></p>
-        <div class="korytarz">
-            @foreach (var pacjent in Model)
-            {
-                if (pacjent.Room == "kor")
-                {
-                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                        <p>@pacjent.Name @pacjent.Surname</p>
-                    </div>
-                }
-            }
-            <br />
+                <br />
+            </div>
         </div>
     </div>
 </div>

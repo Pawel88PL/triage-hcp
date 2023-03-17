@@ -23,13 +23,15 @@ div.pacjent {
     border-radius: 10px;
     border-inline-color: black;
     border: solid;
-    max-width: 600px;
-    padding: 10px;
-    margin: 10px;
+    max-width: 500px;
+    margin: 5px;
+    padding: 10px 10px 5px 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 div.lista_lozek {
     grid-column: 3/3;
+    max-width: 350px;
 }
 
 div.witus,
