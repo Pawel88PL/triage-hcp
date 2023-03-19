@@ -23,7 +23,7 @@ namespace triage_hcp.Migrations
                     Room = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Doctor = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Active = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

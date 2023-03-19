@@ -5,12 +5,13 @@
 }
 
 <div class="triage">
-    <h1>Triage</h1>
     <div class="forms">
         <div class="shadow p-3 mb-5 bg-white rounded">
+        <h1>Wykonaj Triage</h1>
             @using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
             {
                 @Html.ValidationSummary()
+
                 <h5>Imię: </h5>
                 @Html.TextBoxFor(x => x.Name)
                 <br />
@@ -31,43 +32,78 @@
                 <br />
                 <br />
 
-                <h5>Płeć: </h5>
-                @Html.TextBoxFor(x => x.Gender)
-                <br />
-                <br />
-
-                <h5>Lokalizacja: </h5>
-                @Html.TextBoxFor(x => x.Room)
-                <br />
-                <br />
-
                 <h5>Objawy: </h5>
                 @Html.TextBoxFor(x => x.Diagnosis)
                 <br />
                 <br />
 
-                <h5>Kolor: </h5>
-                @Html.TextBoxFor(x => x.Color)
-                <br />
-                <br />
-
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-danger">Czerwony</button>
-                    <button type="button" class="btn btn-warning" style="background-color: orange">Pomarańczowy</button>
-                    <button type="button" class="btn btn-warning">Żółty</button>
-                    <button type="button" class="btn btn-success">Zielony</button>
-                    <button type="button" class="btn btn-primary">Niebieski</button>
-                </div>
-
-                <br />
+                <h5>Płeć:</h5>
+                <select class="form-control" id="Gender" name="Gender">
+                    <option>Kobieta</option>
+                    <option>Mężczyzna</option>
+                </select>
                 <br />
 
-                <button type="submit">ZATWIERDŹ</button>
+                <h5>Lokalizacja w SOR:</h5>
+                <select class="form-control" id="Room" name="Room">
+                    <option>Poczekalnia</option>
+                    <option>Korytarz</option>
+                    <option>Wituś 1</option>
+                    <option>Wituś 2</option>
+                    <option>Wituś 3</option>
+                    <option>Wituś krzesełko 1</option>
+                    <option>Wituś krzesełko 2</option>
+                    <option>WIT 1</option>
+                    <option>WIT 2</option>
+                    <option>WIT 3</option>
+                    <option>WIT 4</option>
+                    <option>WIT 4,5</option>
+                    <option>Sala obserwacyjna 5</option>
+                    <option>Sala obserwacyjna 6</option>
+                    <option>Sala obserwacyjna 7</option>
+                    <option>Sala obserwacyjna 8</option>
+                    <option>Sala obserwacyjna 9</option>
+                    <option>Sala obserwacyjna 10</option>
+                    <option>Izolatka Z1</option>
+                    <option>Izolatka Z2</option>
+                    <option>Izolatka Z3</option>
+                    <option>Dekontaminacja</option>
 
+                </select>
                 <br />
-                <br />
-                <p>Id po zatwierdzeniu (TempData): <b>@TempData["PacjentId"]</b></p>
 
+
+                <h5>Kolor:</h5>
+                <select class="form-control" id="Color" name="Color">
+                    <option>Blue</option>
+                    <option>Green</option>
+                    <option>Yellow</option>
+                    <option>Orange</option>
+                    <option>Red</option>
+                </select>
+                <br />
+
+                <h5>Przypisany lekarz?</h5>
+                <select class="form-control" id="Doctor" name="Doctor">
+                    <option>Nie</option>
+                    <option>Tak</option>
+                </select>
+                <br />
+
+                <h5>Przyjęcie pacjenta</h5>
+                <select class="form-control" id="Active" name="Active">
+                    <option>Tak</option>
+                </select>
+                <br />
+
+                DateTime czas = DateTime.Now;
+                <h5>Data i czas wykonania TRIAGE</h5>
+                <select class="form-control" id="DateTime" name="DateTime">
+                    <option>@czas</option>
+                </select>
+                <br />
+
+                <button type="submit" class="btn btn-primary">ZATWIERDŹ</button>
             }
         </div>
     </div>

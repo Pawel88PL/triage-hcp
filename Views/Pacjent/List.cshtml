@@ -13,7 +13,7 @@
                 <p>Pacjenci bez przypisanego lekarza:</p>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Doctor == "No" & pacjent.Active == "Yes")
+                    if (pacjent.Doctor == "Nie" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent" style="background-color: @pacjent.Color">
                             <h5>@pacjent.Name @pacjent.Surname || --> przypisz lekarza!</h5>
@@ -30,7 +30,7 @@
                 <p>Pacjenci z przypisanym lekarzem:</p>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Doctor == "Yes" & pacjent.Active == "Yes")
+                    if (pacjent.Doctor == "Tak" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent" style="background-color: @pacjent.Color">
                             <h5>@pacjent.Name @pacjent.Surname</h5>
@@ -47,7 +47,7 @@
                 <p>Pacjenci z zakończoną obsługą w SOR:</p>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Active == "No")
+                    if (pacjent.Active == "Nie")
                     {
                         <div class="pacjent" style="background-color: @pacjent.Color">
                             <h6>@pacjent.Name @pacjent.Surname || zakończono</h6>
@@ -74,7 +74,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "witus 1" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Wituś 1" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -86,7 +86,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "witus 2" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Wituś 2" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -98,7 +98,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "witus 3" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Wituś 3" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -110,7 +110,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "witus Rk1" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Wituś krzesełko 1" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -122,7 +122,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "witus Rk2" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Wituś krzesełko 2" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -140,7 +140,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "WIT 1" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "WIT 1" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -152,7 +152,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "WIT 2" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "WIT 2" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -164,7 +164,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "WIT 3" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "WIT 3" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -176,7 +176,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "WIT 4" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "WIT 4" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -188,7 +188,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "WIT 4,5" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "WIT 4,5" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -206,7 +206,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "OBS 5" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Sala obserwacyjna 5" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -218,7 +218,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "OBS 6" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Sala obserwacyjna 6" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -230,7 +230,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "OBS 7" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Sala obserwacyjna 7" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -248,7 +248,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "OBS 8" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Sala obserwacyjna 8" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -260,7 +260,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "OBS 9" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Sala obserwacyjna 9" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -272,7 +272,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "OBS 10" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Sala obserwacyjna 10" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -290,7 +290,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "izo 1" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Izolatka Z1" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -302,7 +302,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "izo 2" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Izolatka Z2" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -314,7 +314,7 @@
                 </div>
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "izo 3" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Izolatka Z3" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -328,7 +328,7 @@
             <div class="dekontaminacja">
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "dekontaminacja" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "dekontaminacja" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -342,7 +342,7 @@
             <div class="poczekalnia">
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "poczekalnia" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "Poczekalnia" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
@@ -356,7 +356,7 @@
             <div class="korytarz">
                 @foreach (var pacjent in Model)
                 {
-                    if (pacjent.Room == "korytarz" & pacjent.Active == "Yes")
+                    if (pacjent.Room == "korytarz" & pacjent.Active == "Tak")
                     {
                         <div class="pacjent_sala" style="background-color: @pacjent.Color">
                             <p>@pacjent.Name @pacjent.Surname</p>
