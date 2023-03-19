@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using triage_hcp.Services;
 using triage_hcp.Services.Interfaces;
 
@@ -11,7 +12,13 @@ namespace triage_hcp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            
             builder.Services.AddScoped<ITriageService, TriageService>();
+
+            builder.Services.AddDbContext<DbTriageContext>(builder =>
+            {
+                builder.UseSqlServer("Data Source=DESKTOP-EP19VQO\\SQLEXPRESS;Initial Catalog=DbTriage;Integrated Security=True");
+            });
 
             var app = builder.Build();
 

@@ -5,6 +5,7 @@ namespace triage_hcp.Models
 {
     public class Pacjent
     {
+        [Key]
         public string? Id { get; set; }
 
         [Required(ErrorMessage = "Imię jest wymagane")]
@@ -31,10 +32,7 @@ namespace triage_hcp.Models
         [Required(ErrorMessage = "Kolor jest wymagany")]
         public string? Color { get; set; }
         
-        public DateTime DateTime
-        {
-            get { return DateTime.Now; }
-        }
+        public DateTime DateTime { get; set; }
         public string? Doctor { get; set; }
 
         public string? Active { get; set; }
