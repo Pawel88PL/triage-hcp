@@ -14,7 +14,7 @@ namespace triage_hcp.Controllers
         {
             var pacjent = new Pacjent
             {
-                Id = "1",
+                Id = 1,
                 Name = "Jan",
                 Surname = "Kowalski",
                 Age = "75",
@@ -36,7 +36,7 @@ namespace triage_hcp.Controllers
             {
                 new Pacjent
                 {
-                    Id = "1",
+                    Id = 1,
                     Name = "Jan",
                     Surname = "Kowalski",
                     Age = "75",
@@ -50,7 +50,7 @@ namespace triage_hcp.Controllers
                 },
                 new Pacjent
                 {
-                    Id = "2",
+                    Id = 2,
                     Name= "Beata",
                     Surname = "Nowak",
                     Age = "59",
@@ -64,7 +64,7 @@ namespace triage_hcp.Controllers
                 },
                 new Pacjent
                 {
-                    Id = "3",
+                    Id = 3,
                     Name = "Janina",
                     Surname = "Spychalska",
                     Age = "88",
@@ -78,7 +78,7 @@ namespace triage_hcp.Controllers
                 },
                 new Pacjent
                 {
-                    Id = "4",
+                    Id = 4,
                     Name = "Kazimierz",
                     Surname = "Waligóra",
                     Age = "67",
@@ -92,7 +92,7 @@ namespace triage_hcp.Controllers
                 },
                 new Pacjent
                 {
-                    Id = "5",
+                    Id = 5,
                     Name = "Grażyna",
                     Surname = "Czarnecka",
                     Age = "53",
@@ -106,7 +106,7 @@ namespace triage_hcp.Controllers
                 },
                 new Pacjent
                 {
-                    Id = "6",
+                    Id = 6,
                     Name = "Zbigniew",
                     Surname = "Domagała",
                     Age = "77",
@@ -120,7 +120,7 @@ namespace triage_hcp.Controllers
                 },
                 new Pacjent
                 {
-                    Id = "7",
+                    Id = 7,
                     Name = "Agnieszka",
                     Surname = "Nowakowska",
                     Age = "43",
@@ -134,7 +134,7 @@ namespace triage_hcp.Controllers
                 },
                 new Pacjent
                 {
-                    Id = "8",
+                    Id = 8,
                     Name = "Justyna",
                     Surname = "Kalinowska",
                     Age = "21",

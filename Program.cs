@@ -17,7 +17,7 @@ namespace triage_hcp
 
             builder.Services.AddDbContext<DbTriageContext>(builder =>
             {
-                builder.UseSqlServer("Data Source=DESKTOP-EP19VQO\\SQLEXPRESS;Initial Catalog=DbTriage;Integrated Security=True");
+                builder.UseSqlServer("Data Source=DESKTOP-EP19VQO\\SQLEXPRESS;Initial Catalog=DbTest;Integrated Security=True");
             });
 
             var app = builder.Build();

@@ -6,7 +6,7 @@ namespace triage_hcp.Models
     public class Pacjent
     {
         [Key]
-        public string? Id { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Imię jest wymagane")]
         public string? Name { get; set; }

@@ -12,7 +12,7 @@ using triage_hcp;
 namespace triage_hcp.Migrations
 {
     [DbContext(typeof(DbTriageContext))]
-    [Migration("20230319060448_init")]
+    [Migration("20230319075959_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,11 @@ namespace triage_hcp.Migrations
 
             modelBuilder.Entity("triage_hcp.Models.Pacjent", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Active")
                         .HasColumnType("nvarchar(max)");
