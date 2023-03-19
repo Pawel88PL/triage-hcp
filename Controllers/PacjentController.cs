@@ -21,7 +21,7 @@ namespace triage_hcp.Controllers
 
         public IActionResult Triage()
         {
-            return RedirectToAction("List", "Pacjent");
+            return View();
         }
 
         public IActionResult List()

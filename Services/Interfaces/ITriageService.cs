@@ -6,5 +6,7 @@ namespace triage_hcp.Services.Interfaces
     {
         int Save(Pacjent pacjent);
         List<Pacjent> GetAll();
+        Pacjent Get(int Id);
+        int Delete(int Id);
     }
 }

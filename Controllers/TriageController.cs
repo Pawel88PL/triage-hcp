@@ -8,7 +8,7 @@ namespace triage_hcp.Controllers
     public class TriageController : Controller
     {
         private readonly ITriageService _triageService;
-        
+
         public TriageController(ITriageService triageService)
         {
             _triageService = triageService;
@@ -35,11 +35,35 @@ namespace triage_hcp.Controllers
                 return View(body);
             }
 
-            var id = _triageService.Save(body);
+            var Id = _triageService.Save(body);
 
-            TempData["PacjentId"] = id;
+            TempData["PacjentId"] = Id;
 
-            return RedirectToAction("Triage");
+            return RedirectToAction("List", "Pacjent");
         }
+
+
+        [HttpGet]
+        public IActionResult List()
+        {
+            var pacjenci = _triageService.GetAll();
+            return View(pacjenci);
+        }
+
+        [HttpGet]
+        public IActionResult Details(int Id)
+        {
+            var pacjent = _triageService.Get(Id);
+            return View(pacjent);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int Id)
+        {
+            _triageService.Delete(Id);
+            return RedirectToAction("List", "Pacjent");
+        }
+
+
     }
 }

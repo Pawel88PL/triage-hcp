@@ -13,6 +13,22 @@ namespace triage_hcp.Services
             _context = context;
         }
 
+        public int Delete(int Id)
+        {
+            var pacjent = _context.Pacjenci.Find(Id);
+            _context.Pacjenci.Remove(pacjent);
+            _context.SaveChanges();
+
+            return Id;
+        }
+
+        public Pacjent Get(int Id)
+        {
+            var pacjent = _context.Pacjenci.Find(Id);
+
+            return pacjent;
+        }
+
         public List<Pacjent> GetAll()
         {
             var pacjenci = _context.Pacjenci.ToList();
