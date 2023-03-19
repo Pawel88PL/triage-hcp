@@ -51,6 +51,16 @@
                 <br />
                 <br />
 
+                <h5>Przypisany lekarz: </h5>
+                @Html.TextBoxFor(x => x.Doctor)
+                <br />
+                <br />
+
+                <h5>Aktywne: </h5>
+                @Html.TextBoxFor(x => x.Active)
+                <br />
+                <br />
+
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-danger">Czerwony</button>
                     <button type="button" class="btn btn-warning" style="background-color: orange">Pomarańczowy</button>
@@ -63,11 +73,6 @@
                 <br />
 
                 <button type="submit">ZATWIERDŹ</button>
-
-                <br />
-                <br />
-                <p>Id po zatwierdzeniu (TempData): <b>@TempData["PacjentId"]</b></p>
-
             }
         </div>
     </div>

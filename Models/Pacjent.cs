@@ -32,9 +32,12 @@ namespace triage_hcp.Models
         [Required(ErrorMessage = "Kolor jest wymagany")]
         public string? Color { get; set; }
         
-        public DateTime DateTime { get; set; }
+        public DateTime DateTime { get; set ; }
+
+        
         public string? Doctor { get; set; }
 
+        
         public string? Active { get; set; }
     }
 }
