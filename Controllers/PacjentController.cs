@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Controllers
 {
+    [Authorize]
     public class PacjentController : Controller
     {
         private readonly ITriageService _triageService;

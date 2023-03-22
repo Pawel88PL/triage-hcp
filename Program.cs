@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using triage_hcp.Models;
 using triage_hcp.Services;
@@ -21,7 +22,7 @@ namespace triage_hcp
                 builder.UseSqlServer("Data Source=DESKTOP-EP19VQO\\SQLEXPRESS;Initial Catalog=DbTest;Integrated Security=True");
             });
 
-            builder.Services.AddIdentityCore<UserModel>(options =>
+            builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 4;
@@ -46,6 +47,7 @@ namespace triage_hcp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

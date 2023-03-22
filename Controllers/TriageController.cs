@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using triage_hcp.Models;
 using triage_hcp.Services;
 using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Controllers
 {
+    [Authorize]
     public class TriageController : Controller
     {
         private readonly ITriageService _triageService;
@@ -44,7 +46,7 @@ namespace triage_hcp.Controllers
 
 
         [HttpGet]
-        public IActionResult List()
+        public IActionResult Admin()
         {
             var pacjenci = _triageService.GetAll();
             return View(pacjenci);

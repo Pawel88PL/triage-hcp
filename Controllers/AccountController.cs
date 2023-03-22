@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using triage_hcp.Models;
 
@@ -8,10 +9,13 @@ namespace triage_hcp.Controllers
     {
         
         private readonly UserManager<UserModel> _userManager;
+        private readonly SignInManager<UserModel> _signInManager;
 
-        public AccountController(UserManager<UserModel> userManager)
+        public AccountController(UserManager<UserModel> userManager, SignInManager<UserModel> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
+
         }
 
         [HttpGet]
@@ -21,7 +25,7 @@ namespace triage_hcp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(Register userLoginData)
+        public async Task<IActionResult> Login(Login userLoginData)
         {
             if (!ModelState.IsValid)
             {
@@ -29,10 +33,12 @@ namespace triage_hcp.Controllers
             }
 
             // logika która loguje
+            await _signInManager.PasswordSignInAsync(userLoginData.UserName, userLoginData.Password, true, false);
 
             return RedirectToAction("List", "Pacjent");
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Register()
         {
@@ -59,9 +65,10 @@ namespace triage_hcp.Controllers
         }
 
         
-        public IActionResult LogOut()
+        public async Task<IActionResult> LogOut()
         {
-            return View();
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
