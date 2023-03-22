@@ -1,28 +1,24 @@
-﻿
-@model triage_hcp.Models.Credential
+﻿@model triage_hcp.Models.Login
+
 @{
     ViewData["Title"] = "Login";
 }
 
-<div class="container border" style="padding: 20px">
-    <form method="post">
-        <div class="form-group row">
-            <div class="col-2">
-                <label asp-for="UserName"></label>
-            </div>
-            <div class="col-4">
-                <input type="text" asp-for="UserName" class="form-control"/>
-            </div>
-        </div>
-        <br />
-        <div class="form-group row">
-            <div class="col-2">
-                <label asp-for="Password"></label>
-            </div>
-            <div class="col-4">
-                <input type="text" asp-for="Password" class="form-control" />
-            </div>
-        </div>
-    </form>
-</div>
+<h1>Logowanie</h1>
 
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+    <h5>Login: </h5>
+    @Html.TextBoxFor(x => x.UserName)
+    <br />
+    <br />
+
+    <h5>Hasło: </h5>
+    @Html.PasswordFor(x => x.Password)
+    <br />
+    <br />
+
+    <button type="submit" class="btn btn-primary">Zaloguj</button>
+}

@@ -1,22 +1,34 @@
 ﻿@model IEnumerable<triage_hcp.Models.Pacjent>
 @{
-    ViewData["Title"] = "Lista administrator";
+    ViewData["Title"] = "Lista administratora";
 }
 
-<h1>Lista pacjentów - wersja administratora</h1>
+<h3>Usuwanie wpisów z bazy danych</h3>
+<br />
 
-<ol>
+<div class="container border" style="padding: 20px">
     @foreach (var pacjent in Model)
     {
-        <li>
-            @pacjent.Name @pacjent.Surname || Id: @pacjent.Id
-            <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })">Epikryza</a>
-            @using (Html.BeginForm("Delete", "Triage", FormMethod.Post))
-            {
-                <input type="hidden" name="Id" value="@pacjent.Id" />
-                <button type="submit">Usuń</button>
-            }
-            <br />
-        </li>
+        <ol>
+            <li>
+                <div class="row">
+                    <div class="col-4">
+                        <b>@pacjent.DateTime</b> - @pacjent.Name @pacjent.Surname || sala: @pacjent.Room
+                    </div>
+                    <div class="col-1">
+                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })">Opis</a>
+                    </div>
+                    <div class="col-1">
+                        @using (Html.BeginForm("Delete", "Triage", FormMethod.Post))
+                        {
+                            <input type="hidden" name="Id" value="@pacjent.Id" /> <button type="submit" class="btn btn-danger">Usuń</button>
+
+                        }
+                    </div>
+                    <br />
+                </div>
+
+            </li>
+        </ol>
     }
-</ol>
+</div>

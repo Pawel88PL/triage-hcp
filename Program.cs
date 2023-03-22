@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using triage_hcp.Models;
 using triage_hcp.Services;
 using triage_hcp.Services.Interfaces;
 
@@ -19,6 +20,16 @@ namespace triage_hcp
             {
                 builder.UseSqlServer("Data Source=DESKTOP-EP19VQO\\SQLEXPRESS;Initial Catalog=DbTest;Integrated Security=True");
             });
+
+            builder.Services.AddIdentityCore<UserModel>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+
+            }).AddEntityFrameworkStores<DbTriageContext>();
 
             var app = builder.Build();
 
