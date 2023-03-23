@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using triage_hcp.Models;
 
 namespace triage_hcp
 {
-    public class DbTriageContext : DbContext
+    public class DbTriageContext : IdentityDbContext<UserModel>
     {
         public DbTriageContext(DbContextOptions<DbTriageContext> options) : base(options) { }
 

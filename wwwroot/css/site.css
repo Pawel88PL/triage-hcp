@@ -7,17 +7,11 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
-div.container {
-    display: grid;
-    grid-template-columns: repeat(3);
-}
 
-div.lista_pacjentow {
-    grid-column: 1/1;
-}
+
 
 div.pacjent {
     border-radius: 10px;
@@ -29,22 +23,6 @@ div.pacjent {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-div.lista_lozek {
-    grid-column: 3/3;
-    max-width: 350px;
-}
-
-div.witus,
-div.wit,
-div.obs1,
-div.obs2,
-div.izo,
-div.dekontaminacja,
-div.poczekalnia,
-div.korytarz {
-    display: grid;
-    grid-template-columns: [first] 50px [sexond] 200px [third];
-}
 
 div.nr_lozka {
     grid-column: 1/2;
@@ -52,6 +30,7 @@ div.nr_lozka {
     border-radius: 10px;
     max-width: 35px;
     max-height: 30px;
+    min-width: 30px;
     text-align: center;
     margin: 2px 5px;
 }
@@ -61,8 +40,6 @@ div.pacjent_sala {
     border: solid;
     border-radius: 10px;
     max-width: 250px;
-    min-width: 150px;
-    max-height: 30px;
     padding: 1px 0px 0px 0px;
     text-align: center;
     margin: 2px;

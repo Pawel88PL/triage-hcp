@@ -1,0 +1,24 @@
+﻿@model triage_hcp.Models.Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Logowanie</h1>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+    <h5>Login: </h5>
+    @Html.TextBoxFor(x => x.UserName)
+    <br />
+    <br />
+
+    <h5>Hasło: </h5>
+    @Html.PasswordFor(x => x.Password)
+    <br />
+    <br />
+
+    <button type="submit" class="btn btn-primary">Zaloguj</button>
+}
