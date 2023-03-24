@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                            <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || - - - przypisz lekarza!</h5>
                                                 <p>@pacjent.Diagnosis</p>
@@ -43,16 +43,6 @@
                                     <div class="col-4" style="padding-top: 50px">
                                         <select class="form-control" id="Doctor" name="Doctor">
                                             <option>Wybierz lekarza</option>
-                                            <option>Leswał Lenartowicz</option>
-                                            <option>Yuri</option>
-                                            <option>Anton</option>
-                                            <option>Monika</option>
-                                            <option>Agata</option>
-                                            <option>Marek</option>
-                                            <option>Lekarz G</option>
-                                            <option>Lekarz H</option>
-                                            <option>Lekarz I</option>
-                                            <option>Lekarz J</option>
                                         </select>
                                     </div>
                                 </div>
@@ -72,7 +62,7 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                            <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || - @pacjent.DateTime</h5>
                                                 <p>@pacjent.Diagnosis</p>
@@ -84,16 +74,6 @@
                                     <div class="col-4" style="padding-top: 50px">
                                         <select class="form-control" id="Doctor" name="Doctor">
                                             <option>@pacjent.Doctor</option>
-                                            <option>Leswał Lenartowicz</option>
-                                            <option>Yuri</option>
-                                            <option>Anton</option>
-                                            <option>Monika</option>
-                                            <option>Agata</option>
-                                            <option>Marek</option>
-                                            <option>Lekarz G</option>
-                                            <option>Lekarz H</option>
-                                            <option>Lekarz I</option>
-                                            <option>Lekarz J</option>
                                         </select>
                                     </div>
                                 </div>
@@ -110,7 +90,7 @@
                         if (!(pacjent.Active == "Tak"))
                         {
                             <div class="pacjent" style="background-color: @pacjent.Color">
-                                <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
                                    style="text-decoration:none; color:black">
                                     <h6>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || zakończono</h6>
                                     <p>@pacjent.Diagnosis</p>

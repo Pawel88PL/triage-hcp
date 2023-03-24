@@ -113,7 +113,7 @@ namespace triage_hcp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("List", "Pacjent");
             }
             return View(pacjent);
         }
