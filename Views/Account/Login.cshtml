@@ -4,21 +4,24 @@
     ViewData["Title"] = "Login";
 }
 
-<h1>Logowanie</h1>
-
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
-{
-    @Html.ValidationSummary()
-
-    <h5>Login: </h5>
-    @Html.TextBoxFor(x => x.UserName)
-    <br />
+<div class="container border" style="max-width: 400px; padding: 30px; margin-top: 30px">
+    <h3>Zaloguj się do aplikacji</h3>
     <br />
 
-    <h5>Hasło: </h5>
-    @Html.PasswordFor(x => x.Password)
-    <br />
-    <br />
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        @Html.ValidationSummary()
 
-    <button type="submit" class="btn btn-primary">Zaloguj</button>
-}
+        <h5>Login: </h5>
+        @Html.TextBoxFor(x => x.UserName)
+        <br />
+        <br />
+
+        <h5>Hasło: </h5>
+        @Html.PasswordFor(x => x.Password)
+        <br />
+        <br />
+
+        <button type="submit" class="btn btn-primary">Zaloguj</button>
+    }
+</div>
