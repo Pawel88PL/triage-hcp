@@ -17,10 +17,14 @@
                         if (pacjent.Doctor == "Nie" & pacjent.Active == "Tak")
                         {
                             <div class="pacjent" style="background-color: @pacjent.Color">
-                                <h5>@pacjent.Name @pacjent.Surname || --> przypisz lekarza!</h5>
-                                <p>@pacjent.Diagnosis</p>
-                                <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
-                                <h5>@pacjent.DateTime</h5>
+                                <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                   style="text-decoration:none; color:black">
+                                    <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || --> przypisz lekarza!</h5>
+                                    <p>@pacjent.Diagnosis</p>
+                                    <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
+                                    <h5>@pacjent.DateTime</h5>
+                                </a>
+
                             </div>
                         }
                     }
@@ -34,10 +38,13 @@
                         if (pacjent.Doctor == "Tak" & pacjent.Active == "Tak")
                         {
                             <div class="pacjent" style="background-color: @pacjent.Color">
-                                <h5>@pacjent.Name @pacjent.Surname</h5>
-                                <p>@pacjent.Diagnosis</p>
-                                <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
-                                <h5>@pacjent.DateTime</h5>
+                                <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                   style="text-decoration:none; color:black">
+                                    <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</h5>
+                                    <p>@pacjent.Diagnosis</p>
+                                    <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
+                                    <h5>@pacjent.DateTime</h5>
+                                </a>
                             </div>
                         }
                     }
@@ -51,10 +58,12 @@
                         if (pacjent.Active == "Nie")
                         {
                             <div class="pacjent" style="background-color: @pacjent.Color">
-                                <h6>@pacjent.Name @pacjent.Surname || zakończono</h6>
-                                <p>@pacjent.Diagnosis</p>
-                                <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
-
+                                <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                   style="text-decoration:none; color:black">
+                                    <h6>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || zakończono</h6>
+                                    <p>@pacjent.Diagnosis</p>
+                                    <p>@pacjent.Gender @pacjent.Age lat || pesel: <b>@pacjent.Pesel</b> || sala: <b>@pacjent.Room</b></p>
+                                </a>
                             </div>
                         }
                     }
@@ -82,7 +91,10 @@
                                 if (pacjent.Room == "Wituś 1" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -103,7 +115,10 @@
                                 if (pacjent.Room == "Wituś 2" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -124,7 +139,10 @@
                                 if (pacjent.Room == "Wituś 3" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -145,7 +163,10 @@
                                 if (pacjent.Room == "Wituś" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -170,7 +191,10 @@
                                 if (pacjent.Room == "WIT 1" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -191,7 +215,10 @@
                                 if (pacjent.Room == "WIT 2" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -212,7 +239,10 @@
                                 if (pacjent.Room == "WIT 3" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -233,7 +263,10 @@
                                 if (pacjent.Room == "WIT 4" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -254,7 +287,10 @@
                                 if (pacjent.Room == "WIT" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -279,7 +315,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 5" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -300,7 +339,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 6" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -321,7 +363,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 5" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -346,7 +391,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 8" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -367,7 +415,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 9" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -388,7 +439,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 10" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -413,7 +467,10 @@
                                 if (pacjent.Room == "Izolatka Z1" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -434,7 +491,10 @@
                                 if (pacjent.Room == "Izolatka Z2" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -455,7 +515,10 @@
                                 if (pacjent.Room == "Izolatka Z3" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -470,7 +533,6 @@
                 <div id="Poczekalnia">
                     <div class="row">
                         <div class="col-4">
-                            
                         </div>
                         <div class="col-7">
                             @foreach (var pacjent in Model)
@@ -478,7 +540,10 @@
                                 if (pacjent.Room == "Poczekalnia" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -500,7 +565,10 @@
                                 if (pacjent.Room == "Korytarz" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
@@ -522,7 +590,10 @@
                                 if (pacjent.Room == "Dekontaminacja" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name @pacjent.Surname</p>
+                                        <a href="@Url.Action("Details","Triage", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        </a>
                                     </div>
                                 }
                             }
