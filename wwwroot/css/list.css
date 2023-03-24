@@ -30,3 +30,19 @@ div.pacjent_sala {
     text-align: center;
     margin: 2px;
 }
+
+div.animation {
+    animation-name: datetime;
+    animation-duration: 1s;
+    animation-iteration-count: infinite
+}
+
+@keyframes datetime {
+    from {
+        color: black;
+    }
+
+    to {
+        color: red;
+    }
+}
