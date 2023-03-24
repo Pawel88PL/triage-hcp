@@ -7,7 +7,7 @@
 <div class="triage">
     <div class="forms">
         <div class="shadow p-3 mb-5 bg-white rounded">
-        <h1>Wykonaj Triage</h1>
+            <h2 class="text-center">TRIAGE</h2>
             @using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
             {
                 @Html.ValidationSummary()
@@ -33,7 +33,7 @@
                 <br />
 
                 <h5>Objawy: </h5>
-                @Html.TextBoxFor(x => x.Diagnosis)
+                @Html.TextAreaFor(x => x.Diagnosis)
                 <br />
                 <br />
 
@@ -81,25 +81,23 @@
                 </select>
                 <br />
 
-                <h5>Przypisany lekarz?</h5>
-                <select class="form-control" id="Doctor" name="Doctor">
-                    <option>Nie</option>
-                    <option>Tak</option>
-                </select>
-                <br />
-
-                <h5>Przyjęcie pacjenta</h5>
-                <select class="form-control" id="Active" name="Active">
-                    <option>Tak</option>
-                </select>
-                <br />
 
                 DateTime czas = DateTime.Now;
-                <h5>Data i czas wykonania TRIAGE</h5>
+
                 <select class="form-control" id="DateTime" name="DateTime">
                     <option>@czas</option>
                 </select>
                 <br />
+
+                <div style="display: none">
+                    <select class="form-control" id="Doctor" name="Doctor">
+                        <option>Nie</option>
+                    </select>
+
+                    <select class="form-control" id="Active" name="Active">
+                        <option>Tak</option>
+                    </select>
+                </div>
 
                 <button type="submit" class="btn btn-primary">ZATWIERDŹ</button>
             }

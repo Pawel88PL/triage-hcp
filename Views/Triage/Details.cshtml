@@ -1,11 +1,68 @@
 ﻿@model triage_hcp.Models.Pacjent
 
 @{
-    ViewData["Title"] = "Epikryza";
+    ViewData["Title"] = "Szczegóły";
 }
 
-<h1>Epikryza</h1>
 
-<p>@Model.Name @Model.Surname</p>
-<p>Epikryza: @Model.Diagnosis</p>
+<div class="container border shadow p-3 mb-5 bg-white rounded" style="padding: 30px">
+    <div class="row">
+        <div class="border col-5" style="padding: 30px; margin:20px">
+            <div class="row">
+
+                <div style="padding-bottom: 30px">
+                    <h3>Szczegóły pacjenta</h3>
+                </div>
+
+                <div class="col-3">
+                    <p>Data i godzina: </p>
+                    <p>Imię i Nazwisko: </p>
+                    <p>PESEL: </p>
+                    <p>Wiek: </p>
+                    <p>Płeć: </p>
+                    <p>Lokalizacja: </p>
+                    <p>Kolor: </p>
+                    <p>Przypisany lekarz: </p>
+                    <p>Pacjent dalej w SOR? </p>
+                    <p>Opis w traiage: </p>
+                </div>
+
+                <div class="col-6">
+                    <p><b>@Model.DateTime</b></p>
+                    <p><b>@Model.Name @Model.Surname</b></p>
+                    <p><b>@Model.Pesel</b></p>
+                    <p><b>@Model.Age</b></p>
+                    <p><b>@Model.Gender</b></p>
+                    <p><b>@Model.Room</b></p>
+                    <p><b>@Model.Color</b></p>
+                    <p><b>@Model.Doctor</b></p>
+                    <p><b>@Model.Active</b></p>
+                    <p><b>@Model.Diagnosis</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="border col-5" style="padding: 30px; margin:20px">
+            <div>
+                <h4>EPIKRYZA</h4>
+                <div class="form-outline mb-4">
+                    <textarea class="form-control" id="form4Example3" rows="10"></textarea>
+                    <label class="form-label" for="form4Example3">Epikryza</label>
+                </div>
+            </div>
+            <div>
+                <h4>OBSERWACJE RATOWNICZO-PIELĘGNIARSKIE</h4>
+                <div class="form-outline mb-4">
+                    <textarea class="form-control" id="form4Example3" rows="10"></textarea>
+                    <label class="form-label" for="form4Example3">Obserwacje rat-piel</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">Zatwierdź zmiany</button>
+
+</div>
+
 
