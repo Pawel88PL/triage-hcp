@@ -13,28 +13,28 @@
                 @Html.ValidationSummary()
 
                 <h5>Imię: </h5>
-                @Html.TextBoxFor(x => x.Name)
-                <br />
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
                 <br />
 
                 <h5>Nazwisko: </h5>
-                @Html.TextBoxFor(x => x.Surname)
-                <br />
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
                 <br />
 
                 <h5>PESEL: </h5>
-                @Html.TextBoxFor(x => x.Pesel)
-                <br />
+                <input asp-for="Pesel" class="form-control" />
+                <span asp-validation-for="Pesel" class="text-danger"></span>
                 <br />
 
                 <h5>Wiek: </h5>
-                @Html.TextBoxFor(x => x.Age)
-                <br />
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
                 <br />
 
                 <h5>Objawy: </h5>
-                @Html.TextAreaFor(x => x.Diagnosis)
-                <br />
+                <input asp-for="Diagnosis" class="form-control" />
+                <span asp-validation-for="Diagnosis" class="text-danger"></span>
                 <br />
 
                 <h5>Płeć:</h5>
