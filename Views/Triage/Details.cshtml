@@ -14,16 +14,20 @@
                     <h3>Szczegóły pacjenta</h3>
                 </div>
 
-                <div class="col-3">
+                <div class="col-5">
                     <p>Data i godzina: </p>
                     <p>Imię i Nazwisko: </p>
                     <p>PESEL: </p>
                     <p>Wiek: </p>
                     <p>Płeć: </p>
                     <p>Lokalizacja: </p>
+                    <br />
                     <p>Kolor: </p>
-                    <p>Przypisany lekarz: </p>
+                    <br />
+                    <p>Lekarz prowadzący: </p>
+                    <br />
                     <p>Pacjent dalej w SOR? </p>
+                    <br />
                     <p>Opis w traiage: </p>
                 </div>
 
@@ -31,12 +35,73 @@
                     <p><b>@Model.DateTime</b></p>
                     <p><b>@Model.Name @Model.Surname</b></p>
                     <p><b>@Model.Pesel</b></p>
-                    <p><b>@Model.Age</b></p>
+                    <p><b>@Model.Age lat</b></p>
                     <p><b>@Model.Gender</b></p>
-                    <p><b>@Model.Room</b></p>
-                    <p><b>@Model.Color</b></p>
-                    <p><b>@Model.Doctor</b></p>
-                    <p><b>@Model.Active</b></p>
+                    
+                    <select class="form-control" id="Room" name="Room">
+                        <option>@Model.Room</option>
+                        <option>Poczekalnia</option>
+                        <option>Korytarz</option>
+                        <option>Wituś</option>
+                        <option>Wituś 1</option>
+                        <option>Wituś 2</option>
+                        <option>Wituś 3</option>
+                        <option>WIT</option>
+                        <option>WIT 1</option>
+                        <option>WIT 2</option>
+                        <option>WIT 3</option>
+                        <option>WIT 4</option>
+                        <option>Sala obserwacyjna 5</option>
+                        <option>Sala obserwacyjna 6</option>
+                        <option>Sala obserwacyjna 7</option>
+                        <option>Sala obserwacyjna 8</option>
+                        <option>Sala obserwacyjna 9</option>
+                        <option>Sala obserwacyjna 10</option>
+                        <option>Izolatka Z1</option>
+                        <option>Izolatka Z2</option>
+                        <option>Izolatka Z3</option>
+                        <option>Dekontaminacja</option>
+                    </select>
+                    <br />
+
+                    <select class="form-control" id="Color" name="Color">
+                        <option>@Model.Color</option>
+                        <option>Green</option>
+                        <option>Yellow</option>
+                        <option>Orange</option>
+                        <option>Red</option>
+                        <option>Blue</option>
+                    </select>
+                    <br />
+
+                    <select class="form-control" id="Doctor" name="Doctor">
+                        <option>Nie</option>
+                        <option>Lekarz A</option>
+                        <option>Lekarz B</option>
+                        <option>Lekarz C</option>
+                        <option>Lekarz D</option>
+                        <option>Lekarz E</option>
+                        <option>Lekarz F</option>
+                        <option>Lekarz G</option>
+                        <option>Lekarz H</option>
+                        <option>Lekarz I</option>
+                        <option>Lekarz J</option>
+                    </select>
+                    <br />
+
+                    <select class="form-control" id="Active" name="Active">
+                        <option>Tak</option>
+                        <option>Wypisany do domu</option>
+                        <option>Interna</option>
+                        <option>Kardiologia</option>
+                        <option>Neurologia</option>
+                        <option>OIOM</option>
+                        <option>Chirurgia</option>
+                        <option>Ortopedia</option>
+                        <option>Przekazany do innego szpitala</option>
+                    </select>
+                    <br />
+
                     <p><b>@Model.Diagnosis</b></p>
                 </div>
             </div>
