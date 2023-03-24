@@ -37,32 +37,42 @@
                     <p><b>@Model.Pesel</b></p>
                     <p><b>@Model.Age lat</b></p>
                     <p><b>@Model.Gender</b></p>
-                    
-                    <select class="form-control" id="Room" name="Room">
-                        <option>@Model.Room</option>
-                        <option>Poczekalnia</option>
-                        <option>Korytarz</option>
-                        <option>Wituś</option>
-                        <option>Wituś 1</option>
-                        <option>Wituś 2</option>
-                        <option>Wituś 3</option>
-                        <option>WIT</option>
-                        <option>WIT 1</option>
-                        <option>WIT 2</option>
-                        <option>WIT 3</option>
-                        <option>WIT 4</option>
-                        <option>Sala obserwacyjna 5</option>
-                        <option>Sala obserwacyjna 6</option>
-                        <option>Sala obserwacyjna 7</option>
-                        <option>Sala obserwacyjna 8</option>
-                        <option>Sala obserwacyjna 9</option>
-                        <option>Sala obserwacyjna 10</option>
-                        <option>Izolatka Z1</option>
-                        <option>Izolatka Z2</option>
-                        <option>Izolatka Z3</option>
-                        <option>Dekontaminacja</option>
-                    </select>
-                    <br />
+
+                    @if (Model.Active == "Tak")
+                    {
+                        <select class="form-control" id="Room" name="Room">
+                            <option>@Model.Room</option>
+                            <option>Poczekalnia</option>
+                            <option>Korytarz</option>
+                            <option>Wituś</option>
+                            <option>Wituś 1</option>
+                            <option>Wituś 2</option>
+                            <option>Wituś 3</option>
+                            <option>WIT</option>
+                            <option>WIT 1</option>
+                            <option>WIT 2</option>
+                            <option>WIT 3</option>
+                            <option>WIT 4</option>
+                            <option>Sala obserwacyjna 5</option>
+                            <option>Sala obserwacyjna 6</option>
+                            <option>Sala obserwacyjna 7</option>
+                            <option>Sala obserwacyjna 8</option>
+                            <option>Sala obserwacyjna 9</option>
+                            <option>Sala obserwacyjna 10</option>
+                            <option>Izolatka Z1</option>
+                            <option>Izolatka Z2</option>
+                            <option>Izolatka Z3</option>
+                            <option>Dekontaminacja</option>
+                        </select>
+                        <br />
+                    }
+                    else
+                    {
+                        <select class="form-control" id="Active" name="Active">
+                            <option>@Model.CoDalejZPacjentem</option>
+                        </select>
+                        <br />
+                    }
 
                     <select class="form-control" id="Color" name="Color">
                         <option>@Model.Color</option>
@@ -90,7 +100,7 @@
                     <br />
 
                     <select class="form-control" id="Active" name="Active">
-                        <option>Tak</option>
+                        <option>@Model.CoDalejZPacjentem</option>
                         <option>Wypisany do domu</option>
                         <option>Interna</option>
                         <option>Kardiologia</option>
@@ -110,16 +120,17 @@
         <div class="border col-5" style="padding: 30px; margin:20px">
             <div>
                 <h4>EPIKRYZA</h4>
-                <div class="form-outline mb-4">
-                    <textarea class="form-control" id="form4Example3" rows="10"></textarea>
-                    <label class="form-label" for="form4Example3">Epikryza</label>
+                <div class="form-group shadow-textarea">
+                    <textarea class="form-control z-depth-1" id="Epikryza" rows="10"
+                              placeholder="@Model.Epikryza"></textarea>
                 </div>
+                <br />
             </div>
             <div>
                 <h4>OBSERWACJE RATOWNICZO-PIELĘGNIARSKIE</h4>
-                <div class="form-outline mb-4">
-                    <textarea class="form-control" id="form4Example3" rows="10"></textarea>
-                    <label class="form-label" for="form4Example3">Obserwacje rat-piel</label>
+                <div class="form-group shadow-textarea">
+                    <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="10"
+                              placeholder="@Model.ObserwacjeRatPiel"></textarea>
                 </div>
             </div>
         </div>

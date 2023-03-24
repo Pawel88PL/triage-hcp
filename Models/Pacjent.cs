@@ -43,6 +43,7 @@ namespace triage_hcp.Models
         public string? Epikryza { get; set; }
 
         public string? ObserwacjeRatPiel { get; set; }
+
         public string? CoDalejZPacjentem { get; set; }
     }
 }
