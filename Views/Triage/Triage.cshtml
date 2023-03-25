@@ -4,13 +4,13 @@
     ViewData["Title"] = "Triage";
 }
 
-<div class="triage">
+<div class="container">
     <div class="forms">
         <div class="border shadow p-3 mb-5 bg-white rounded">
             <h2 class="text-center">TRIAGE</h2>
             @using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
             {
-                @Html.ValidationSummary()
+                
 
                 <h5>Imię: </h5>
                 <input asp-for="Name" class="form-control" />
@@ -71,17 +71,6 @@
                 </select>
                 <br />
 
-                <h5>Kolor:</h5>
-                <select class="form-control" id="Color" name="Color">
-                    <option>Green</option>
-                    <option>Yellow</option>
-                    <option>Orange</option>
-                    <option>Red</option>
-                    <option>Blue</option>
-                </select>
-                <br />
-
-
                 DateTime czas = DateTime.Now;
 
                 <select class="form-control" id="DateTime" name="DateTime">
@@ -98,8 +87,16 @@
                         <option>Tak</option>
                     </select>
                 </div>
+                <div>
+                    <h5 class="text-center">WYBIERZ PRIORYTET PILNOŚCI</h5>
+                    <br>
+                </div>
 
-                <button type="submit" class="btn btn-primary">ZATWIERDŹ</button>
+                <button type="submit" class="btn btn-danger" id="Color" name="Color" value="red">CZERWONY</button>
+                <button type="submit" class="btn btn-warning" id="Color" name="Color" value="orange">POMARAŃCZOWY</button>
+                <button type="submit" class="btn btn-warning" id="Color" name="Color" value="yellow">ŻÓŁTY</button>
+                <button type="submit" class="btn btn-success" id="Color" name="Color" value="green">ZIELONY</button>
+                <button type="submit" class="btn btn-primary" id="Color" name="Color" value="blue">NIEBIESKI</button>
             }
         </div>
     </div>
