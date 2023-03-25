@@ -40,13 +40,13 @@ namespace triage_hcp.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Register_Admin33()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(Register userRegisterData)
+        public async Task<IActionResult> Register_Admin33(Register userRegisterData)
         {
             if (!ModelState.IsValid)
             {

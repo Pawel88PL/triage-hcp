@@ -78,8 +78,8 @@
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
 
-                <div style="padding-bottom: 20px">
-                    <h3>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h3>
+                <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
+                    <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h1>
                 </div>
 
                 <div class="row">
@@ -143,7 +143,7 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-danger" style="margin: 2px" id="Color" name="Color" value="red">CZERWONY</button>
                             <button type="submit" class="btn btn-warning" style="margin: 2px" id="Color" name="Color" value="orange">POMARAŃCZOWY</button>
-                            <button type="submit" class="btn btn-warning" style="margin: 2px" id="Color" name="Color" value="yellow">ŻÓŁTY</button>
+                            <button type="submit" class="btn btn-warning" style="margin: 2px; background-color: yellow" id="Color" name="Color" value="yellow">ŻÓŁTY</button>
                             <br />
                             <button type="submit" class="btn btn-success" style="margin: 2px" id="Color" name="Color" value="lightgreen">ZIELONY</button>
                             <button type="submit" class="btn btn-primary" style="margin: 2px" id="Color" name="Color" value="lightskyblue">NIEBIESKI</button>
@@ -198,7 +198,7 @@
                             <span asp-validation-for="CoDalejZPacjentem" class="text-danger"></span>
                         </div>
                         <br />
-                        <div>
+                        <div style="font-size: 16px">
                             <p><b>@Model.Diagnosis</b></p>
                         </div>
 
@@ -208,13 +208,15 @@
                         <div style="background-color:white; padding: 10px 10px 40px 10px">
                             <h5>Epikryza</h5>
                             <div class="form-group" style="padding-bottom: 50px">
-                                <input asp-for="Epikryza" class="form-control" style="min-height: 150px" />
+                                <textarea class="form-control" id="Epikryza" name="Epikryza" rows="10"
+                                          placeholder="@Model.Epikryza"></textarea>
                                 <span asp-validation-for="Epikryza" class="text-danger"></span>
                             </div>
 
                             <h5>Obserwacje ratowniczo pielęgniarskie</h5>
                             <div class="form-group">
-                                <input asp-for="ObserwacjeRatPiel" class="form-control" style="min-height: 150px" />
+                                <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10"
+                                placeholder="@Model.ObserwacjeRatPiel"></textarea>
                                 <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
                             </div>
                         </div>

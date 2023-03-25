@@ -38,7 +38,7 @@
         margin: 2px;
     }
 
-    div.animation {
+    span.animation {
         animation-name: datetime;
         animation-duration: 1s;
         animation-iteration-count: infinite

@@ -46,7 +46,7 @@ namespace triage_hcp.Controllers
 
 
         [HttpGet]
-        public IActionResult Admin()
+        public IActionResult Admin33()
         {
             var pacjenci = _triageService.GetAll();
             return View(pacjenci);
