@@ -92,6 +92,8 @@
                         <br />
                         <p>Kolor: </p>
                         <br />
+                        <br />
+                        <br />
                         <p>Lekarz prowadzący:</p>
                         <br />
                         <p>Pacjent dalej w SOR?</p>
@@ -139,14 +141,12 @@
 
 
                         <div class="form-group">
-                            <select class="form-control" id="Color" name="Color">
-                                <option>@Model.Color</option>
-                                <option>Green</option>
-                                <option>Yellow</option>
-                                <option>Orange</option>
-                                <option>Red</option>
-                                <option>Blue</option>
-                            </select>
+                            <button type="submit" class="btn btn-danger" style="margin: 2px" id="Color" name="Color" value="red">CZERWONY</button>
+                            <button type="submit" class="btn btn-warning" style="margin: 2px" id="Color" name="Color" value="orange">POMARAŃCZOWY</button>
+                            <button type="submit" class="btn btn-warning" style="margin: 2px" id="Color" name="Color" value="yellow">ŻÓŁTY</button>
+                            <br />
+                            <button type="submit" class="btn btn-success" style="margin: 2px" id="Color" name="Color" value="lightgreen">ZIELONY</button>
+                            <button type="submit" class="btn btn-primary" style="margin: 2px" id="Color" name="Color" value="lightskyblue">NIEBIESKI</button>
                             <span asp-validation-for="Color" class="text-danger"></span>
                         </div>
                         <br />
@@ -193,6 +193,7 @@
                                 <option>Ortopedia</option>
                                 <option>Psychiatria</option>
                                 <option>Przekazany do innego szpitala</option>
+                                <option>Oddalił się z SOR</option>
                             </select>
                             <span asp-validation-for="CoDalejZPacjentem" class="text-danger"></span>
                         </div>
@@ -221,9 +222,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="form-group" style="padding: 0px 0px 10px 20px">
-                <input type="submit" value="ZATWIERDŹ ZMIANY" class="btn btn-primary" />
+            <div>
+                <p>* aby zatwierdzić zmiany kliknij na przycisk z kolorem pacjenta</p>
             </div>
         </form>
     </div>
