@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-8">
             <div class="border shadow p-3 mb-5 bg-white rounded">
-                <div>
+                <div class="border shadow p-3 mb-5 bg-white rounded">
                     <h5>Pacjenci bez przypisanego lekarza:</h5>
                     @foreach (var pacjent in Model)
                     {
@@ -19,11 +19,15 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-8">
-                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                        <div class="pacjentBez" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
-                                                    <span class="animation">@pacjent.DateTime</span></h5>
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                        @pacjent.DateTime
+                                                    </span>
+                                                </h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
                                             </a>
@@ -42,7 +46,7 @@
                     <br />
                 </div>
 
-                <div>
+                <div class="border shadow p-3 mb-5 bg-white rounded">
                     <h5>Pacjenci z przypisanym lekarzem:</h5>
                     @foreach (var pacjent in Model)
                     {
@@ -72,9 +76,10 @@
                     }
                     <br />
                 </div>
-
-                <div>
+                
+                <div class="border shadow p-3 mb-5 bg-white rounded">
                     <h5>Pacjenci z zakończoną obsługą w SOR:</h5>
+
                     @foreach (var pacjent in Model)
                     {
                         if (!(pacjent.Active == "Tak"))
