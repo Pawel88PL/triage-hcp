@@ -80,7 +80,7 @@
                         if (!(pacjent.Active == "Tak"))
                         {
                             <div class="pacjent" style="background-color: @pacjent.Color">
-                                <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
+                                <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
                                    style="text-decoration:none; color:black">
                                     <h6>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime</h6>
                                     <p>@pacjent.Diagnosis</p>

@@ -73,6 +73,7 @@
                     </select>
                     <span asp-validation-for="Diagnosis" class="text-danger"></span>
                 </div>
+                <br />
             </div>
 
 
@@ -101,6 +102,7 @@
                         <p>Jakie decyzje?</p>
                         <br />
                         <p>Opis w traiage: </p>
+                        <br />
                     </div>
 
                     <div class="col-4">
@@ -172,6 +174,7 @@
 
                         <div class="form-group">
                             <select class="form-control" id="Active" name="Active">
+                                <option>@Model.Active</option>
                                 <option>Tak</option>
                                 <option>Nie</option>
                             </select>
@@ -208,15 +211,15 @@
                         <div style="background-color:white; padding: 10px 10px 40px 10px">
                             <h5>Epikryza</h5>
                             <div class="form-group" style="padding-bottom: 50px">
-                                <textarea class="form-control" id="Epikryza" name="Epikryza" rows="10"
-                                          placeholder="@Model.Epikryza"></textarea>
+                                <textarea class="form-control" id="Epikryza" name="Epikryza" rows="10">
+                                    @Model.Epikryza</textarea>
                                 <span asp-validation-for="Epikryza" class="text-danger"></span>
                             </div>
 
                             <h5>Obserwacje ratowniczo pielęgniarskie</h5>
                             <div class="form-group">
-                                <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10"
-                                placeholder="@Model.ObserwacjeRatPiel"></textarea>
+                                <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10">
+                                    @Model.ObserwacjeRatPiel</textarea>
                                 <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
                             </div>
                         </div>
@@ -225,7 +228,7 @@
                 </div>
             </div>
             <div>
-                <p>* aby zatwierdzić zmiany kliknij na przycisk z kolorem pacjenta</p>
+                <p>* aby zatwierdzić zmiany naciśnij na przycisk z kolorem pacjenta</p>
             </div>
         </form>
     </div>
