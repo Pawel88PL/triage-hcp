@@ -80,7 +80,7 @@
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
 
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
-                    <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h1>
+                    <h1>Pacjent: @Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h1>
                 </div>
 
                 <div class="row">
@@ -103,6 +103,12 @@
                         <br />
                         <p>Opis w traiage: </p>
                         <br />
+                        <a href="~/docs/karta_wit.pdf" target="_blank" class="text-center" style="text-decoration:none">
+                            <div class="btn-primary" style="border-radius: 3px; padding: 3px; max-width: 100px">
+                                KARTA WIT
+                            </div>
+                        </a>
+                        
                     </div>
 
                     <div class="col-4">
