@@ -1,7 +1,7 @@
 ﻿@model triage_hcp.Models.Pacjent
 
 @{
-    ViewData["Title"] = "Szczegóły";
+    ViewData["Title"] = "Przypisz lekarza";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -74,13 +74,33 @@
                     <span asp-validation-for="Diagnosis" class="text-danger"></span>
                 </div>
                 <br />
+
+                <div class="form-group">
+                    <select class="form-control" id="Active" name="Active">
+                        <option>@Model.Active</option>
+                    </select>
+                    <span asp-validation-for="Active" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                        <option>@Model.CoDalejZPacjentem</option>
+                    </select>
+                    <span asp-validation-for="CoDalejZPacjentem" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="padding-bottom: 50px">
+                    <textarea class="form-control" id="Epikryza" name="Epikryza" rows="10">
+                        @Model.Epikryza</textarea>
+                    <span asp-validation-for="Epikryza" class="text-danger"></span>
+                </div>
             </div>
 
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
 
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
-                    <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h1>
+                    <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper() -- <span class="animation"> przypisz lekarza</span> </h1>
                 </div>
 
                 <div class="row">
@@ -95,10 +115,6 @@
                         <br />
                         <p>Lekarz prowadzący:</p>
                         <br />
-                        <p>Pacjent dalej w SOR?</p>
-                        <br />
-                        <p>Jakie decyzje?</p>
-                        <br />
                         <p>Opis w traiage: </p>
                         <br />
                         <a href="~/docs/karta_wit.pdf" target="_blank" class="text-center" style="text-decoration:none">
@@ -106,7 +122,7 @@
                                 KARTA WIT
                             </div>
                         </a>
-                        
+
                     </div>
 
                     <div class="col-4">
@@ -156,9 +172,6 @@
                         </div>
                         <br />
 
-
-
-
                         <div class="form-group">
                             <select class="form-control" id="Doctor" name="Doctor">
                                 <option>@Model.Doctor</option>
@@ -177,35 +190,6 @@
                         </div>
                         <br />
 
-                        <div class="form-group">
-                            <select class="form-control" id="Active" name="Active">
-                                <option>@Model.Active</option>
-                                <option>Tak</option>
-                                <option>Nie</option>
-                            </select>
-                            <span asp-validation-for="Active" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                                <option>@Model.CoDalejZPacjentem</option>
-                                <option>W takcie diagnostyki SOR</option>
-                                <option>Wypisany do domu</option>
-                                <option>Interna</option>
-                                <option>Kardiologia A</option>
-                                <option>Kardiologia B</option>
-                                <option>Neurologia</option>
-                                <option>OIOM</option>
-                                <option>Chirurgia</option>
-                                <option>Ortopedia</option>
-                                <option>Psychiatria</option>
-                                <option>Przekazany do innego szpitala</option>
-                                <option>Oddalił się z SOR</option>
-                            </select>
-                            <span asp-validation-for="CoDalejZPacjentem" class="text-danger"></span>
-                        </div>
-                        <br />
                         <div style="font-size: 16px">
                             <p><b>@Model.Diagnosis</b></p>
                         </div>
@@ -214,16 +198,9 @@
 
                     <div class="border col-5" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
                         <div style="background-color:white; padding: 10px 10px 40px 10px">
-                            <h5>Epikryza</h5>
-                            <div class="form-group" style="padding-bottom: 50px">
-                                <textarea class="form-control" id="Epikryza" name="Epikryza" rows="10">
-                                    @Model.Epikryza</textarea>
-                                <span asp-validation-for="Epikryza" class="text-danger"></span>
-                            </div>
-
                             <h5>Obserwacje ratowniczo pielęgniarskie</h5>
                             <div class="form-group">
-                                <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10">
+                                <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="17">
                                     @Model.ObserwacjeRatPiel</textarea>
                                 <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
                             </div>
