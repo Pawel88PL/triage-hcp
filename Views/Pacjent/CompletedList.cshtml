@@ -5,21 +5,21 @@
 
 <div class="container">
     <div class="row">
-        <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 800px">
+        <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 900px">
             <h5>Pacjenci z zakończoną obsługą w SOR:</h5>
             <br />
             @foreach (var pacjent in Model)
             {
                 if (!(pacjent.Active == "Tak"))
                 {
-                    <div class="pacjent" style="background-color: @pacjent.Color; max-width: 700px">
+                    <div class="pacjent" style="background-color: @pacjent.Color; max-width: 800px">
                         <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
                            style="text-decoration:none; color:black">
                             <p>
-                                <b> @pacjent.DateTime</b> ||
-                                <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b> ||
-                                PESEL: <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                Zakończono: <b>@pacjent.CoDalejZPacjentem</b>
+                                <b>@pacjent.DateTime.ToString("f")</b> || 
+                                <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b> || 
+                                PESEL: <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || 
+                                <b> @pacjent.CoDalejZPacjentem</b>
                             </p>
                         </a>
                     </div>

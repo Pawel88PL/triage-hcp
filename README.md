@@ -1,6 +1,6 @@
 # triage-hcp
 
-version 2.0.0, date 29.03.2023
+Data: 29.03.2023, wersja 2.0.0
 
 1. Wprowadzono możliwość wyboru lekarza z poziomu listy.
 
@@ -21,3 +21,9 @@ version 2.0.0, date 29.03.2023
 9. Poprawiono widok strony "Lista pacjentów".
 
 10. Utworzono nowy widok "Przypisz lekarza" dla pacjentów bez przypisanego lekarza. Usunięto epikryzę i możliwość zakończenia obsługi jeśli brak wybranego lekarza.
+
+Data: 30.03.2023
+
+1. Wprowadzono walidację pól w forlumarzu TRIAGE.
+
+2. Poprawiono wyświetlanie daty i czasu wykonania triage.

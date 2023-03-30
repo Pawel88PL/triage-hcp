@@ -27,7 +27,7 @@
                                                     <h5>
                                                         <span class="animation">
                                                             @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                            @pacjent.DateTime
+                                                            @pacjent.DateTime.ToString("f")
                                                         </span>
                                                     </h5>
                                                     <p>@pacjent.Diagnosis</p>
@@ -43,7 +43,7 @@
                                                     <h5>
                                                         @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
                                                         <span class="animation">
-                                                            @pacjent.DateTime
+                                                            @pacjent.DateTime.ToString("f")
                                                         </span>
                                                     </h5>
                                                     <p>@pacjent.Diagnosis</p>
@@ -157,7 +157,7 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime</h5>
+                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
                                             </a>
