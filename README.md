@@ -27,3 +27,5 @@ Data: 30.03.2023
 1. Wprowadzono walidację pól w forlumarzu TRIAGE.
 
 2. Poprawiono wyświetlanie daty i czasu wykonania triage.
+
+3. Dodano funkcję wyświetlającą widok "Triage" w nowym oknie.
