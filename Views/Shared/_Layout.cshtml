@@ -29,7 +29,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="List">Lista pacjentów</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" onclick="myFunction()" asp-area="" asp-controller="Pacjent" asp-action="List">Triage</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Triage" asp-action="Triage">Triage</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="CompletedList">Lista zakończonych</a>
@@ -63,11 +63,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script>
-        function myFunction() {
-            var myWindow = window.open("/Triage/Triage", "", "top=50, width=600, height=900");
-        }
-    </script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

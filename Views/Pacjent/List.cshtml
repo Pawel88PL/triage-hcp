@@ -6,13 +6,14 @@
 }
 
 
+
 <div class="container">
     <div class="row">
         <div class="col-8">
             <div>
                 <div class="border shadow p-3 mb-5 bg-white rounded">
                     <h5>Pacjenci bez przypisanego lekarza:</h5>
-                    @foreach (var pacjent in Model)
+                    @foreach (var pacjent in Model.Where(x => x.Color == "red"))
                     {
                         if (pacjent.Doctor == "Wybierz lekarza" & pacjent.Active == "Tak")
                         {
@@ -142,12 +143,406 @@
                             </div>
                         }
                     }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "orange"))
+                    {
+                        if (pacjent.Doctor == "Wybierz lekarza" & pacjent.Active == "Tak")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
+                                        {
+                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
+                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                   style="text-decoration:none; color:black">
+                                                    <h5>
+                                                        <span class="animation">
+                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                            @pacjent.DateTime.ToString("f")
+                                                        </span>
+                                                    </h5>
+                                                    <p>@pacjent.Diagnosis</p>
+                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                                </a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="pacjent" style="background-color: @pacjent.Color">
+                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                   style="text-decoration:none; color:black">
+                                                    <h5>
+                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                        <span class="animation">
+                                                            @pacjent.DateTime.ToString("f")
+                                                        </span>
+                                                    </h5>
+                                                    <p>@pacjent.Diagnosis</p>
+                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+
+
+                                    <div class="col-4" style="padding-top: 30px">
+
+                                        @using (Html.BeginForm("Edit", "Edit", FormMethod.Post))
+                                        {
+                                            <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                            <div style="display:none">
+
+                                                <select class="form-control" id="DateTime" name="DateTime">
+                                                    <option>@pacjent.DateTime</option>
+                                                </select>
+
+                                                <select class="form-control" id="Name" name="Name">
+                                                    <option>@pacjent.Name</option>
+                                                </select>
+
+                                                <select class="form-control" id="Surname" name="Surname">
+                                                    <option>@pacjent.Surname</option>
+                                                </select>
+
+                                                <select class="form-control" id="Pesel" name="Pesel">
+                                                    <option>@pacjent.Pesel</option>
+                                                </select>
+
+                                                <select class="form-control" id="Age" name="Age">
+                                                    <option>@pacjent.Age</option>
+                                                </select>
+
+                                                <select class="form-control" id="Gender" name="Gender">
+                                                    <option>@pacjent.Gender</option>
+                                                </select>
+
+                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                    <option>@pacjent.Diagnosis</option>
+                                                </select>
+
+                                                <select class="form-control" id="Room" name="Room">
+                                                    <option>@pacjent.Room</option>
+                                                </select>
+
+                                                <select class="form-control" id="Color" name="Color">
+                                                    <option>@pacjent.Color</option>
+                                                </select>
+
+                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                    <option>@pacjent.CoDalejZPacjentem</option>
+                                                </select>
+
+                                                <select class="form-control" id="Epikryza" name="Epikryza">
+                                                    <option>@pacjent.Epikryza</option>
+                                                </select>
+
+                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                    <option>@pacjent.ObserwacjeRatPiel</option>
+                                                </select>
+
+                                                <select class="form-control" id="Active" name="Active">
+                                                    <option>@pacjent.Active</option>
+
+                                                </select>
+                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                            </div>
+
+                                            <select class="form-control" id="Doctor" name="Doctor">
+                                                <option>@pacjent.Doctor</option>
+                                                <option>Przykładowy lekarz SOR 1</option>
+                                                <option>Przykładowy lekarz SOR 2</option>
+                                                <option>Przykładowy lekarz SOR 3</option>
+                                                <option>Przykładowy lekarz SOR 4</option>
+                                                <option>Przykładowy lekarz SOR 5</option>
+                                                <option>Przykładowy lekarz SOR 6</option>
+                                                <option>Przykładowy lekarz SOR 7</option>
+                                                <option>Przykładowy lekarz SOR 8</option>
+                                                <option>Przykładowy lekarz SOR 9</option>
+                                                <option>Przykładowy lekarz SOR 10</option>
+                                            </select>
+                                            <br />
+
+                                            <div>
+                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightgreen"))
+                    {
+                        if (pacjent.Doctor == "Wybierz lekarza" & pacjent.Active == "Tak")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
+                                        {
+                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
+                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                                    <h5>
+                                                        <span class="animation">
+                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                            @pacjent.DateTime.ToString("f")
+                                                        </span>
+                                                    </h5>
+                                                    <p>@pacjent.Diagnosis</p>
+                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                                </a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="pacjent" style="background-color: @pacjent.Color">
+                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                                    <h5>
+                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                        <span class="animation">
+                                                            @pacjent.DateTime.ToString("f")
+                                                        </span>
+                                                    </h5>
+                                                    <p>@pacjent.Diagnosis</p>
+                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+
+
+                                    <div class="col-4" style="padding-top: 30px">
+
+                                        @using (Html.BeginForm("Edit", "Edit", FormMethod.Post))
+                                        {
+                                            <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                            <div style="display:none">
+
+                                                <select class="form-control" id="DateTime" name="DateTime">
+                                                    <option>@pacjent.DateTime</option>
+                                                </select>
+
+                                                <select class="form-control" id="Name" name="Name">
+                                                    <option>@pacjent.Name</option>
+                                                </select>
+
+                                                <select class="form-control" id="Surname" name="Surname">
+                                                    <option>@pacjent.Surname</option>
+                                                </select>
+
+                                                <select class="form-control" id="Pesel" name="Pesel">
+                                                    <option>@pacjent.Pesel</option>
+                                                </select>
+
+                                                <select class="form-control" id="Age" name="Age">
+                                                    <option>@pacjent.Age</option>
+                                                </select>
+
+                                                <select class="form-control" id="Gender" name="Gender">
+                                                    <option>@pacjent.Gender</option>
+                                                </select>
+
+                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                    <option>@pacjent.Diagnosis</option>
+                                                </select>
+
+                                                <select class="form-control" id="Room" name="Room">
+                                                    <option>@pacjent.Room</option>
+                                                </select>
+
+                                                <select class="form-control" id="Color" name="Color">
+                                                    <option>@pacjent.Color</option>
+                                                </select>
+
+                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                    <option>@pacjent.CoDalejZPacjentem</option>
+                                                </select>
+
+                                                <select class="form-control" id="Epikryza" name="Epikryza">
+                                                    <option>@pacjent.Epikryza</option>
+                                                </select>
+
+                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                    <option>@pacjent.ObserwacjeRatPiel</option>
+                                                </select>
+
+                                                <select class="form-control" id="Active" name="Active">
+                                                    <option>@pacjent.Active</option>
+
+                                                </select>
+                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                            </div>
+
+                                            <select class="form-control" id="Doctor" name="Doctor">
+                                                <option>@pacjent.Doctor</option>
+                                                <option>Przykładowy lekarz SOR 1</option>
+                                                <option>Przykładowy lekarz SOR 2</option>
+                                                <option>Przykładowy lekarz SOR 3</option>
+                                                <option>Przykładowy lekarz SOR 4</option>
+                                                <option>Przykładowy lekarz SOR 5</option>
+                                                <option>Przykładowy lekarz SOR 6</option>
+                                                <option>Przykładowy lekarz SOR 7</option>
+                                                <option>Przykładowy lekarz SOR 8</option>
+                                                <option>Przykładowy lekarz SOR 9</option>
+                                                <option>Przykładowy lekarz SOR 10</option>
+                                            </select>
+                                            <br />
+
+                                            <div>
+                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightskyblue"))
+                    {
+                        if (pacjent.Doctor == "Wybierz lekarza" & pacjent.Active == "Tak")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
+                                        {
+                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
+                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                                    <h5>
+                                                        <span class="animation">
+                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                            @pacjent.DateTime.ToString("f")
+                                                        </span>
+                                                    </h5>
+                                                    <p>@pacjent.Diagnosis</p>
+                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                                </a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="pacjent" style="background-color: @pacjent.Color">
+                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                                    <h5>
+                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                        <span class="animation">
+                                                            @pacjent.DateTime.ToString("f")
+                                                        </span>
+                                                    </h5>
+                                                    <p>@pacjent.Diagnosis</p>
+                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+
+
+                                    <div class="col-4" style="padding-top: 30px">
+
+                                        @using (Html.BeginForm("Edit", "Edit", FormMethod.Post))
+                                        {
+                                            <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                            <div style="display:none">
+
+                                                <select class="form-control" id="DateTime" name="DateTime">
+                                                    <option>@pacjent.DateTime</option>
+                                                </select>
+
+                                                <select class="form-control" id="Name" name="Name">
+                                                    <option>@pacjent.Name</option>
+                                                </select>
+
+                                                <select class="form-control" id="Surname" name="Surname">
+                                                    <option>@pacjent.Surname</option>
+                                                </select>
+
+                                                <select class="form-control" id="Pesel" name="Pesel">
+                                                    <option>@pacjent.Pesel</option>
+                                                </select>
+
+                                                <select class="form-control" id="Age" name="Age">
+                                                    <option>@pacjent.Age</option>
+                                                </select>
+
+                                                <select class="form-control" id="Gender" name="Gender">
+                                                    <option>@pacjent.Gender</option>
+                                                </select>
+
+                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                    <option>@pacjent.Diagnosis</option>
+                                                </select>
+
+                                                <select class="form-control" id="Room" name="Room">
+                                                    <option>@pacjent.Room</option>
+                                                </select>
+
+                                                <select class="form-control" id="Color" name="Color">
+                                                    <option>@pacjent.Color</option>
+                                                </select>
+
+                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                    <option>@pacjent.CoDalejZPacjentem</option>
+                                                </select>
+
+                                                <select class="form-control" id="Epikryza" name="Epikryza">
+                                                    <option>@pacjent.Epikryza</option>
+                                                </select>
+
+                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                    <option>@pacjent.ObserwacjeRatPiel</option>
+                                                </select>
+
+                                                <select class="form-control" id="Active" name="Active">
+                                                    <option>@pacjent.Active</option>
+
+                                                </select>
+                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                            </div>
+
+                                            <select class="form-control" id="Doctor" name="Doctor">
+                                                <option>@pacjent.Doctor</option>
+                                                <option>Przykładowy lekarz SOR 1</option>
+                                                <option>Przykładowy lekarz SOR 2</option>
+                                                <option>Przykładowy lekarz SOR 3</option>
+                                                <option>Przykładowy lekarz SOR 4</option>
+                                                <option>Przykładowy lekarz SOR 5</option>
+                                                <option>Przykładowy lekarz SOR 6</option>
+                                                <option>Przykładowy lekarz SOR 7</option>
+                                                <option>Przykładowy lekarz SOR 8</option>
+                                                <option>Przykładowy lekarz SOR 9</option>
+                                                <option>Przykładowy lekarz SOR 10</option>
+                                            </select>
+                                            <br />
+
+                                            <div>
+                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
                     <br />
                 </div>
 
                 <div class="border shadow p-3 mb-5 bg-white rounded">
                     <h5>Pacjenci z przypisanym lekarzem:</h5>
-                    @foreach (var pacjent in Model)
+                    @foreach (var pacjent in Model.Where(x => x.Color =="red"))
                     {
                         if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
                         {
@@ -157,6 +552,115 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" style="padding-top: 50px">
+                                        <select class="form-control" id="Doctor" name="Doctor">
+                                            <option>@pacjent.Doctor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "orange"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" style="padding-top: 50px">
+                                        <select class="form-control" id="Doctor" name="Doctor">
+                                            <option>@pacjent.Doctor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
+                    @foreach (var pacjent in Model.Where(x => x.Color == "yellow"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" style="padding-top: 50px">
+                                        <select class="form-control" id="Doctor" name="Doctor">
+                                            <option>@pacjent.Doctor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightgreen"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" style="padding-top: 50px">
+                                        <select class="form-control" id="Doctor" name="Doctor">
+                                            <option>@pacjent.Doctor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightskyblue"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Edit","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>

@@ -1,24 +1,27 @@
 ﻿@model triage_hcp.Models.Register
 
 @{
-    ViewData["Title"] = "Register";
+	ViewData["Title"] = "Register";
 }
 
 <h1>Rejestracja</h1>
 
-@using (Html.BeginForm("Register_Admin33", "Account", FormMethod.Post))
-{
-    @Html.ValidationSummary()
 
-    <h5>Login: </h5>
-    @Html.TextBoxFor(x => x.UserName)
-    <br />
-    <br />
+<div style="display: none">
+	@using (Html.BeginForm("Register_Admin33", "Account", FormMethod.Post))
+	{
+		@Html.ValidationSummary()
 
-    <h5>Hasło: </h5>
-    @Html.PasswordFor(x => x.Password)
-    <br />
-    <br />
+		<h5>Login: </h5>
+		@Html.TextBoxFor(x => x.UserName)
+		<br />
+		<br />
 
-    <button type="submit" class="btn btn-primary">Rejestruj</button>
-}
+		<h5>Hasło: </h5>
+		@Html.PasswordFor(x => x.Password)
+		<br />
+		<br />
+
+		<button type="submit" class="btn btn-primary">Rejestruj</button>
+	}
+</div>
