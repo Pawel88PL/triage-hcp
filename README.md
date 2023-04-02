@@ -28,4 +28,12 @@ Data: 30.03.2023
 
 2. Poprawiono wyświetlanie daty i czasu wykonania triage.
 
-3. Dodano funkcję wyświetlającą widok "Triage" w nowym oknie.
+Data: 01.04.2023
+
+1. Wprowadzono sortowanie (wyświetlanie) listy pacjentów według priorytetu pilności: najpierw pacjent kolor czerwony -> pomarańczowy -> żółty -> zielony -> niebieski.
+
+2. Zabezpieczono możwiwość dodania nowego użytkownika blokując wyświetlanie formularzy rejestracji stylowaniem "display: none".
+
+Data: 02.04.2023
+
+1. Do strony Lista pacjentów dodano js skrypt odświeżający listę pacjentów co 60 sekund.
