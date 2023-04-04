@@ -43,29 +43,5 @@ namespace triage_hcp.Controllers
 
             return RedirectToAction("List", "Pacjent");
         }
-
-
-        [HttpGet]
-        public IActionResult Admin33()
-        {
-            var pacjenci = _triageService.GetAll();
-            return View(pacjenci);
-        }
-
-        [HttpGet]
-        public IActionResult Details(int Id)
-        {
-            var pacjent = _triageService.Get(Id);
-            return View(pacjent);
-        }
-
-        [HttpPost]
-        public IActionResult Delete(int Id)
-        {
-            _triageService.Delete(Id);
-            return RedirectToAction("List", "Pacjent");
-        }
-
-
     }
 }

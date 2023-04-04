@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using triage_hcp.Models;
 
 namespace triage_hcp.Controllers
 {
+    [Authorize]
     public class EditController : Controller
     {
         private readonly DbTriageContext _context;
@@ -21,7 +23,7 @@ namespace triage_hcp.Controllers
 
         
         
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Pacjenci == null)
             {
@@ -39,7 +41,7 @@ namespace triage_hcp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem")] Pacjent pacjent)
+        public async Task<IActionResult> Details(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {

@@ -37,3 +37,11 @@ Data: 01.04.2023
 Data: 02.04.2023
 
 1. Do strony Lista pacjentów dodano js skrypt odświeżający listę pacjentów co 60 sekund.
+
+Data 04.04.2023
+
+1. Dodano Kontroler Modify do modyfikacji i usuwania danych pacjentów.
+
+2. Zmieniono nazwę widoku Edit na Details.
+
+3. Usunięto widok do usuwania pacjentów z kontrolera Triage.
