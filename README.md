@@ -45,3 +45,7 @@ Data 04.04.2023
 2. Zmieniono nazwę widoku Edit na Details.
 
 3. Usunięto widok do usuwania pacjentów z kontrolera Triage.
+
+Data 05.04.2023
+
+1. Usunięto błąd uniemożliwiający edycje danych dla pacjentów bez lekarza i zakończonych.
