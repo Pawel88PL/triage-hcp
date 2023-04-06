@@ -286,7 +286,7 @@
                                         {
                                             <div class="pacjentBez" style="background-color: @pacjent.Color">
                                                 <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                    style="text-decoration:none; color:black">
+                                                   style="text-decoration:none; color:black">
                                                     <h5>
                                                         <span class="animation">
                                                             @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
@@ -302,7 +302,7 @@
                                         {
                                             <div class="pacjent" style="background-color: @pacjent.Color">
                                                 <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                    style="text-decoration:none; color:black">
+                                                   style="text-decoration:none; color:black">
                                                     <h5>
                                                         @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
                                                         <span class="animation">
@@ -417,7 +417,7 @@
                                         {
                                             <div class="pacjentBez" style="background-color: @pacjent.Color">
                                                 <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                     style="text-decoration:none; color:black">
+                                                   style="text-decoration:none; color:black">
                                                     <h5>
                                                         <span class="animation">
                                                             @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
@@ -433,7 +433,7 @@
                                         {
                                             <div class="pacjent" style="background-color: @pacjent.Color">
                                                 <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                    style="text-decoration:none; color:black">
+                                                   style="text-decoration:none; color:black">
                                                     <h5>
                                                         @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
                                                         <span class="animation">
@@ -536,7 +536,7 @@
                             </div>
                         }
                     }
-                    
+
 
                     @foreach (var pacjent in Model.Where(x => x.Color == "lightskyblue"))
                     {
@@ -549,7 +549,7 @@
                                         {
                                             <div class="pacjentBez" style="background-color: @pacjent.Color">
                                                 <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                style="text-decoration:none; color:black">
+                                                   style="text-decoration:none; color:black">
                                                     <h5>
                                                         <span class="animation">
                                                             @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
@@ -565,7 +565,7 @@
                                         {
                                             <div class="pacjent" style="background-color: @pacjent.Color">
                                                 <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                style="text-decoration:none; color:black">
+                                                   style="text-decoration:none; color:black">
                                                     <h5>
                                                         @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
                                                         <span class="animation">
@@ -673,7 +673,7 @@
 
                 <div class="border shadow p-3 mb-5 bg-white rounded">
                     <h5>Pacjenci z przypisanym lekarzem:</h5>
-                    @foreach (var pacjent in Model.Where(x => x.Color =="red"))
+                    @foreach (var pacjent in Model.Where(x => x.Color == "red"))
                     {
                         if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
                         {
@@ -709,7 +709,7 @@
                                     <div class="col-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                                style="text-decoration:none; color:black">
+                                               style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
@@ -726,7 +726,7 @@
                             </div>
                         }
                     }
-                    
+
                     @foreach (var pacjent in Model.Where(x => x.Color == "yellow"))
                     {
                         if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
@@ -736,7 +736,7 @@
                                     <div class="col-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                                style="text-decoration:none; color:black">
+                                               style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
@@ -753,7 +753,7 @@
                             </div>
                         }
                     }
-                    
+
                     @foreach (var pacjent in Model.Where(x => x.Color == "lightgreen"))
                     {
                         if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
@@ -763,7 +763,7 @@
                                     <div class="col-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                                style="text-decoration:none; color:black">
+                                               style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
@@ -780,7 +780,7 @@
                             </div>
                         }
                     }
-                    
+
 
                     @foreach (var pacjent in Model.Where(x => x.Color == "lightskyblue"))
                     {
@@ -791,7 +791,7 @@
                                     <div class="col-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                                style="text-decoration:none; color:black">
+                                               style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
@@ -835,7 +835,10 @@
                                 if (pacjent.Room == "Wituś 1" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -856,7 +859,10 @@
                                 if (pacjent.Room == "Wituś 2" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -877,7 +883,10 @@
                                 if (pacjent.Room == "Wituś 3" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -898,7 +907,10 @@
                                 if (pacjent.Room == "Wituś" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -923,7 +935,10 @@
                                 if (pacjent.Room == "WIT 1" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -944,7 +959,10 @@
                                 if (pacjent.Room == "WIT 2" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -965,7 +983,10 @@
                                 if (pacjent.Room == "WIT 3" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -986,7 +1007,10 @@
                                 if (pacjent.Room == "WIT 4" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1007,7 +1031,10 @@
                                 if (pacjent.Room == "WIT" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1032,7 +1059,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 5" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1053,7 +1083,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 6" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1074,7 +1107,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 7" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1099,7 +1135,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 8" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1120,7 +1159,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 9" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1141,7 +1183,10 @@
                                 if (pacjent.Room == "Sala obserwacyjna 10" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1166,7 +1211,10 @@
                                 if (pacjent.Room == "Izolatka Z1" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1187,7 +1235,10 @@
                                 if (pacjent.Room == "Izolatka Z2" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1208,7 +1259,10 @@
                                 if (pacjent.Room == "Izolatka Z3" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1228,7 +1282,10 @@
                                 if (pacjent.Room == "Korytarz" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1248,7 +1305,10 @@
                                 if (pacjent.Room == "Poczekalnia" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }
@@ -1268,7 +1328,10 @@
                                 if (pacjent.Room == "Dekontaminacja" & pacjent.Active == "Tak")
                                 {
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</p>
+                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                           style="text-decoration:none; color:black">
+                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                        </a>
                                     </div>
                                 }
                             }

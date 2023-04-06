@@ -49,3 +49,9 @@ Data 04.04.2023
 Data 05.04.2023
 
 1. Usunięto błąd uniemożliwiający edycje danych dla pacjentów bez lekarza i zakończonych.
+
+Data 06.04.2023
+
+1. Utworzono nową bazę danych.
+
+2. Dodano możliwość edycji danych o pacjencie z widoku listy łóżek.
