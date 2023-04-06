@@ -13,6 +13,9 @@ namespace triage_hcp
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Pacjent>()
+                .Property(p => p.Color)
+                .IsRequired(false);
         }
     }
 }

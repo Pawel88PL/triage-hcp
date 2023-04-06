@@ -35,7 +35,7 @@ namespace triage_hcp.Models
         [StringLength(100, ErrorMessage = "Opis wymaga użycia minimum 10 znaków.", MinimumLength = 10)]
         public string? Diagnosis { get; set; }
 
-        [Required(ErrorMessage = "Kolor jest wymagany")]
+        
         public string? Color { get; set; }
         
         public DateTime DateTime { get; set ; }

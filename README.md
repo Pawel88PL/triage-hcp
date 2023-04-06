@@ -55,3 +55,7 @@ Data 06.04.2023
 1. Utworzono nową bazę danych.
 
 2. Dodano możliwość edycji danych o pacjencie z widoku listy łóżek.
+
+3. Utworzono migrację nowych właściwości kolumn.
+
+4. Dodano listę lekarzy.
