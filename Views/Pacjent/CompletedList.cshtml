@@ -6,9 +6,11 @@
 <div class="container">
     <div class="row">
         <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 900px">
-            <h5>Pacjenci z zakończoną obsługą w SOR:</h5>
+            <h5>Pacjenci z dzisiejszego dyżuru, z zakończoną obsługą w SOR</h5>
             <br />
-            @foreach (var pacjent in Model)
+            @foreach (var pacjent in Model
+            .Where(x => x.DateTime > DateTime.Today)
+            .OrderByDescending(x => x.DateTime))
             {
                 if (!(pacjent.Active == "Tak"))
                 {
@@ -26,6 +28,18 @@
                 }
             }
             <br />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 900px">
+            <div>
+                <a href="~/Pacjent/ViewAllCompleted/" class="text-center" style="text-decoration:none">
+                    <div class="btn-primary" style="border-radius: 3px; padding: 3px; max-width: 400px">
+                        LISTA ZAKOŃCZONYCH Z POPRZEDNICH DYŻURÓW
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 

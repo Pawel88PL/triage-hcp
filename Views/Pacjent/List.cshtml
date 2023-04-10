@@ -20,38 +20,19 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-8">
-                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
-                                        {
-                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        <span class="animation">
-                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="pacjent" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
+                                        <div class="pacjentBez" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>
+                                                    <span class="animation">
                                                         @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                        <span class="animation">
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
+                                                        @pacjent.DateTime.ToString("f")
+                                                    </span>
+                                                </h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
                                     </div>
 
 
@@ -126,10 +107,12 @@
                                                 <option>Binaś Marcin</option>
                                                 <option>Chrzanowski Monica</option>
                                                 <option>Czekała-Karpiński Dawid</option>
+                                                <option>Dabryneuski Uladzimir</option>
                                                 <option>Fritzkiewicz Witold</option>
                                                 <option>Gąsiorowski Mateusz</option>
                                                 <option>Gilier Kamila</option>
                                                 <option>Grymuza Maciej</option>
+                                                <option>Huzenko Jaroslaw</option>
                                                 <option>Junewicz</option>
                                                 <option>Kłaczyński Mateusz</option>
                                                 <option>Łuczak Agnieszka</option>
@@ -149,7 +132,7 @@
                                                 <option>Wierzchowiecki Jerzy</option>
                                                 <option>Woźny Tomasz</option>
                                                 <option>Yakymchuk</option>
-                                                <option>Zanko</option>
+                                                <option>Zanko Semen</option>
                                                 <option>Zhdanov Sergii</option>
                                             </select>
                                             <br />
@@ -171,38 +154,19 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-8">
-                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
-                                        {
-                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        <span class="animation">
-                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="pacjent" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
+                                        <div class="pacjentBez" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>
+                                                    <span class="animation">
                                                         @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                        <span class="animation">
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
+                                                        @pacjent.DateTime.ToString("f")
+                                                    </span>
+                                                </h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
                                     </div>
 
 
@@ -277,10 +241,12 @@
                                                 <option>Binaś Marcin</option>
                                                 <option>Chrzanowski Monica</option>
                                                 <option>Czekała-Karpiński Dawid</option>
+                                                <option>Dabryneuski Uladzimir</option>
                                                 <option>Fritzkiewicz Witold</option>
                                                 <option>Gąsiorowski Mateusz</option>
                                                 <option>Gilier Kamila</option>
                                                 <option>Grymuza Maciej</option>
+                                                <option>Huzenko Jaroslaw</option>
                                                 <option>Junewicz</option>
                                                 <option>Kłaczyński Mateusz</option>
                                                 <option>Łuczak Agnieszka</option>
@@ -300,7 +266,7 @@
                                                 <option>Wierzchowiecki Jerzy</option>
                                                 <option>Woźny Tomasz</option>
                                                 <option>Yakymchuk</option>
-                                                <option>Zanko</option>
+                                                <option>Zanko Semen</option>
                                                 <option>Zhdanov Sergii</option>
                                             </select>
                                             <br />
@@ -322,38 +288,19 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-8">
-                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
-                                        {
-                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        <span class="animation">
-                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="pacjent" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                        <span class="animation">
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>
+                                                    @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                    <span class="animation">
+                                                        @pacjent.DateTime.ToString("f")
+                                                    </span>
+                                                </h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
                                     </div>
 
 
@@ -428,10 +375,12 @@
                                                 <option>Binaś Marcin</option>
                                                 <option>Chrzanowski Monica</option>
                                                 <option>Czekała-Karpiński Dawid</option>
+                                                <option>Dabryneuski Uladzimir</option>
                                                 <option>Fritzkiewicz Witold</option>
                                                 <option>Gąsiorowski Mateusz</option>
                                                 <option>Gilier Kamila</option>
                                                 <option>Grymuza Maciej</option>
+                                                <option>Huzenko Jaroslaw</option>
                                                 <option>Junewicz</option>
                                                 <option>Kłaczyński Mateusz</option>
                                                 <option>Łuczak Agnieszka</option>
@@ -451,7 +400,7 @@
                                                 <option>Wierzchowiecki Jerzy</option>
                                                 <option>Woźny Tomasz</option>
                                                 <option>Yakymchuk</option>
-                                                <option>Zanko</option>
+                                                <option>Zanko Semen</option>
                                                 <option>Zhdanov Sergii</option>
                                             </select>
                                             <br />
@@ -473,38 +422,19 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-8">
-                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
-                                        {
-                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        <span class="animation">
-                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="pacjent" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                        <span class="animation">
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>
+                                                    @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                    <span class="animation">
+                                                        @pacjent.DateTime.ToString("f")
+                                                    </span>
+                                                </h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
                                     </div>
 
 
@@ -579,10 +509,12 @@
                                                 <option>Binaś Marcin</option>
                                                 <option>Chrzanowski Monica</option>
                                                 <option>Czekała-Karpiński Dawid</option>
+                                                <option>Dabryneuski Uladzimir</option>
                                                 <option>Fritzkiewicz Witold</option>
                                                 <option>Gąsiorowski Mateusz</option>
                                                 <option>Gilier Kamila</option>
                                                 <option>Grymuza Maciej</option>
+                                                <option>Huzenko Jaroslaw</option>
                                                 <option>Junewicz</option>
                                                 <option>Kłaczyński Mateusz</option>
                                                 <option>Łuczak Agnieszka</option>
@@ -602,7 +534,7 @@
                                                 <option>Wierzchowiecki Jerzy</option>
                                                 <option>Woźny Tomasz</option>
                                                 <option>Yakymchuk</option>
-                                                <option>Zanko</option>
+                                                <option>Zanko Semen</option>
                                                 <option>Zhdanov Sergii</option>
                                             </select>
                                             <br />
@@ -625,38 +557,19 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-8">
-                                        @if (pacjent.Color == "red" || pacjent.Color == "orange")
-                                        {
-                                            <div class="pacjentBez" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        <span class="animation">
-                                                            @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="pacjent" style="background-color: @pacjent.Color">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                                   style="text-decoration:none; color:black">
-                                                    <h5>
-                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
-                                                        <span class="animation">
-                                                            @pacjent.DateTime.ToString("f")
-                                                        </span>
-                                                    </h5>
-                                                    <p>@pacjent.Diagnosis</p>
-                                                    <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
-                                                </a>
-                                            </div>
-                                        }
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>
+                                                    @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                    <span class="animation">
+                                                        @pacjent.DateTime.ToString("f")
+                                                    </span>
+                                                </h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat || sala: <b>@pacjent.Room</b></p>
+                                            </a>
+                                        </div>
                                     </div>
 
 
@@ -731,10 +644,12 @@
                                                 <option>Binaś Marcin</option>
                                                 <option>Chrzanowski Monica</option>
                                                 <option>Czekała-Karpiński Dawid</option>
+                                                <option>Dabryneuski Uladzimir</option>
                                                 <option>Fritzkiewicz Witold</option>
                                                 <option>Gąsiorowski Mateusz</option>
                                                 <option>Gilier Kamila</option>
                                                 <option>Grymuza Maciej</option>
+                                                <option>Huzenko Jaroslaw</option>
                                                 <option>Junewicz</option>
                                                 <option>Kłaczyński Mateusz</option>
                                                 <option>Łuczak Agnieszka</option>
@@ -754,7 +669,7 @@
                                                 <option>Wierzchowiecki Jerzy</option>
                                                 <option>Woźny Tomasz</option>
                                                 <option>Yakymchuk</option>
-                                                <option>Zanko</option>
+                                                <option>Zanko Semen</option>
                                                 <option>Zhdanov Sergii</option>
                                             </select>
                                             <br />

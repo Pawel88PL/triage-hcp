@@ -39,6 +39,12 @@ namespace triage_hcp.Controllers
 
             return View(pacjentList);
         }
+
+        public IActionResult ViewAllCompleted()
+        {
+            var pacjentList = _triageService.GetAll();
+            return View(pacjentList);
+        }
     }
 }
 

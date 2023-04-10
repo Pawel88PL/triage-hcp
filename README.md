@@ -59,3 +59,10 @@ Data 06.04.2023
 3. Utworzono migrację nowych właściwości kolumn.
 
 4. Dodano listę lekarzy.
+
+Data 10.04.2023
+
+1. Dla strony "Lista zakończonych" stworzono algorytm wyświetlający zakończonych pacjentów z aktualnego dyżuru.
+2. Utworzono widok "Lista zakończonych" z aktualnego dyżuru.
+3. Listę zakończonych pacjentów posortowano według daty malejąco.
+4. Zaktualizowano listę lekarzy.
