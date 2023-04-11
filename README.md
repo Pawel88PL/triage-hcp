@@ -66,3 +66,7 @@ Data 10.04.2023
 2. Utworzono widok "Lista zakończonych" z aktualnego dyżuru.
 3. Listę zakończonych pacjentów posortowano według daty malejąco.
 4. Zaktualizowano listę lekarzy.
+
+Data 11.04.2023
+
+1. Do bazy danych dodano nową kolumnę "TriageDate" i uwzględniono ją w formularzu Triage.

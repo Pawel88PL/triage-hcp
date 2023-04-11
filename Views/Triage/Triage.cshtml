@@ -10,7 +10,7 @@
             <h2 class="text-center">TRIAGE</h2>
             @using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
             {
-                
+
 
                 <h5>Imię: </h5>
                 <input asp-for="Name" class="form-control" />
@@ -71,14 +71,23 @@
                 </select>
                 <br />
 
-                DateTime czas = DateTime.Now;
+                DateTime TriageDateAndTime = DateTime.Now;
 
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@czas</option>
-                </select>
-                <br />
+
+                DateTime TriageDate = DateTime.Today;
+
 
                 <div style="display: none">
+                    <select class="form-control" id="DateTime" name="DateTime">
+                        <option>@TriageDateAndTime</option>
+                    </select>
+                    <br />
+
+                    <select class="form-control" id="TriageDate" name="TriageDate">
+                        <option>@TriageDate</option>
+                    </select>
+                    <br />
+
                     <select class="form-control" id="Doctor" name="Doctor">
                         <option>Wybierz lekarza</option>
                     </select>

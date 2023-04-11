@@ -40,7 +40,9 @@ namespace triage_hcp.Models
         
         public DateTime DateTime { get; set ; }
 
+        
         public string? Doctor { get; set; }
+
         
         public string? Active { get; set; }
 
@@ -49,5 +51,7 @@ namespace triage_hcp.Models
         public string? ObserwacjeRatPiel { get; set; }
 
         public string? CoDalejZPacjentem { get; set; }
+
+        public DateTime TriageDate { get; set; }
     }
 }
