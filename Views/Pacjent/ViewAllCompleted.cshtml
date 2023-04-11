@@ -19,7 +19,7 @@
                         <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
                            style="text-decoration:none; color:black">
                             <p>
-                                <b>@pacjent.DateTime.ToString("f")</b> ||
+                                <b>@pacjent.DateTime.ToString("d")</b> ||
                                 <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b> ||
                                 PESEL: <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
                                 <b> @pacjent.CoDalejZPacjentem</b>
@@ -31,3 +31,4 @@
             <br />
         </div>
     </div>
+</div>
