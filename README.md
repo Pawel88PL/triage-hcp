@@ -71,3 +71,7 @@ Data 11.04.2023
 
 1. Do bazy danych dodano nową kolumnę "TriageDate" i uwzględniono ją w formularzu Triage.
 2. Utworzono stronę "Statystyki"
+
+Data 13.04.2023
+
+1. Dodano nowego lekarza.
