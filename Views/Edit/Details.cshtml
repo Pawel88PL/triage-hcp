@@ -111,7 +111,7 @@
                                 KARTA WIT
                             </div>
                         </a>
-                        
+
                     </div>
 
                     <div class="col-4">
@@ -216,7 +216,7 @@
                         <br />
 
                         <div class="form-group">
-                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
                                 <option>@Model.CoDalejZPacjentem</option>
                                 <option>W takcie diagnostyki SOR</option>
                                 <option>Wypisany do domu</option>
@@ -229,9 +229,11 @@
                                 <option>Ortopedia</option>
                                 <option>Psychiatria</option>
                                 <option>Przekazany do innego szpitala</option>
+                                <option>Neurochirurgia</option>
+                                <option>Ginekologia</option>
+                                <option>Chirurgia szczękowo-twarzowa</option>
                                 <option>Oddalił się z SOR</option>
                             </select>
-                            <span asp-validation-for="CoDalejZPacjentem" class="text-danger"></span>
                         </div>
                         <br />
                         <div style="font-size: 16px">
@@ -261,7 +263,11 @@
                 </div>
             </div>
             <div>
-                <p>* aby zatwierdzić zmiany naciśnij na przycisk z kolorem pacjenta</p>
+                <p>
+                    * aby zatwierdzić zmiany wybierz jedną z opcji <b>Jakie decyzje?</b>,
+                    następnie naciśnij na przycisk z kolorem pacjenta
+                </p>
+
             </div>
         </form>
     </div>
