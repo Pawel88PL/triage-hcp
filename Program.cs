@@ -19,7 +19,7 @@ namespace triage_hcp
 
             builder.Services.AddDbContext<DbTriageContext>(builder =>
             {
-                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_HCPdatabase;Uid=triageadmin_Porsche911GT2;Password=4DTV2CrM]y+(a6UhU44T;TrustServerCertificate=True");
+                builder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=triage-hcp;Trusted_Connection=True;");
             });
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>

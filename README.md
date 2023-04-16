@@ -75,3 +75,10 @@ Data 11.04.2023
 Data 13.04.2023
 
 1. Dodano nowego lekarza.
+2. Opublikowano aplikacje na serwerze szpitala.
+
+Data 16.04.2023
+
+1. Usunięto wymagane minimum znaków przy nr PESEL i Objawach pacjenta, które powodowały błąd w późniejszej
+	aktualizacji informacji o pacjencie.
+2. 

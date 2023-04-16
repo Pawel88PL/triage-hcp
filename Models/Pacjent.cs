@@ -16,9 +16,8 @@ namespace triage_hcp.Models
         [MaxLength(30)]
         public string? Surname { get; set; }
 
-        [Required(ErrorMessage = "Podaj nr PESEL")]
-        [StringLength(11, ErrorMessage = "Jeśli brak nr PESEL, wpisz datę urodzenia w formacie DD-MM-RRRRr. " +
-            " Jeśli brak nr PESEL i daty urodzenia, wypisz jedenaście zer (00000000000). ", MinimumLength = 11 )]
+        [Required(ErrorMessage = "Jeśli brak nr PESEL, wpisz datę urodzenia w formacie DD-MM-RRRR")]
+        [StringLength(11)]
         public string? Pesel { get; set; }
 
         [Required(ErrorMessage = "Podaj wiek pacjenta")]
@@ -32,7 +31,7 @@ namespace triage_hcp.Models
         public string? Room { get; set; }
 
         [Required(ErrorMessage = "Napisz kilka słów na temat stanu lub objawów pacjenta")]
-        [StringLength(100, ErrorMessage = "Opis wymaga użycia minimum 10 znaków.", MinimumLength = 10)]
+        [StringLength(150)]
         public string? Diagnosis { get; set; }
 
         
