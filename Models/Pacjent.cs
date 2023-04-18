@@ -52,5 +52,7 @@ namespace triage_hcp.Models
         public string? CoDalejZPacjentem { get; set; }
 
         public DateTime TriageDate { get; set; }
+
+        public string? ToWhomThePatient { get; set; }
     }
 }

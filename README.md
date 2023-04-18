@@ -82,3 +82,8 @@ Data 16.04.2023
 1. Usunięto wymagane minimum znaków przy nr PESEL i Objawach pacjenta, które powodowały błąd w późniejszej
 	aktualizacji informacji o pacjencie.
 2. Dodano wymóg określenia "Jakie decyzje?" w widoku "Szczegóły pacjenta" jeśli chcemy zatwierdzić zmiany.
+
+Data 17.04.2023
+
+1. Dodano możliwość wybrania opcji "Zgon? w zakładce "Jakie decyzje".
+2. Wprowadzono wybór "Do kogo pacjent: INTERNISTA lub CHIRURG" dla ratownika w sekcji Triage.
