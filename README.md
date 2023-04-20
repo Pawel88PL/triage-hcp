@@ -87,3 +87,10 @@ Data 17.04.2023
 
 1. Dodano możliwość wybrania opcji "Zgon? w zakładce "Jakie decyzje".
 2. Wprowadzono wybór "Do kogo pacjent: INTERNISTA lub CHIRURG" dla ratownika w sekcji Triage.
+
+Data 20.04.2023
+
+1. Zlikwidowano błąd powodująy usuwanie informacji "Do kogo pacjent" po każdorazowej aktualizacji informacji o pacjencie.
+2. Zmieniono lokalizację przycisku "DRUKUJ DOKUMENTY" dla widoków "Szczegóły" i "Przypisz lekarza".
+3. Dodano możliwość zmiany "Do kogo pacjent" z widoku "Szczegóły".
+4. Zmieniono kolejność wyświetlania danych na liście pacjentów (najpierw nazwisko, następnie imię).

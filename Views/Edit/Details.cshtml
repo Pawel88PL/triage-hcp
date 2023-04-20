@@ -12,80 +12,60 @@
             <input type="hidden" asp-for="Id" />
 
             <div style="display:none">
-                <div class="form-group">
-                    <label asp-for="DateTime" class="control-label"></label>
-                    <select class="form-control" id="DateTime" name="DateTime">
-                        <option>@Model.DateTime</option>
-                    </select>
-                    <span asp-validation-for="DateTime" class="text-danger"></span>
-                </div>
-                <br />
+
+                <select class="form-control" id="DateTime" name="DateTime">
+                    <option>@Model.DateTime</option>
+                </select>
+                <span asp-validation-for="DateTime" class="text-danger"></span>
 
                 <select class="form-control" id="TriageDate" name="TriageDate">
                     <option>@Model.TriageDate</option>
                 </select>
-                <br />
 
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <select class="form-control" id="Name" name="Name">
-                        <option>@Model.Name</option>
-                    </select>
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <br />
+                <select class="form-control" id="Name" name="Name">
+                    <option>@Model.Name</option>
+                </select>
 
-                <div class="form-group">
-                    <label asp-for="Surname" class="control-label"></label>
-                    <select class="form-control" id="Surname" name="Surname">
-                        <option>@Model.Surname</option>
-                    </select>
-                    <span asp-validation-for="Surname" class="text-danger"></span>
-                </div>
-                <br />
+                <select class="form-control" id="Surname" name="Surname">
+                    <option>@Model.Surname</option>
+                </select>
 
-                <div class="form-group">
-                    <label asp-for="Pesel" class="control-label"></label>
-                    <select class="form-control" id="Pesel" name="Pesel">
-                        <option>@Model.Pesel</option>
-                    </select>
-                    <span asp-validation-for="Pesel" class="text-danger"></span>
-                </div>
-                <br />
+                <select class="form-control" id="Pesel" name="Pesel">
+                    <option>@Model.Pesel</option>
+                </select>
 
-                <div class="form-group">
-                    <label asp-for="Age" class="control-label"></label>
-                    <select class="form-control" id="Age" name="Age">
-                        <option>@Model.Age</option>
-                    </select>
-                    <span asp-validation-for="Age" class="text-danger"></span>
-                </div>
-                <br />
+                <select class="form-control" id="Age" name="Age">
+                    <option>@Model.Age</option>
+                </select>
 
-                <div class="form-group">
-                    <label asp-for="Gender" class="control-label"></label>
-                    <select class="form-control" id="Gender" name="Gender">
-                        <option>@Model.Gender</option>
-                    </select>
-                    <span asp-validation-for="Gender" class="text-danger"></span>
-                </div>
-                <br />
+                <select class="form-control" id="Gender" name="Gender">
+                    <option>@Model.Gender</option>
+                </select>
 
-                <div class="form-group">
-                    <label asp-for="Diagnosis" class="control-label"></label>
-                    <select class="form-control" id="Diagnosis" name="Diagnosis">
-                        <option>@Model.Diagnosis</option>
-                    </select>
-                    <span asp-validation-for="Diagnosis" class="text-danger"></span>
-                </div>
-                <br />
+                <select class="form-control" id="Diagnosis" name="Diagnosis">
+                    <option>@Model.Diagnosis</option>
+                </select>
+
             </div>
 
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
 
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
-                    <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h1>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <a href="~/docs/karta_wit.pdf" target="_blank" class="text-center" style="text-decoration:none">
+                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 16px">
+                                        DRUKUJ DOKUMENTY
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h1>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -98,6 +78,8 @@
                         <br />
                         <p>Lokalizacja: </p>
                         <br />
+                        <p>Do kogo pacjent:</p>
+                        <br />
                         <p>Lekarz prowadzący:</p>
                         <br />
                         <p>Pacjent dalej w SOR?</p>
@@ -106,11 +88,7 @@
                         <br />
                         <p>Opis w traiage: </p>
                         <br />
-                        <a href="~/docs/karta_wit.pdf" target="_blank" class="text-center" style="text-decoration:none">
-                            <div class="btn-primary" style="border-radius: 3px; padding: 3px; max-width: 100px">
-                                KARTA WIT
-                            </div>
-                        </a>
+
 
                     </div>
 
@@ -161,7 +139,12 @@
                         </div>
                         <br />
 
-
+                        <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                            <option>@Model.ToWhomThePatient</option>
+                            <option>INTERNISTA</option>
+                            <option>CHIRURG</option>
+                        </select>
+                        <br />
 
 
                         <div class="form-group">

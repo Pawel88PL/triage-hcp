@@ -25,7 +25,7 @@
                                                style="text-decoration:none; color:black">
                                                 <h5>
                                                     <span class="animation">
-                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
                                                         @pacjent.DateTime.ToString("f")
                                                     </span>
                                                 </h5>
@@ -103,9 +103,11 @@
 
                                                 <select class="form-control" id="Active" name="Active">
                                                     <option>@pacjent.Active</option>
-
                                                 </select>
-                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                    <option>@pacjent.ToWhomThePatient</option>
+                                                </select>
 
                                             </div>
 
@@ -169,7 +171,7 @@
                                                style="text-decoration:none; color:black">
                                                 <h5>
                                                     <span class="animation">
-                                                        @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
                                                         @pacjent.DateTime.ToString("f")
                                                     </span>
                                                 </h5>
@@ -247,9 +249,11 @@
 
                                                 <select class="form-control" id="Active" name="Active">
                                                     <option>@pacjent.Active</option>
-
                                                 </select>
-                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                    <option>@pacjent.ToWhomThePatient</option>
+                                                </select>
 
                                             </div>
 
@@ -312,7 +316,7 @@
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
                                                 <h5>
-                                                    @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
                                                     <span class="animation">
                                                         @pacjent.DateTime.ToString("f")
                                                     </span>
@@ -391,9 +395,11 @@
 
                                                 <select class="form-control" id="Active" name="Active">
                                                     <option>@pacjent.Active</option>
-
                                                 </select>
-                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                    <option>@pacjent.ToWhomThePatient</option>
+                                                </select>
 
                                             </div>
 
@@ -456,7 +462,7 @@
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
                                                 <h5>
-                                                    @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
                                                     <span class="animation">
                                                         @pacjent.DateTime.ToString("f")
                                                     </span>
@@ -535,9 +541,11 @@
 
                                                 <select class="form-control" id="Active" name="Active">
                                                     <option>@pacjent.Active</option>
-
                                                 </select>
-                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                    <option>@pacjent.ToWhomThePatient</option>
+                                                </select>
 
                                             </div>
 
@@ -601,7 +609,7 @@
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
                                                 <h5>
-                                                    @pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() ||
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
                                                     <span class="animation">
                                                         @pacjent.DateTime.ToString("f")
                                                     </span>
@@ -680,9 +688,11 @@
 
                                                 <select class="form-control" id="Active" name="Active">
                                                     <option>@pacjent.Active</option>
-
                                                 </select>
-                                                <span asp-validation-for="@pacjent.Active" class="text-danger"></span>
+
+                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                    <option>@pacjent.ToWhomThePatient</option>
+                                                </select>
 
                                             </div>
 
@@ -748,7 +758,7 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
                                                     sala: <b>@pacjent.Room</b> ||
@@ -778,7 +788,7 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
                                                     sala: <b>@pacjent.Room</b> ||
@@ -808,7 +818,7 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
                                                     sala: <b>@pacjent.Room</b> ||
@@ -838,7 +848,7 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p>
                                                     <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
@@ -870,7 +880,7 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
                                                 <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
                                                     sala: <b>@pacjent.Room</b> ||
