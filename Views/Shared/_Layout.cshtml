@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/triage.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/triage_hcp.styles.css" asp-append-version="true" />
@@ -16,7 +15,11 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SOR HCP</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px">
+                        SOR HCP
+                    </div>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,16 +29,32 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="List">Lista pacjentów</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="List">
+                                    <div class="btn-success" style="border-radius: 3px; padding: 3px">
+                                        LISTA PACJENTÓW 
+                                    </div>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Triage" asp-action="Triage">Triage</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Triage" asp-action="Triage">
+                                    <div class="btn-danger" style="border-radius: 3px; padding: 3px">
+                                        TRIAGE
+                                    </div>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="CompletedList">Lista zakończonych</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="CompletedList">
+                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px">
+                                        LISTA ZAKOŃCZONYCH
+                                    </div>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">Wyloguj</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">
+                                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px">
+                                        WYLOGUJ
+                                    </div>
+                                </a>
                             </li>
                         }
                         else
@@ -61,7 +80,7 @@
 
     <footer class="footer text-muted">
         <div class="container border">
-            &copy; 2023 Created by Paweł Staniul || wersja 2.2.4, data publikacji 20.04.2023 ||
+            &copy; 2023 Created by Paweł Staniul || wersja 2.3.0, data publikacji 26.04.2023 ||
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

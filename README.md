@@ -94,3 +94,11 @@ Data 20.04.2023
 2. Zmieniono lokalizację przycisku "DRUKUJ DOKUMENTY" dla widoków "Szczegóły" i "Przypisz lekarza".
 3. Dodano możliwość zmiany "Do kogo pacjent" z widoku "Szczegóły".
 4. Zmieniono kolejność wyświetlania danych na liście pacjentów (najpierw nazwisko, następnie imię).
+
+Data 26.04.2023
+
+1. Poprawiono widok strony Lista pacjentów.
+2. Dodano liczniki określające ile jest pacjentów z danej kategorii.
+3. Utworzono dodatkową kategorię: "Pacjenci z ustalonym przyjęciem ...".
+4. Usunięto możliwość wartości null dla wartości Co dalej z Pacjentem.
+5. Poprawiono czytelność Listy zakończonych grupując dane w kolumnach.

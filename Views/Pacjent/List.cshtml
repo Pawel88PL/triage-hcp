@@ -3,16 +3,27 @@
 
 @{
     ViewData["Title"] = "Lista";
+
+    var withoutDoctor = Model.Where(x => x.Doctor == "Wybierz lekarza" & x.Active == "Tak").Count();
+
+    var inProgress = Model.Where(x => !(x.Doctor == "Wybierz lekarza")
+    & x.Active == "Tak"
+    & x.CoDalejZPacjentem == "W trakcie diagnostyki SOR").Count();
+
+    var done = Model.Where(x => !(x.Doctor == "Wybierz lekarza")
+    & x.Active == "Tak"
+    & !(x.CoDalejZPacjentem == "W trakcie diagnostyki SOR")).Count();
+
 }
 
 
 
 <div class="container">
     <div class="row">
-        <div class="col-8">
+        <div class="col-9">
             <div>
                 <div class="border shadow p-3 mb-5 bg-white rounded">
-                    <h5>Pacjenci bez przypisanego lekarza:</h5>
+                    <h4 class="text-center">Pacjenci bez przypisanego lekarza: @withoutDoctor</h4>
                     @foreach (var pacjent in Model.Where(x => x.Color == "red"))
                     {
                         if (pacjent.Doctor == "Wybierz lekarza" & pacjent.Active == "Tak")
@@ -40,7 +51,7 @@
                                     </div>
 
 
-                                    <div class="col-4" style="padding-top: 30px">
+                                    <div class="col-3" style="padding-top: 15px">
 
                                         @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
                                         {
@@ -186,7 +197,7 @@
                                     </div>
 
 
-                                    <div class="col-4" style="padding-top: 30px">
+                                    <div class="col-3 doctor" style="padding-top: 15px">
 
                                         @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
                                         {
@@ -332,7 +343,7 @@
                                     </div>
 
 
-                                    <div class="col-4" style="padding-top: 30px">
+                                    <div class="col-3" style="padding-top: 15px">
 
                                         @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
                                         {
@@ -478,7 +489,7 @@
                                     </div>
 
 
-                                    <div class="col-4" style="padding-top: 30px">
+                                    <div class="col-3" style="padding-top: 15px">
 
                                         @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
                                         {
@@ -625,7 +636,7 @@
                                     </div>
 
 
-                                    <div class="col-4" style="padding-top: 30px">
+                                    <div class="col-3" style="padding-top: 15px">
 
                                         @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
                                         {
@@ -746,101 +757,15 @@
                     <br />
                 </div>
 
+
+
+
+
                 <div class="border shadow p-3 mb-5 bg-white rounded">
-                    <h5>Pacjenci z przypisanym lekarzem:</h5>
-                    @foreach (var pacjent in Model.Where(x => x.Color == "red"))
+                    <h4 class="text-center">Pacjenci w trakcie diagnostyki w SOR: @inProgress</h4>
+                    @foreach (var pacjent in Model.Where(x => x.Color == "red" & !(x.Doctor == "Wybierz lekarza") & x.Active == "Tak"))
                     {
-                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
-                        {
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4" style="padding-top: 50px">
-                                        <select class="form-control" id="Doctor" name="Doctor">
-                                            <option>@pacjent.Doctor</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
-
-                    @foreach (var pacjent in Model.Where(x => x.Color == "orange"))
-                    {
-                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
-                        {
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4" style="padding-top: 50px">
-                                        <select class="form-control" id="Doctor" name="Doctor">
-                                            <option>@pacjent.Doctor</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
-
-                    @foreach (var pacjent in Model.Where(x => x.Color == "yellow"))
-                    {
-                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
-                        {
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4" style="padding-top: 50px">
-                                        <select class="form-control" id="Doctor" name="Doctor">
-                                            <option>@pacjent.Doctor</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
-
-                    @foreach (var pacjent in Model.Where(x => x.Color == "lightgreen"))
-                    {
-                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
+                        if (pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR")
                         {
                             <div class="container">
                                 <div class="row">
@@ -859,20 +784,17 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-4" style="padding-top: 50px">
-                                        <select class="form-control" id="Doctor" name="Doctor">
-                                            <option>@pacjent.Doctor</option>
-                                        </select>
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
                                     </div>
                                 </div>
                             </div>
                         }
                     }
 
-
-                    @foreach (var pacjent in Model.Where(x => x.Color == "lightskyblue"))
+                    @foreach (var pacjent in Model.Where(x => x.Color == "orange" & !(x.Doctor == "Wybierz lekarza") & x.Active == "Tak"))
                     {
-                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak")
+                        if (pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR")
                         {
                             <div class="container">
                                 <div class="row">
@@ -882,7 +804,8 @@
                                                style="text-decoration:none; color:black">
                                                 <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
                                                 <p>@pacjent.Diagnosis</p>
-                                                <p><b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
                                                     sala: <b>@pacjent.Room</b> ||
                                                     do kogo: <b>@pacjent.ToWhomThePatient</b>
                                                 </p>
@@ -890,10 +813,255 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-4" style="padding-top: 50px">
-                                        <select class="form-control" id="Doctor" name="Doctor">
-                                            <option>@pacjent.Doctor</option>
-                                        </select>
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "yellow" & !(x.Doctor == "Wybierz lekarza") & x.Active == "Tak"))
+                    {
+                        if (pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightgreen" & !(x.Doctor == "Wybierz lekarza") & x.Active == "Tak"))
+                    {
+                        if (pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightskyblue" & !(x.Doctor == "Wybierz lekarza") & x.Active == "Tak"))
+                    {
+                        if (pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR")
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <br />
+                </div>
+
+
+
+
+
+                <div class="border shadow p-3 mb-5 bg-white rounded">
+                    <h4 class="text-center">Pacjenci z ustalonym przyjęciem na oddział lub oczekujący na transport: @done</h4>
+                    @foreach (var pacjent in Model.Where(x => x.Color == "red"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak"
+                        & !(pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR"))
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "orange"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak"
+                        & !(pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR"))
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "yellow"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak"
+                        & !(pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR"))
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightgreen"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak"
+                        & !(pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR"))
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                    @foreach (var pacjent in Model.Where(x => x.Color == "lightskyblue"))
+                    {
+                        if (!(pacjent.Doctor == "Wybierz lekarza") & pacjent.Active == "Tak"
+                        & !(pacjent.CoDalejZPacjentem == "W trakcie diagnostyki SOR"))
+                        {
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="pacjent" style="background-color: @pacjent.Color">
+                                            <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                               style="text-decoration:none; color:black">
+                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
+                                                <p>@pacjent.Diagnosis</p>
+                                                <p>
+                                                    <b>@pacjent.Pesel</b> ||
+                                                    sala: <b>@pacjent.Room</b> ||
+                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="border col-3 doctor">
+                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -908,7 +1076,7 @@
 
 
 
-        <div class="col-4" style="max-width: 350px">
+        <div class="col-3" style="max-width: 350px">
             <div class="border shadow p-3 mb-5 bg-white rounded">
                 <h5 class="text-center">Wituś</h5>
                 <br />
@@ -1437,5 +1605,5 @@
     </div>
 </div>
 
-
+<link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
 <script src="~/js/list.js" asp-append-version="true"></script>

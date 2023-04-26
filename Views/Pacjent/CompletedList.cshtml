@@ -4,34 +4,7 @@
 }
 
 <div class="container">
-    <div class="row">
-        <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 900px">
-            <h5>Pacjenci z dzisiejszego dyżuru, z zakończoną obsługą w SOR</h5>
-            <br />
-            @foreach (var pacjent in Model
-            .Where(x => x.DateTime > DateTime.Today)
-            .OrderByDescending(x => x.DateTime))
-            {
-                if (!(pacjent.Active == "Tak"))
-                {
-                    <div class="pacjent" style="background-color: @pacjent.Color; max-width: 800px">
-                        <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
-                           style="text-decoration:none; color:black">
-                            <p>
-                                <b>@pacjent.DateTime.ToString("f")</b> ||
-                                <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b> ||
-                                PESEL: <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                <b> @pacjent.CoDalejZPacjentem</b>
-                            </p>
-                        </a>
-                    </div>
-                }
-            }
-            <br />
-        </div>
-    </div>
-
-    <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 900px">
+    <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 800px">
         <div class="row">
             <div class="col-6">
                 <a href="~/Pacjent/ViewAllCompleted/" class="text-center" style="text-decoration:none">
@@ -51,5 +24,48 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 1200px">
+            <h5 class="text-center">Pacjenci z dzisiejszego dyżuru, z zakończoną obsługą w SOR</h5>
+            <br />
+            @foreach (var pacjent in Model
+            .Where(x => x.DateTime > DateTime.Today)
+            .OrderByDescending(x => x.DateTime))
+            {
+                if (!(pacjent.Active == "Tak"))
+                {
+                    <div class="pacjent" style="background-color: @pacjent.Color; max-width: 1200px">
+                        <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
+                           style="text-decoration:none; color:black">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                    </div>
+                                    <div class="col-3">
+                                        <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b>
+                                    </div>
+                                    <div class="col-2">
+                                        PESEL: <b>@pacjent.Pesel</b>
+                                    </div>
+                                    <div class="col-3">
+                                        lek. prowadzący: <b>@pacjent.Doctor</b>
+                                    </div>
+                                    <div class="col-2">
+                                        <b> @pacjent.CoDalejZPacjentem</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+            <br />
+        </div>
+    </div>
 </div>
 
+
+
+
+<link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />

@@ -1,13 +1,20 @@
-﻿
+﻿html{
+    font-size: 9px;
+}
+
+
+div.container{
+    margin: 0px 10px 0px 20px;
+}
 
 div.pacjent {
     border-radius: 10px;
     border-inline-color: black;
     border-color: black;
     border: solid;
-    max-width: 500px;
-    margin: 10px;
-    padding: 10px 10px 5px 15px;
+    max-width: 550px;
+    margin: 5px;
+    padding: 5px 10px 0px 15px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
@@ -46,8 +53,14 @@ div.pacjent_sala {
     max-height: 70%;
     padding: 2px;
     text-align: center;
-    font-size: 11px;
+    font-size: 10px;
     margin: 2px;
+}
+
+div.doctor {
+    padding: 15px 0px 0px 15px;
+    margin: 20px 0px 20px 0px;
+    border-radius: 10px;
 }
 
 span.animation {
