@@ -102,3 +102,4 @@ Data 26.04.2023
 3. Utworzono dodatkową kategorię: "Pacjenci z ustalonym przyjęciem ...".
 4. Usunięto możliwość wartości null dla wartości Co dalej z Pacjentem.
 5. Poprawiono czytelność Listy zakończonych grupując dane w kolumnach.
+6. Przeniesiono odwoładnie do skryptu css na początek stron z listami pacjentów.

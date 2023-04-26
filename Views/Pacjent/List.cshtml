@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<triage_hcp.Models.Pacjent>
 
+<link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Lista";
@@ -197,7 +198,7 @@
                                     </div>
 
 
-                                    <div class="col-3 doctor" style="padding-top: 15px">
+                                    <div class="col-3 doctor" style="padding-top: 0px">
 
                                         @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
                                         {
@@ -1605,5 +1606,5 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
+
 <script src="~/js/list.js" asp-append-version="true"></script>

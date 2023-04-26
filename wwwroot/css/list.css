@@ -23,9 +23,9 @@ div.pacjentBez {
     border-inline-color: black;
     border-color: black;
     border: solid;
-    max-width: 500px;
-    margin: 10px;
-    padding: 10px 10px 5px 15px;
+    max-width: 550px;
+    margin: 5px;
+    padding: 5px 10px 0px 15px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     animation-name: border;
     animation-duration: 1s;
