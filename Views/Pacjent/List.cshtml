@@ -35,18 +35,25 @@
                                         <div class="pacjentBez" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>
-                                                    <span class="animation">
-                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
-                                                        @pacjent.DateTime.ToString("f")
-                                                    </span>
-                                                </h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            <span class="animation">
+                                                                @pacjent.DateTime.ToString("g")
+                                                            </span>
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -181,18 +188,25 @@
                                         <div class="pacjentBez" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>
-                                                    <span class="animation">
-                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
-                                                        @pacjent.DateTime.ToString("f")
-                                                    </span>
-                                                </h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            <span class="animation">
+                                                                @pacjent.DateTime.ToString("g")
+                                                            </span>
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -327,18 +341,25 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>
-                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
-                                                    <span class="animation">
-                                                        @pacjent.DateTime.ToString("f")
-                                                    </span>
-                                                </h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            <span class="animation">
+                                                                @pacjent.DateTime.ToString("g")
+                                                            </span>
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -473,18 +494,25 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>
-                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
-                                                    <span class="animation">
-                                                        @pacjent.DateTime.ToString("f")
-                                                    </span>
-                                                </h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            <span class="animation">
+                                                                @pacjent.DateTime.ToString("g")
+                                                            </span>
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -620,18 +648,25 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>
-                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() ||
-                                                    <span class="animation">
-                                                        @pacjent.DateTime.ToString("f")
-                                                    </span>
-                                                </h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            <span class="animation">
+                                                                @pacjent.DateTime.ToString("g")
+                                                            </span>
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -774,13 +809,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -803,13 +848,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -832,13 +887,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -861,13 +926,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -891,13 +966,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> || @pacjent.Gender @pacjent.Age lat ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    do kogo: <b>@pacjent.ToWhomThePatient</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -929,13 +1014,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -959,13 +1054,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -989,13 +1094,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -1019,13 +1134,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
@@ -1050,13 +1175,23 @@
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
-                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper() || @pacjent.DateTime.ToString("f")</h5>
-                                                <p>@pacjent.Diagnosis</p>
-                                                <p>
-                                                    <b>@pacjent.Pesel</b> ||
-                                                    sala: <b>@pacjent.Room</b> ||
-                                                    jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b>
-                                                </p>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <h5>
+                                                            @pacjent.DateTime.ToString("g")
+                                                        </h5>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
+                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                    </div>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
