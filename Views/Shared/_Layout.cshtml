@@ -16,8 +16,8 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px">
-                        SOR HCP
+                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
+                        CM HCP SOR
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,28 +30,28 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="List">
-                                    <div class="btn-success" style="border-radius: 3px; padding: 3px">
+                                    <div class="btn-success" style="border-radius: 3px; padding: 3px 10px 3px 10px">
                                         LISTA PACJENTÓW 
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Triage" asp-action="Triage">
-                                    <div class="btn-danger" style="border-radius: 3px; padding: 3px">
+                                    <div class="btn-danger" style="border-radius: 3px; padding: 3px 10px 3px 10px">
                                         TRIAGE
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="CompletedList">
-                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px">
+                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
                                         LISTA ZAKOŃCZONYCH
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">
-                                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px">
+                                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
                                         WYLOGUJ
                                     </div>
                                 </a>
@@ -59,9 +59,11 @@
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Logowanie</a>
-                            </li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">
+                                <div class="btn-secondary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
+                                    ZALOGUJ
+                                </div>
+                            </a>
                         }
                     </ul>
                 </div>
@@ -80,7 +82,7 @@
 
     <footer class="footer text-muted">
         <div class="container border">
-            &copy; 2023 Created by Paweł Staniul || wersja 2.3.1, data publikacji 26.04.2023 ||
+            &copy; 2023 Created by Paweł Staniul || wersja 2.3.2, data publikacji 01.05.2023 ||
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

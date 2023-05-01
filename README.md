@@ -104,3 +104,7 @@ Data 26.04.2023
 5. Poprawiono czytelność Listy zakończonych grupując dane w kolumnach.
 6. Przeniesiono odwoładnie do skryptu css na początek stron z listami pacjentów.
 7. Poprawiono czytelność strony Lista pacjentów (zgrupowano informacje o pacjentach w trzech kolumnach).
+
+Data 01.05.2023
+
+1. Dodano nowego lekarza do systemu.
