@@ -22,6 +22,9 @@ namespace triage_hcp
                 builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True");
             });
 
+            // Conection string - Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
+            // Conection string - Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
+
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;

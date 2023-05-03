@@ -4,11 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Modify</h2>
+<br />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -46,18 +44,13 @@
                 @Html.DisplayNameFor(model => model.Active)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Epikryza)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ObserwacjeRatPiel)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.CoDalejZPacjentem)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model.OrderByDescending(x => x.DateTime)) {
         <tr>
             <td>
@@ -94,18 +87,10 @@
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Epikryza)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ObserwacjeRatPiel)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CoDalejZPacjentem)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="button btn-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
             </td>
         </tr>
 }

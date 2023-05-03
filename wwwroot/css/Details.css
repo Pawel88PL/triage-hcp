@@ -5,3 +5,20 @@
 .shadow-textarea textarea.form-control {
     padding-left: 0.8rem;
 }
+
+div.animation {
+    animation-name: datetime;
+    animation-duration: 1s;
+    animation-iteration-count: infinite
+}
+
+@keyframes datetime {
+    from {
+        color: black;
+    }
+
+    to {
+        color: red;
+    }
+}
+

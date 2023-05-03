@@ -108,3 +108,11 @@ Data 26.04.2023
 Data 01.05.2023
 
 1. Dodano nowego lekarza do systemu.
+2. Poprawiono wyświetlanie przycisków nawigacyjnych.
+
+Data 03.05.2023
+
+1. Zmieniono wygląd i funkcjonalność stron Details i WithoutDoctor.
+2. Dodano możliwość edycji danych pacjenta w nowym widoku EditPatientData.
+3. Przeniesiono przycisk "Statystyki" do panelu na nawigacyjnego.
+4. Dodano jasny gradient tagu "body".

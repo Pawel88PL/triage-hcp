@@ -7,24 +7,12 @@
 }
 
 <div class="container">
-    <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 800px">
-        <div class="row">
-            <div class="col-6">
-                <a href="~/Pacjent/ViewAllCompleted/" class="text-center" style="text-decoration:none">
-                    <div class="btn-primary" style="border-radius: 3px; padding: 3px">
-                        LISTA ZAKOŃCZONYCH Z POPRZEDNICH DYŻURÓW
-                    </div>
-                </a>
+    <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 600px">
+        <a href="~/Pacjent/ViewAllCompleted/" class="text-center" style="text-decoration:none">
+            <div class="btn-primary" style="border-radius: 3px; padding: 3px">
+                LISTA ZAKOŃCZONYCH Z POPRZEDNICH DYŻURÓW
             </div>
-
-            <div class="col-6">
-                <a href="~/Pacjent/Statistics/" class="text-center" style="text-decoration:none">
-                    <div class="btn-success" style="border-radius: 3px; padding: 3px">
-                        STATYSTYKI
-                    </div>
-                </a>
-            </div>
-        </div>
+        </a>
     </div>
 
     <div class="row">
@@ -42,16 +30,19 @@
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-1">
                                         <p><b>@pacjent.DateTime.ToString("g")</b></p>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b>
                                     </div>
                                     <div class="col-2">
-                                        PESEL: <b>@pacjent.Pesel</b>
+                                        <b>@pacjent.Pesel</b>
                                     </div>
                                     <div class="col-3">
+                                        <b>@pacjent.Diagnosis</b>
+                                    </div>
+                                    <div class="col-2">
                                         lek. prowadzący: <b>@pacjent.Doctor</b>
                                     </div>
                                     <div class="col-2">

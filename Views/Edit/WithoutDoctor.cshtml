@@ -1,13 +1,14 @@
 ﻿@model triage_hcp.Models.Pacjent
+<link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
 
 @{
-    ViewData["Title"] = "Przypisz lekarza";
+    ViewData["Title"] = "Przypisz lekarza!";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
-    <div class="row border shadow p-3 mb-5 bg-white rounded">
-        <form asp-action="WithoutDoctor">
+    <div class="row">
+        <form asp-action="Details">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -16,6 +17,7 @@
                 <select class="form-control" id="DateTime" name="DateTime">
                     <option>@Model.DateTime</option>
                 </select>
+                <span asp-validation-for="DateTime" class="text-danger"></span>
 
                 <select class="form-control" id="TriageDate" name="TriageDate">
                     <option>@Model.TriageDate</option>
@@ -45,21 +47,6 @@
                     <option>@Model.Diagnosis</option>
                 </select>
 
-                <select class="form-control" id="Active" name="Active">
-                    <option>@Model.Active</option>
-                </select>
-
-                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                    <option>@Model.CoDalejZPacjentem</option>
-                </select>
-
-                <textarea class="form-control" id="Epikryza" name="Epikryza" rows="10">
-                    @Model.Epikryza</textarea>
-
-                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                    <option>@Model.ToWhomThePatient</option>
-                </select>
-
             </div>
 
 
@@ -68,146 +55,215 @@
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
                     <div class="container">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-2">
                                 <a href="~/docs/karta_wit.pdf" target="_blank" class="text-center" style="text-decoration:none">
                                     <div class="btn-primary" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 16px">
                                         DRUKUJ DOKUMENTY
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-6">
-                                <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper() -- <span class="animation"> przypisz lekarza</span> </h1>
+                            <div class="col-8">
+                                <div class="row animation">
+                                    <div class="col-6">
+                                        <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
+                                        <h5>@Model.Gender, lat @Model.Age</h5>
+                                        <h5>PESEL: @Model.Pesel</h5>
+                                    </div>
+                                    <div class="col-6">
+                                        <h1>@Model.DateTime.ToString("t")</h1>
+                                        <h4>@Model.DateTime.ToString("D")</h4>
+                                        <h4>wybierz lekarza!</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <a href="@Url.Action("EditPatientData","Edit", new { Id = Model.Id })"
+                                   class="text-center" style="text-decoration:none">
+                                    <div class="button btn-danger" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 16px">
+                                        EDYTUJ DANE PACJENTA
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
-                    <div class="col-2">
-                        <p>Data wykonania triage:</p>
-                        <p>PESEL: </p>
-                        <p>Wiek: </p>
-                        <p>Płeć: </p>
-                        <p style="padding-bottom: 75px">RE-TRIAGE: </p>
-                        <br />
-                        <p>Lokalizacja: </p>
-                        <br />
-                        <p>Lekarz prowadzący:</p>
-                        <br />
-                        <p>Opis w traiage: </p>
-                        <br />
-                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-4">
+                                <br />
+                                <p>Lokalizacja: </p>
+                                <br />
+                                <p>Do kogo pacjent:</p>
+                                <br />
+                                <p>Lekarz prowadzący:</p>
+                                <br />
+                                <p><b>JAKIE DECYZJE:</b></p>
+                                <br />
+                                <p><b>PACJENT DALEJ W SOR?</b></p>
+                                <br />
+                            </div>
 
-                    <div class="col-4">
-                        <p><b>@Model.DateTime.ToString("f")</b></p>
-                        <p><b>@Model.Pesel</b></p>
-                        <p><b>@Model.Age</b></p>
-                        <p><b>@Model.Gender</b></p>
+                            <div class="col-6">
+                                <br />
+                                <div class="form-group">
+                                    <select class="form-control" id="Room" name="Room">
+                                        <option>@Model.Room</option>
+                                        <option>Poczekalnia</option>
+                                        <option>Korytarz</option>
+                                        <option>Wituś</option>
+                                        <option>Wituś 1</option>
+                                        <option>Wituś 2</option>
+                                        <option>Wituś 3</option>
+                                        <option>WIT</option>
+                                        <option>WIT 1</option>
+                                        <option>WIT 2</option>
+                                        <option>WIT 3</option>
+                                        <option>WIT 4</option>
+                                        <option>Sala obserwacyjna 5</option>
+                                        <option>Sala obserwacyjna 6</option>
+                                        <option>Sala obserwacyjna 7</option>
+                                        <option>Sala obserwacyjna 8</option>
+                                        <option>Sala obserwacyjna 9</option>
+                                        <option>Sala obserwacyjna 10</option>
+                                        <option>Izolatka Z1</option>
+                                        <option>Izolatka Z2</option>
+                                        <option>Izolatka Z3</option>
+                                        <option>Dekontaminacja</option>
+                                    </select>
+                                    <span asp-validation-for="Room" class="text-danger"></span>
+                                </div>
+                                <br />
+
+                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                    <option>@Model.ToWhomThePatient</option>
+                                    <option>INTERNISTA</option>
+                                    <option>CHIRURG</option>
+                                </select>
+                                <br />
+
+
+                                <div class="form-group">
+                                    <select class="form-control" id="Doctor" name="Doctor">
+                                        <option>@Model.Doctor</option>
+                                        <option>Avdieiev Anton</option>
+                                        <option>Betkowiak Zuzanna</option>
+                                        <option>Binaś Marcin</option>
+                                        <option>Chrzanowski Monica</option>
+                                        <option>Czekała-Karpiński Dawid</option>
+                                        <option>Dabryneuski Uladzimir</option>
+                                        <option>Fritzkiewicz Witold</option>
+                                        <option>Gąsiorowski Mateusz</option>
+                                        <option>Gilier Kamila</option>
+                                        <option>Grymuza Maciej</option>
+                                        <option>Huzenko Jaroslaw</option>
+                                        <option>Junewicz</option>
+                                        <option>Kłaczyński Mateusz</option>
+                                        <option>Kohan Anastasiia</option>
+                                        <option>Łuczak Agnieszka</option>
+                                        <option>Makowska Agata</option>
+                                        <option>Małkiewicz Tomasz</option>
+                                        <option>Miroshnichenko Yurii</option>
+                                        <option>Nowak Michał</option>
+                                        <option>Pankiewicz Mateusz</option>
+                                        <option>Paszkowiak-Ciesielska Hanna</option>
+                                        <option>Pisula Piotr</option>
+                                        <option>Polupanov Yevhen</option>
+                                        <option>Potyka Marek</option>
+                                        <option>Razumka</option>
+                                        <option>Rojna Maciej</option>
+                                        <option>Skrzypek Dariusz</option>
+                                        <option>Śliwowski Cezary</option>
+                                        <option>Śmidrowicz Bartosz</option>
+                                        <option>Wierzchowiecki Jerzy</option>
+                                        <option>Woźny Tomasz</option>
+                                        <option>Yakymchuk</option>
+                                        <option>Zanko Semen</option>
+                                        <option>Zhdanov Sergii</option>
+                                    </select>
+                                    <span asp-validation-for="Doctor" class="text-danger"></span>
+                                </div>
+                                <br />
+
+                                <div class="form-group">
+                                    <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
+                                        <option>@Model.CoDalejZPacjentem</option>
+                                        <option>W trakcie diagnostyki SOR</option>
+                                        <option>Wypisany do domu</option>
+                                        <option>Interna</option>
+                                        <option>Urologia</option>
+                                        <option>Kardiologia A</option>
+                                        <option>Kardiologia B</option>
+                                        <option>Neurologia</option>
+                                        <option>OIOM</option>
+                                        <option>Chirurgia</option>
+                                        <option>Ortopedia</option>
+                                        <option>Psychiatria</option>
+                                        <option>Przekazany do innego szpitala</option>
+                                        <option>Neurochirurgia</option>
+                                        <option>Ginekologia</option>
+                                        <option>Chirurgia szczękowo-twarzowa</option>
+                                        <option>Oddalił się z SOR</option>
+                                        <option>Zgon</option>
+                                    </select>
+                                </div>
+                                <br />
+
+                                <div class="form-group">
+                                    <select class="form-control" id="Active" name="Active">
+                                        <option>@Model.Active</option>
+                                        <option>Tak</option>
+                                        <option>Nie</option>
+                                    </select>
+                                    <span asp-validation-for="Active" class="text-danger"></span>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                        <br />
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-danger" style="margin: 2px" id="Color" name="Color" value="red">CZERWONY</button>
                             <button type="submit" class="btn btn-warning" style="margin: 2px" id="Color" name="Color" value="orange">POMARAŃCZOWY</button>
-                            <br />
                             <button type="submit" class="btn btn-warning" style="margin: 2px; background-color: yellow" id="Color" name="Color" value="yellow">ŻÓŁTY</button>
                             <button type="submit" class="btn btn-success" style="margin: 2px" id="Color" name="Color" value="lightgreen">ZIELONY</button>
-                            <br />
                             <button type="submit" class="btn btn-primary" style="margin: 2px" id="Color" name="Color" value="lightskyblue">NIEBIESKI</button>
                             <span asp-validation-for="Color" class="text-danger"></span>
                         </div>
                         <br />
 
-                        <div class="form-group">
-                            <select class="form-control" id="Room" name="Room">
-                                <option>@Model.Room</option>
-                                <option>Poczekalnia</option>
-                                <option>Korytarz</option>
-                                <option>Wituś</option>
-                                <option>Wituś 1</option>
-                                <option>Wituś 2</option>
-                                <option>Wituś 3</option>
-                                <option>WIT</option>
-                                <option>WIT 1</option>
-                                <option>WIT 2</option>
-                                <option>WIT 3</option>
-                                <option>WIT 4</option>
-                                <option>Sala obserwacyjna 5</option>
-                                <option>Sala obserwacyjna 6</option>
-                                <option>Sala obserwacyjna 7</option>
-                                <option>Sala obserwacyjna 8</option>
-                                <option>Sala obserwacyjna 9</option>
-                                <option>Sala obserwacyjna 10</option>
-                                <option>Izolatka Z1</option>
-                                <option>Izolatka Z2</option>
-                                <option>Izolatka Z3</option>
-                                <option>Dekontaminacja</option>
-                            </select>
-                            <span asp-validation-for="Room" class="text-danger"></span>
-                        </div>
-                        <br />
+                        <div>
+                            <p>
+                                * aby zatwierdzić zmiany naciśnij przycisk z kolorem pacjenta
+                            </p>
 
-                        <div class="form-group">
-                            <select class="form-control" id="Doctor" name="Doctor">
-                                <option>@Model.Doctor</option>
-                                <option>Avdieiev Anton</option>
-                                <option>Betkowiak Zuzanna</option>
-                                <option>Binaś Marcin</option>
-                                <option>Chrzanowski Monica</option>
-                                <option>Czekała-Karpiński Dawid</option>
-                                <option>Dabryneuski Uladzimir</option>
-                                <option>Fritzkiewicz Witold</option>
-                                <option>Gąsiorowski Mateusz</option>
-                                <option>Gilier Kamila</option>
-                                <option>Grymuza Maciej</option>
-                                <option>Huzenko Jaroslaw</option>
-                                <option>Junewicz</option>
-                                <option>Kłaczyński Mateusz</option>
-                                <option>Łuczak Agnieszka</option>
-                                <option>Makowska Agata</option>
-                                <option>Małkiewicz Tomasz</option>
-                                <option>Miroshnichenko Yurii</option>
-                                <option>Nowak Michał</option>
-                                <option>Pankiewicz Mateusz</option>
-                                <option>Paszkowiak-Ciesielska Hanna</option>
-                                <option>Pisula Piotr</option>
-                                <option>Polupanov Yevhen</option>
-                                <option>Potyka Marek</option>
-                                <option>Razumka</option>
-                                <option>Rojna Maciej</option>
-                                <option>Skrzypek Dariusz</option>
-                                <option>Śliwowski Cezary</option>
-                                <option>Śmidrowicz Bartosz</option>
-                                <option>Wierzchowiecki Jerzy</option>
-                                <option>Woźny Tomasz</option>
-                                <option>Yakymchuk</option>
-                                <option>Zanko Semen</option>
-                                <option>Zhdanov Sergii</option>
-                            </select>
-                            <span asp-validation-for="Doctor" class="text-danger"></span>
                         </div>
-                        <br />
 
-                        <div style="font-size: 16px">
-                            <p><b>@Model.Diagnosis</b></p>
-                        </div>
 
                     </div>
 
-                    <div class="border col-5" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
-                        <div style="background-color:white; padding: 10px 10px 40px 10px">
-                            <h5>Obserwacje ratowniczo pielęgniarskie</h5>
-                            <div class="form-group">
-                                <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="17">
-                                    @Model.ObserwacjeRatPiel</textarea>
-                                <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
+
+                    <div class="col-6">
+                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
+                            <div style="background-color:white; padding: 10px 10px 40px 10px">
+                                <h5 class="text-center">OPIS TRIAGE</h5>
+                                <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 50px">
+                                    <br />
+                                    <h4>@Model.Diagnosis</h4>
+                                </div>
+
+                                <h5>Obserwacje ratowniczo pielęgniarskie</h5>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="8">
+                                        @Model.ObserwacjeRatPiel</textarea>
+                                    <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
+                                </div>
                             </div>
+                            <br />
                         </div>
-                        <br />
                     </div>
                 </div>
-            </div>
-            <div>
-                <p>* aby zatwierdzić zmiany naciśnij na przycisk z kolorem pacjenta</p>
             </div>
         </form>
     </div>
