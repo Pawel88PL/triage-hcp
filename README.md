@@ -108,3 +108,4 @@ Data 04.05.2023
 3. Poprawiono wygląd i funkcjonalność stron Details, WithoutDoctor i Done.
 4. W liscie zakończonych pacjntów umieszczono informację o dacie zakończenia obsługi w SOR.
 5. Poprawiono wygląd i funkcjonalność strony Index i Edit w kontrolerze MODIFY.
+6. Usunięto błąd przy aktualizacji danych pacjenta z widoku WithoutDoctor.
