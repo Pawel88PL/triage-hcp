@@ -21,7 +21,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-9">
+        <div class="col-lg-9">
             <div>
                 <div class="border shadow p-3 mb-5 bg-white rounded">
                     <h4 class="text-center">Pacjenci bez przypisanego lekarza: @withoutDoctor</h4>
@@ -31,148 +31,150 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg">
                                         <div class="pacjentBez" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5>
-                                                            <span class="animation">
-                                                                @pacjent.DateTime.ToString("g")
-                                                            </span>
-                                                        </h5>
-                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
-                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                       style="text-decoration:none; color:black">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5>
+                                                                    <span class="animation">
+                                                                        @pacjent.DateTime.ToString("g")
+                                                                    </span>
+                                                                </h5>
+                                                                <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                                <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+
+                                                <div class="col-3">
+                                                    @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                                        <div style="display:none">
+
+                                                            <select class="form-control" id="DateTime" name="DateTime">
+                                                                <option>@pacjent.DateTime</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="TriageDate" name="TriageDate">
+                                                                <option>@pacjent.TriageDate</option>
+                                                            </select>
+                                                            <br />
+
+                                                            <select class="form-control" id="Name" name="Name">
+                                                                <option>@pacjent.Name</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Surname" name="Surname">
+                                                                <option>@pacjent.Surname</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Pesel" name="Pesel">
+                                                                <option>@pacjent.Pesel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Age" name="Age">
+                                                                <option>@pacjent.Age</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Gender" name="Gender">
+                                                                <option>@pacjent.Gender</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                                <option>@pacjent.Diagnosis</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Room" name="Room">
+                                                                <option>@pacjent.Room</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Color" name="Color">
+                                                                <option>@pacjent.Color</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                                <option>@pacjent.CoDalejZPacjentem</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Epikryza" name="Epikryza">
+                                                                <option>@pacjent.Epikryza</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                                <option>@pacjent.ObserwacjeRatPiel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Active" name="Active">
+                                                                <option>@pacjent.Active</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                                <option>@pacjent.ToWhomThePatient</option>
+                                                            </select>
+
+                                                        </div>
+
+                                                        <select class="form-select" id="Doctor" name="Doctor">
+                                                            <option>@pacjent.Doctor</option>
+                                                            <option>Avdieiev Anton</option>
+                                                            <option>Betkowiak Zuzanna</option>
+                                                            <option>Binaś Marcin</option>
+                                                            <option>Chrzanowski Monica</option>
+                                                            <option>Czekała-Karpiński Dawid</option>
+                                                            <option>Dabryneuski Uladzimir</option>
+                                                            <option>Fritzkiewicz Witold</option>
+                                                            <option>Gąsiorowski Mateusz</option>
+                                                            <option>Gilier Kamila</option>
+                                                            <option>Grymuza Maciej</option>
+                                                            <option>Huzenko Jaroslaw</option>
+                                                            <option>Junewicz</option>
+                                                            <option>Kłaczyński Mateusz</option>
+                                                            <option>Kohan Anastasiia</option>
+                                                            <option>Łuczak Agnieszka</option>
+                                                            <option>Makowska Agata</option>
+                                                            <option>Małkiewicz Tomasz</option>
+                                                            <option>Miroshnichenko Yurii</option>
+                                                            <option>Nowak Michał</option>
+                                                            <option>Pankiewicz Mateusz</option>
+                                                            <option>Paszkowiak-Ciesielska Hanna</option>
+                                                            <option>Pisula Piotr</option>
+                                                            <option>Polupanov Yevhen</option>
+                                                            <option>Potyka Marek</option>
+                                                            <option>Razumka</option>
+                                                            <option>Rojna Maciej</option>
+                                                            <option>Skrzypek Dariusz</option>
+                                                            <option>Śliwowski Cezary</option>
+                                                            <option>Śmidrowicz Bartosz</option>
+                                                            <option>Wierzchowiecki Jerzy</option>
+                                                            <option>Woźny Tomasz</option>
+                                                            <option>Yakymchuk</option>
+                                                            <option>Zanko Semen</option>
+                                                            <option>Zhdanov Sergii</option>
+                                                        </select>
+                                                        <br />
+
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="col-3" style="padding-top: 15px">
-
-                                        @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
-                                        {
-                                            <input type="hidden" name="Id" value="@pacjent.Id" />
-
-                                            <div style="display:none">
-
-                                                <select class="form-control" id="DateTime" name="DateTime">
-                                                    <option>@pacjent.DateTime</option>
-                                                </select>
-
-                                                <select class="form-control" id="TriageDate" name="TriageDate">
-                                                    <option>@pacjent.TriageDate</option>
-                                                </select>
-                                                <br />
-
-                                                <select class="form-control" id="Name" name="Name">
-                                                    <option>@pacjent.Name</option>
-                                                </select>
-
-                                                <select class="form-control" id="Surname" name="Surname">
-                                                    <option>@pacjent.Surname</option>
-                                                </select>
-
-                                                <select class="form-control" id="Pesel" name="Pesel">
-                                                    <option>@pacjent.Pesel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Age" name="Age">
-                                                    <option>@pacjent.Age</option>
-                                                </select>
-
-                                                <select class="form-control" id="Gender" name="Gender">
-                                                    <option>@pacjent.Gender</option>
-                                                </select>
-
-                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                                                    <option>@pacjent.Diagnosis</option>
-                                                </select>
-
-                                                <select class="form-control" id="Room" name="Room">
-                                                    <option>@pacjent.Room</option>
-                                                </select>
-
-                                                <select class="form-control" id="Color" name="Color">
-                                                    <option>@pacjent.Color</option>
-                                                </select>
-
-                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                                                    <option>@pacjent.CoDalejZPacjentem</option>
-                                                </select>
-
-                                                <select class="form-control" id="Epikryza" name="Epikryza">
-                                                    <option>@pacjent.Epikryza</option>
-                                                </select>
-
-                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                                                    <option>@pacjent.ObserwacjeRatPiel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Active" name="Active">
-                                                    <option>@pacjent.Active</option>
-                                                </select>
-
-                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                                                    <option>@pacjent.ToWhomThePatient</option>
-                                                </select>
-
-                                            </div>
-
-                                            <select class="form-control" id="Doctor" name="Doctor">
-                                                <option>@pacjent.Doctor</option>
-                                                <option>Avdieiev Anton</option>
-                                                <option>Betkowiak Zuzanna</option>
-                                                <option>Binaś Marcin</option>
-                                                <option>Chrzanowski Monica</option>
-                                                <option>Czekała-Karpiński Dawid</option>
-                                                <option>Dabryneuski Uladzimir</option>
-                                                <option>Fritzkiewicz Witold</option>
-                                                <option>Gąsiorowski Mateusz</option>
-                                                <option>Gilier Kamila</option>
-                                                <option>Grymuza Maciej</option>
-                                                <option>Huzenko Jaroslaw</option>
-                                                <option>Junewicz</option>
-                                                <option>Kłaczyński Mateusz</option>
-                                                <option>Kohan Anastasiia</option>
-                                                <option>Łuczak Agnieszka</option>
-                                                <option>Makowska Agata</option>
-                                                <option>Małkiewicz Tomasz</option>
-                                                <option>Miroshnichenko Yurii</option>
-                                                <option>Nowak Michał</option>
-                                                <option>Pankiewicz Mateusz</option>
-                                                <option>Paszkowiak-Ciesielska Hanna</option>
-                                                <option>Pisula Piotr</option>
-                                                <option>Polupanov Yevhen</option>
-                                                <option>Potyka Marek</option>
-                                                <option>Razumka</option>
-                                                <option>Rojna Maciej</option>
-                                                <option>Skrzypek Dariusz</option>
-                                                <option>Śliwowski Cezary</option>
-                                                <option>Śmidrowicz Bartosz</option>
-                                                <option>Wierzchowiecki Jerzy</option>
-                                                <option>Woźny Tomasz</option>
-                                                <option>Yakymchuk</option>
-                                                <option>Zanko Semen</option>
-                                                <option>Zhdanov Sergii</option>
-                                            </select>
-                                            <br />
-
-                                            <div>
-                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
-                                            </div>
-                                        }
                                     </div>
                                 </div>
                             </div>
@@ -185,148 +187,150 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg">
                                         <div class="pacjentBez" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5>
-                                                            <span class="animation">
-                                                                @pacjent.DateTime.ToString("g")
-                                                            </span>
-                                                        </h5>
-                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
-                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                       style="text-decoration:none; color:black">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5>
+                                                                    <span class="animation">
+                                                                        @pacjent.DateTime.ToString("g")
+                                                                    </span>
+                                                                </h5>
+                                                                <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                                <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+
+                                                <div class="col-3">
+                                                    @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                                        <div style="display:none">
+
+                                                            <select class="form-control" id="DateTime" name="DateTime">
+                                                                <option>@pacjent.DateTime</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="TriageDate" name="TriageDate">
+                                                                <option>@pacjent.TriageDate</option>
+                                                            </select>
+                                                            <br />
+
+                                                            <select class="form-control" id="Name" name="Name">
+                                                                <option>@pacjent.Name</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Surname" name="Surname">
+                                                                <option>@pacjent.Surname</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Pesel" name="Pesel">
+                                                                <option>@pacjent.Pesel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Age" name="Age">
+                                                                <option>@pacjent.Age</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Gender" name="Gender">
+                                                                <option>@pacjent.Gender</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                                <option>@pacjent.Diagnosis</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Room" name="Room">
+                                                                <option>@pacjent.Room</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Color" name="Color">
+                                                                <option>@pacjent.Color</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                                <option>@pacjent.CoDalejZPacjentem</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Epikryza" name="Epikryza">
+                                                                <option>@pacjent.Epikryza</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                                <option>@pacjent.ObserwacjeRatPiel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Active" name="Active">
+                                                                <option>@pacjent.Active</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                                <option>@pacjent.ToWhomThePatient</option>
+                                                            </select>
+
+                                                        </div>
+
+                                                        <select class="form-select" id="Doctor" name="Doctor">
+                                                            <option>@pacjent.Doctor</option>
+                                                            <option>Avdieiev Anton</option>
+                                                            <option>Betkowiak Zuzanna</option>
+                                                            <option>Binaś Marcin</option>
+                                                            <option>Chrzanowski Monica</option>
+                                                            <option>Czekała-Karpiński Dawid</option>
+                                                            <option>Dabryneuski Uladzimir</option>
+                                                            <option>Fritzkiewicz Witold</option>
+                                                            <option>Gąsiorowski Mateusz</option>
+                                                            <option>Gilier Kamila</option>
+                                                            <option>Grymuza Maciej</option>
+                                                            <option>Huzenko Jaroslaw</option>
+                                                            <option>Junewicz</option>
+                                                            <option>Kłaczyński Mateusz</option>
+                                                            <option>Kohan Anastasiia</option>
+                                                            <option>Łuczak Agnieszka</option>
+                                                            <option>Makowska Agata</option>
+                                                            <option>Małkiewicz Tomasz</option>
+                                                            <option>Miroshnichenko Yurii</option>
+                                                            <option>Nowak Michał</option>
+                                                            <option>Pankiewicz Mateusz</option>
+                                                            <option>Paszkowiak-Ciesielska Hanna</option>
+                                                            <option>Pisula Piotr</option>
+                                                            <option>Polupanov Yevhen</option>
+                                                            <option>Potyka Marek</option>
+                                                            <option>Razumka</option>
+                                                            <option>Rojna Maciej</option>
+                                                            <option>Skrzypek Dariusz</option>
+                                                            <option>Śliwowski Cezary</option>
+                                                            <option>Śmidrowicz Bartosz</option>
+                                                            <option>Wierzchowiecki Jerzy</option>
+                                                            <option>Woźny Tomasz</option>
+                                                            <option>Yakymchuk</option>
+                                                            <option>Zanko Semen</option>
+                                                            <option>Zhdanov Sergii</option>
+                                                        </select>
+                                                        <br />
+
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="col-3 doctor" style="padding-top: 0px">
-
-                                        @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
-                                        {
-                                            <input type="hidden" name="Id" value="@pacjent.Id" />
-
-                                            <div style="display:none">
-
-                                                <select class="form-control" id="DateTime" name="DateTime">
-                                                    <option>@pacjent.DateTime</option>
-                                                </select>
-
-                                                <select class="form-control" id="TriageDate" name="TriageDate">
-                                                    <option>@pacjent.TriageDate</option>
-                                                </select>
-                                                <br />
-
-                                                <select class="form-control" id="Name" name="Name">
-                                                    <option>@pacjent.Name</option>
-                                                </select>
-
-                                                <select class="form-control" id="Surname" name="Surname">
-                                                    <option>@pacjent.Surname</option>
-                                                </select>
-
-                                                <select class="form-control" id="Pesel" name="Pesel">
-                                                    <option>@pacjent.Pesel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Age" name="Age">
-                                                    <option>@pacjent.Age</option>
-                                                </select>
-
-                                                <select class="form-control" id="Gender" name="Gender">
-                                                    <option>@pacjent.Gender</option>
-                                                </select>
-
-                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                                                    <option>@pacjent.Diagnosis</option>
-                                                </select>
-
-                                                <select class="form-control" id="Room" name="Room">
-                                                    <option>@pacjent.Room</option>
-                                                </select>
-
-                                                <select class="form-control" id="Color" name="Color">
-                                                    <option>@pacjent.Color</option>
-                                                </select>
-
-                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                                                    <option>@pacjent.CoDalejZPacjentem</option>
-                                                </select>
-
-                                                <select class="form-control" id="Epikryza" name="Epikryza">
-                                                    <option>@pacjent.Epikryza</option>
-                                                </select>
-
-                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                                                    <option>@pacjent.ObserwacjeRatPiel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Active" name="Active">
-                                                    <option>@pacjent.Active</option>
-                                                </select>
-
-                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                                                    <option>@pacjent.ToWhomThePatient</option>
-                                                </select>
-
-                                            </div>
-
-                                            <select class="form-control" id="Doctor" name="Doctor">
-                                                <option>@pacjent.Doctor</option>
-                                                <option>Avdieiev Anton</option>
-                                                <option>Betkowiak Zuzanna</option>
-                                                <option>Binaś Marcin</option>
-                                                <option>Chrzanowski Monica</option>
-                                                <option>Czekała-Karpiński Dawid</option>
-                                                <option>Dabryneuski Uladzimir</option>
-                                                <option>Fritzkiewicz Witold</option>
-                                                <option>Gąsiorowski Mateusz</option>
-                                                <option>Gilier Kamila</option>
-                                                <option>Grymuza Maciej</option>
-                                                <option>Huzenko Jaroslaw</option>
-                                                <option>Junewicz</option>
-                                                <option>Kłaczyński Mateusz</option>
-                                                <option>Kohan Anastasiia</option>
-                                                <option>Łuczak Agnieszka</option>
-                                                <option>Makowska Agata</option>
-                                                <option>Małkiewicz Tomasz</option>
-                                                <option>Miroshnichenko Yurii</option>
-                                                <option>Nowak Michał</option>
-                                                <option>Pankiewicz Mateusz</option>
-                                                <option>Paszkowiak-Ciesielska Hanna</option>
-                                                <option>Pisula Piotr</option>
-                                                <option>Polupanov Yevhen</option>
-                                                <option>Potyka Marek</option>
-                                                <option>Razumka</option>
-                                                <option>Rojna Maciej</option>
-                                                <option>Skrzypek Dariusz</option>
-                                                <option>Śliwowski Cezary</option>
-                                                <option>Śmidrowicz Bartosz</option>
-                                                <option>Wierzchowiecki Jerzy</option>
-                                                <option>Woźny Tomasz</option>
-                                                <option>Yakymchuk</option>
-                                                <option>Zanko Semen</option>
-                                                <option>Zhdanov Sergii</option>
-                                            </select>
-                                            <br />
-
-                                            <div>
-                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
-                                            </div>
-                                        }
                                     </div>
                                 </div>
                             </div>
@@ -339,148 +343,150 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5>
-                                                            <span class="animation">
-                                                                @pacjent.DateTime.ToString("g")
-                                                            </span>
-                                                        </h5>
-                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
-                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                       style="text-decoration:none; color:black">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5>
+                                                                    <span class="animation">
+                                                                        @pacjent.DateTime.ToString("g")
+                                                                    </span>
+                                                                </h5>
+                                                                <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                                <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+
+                                                <div class="col-3">
+                                                    @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                                        <div style="display:none">
+
+                                                            <select class="form-control" id="DateTime" name="DateTime">
+                                                                <option>@pacjent.DateTime</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="TriageDate" name="TriageDate">
+                                                                <option>@pacjent.TriageDate</option>
+                                                            </select>
+                                                            <br />
+
+                                                            <select class="form-control" id="Name" name="Name">
+                                                                <option>@pacjent.Name</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Surname" name="Surname">
+                                                                <option>@pacjent.Surname</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Pesel" name="Pesel">
+                                                                <option>@pacjent.Pesel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Age" name="Age">
+                                                                <option>@pacjent.Age</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Gender" name="Gender">
+                                                                <option>@pacjent.Gender</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                                <option>@pacjent.Diagnosis</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Room" name="Room">
+                                                                <option>@pacjent.Room</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Color" name="Color">
+                                                                <option>@pacjent.Color</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                                <option>@pacjent.CoDalejZPacjentem</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Epikryza" name="Epikryza">
+                                                                <option>@pacjent.Epikryza</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                                <option>@pacjent.ObserwacjeRatPiel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Active" name="Active">
+                                                                <option>@pacjent.Active</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                                <option>@pacjent.ToWhomThePatient</option>
+                                                            </select>
+
+                                                        </div>
+
+                                                        <select class="form-select" id="Doctor" name="Doctor">
+                                                            <option>@pacjent.Doctor</option>
+                                                            <option>Avdieiev Anton</option>
+                                                            <option>Betkowiak Zuzanna</option>
+                                                            <option>Binaś Marcin</option>
+                                                            <option>Chrzanowski Monica</option>
+                                                            <option>Czekała-Karpiński Dawid</option>
+                                                            <option>Dabryneuski Uladzimir</option>
+                                                            <option>Fritzkiewicz Witold</option>
+                                                            <option>Gąsiorowski Mateusz</option>
+                                                            <option>Gilier Kamila</option>
+                                                            <option>Grymuza Maciej</option>
+                                                            <option>Huzenko Jaroslaw</option>
+                                                            <option>Junewicz</option>
+                                                            <option>Kłaczyński Mateusz</option>
+                                                            <option>Kohan Anastasiia</option>
+                                                            <option>Łuczak Agnieszka</option>
+                                                            <option>Makowska Agata</option>
+                                                            <option>Małkiewicz Tomasz</option>
+                                                            <option>Miroshnichenko Yurii</option>
+                                                            <option>Nowak Michał</option>
+                                                            <option>Pankiewicz Mateusz</option>
+                                                            <option>Paszkowiak-Ciesielska Hanna</option>
+                                                            <option>Pisula Piotr</option>
+                                                            <option>Polupanov Yevhen</option>
+                                                            <option>Potyka Marek</option>
+                                                            <option>Razumka</option>
+                                                            <option>Rojna Maciej</option>
+                                                            <option>Skrzypek Dariusz</option>
+                                                            <option>Śliwowski Cezary</option>
+                                                            <option>Śmidrowicz Bartosz</option>
+                                                            <option>Wierzchowiecki Jerzy</option>
+                                                            <option>Woźny Tomasz</option>
+                                                            <option>Yakymchuk</option>
+                                                            <option>Zanko Semen</option>
+                                                            <option>Zhdanov Sergii</option>
+                                                        </select>
+                                                        <br />
+
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="col-3" style="padding-top: 15px">
-
-                                        @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
-                                        {
-                                            <input type="hidden" name="Id" value="@pacjent.Id" />
-
-                                            <div style="display:none">
-
-                                                <select class="form-control" id="DateTime" name="DateTime">
-                                                    <option>@pacjent.DateTime</option>
-                                                </select>
-
-                                                <select class="form-control" id="TriageDate" name="TriageDate">
-                                                    <option>@pacjent.TriageDate</option>
-                                                </select>
-                                                <br />
-
-                                                <select class="form-control" id="Name" name="Name">
-                                                    <option>@pacjent.Name</option>
-                                                </select>
-
-                                                <select class="form-control" id="Surname" name="Surname">
-                                                    <option>@pacjent.Surname</option>
-                                                </select>
-
-                                                <select class="form-control" id="Pesel" name="Pesel">
-                                                    <option>@pacjent.Pesel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Age" name="Age">
-                                                    <option>@pacjent.Age</option>
-                                                </select>
-
-                                                <select class="form-control" id="Gender" name="Gender">
-                                                    <option>@pacjent.Gender</option>
-                                                </select>
-
-                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                                                    <option>@pacjent.Diagnosis</option>
-                                                </select>
-
-                                                <select class="form-control" id="Room" name="Room">
-                                                    <option>@pacjent.Room</option>
-                                                </select>
-
-                                                <select class="form-control" id="Color" name="Color">
-                                                    <option>@pacjent.Color</option>
-                                                </select>
-
-                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                                                    <option>@pacjent.CoDalejZPacjentem</option>
-                                                </select>
-
-                                                <select class="form-control" id="Epikryza" name="Epikryza">
-                                                    <option>@pacjent.Epikryza</option>
-                                                </select>
-
-                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                                                    <option>@pacjent.ObserwacjeRatPiel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Active" name="Active">
-                                                    <option>@pacjent.Active</option>
-                                                </select>
-
-                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                                                    <option>@pacjent.ToWhomThePatient</option>
-                                                </select>
-
-                                            </div>
-
-                                            <select class="form-control" id="Doctor" name="Doctor">
-                                                <option>@pacjent.Doctor</option>
-                                                <option>Avdieiev Anton</option>
-                                                <option>Betkowiak Zuzanna</option>
-                                                <option>Binaś Marcin</option>
-                                                <option>Chrzanowski Monica</option>
-                                                <option>Czekała-Karpiński Dawid</option>
-                                                <option>Dabryneuski Uladzimir</option>
-                                                <option>Fritzkiewicz Witold</option>
-                                                <option>Gąsiorowski Mateusz</option>
-                                                <option>Gilier Kamila</option>
-                                                <option>Grymuza Maciej</option>
-                                                <option>Huzenko Jaroslaw</option>
-                                                <option>Junewicz</option>
-                                                <option>Kłaczyński Mateusz</option>
-                                                <option>Kohan Anastasiia</option>
-                                                <option>Łuczak Agnieszka</option>
-                                                <option>Makowska Agata</option>
-                                                <option>Małkiewicz Tomasz</option>
-                                                <option>Miroshnichenko Yurii</option>
-                                                <option>Nowak Michał</option>
-                                                <option>Pankiewicz Mateusz</option>
-                                                <option>Paszkowiak-Ciesielska Hanna</option>
-                                                <option>Pisula Piotr</option>
-                                                <option>Polupanov Yevhen</option>
-                                                <option>Potyka Marek</option>
-                                                <option>Razumka</option>
-                                                <option>Rojna Maciej</option>
-                                                <option>Skrzypek Dariusz</option>
-                                                <option>Śliwowski Cezary</option>
-                                                <option>Śmidrowicz Bartosz</option>
-                                                <option>Wierzchowiecki Jerzy</option>
-                                                <option>Woźny Tomasz</option>
-                                                <option>Yakymchuk</option>
-                                                <option>Zanko Semen</option>
-                                                <option>Zhdanov Sergii</option>
-                                            </select>
-                                            <br />
-
-                                            <div>
-                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
-                                            </div>
-                                        }
                                     </div>
                                 </div>
                             </div>
@@ -493,148 +499,150 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5>
-                                                            <span class="animation">
-                                                                @pacjent.DateTime.ToString("g")
-                                                            </span>
-                                                        </h5>
-                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
-                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                       style="text-decoration:none; color:black">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5>
+                                                                    <span class="animation">
+                                                                        @pacjent.DateTime.ToString("g")
+                                                                    </span>
+                                                                </h5>
+                                                                <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                                <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+
+                                                <div class="col-3">
+                                                    @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                                        <div style="display:none">
+
+                                                            <select class="form-control" id="DateTime" name="DateTime">
+                                                                <option>@pacjent.DateTime</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="TriageDate" name="TriageDate">
+                                                                <option>@pacjent.TriageDate</option>
+                                                            </select>
+                                                            <br />
+
+                                                            <select class="form-control" id="Name" name="Name">
+                                                                <option>@pacjent.Name</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Surname" name="Surname">
+                                                                <option>@pacjent.Surname</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Pesel" name="Pesel">
+                                                                <option>@pacjent.Pesel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Age" name="Age">
+                                                                <option>@pacjent.Age</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Gender" name="Gender">
+                                                                <option>@pacjent.Gender</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                                <option>@pacjent.Diagnosis</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Room" name="Room">
+                                                                <option>@pacjent.Room</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Color" name="Color">
+                                                                <option>@pacjent.Color</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                                <option>@pacjent.CoDalejZPacjentem</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Epikryza" name="Epikryza">
+                                                                <option>@pacjent.Epikryza</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                                <option>@pacjent.ObserwacjeRatPiel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Active" name="Active">
+                                                                <option>@pacjent.Active</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                                <option>@pacjent.ToWhomThePatient</option>
+                                                            </select>
+
+                                                        </div>
+
+                                                        <select class="form-select" id="Doctor" name="Doctor">
+                                                            <option>@pacjent.Doctor</option>
+                                                            <option>Avdieiev Anton</option>
+                                                            <option>Betkowiak Zuzanna</option>
+                                                            <option>Binaś Marcin</option>
+                                                            <option>Chrzanowski Monica</option>
+                                                            <option>Czekała-Karpiński Dawid</option>
+                                                            <option>Dabryneuski Uladzimir</option>
+                                                            <option>Fritzkiewicz Witold</option>
+                                                            <option>Gąsiorowski Mateusz</option>
+                                                            <option>Gilier Kamila</option>
+                                                            <option>Grymuza Maciej</option>
+                                                            <option>Huzenko Jaroslaw</option>
+                                                            <option>Junewicz</option>
+                                                            <option>Kłaczyński Mateusz</option>
+                                                            <option>Kohan Anastasiia</option>
+                                                            <option>Łuczak Agnieszka</option>
+                                                            <option>Makowska Agata</option>
+                                                            <option>Małkiewicz Tomasz</option>
+                                                            <option>Miroshnichenko Yurii</option>
+                                                            <option>Nowak Michał</option>
+                                                            <option>Pankiewicz Mateusz</option>
+                                                            <option>Paszkowiak-Ciesielska Hanna</option>
+                                                            <option>Pisula Piotr</option>
+                                                            <option>Polupanov Yevhen</option>
+                                                            <option>Potyka Marek</option>
+                                                            <option>Razumka</option>
+                                                            <option>Rojna Maciej</option>
+                                                            <option>Skrzypek Dariusz</option>
+                                                            <option>Śliwowski Cezary</option>
+                                                            <option>Śmidrowicz Bartosz</option>
+                                                            <option>Wierzchowiecki Jerzy</option>
+                                                            <option>Woźny Tomasz</option>
+                                                            <option>Yakymchuk</option>
+                                                            <option>Zanko Semen</option>
+                                                            <option>Zhdanov Sergii</option>
+                                                        </select>
+                                                        <br />
+
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="col-3" style="padding-top: 15px">
-
-                                        @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
-                                        {
-                                            <input type="hidden" name="Id" value="@pacjent.Id" />
-
-                                            <div style="display:none">
-
-                                                <select class="form-control" id="DateTime" name="DateTime">
-                                                    <option>@pacjent.DateTime</option>
-                                                </select>
-
-                                                <select class="form-control" id="TriageDate" name="TriageDate">
-                                                    <option>@pacjent.TriageDate</option>
-                                                </select>
-                                                <br />
-
-                                                <select class="form-control" id="Name" name="Name">
-                                                    <option>@pacjent.Name</option>
-                                                </select>
-
-                                                <select class="form-control" id="Surname" name="Surname">
-                                                    <option>@pacjent.Surname</option>
-                                                </select>
-
-                                                <select class="form-control" id="Pesel" name="Pesel">
-                                                    <option>@pacjent.Pesel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Age" name="Age">
-                                                    <option>@pacjent.Age</option>
-                                                </select>
-
-                                                <select class="form-control" id="Gender" name="Gender">
-                                                    <option>@pacjent.Gender</option>
-                                                </select>
-
-                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                                                    <option>@pacjent.Diagnosis</option>
-                                                </select>
-
-                                                <select class="form-control" id="Room" name="Room">
-                                                    <option>@pacjent.Room</option>
-                                                </select>
-
-                                                <select class="form-control" id="Color" name="Color">
-                                                    <option>@pacjent.Color</option>
-                                                </select>
-
-                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                                                    <option>@pacjent.CoDalejZPacjentem</option>
-                                                </select>
-
-                                                <select class="form-control" id="Epikryza" name="Epikryza">
-                                                    <option>@pacjent.Epikryza</option>
-                                                </select>
-
-                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                                                    <option>@pacjent.ObserwacjeRatPiel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Active" name="Active">
-                                                    <option>@pacjent.Active</option>
-                                                </select>
-
-                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                                                    <option>@pacjent.ToWhomThePatient</option>
-                                                </select>
-
-                                            </div>
-
-                                            <select class="form-control" id="Doctor" name="Doctor">
-                                                <option>@pacjent.Doctor</option>
-                                                <option>Avdieiev Anton</option>
-                                                <option>Betkowiak Zuzanna</option>
-                                                <option>Binaś Marcin</option>
-                                                <option>Chrzanowski Monica</option>
-                                                <option>Czekała-Karpiński Dawid</option>
-                                                <option>Dabryneuski Uladzimir</option>
-                                                <option>Fritzkiewicz Witold</option>
-                                                <option>Gąsiorowski Mateusz</option>
-                                                <option>Gilier Kamila</option>
-                                                <option>Grymuza Maciej</option>
-                                                <option>Huzenko Jaroslaw</option>
-                                                <option>Junewicz</option>
-                                                <option>Kłaczyński Mateusz</option>
-                                                <option>Kohan Anastasiia</option>
-                                                <option>Łuczak Agnieszka</option>
-                                                <option>Makowska Agata</option>
-                                                <option>Małkiewicz Tomasz</option>
-                                                <option>Miroshnichenko Yurii</option>
-                                                <option>Nowak Michał</option>
-                                                <option>Pankiewicz Mateusz</option>
-                                                <option>Paszkowiak-Ciesielska Hanna</option>
-                                                <option>Pisula Piotr</option>
-                                                <option>Polupanov Yevhen</option>
-                                                <option>Potyka Marek</option>
-                                                <option>Razumka</option>
-                                                <option>Rojna Maciej</option>
-                                                <option>Skrzypek Dariusz</option>
-                                                <option>Śliwowski Cezary</option>
-                                                <option>Śmidrowicz Bartosz</option>
-                                                <option>Wierzchowiecki Jerzy</option>
-                                                <option>Woźny Tomasz</option>
-                                                <option>Yakymchuk</option>
-                                                <option>Zanko Semen</option>
-                                                <option>Zhdanov Sergii</option>
-                                            </select>
-                                            <br />
-
-                                            <div>
-                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
-                                            </div>
-                                        }
                                     </div>
                                 </div>
                             </div>
@@ -648,147 +656,150 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
-                                            <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
-                                               style="text-decoration:none; color:black">
-                                                <div class="row">
-                                                    <div class="col-4">
-                                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                        <p>PESEL: <b>@pacjent.Pesel</b></p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <p>@pacjent.Diagnosis?.ToUpper()</p>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5>
-                                                            <span class="animation">
-                                                                @pacjent.DateTime.ToString("g")
-                                                            </span>
-                                                        </h5>
-                                                        <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
-                                                        <p>Lokalizacja: <b>@pacjent.Room</b></p>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                       style="text-decoration:none; color:black">
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>PESEL: <b>@pacjent.Pesel</b></p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p>@pacjent.Diagnosis?.ToUpper()</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <h5>
+                                                                    <span class="animation">
+                                                                        @pacjent.DateTime.ToString("g")
+                                                                    </span>
+                                                                </h5>
+                                                                <p>do kogo: <b>@pacjent.ToWhomThePatient</b></p>
+                                                                <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+
+                                                <div class="col-3">
+                                                    @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="Id" value="@pacjent.Id" />
+
+                                                        <div style="display:none">
+
+                                                            <select class="form-control" id="DateTime" name="DateTime">
+                                                                <option>@pacjent.DateTime</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="TriageDate" name="TriageDate">
+                                                                <option>@pacjent.TriageDate</option>
+                                                            </select>
+                                                            <br />
+
+                                                            <select class="form-control" id="Name" name="Name">
+                                                                <option>@pacjent.Name</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Surname" name="Surname">
+                                                                <option>@pacjent.Surname</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Pesel" name="Pesel">
+                                                                <option>@pacjent.Pesel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Age" name="Age">
+                                                                <option>@pacjent.Age</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Gender" name="Gender">
+                                                                <option>@pacjent.Gender</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                                <option>@pacjent.Diagnosis</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Room" name="Room">
+                                                                <option>@pacjent.Room</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Color" name="Color">
+                                                                <option>@pacjent.Color</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                                                                <option>@pacjent.CoDalejZPacjentem</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Epikryza" name="Epikryza">
+                                                                <option>@pacjent.Epikryza</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
+                                                                <option>@pacjent.ObserwacjeRatPiel</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="Active" name="Active">
+                                                                <option>@pacjent.Active</option>
+                                                            </select>
+
+                                                            <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                                                                <option>@pacjent.ToWhomThePatient</option>
+                                                            </select>
+
+                                                        </div>
+
+                                                        <select class="form-select" id="Doctor" name="Doctor">
+                                                            <option>@pacjent.Doctor</option>
+                                                            <option>Avdieiev Anton</option>
+                                                            <option>Betkowiak Zuzanna</option>
+                                                            <option>Binaś Marcin</option>
+                                                            <option>Chrzanowski Monica</option>
+                                                            <option>Czekała-Karpiński Dawid</option>
+                                                            <option>Dabryneuski Uladzimir</option>
+                                                            <option>Fritzkiewicz Witold</option>
+                                                            <option>Gąsiorowski Mateusz</option>
+                                                            <option>Gilier Kamila</option>
+                                                            <option>Grymuza Maciej</option>
+                                                            <option>Huzenko Jaroslaw</option>
+                                                            <option>Junewicz</option>
+                                                            <option>Kłaczyński Mateusz</option>
+                                                            <option>Kohan Anastasiia</option>
+                                                            <option>Łuczak Agnieszka</option>
+                                                            <option>Makowska Agata</option>
+                                                            <option>Małkiewicz Tomasz</option>
+                                                            <option>Miroshnichenko Yurii</option>
+                                                            <option>Nowak Michał</option>
+                                                            <option>Pankiewicz Mateusz</option>
+                                                            <option>Paszkowiak-Ciesielska Hanna</option>
+                                                            <option>Pisula Piotr</option>
+                                                            <option>Polupanov Yevhen</option>
+                                                            <option>Potyka Marek</option>
+                                                            <option>Razumka</option>
+                                                            <option>Rojna Maciej</option>
+                                                            <option>Skrzypek Dariusz</option>
+                                                            <option>Śliwowski Cezary</option>
+                                                            <option>Śmidrowicz Bartosz</option>
+                                                            <option>Wierzchowiecki Jerzy</option>
+                                                            <option>Woźny Tomasz</option>
+                                                            <option>Yakymchuk</option>
+                                                            <option>Zanko Semen</option>
+                                                            <option>Zhdanov Sergii</option>
+                                                        </select>
+                                                        <br />
+
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-                                    <div class="col-3" style="padding-top: 15px">
-
-                                        @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
-                                        {
-                                            <input type="hidden" name="Id" value="@pacjent.Id" />
-
-                                            <div style="display:none">
-
-                                                <select class="form-control" id="DateTime" name="DateTime">
-                                                    <option>@pacjent.DateTime</option>
-                                                </select>
-
-                                                <select class="form-control" id="TriageDate" name="TriageDate">
-                                                    <option>@pacjent.TriageDate</option>
-                                                </select>
-                                                <br />
-
-                                                <select class="form-control" id="Name" name="Name">
-                                                    <option>@pacjent.Name</option>
-                                                </select>
-
-                                                <select class="form-control" id="Surname" name="Surname">
-                                                    <option>@pacjent.Surname</option>
-                                                </select>
-
-                                                <select class="form-control" id="Pesel" name="Pesel">
-                                                    <option>@pacjent.Pesel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Age" name="Age">
-                                                    <option>@pacjent.Age</option>
-                                                </select>
-
-                                                <select class="form-control" id="Gender" name="Gender">
-                                                    <option>@pacjent.Gender</option>
-                                                </select>
-
-                                                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                                                    <option>@pacjent.Diagnosis</option>
-                                                </select>
-
-                                                <select class="form-control" id="Room" name="Room">
-                                                    <option>@pacjent.Room</option>
-                                                </select>
-
-                                                <select class="form-control" id="Color" name="Color">
-                                                    <option>@pacjent.Color</option>
-                                                </select>
-
-                                                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                                                    <option>@pacjent.CoDalejZPacjentem</option>
-                                                </select>
-
-                                                <select class="form-control" id="Epikryza" name="Epikryza">
-                                                    <option>@pacjent.Epikryza</option>
-                                                </select>
-
-                                                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                                                    <option>@pacjent.ObserwacjeRatPiel</option>
-                                                </select>
-
-                                                <select class="form-control" id="Active" name="Active">
-                                                    <option>@pacjent.Active</option>
-                                                </select>
-
-                                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                                                    <option>@pacjent.ToWhomThePatient</option>
-                                                </select>
-
-                                            </div>
-
-                                            <select class="form-control" id="Doctor" name="Doctor">
-                                                <option>@pacjent.Doctor</option>
-                                                <option>Avdieiev Anton</option>
-                                                <option>Betkowiak Zuzanna</option>
-                                                <option>Binaś Marcin</option>
-                                                <option>Chrzanowski Monica</option>
-                                                <option>Czekała-Karpiński Dawid</option>
-                                                <option>Dabryneuski Uladzimir</option>
-                                                <option>Fritzkiewicz Witold</option>
-                                                <option>Gąsiorowski Mateusz</option>
-                                                <option>Gilier Kamila</option>
-                                                <option>Grymuza Maciej</option>
-                                                <option>Huzenko Jaroslaw</option>
-                                                <option>Junewicz</option>
-                                                <option>Kłaczyński Mateusz</option>
-                                                <option>Łuczak Agnieszka</option>
-                                                <option>Makowska Agata</option>
-                                                <option>Małkiewicz Tomasz</option>
-                                                <option>Miroshnichenko Yurii</option>
-                                                <option>Nowak Michał</option>
-                                                <option>Pankiewicz Mateusz</option>
-                                                <option>Paszkowiak-Ciesielska Hanna</option>
-                                                <option>Pisula Piotr</option>
-                                                <option>Polupanov Yevhen</option>
-                                                <option>Potyka Marek</option>
-                                                <option>Razumka</option>
-                                                <option>Rojna Maciej</option>
-                                                <option>Skrzypek Dariusz</option>
-                                                <option>Śliwowski Cezary</option>
-                                                <option>Śmidrowicz Bartosz</option>
-                                                <option>Wierzchowiecki Jerzy</option>
-                                                <option>Woźny Tomasz</option>
-                                                <option>Yakymchuk</option>
-                                                <option>Zanko Semen</option>
-                                                <option>Zhdanov Sergii</option>
-                                            </select>
-                                            <br />
-
-                                            <div>
-                                                <button type="submit" class="btn btn-primary" style="margin-left: 20%">ZATWIERDŹ</button>
-                                            </div>
-                                        }
                                     </div>
                                 </div>
                             </div>
@@ -835,7 +846,7 @@
                                     </div>
 
                                     <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -848,7 +859,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -873,8 +884,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -887,7 +898,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -912,8 +923,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -926,7 +937,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -951,8 +962,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -966,7 +977,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -991,8 +1002,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -1014,7 +1025,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -1031,16 +1042,16 @@
                                                         <h5>
                                                             @pacjent.DateTime.ToString("g")
                                                         </h5>
-                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
                                                         <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem?.ToUpper()</b></p>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -1054,7 +1065,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -1071,16 +1082,16 @@
                                                         <h5>
                                                             @pacjent.DateTime.ToString("g")
                                                         </h5>
-                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
                                                         <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem?.ToUpper()</b></p>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -1094,7 +1105,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -1111,16 +1122,16 @@
                                                         <h5>
                                                             @pacjent.DateTime.ToString("g")
                                                         </h5>
-                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
                                                         <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem?.ToUpper()</b></p>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -1134,7 +1145,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -1151,16 +1162,16 @@
                                                         <h5>
                                                             @pacjent.DateTime.ToString("g")
                                                         </h5>
-                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
                                                         <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem?.ToUpper()</b></p>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -1175,7 +1186,7 @@
                         {
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-lg-8">
                                         <div class="pacjent" style="background-color: @pacjent.Color">
                                             <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                                style="text-decoration:none; color:black">
@@ -1192,16 +1203,16 @@
                                                         <h5>
                                                             @pacjent.DateTime.ToString("g")
                                                         </h5>
-                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem</b></p>
                                                         <p>Lokalizacja: <b>@pacjent.Room</b></p>
+                                                        <p>Jaka decyzja: <b>@pacjent.CoDalejZPacjentem?.ToUpper()</b></p>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div class="border col-3 doctor">
-                                        <p> lekarz: <b>@pacjent.Doctor</b></p>
+                                    <div class="border col-lg-3 doctor">
+                                        <p>lekarz prowadzący: <b>@pacjent.Doctor?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>
@@ -1216,7 +1227,7 @@
 
 
 
-        <div class="col-3" style="max-width: 350px">
+        <div class="col-lg-3">
             <div class="border shadow p-3 mb-5 bg-white rounded">
                 <h5 class="text-center">Wituś</h5>
                 <br />

@@ -41,7 +41,7 @@ namespace triage_hcp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient")] Pacjent pacjent)
+        public async Task<IActionResult> Details(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -92,7 +92,7 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Done(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient")] Pacjent pacjent)
+        public async Task<IActionResult> Done(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -117,7 +117,7 @@ namespace triage_hcp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("List", "Pacjent");
+                return RedirectToAction("CompletedList", "Pacjent");
             }
             return View(pacjent);
         }
@@ -141,7 +141,7 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPatientData(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient")] Pacjent pacjent)
+        public async Task<IActionResult> EditPatientData(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -190,7 +190,7 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> WithoutDoctor(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient")] Pacjent pacjent)
+        public async Task<IActionResult> WithoutDoctor(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {

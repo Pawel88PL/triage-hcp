@@ -54,5 +54,7 @@ namespace triage_hcp.Models
         public DateTime TriageDate { get; set; }
 
         public string? ToWhomThePatient { get; set; }
+
+        public DateTime EndTime { get; set; }
     }
 }

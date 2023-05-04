@@ -1,0 +1,248 @@
+﻿@model triage_hcp.Models.Pacjent
+
+@{
+    ViewData["Title"] = "Edytuj dane";
+}
+
+<h1>Edycja danych - @Model.Name @Model.Surname</h1>
+
+<hr />
+
+<div class="border col-lg-5 shadow bg-white rounded" style="padding: 30px; margin:20px">
+    <div class="row">
+        <div>
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label class="control-label">Imię</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Nazwisko</label>
+                    <input asp-for="Surname" class="form-control" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Pesel" class="control-label"></label>
+                    <input asp-for="Pesel" class="form-control" />
+                    <span asp-validation-for="Pesel" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Wiek</label>
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Płeć</label>
+                    <select class="form-control" id="Gender" name="Gender">
+                        <option>@Model.Gender</option>
+                        <option>Kobieta</option>
+                        <option>Mężczyzna</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Room" class="control-label"></label>
+                    <select class="form-select" id="Room" name="Room">
+                        <option>@Model.Room</option>
+                        <option>Poczekalnia</option>
+                        <option>Korytarz</option>
+                        <option>Wituś</option>
+                        <option>Wituś 1</option>
+                        <option>Wituś 2</option>
+                        <option>Wituś 3</option>
+                        <option>WIT</option>
+                        <option>WIT 1</option>
+                        <option>WIT 2</option>
+                        <option>WIT 3</option>
+                        <option>WIT 4</option>
+                        <option>Sala obserwacyjna 5</option>
+                        <option>Sala obserwacyjna 6</option>
+                        <option>Sala obserwacyjna 7</option>
+                        <option>Sala obserwacyjna 8</option>
+                        <option>Sala obserwacyjna 9</option>
+                        <option>Sala obserwacyjna 10</option>
+                        <option>Izolatka Z1</option>
+                        <option>Izolatka Z2</option>
+                        <option>Izolatka Z3</option>
+                        <option>Dekontaminacja</option>
+                    </select>
+                    <span asp-validation-for="Room" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Diagnosis" class="control-label"></label>
+                    <input asp-for="Diagnosis" class="form-control" />
+                    <span asp-validation-for="Diagnosis" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Color" class="control-label"></label>
+                    <select class="form-select" id="Color" name="Color">
+                        <option value="@Model.Color" style="background-color:@Model.Color">Czy zmienić kolor?</option>
+                        <option value="lightskyblue" style="background-color:lightskyblue">Niebieski</option>
+                        <option value="lightgreen" style="background-color:lightgreen">Zielony</option>
+                        <option value="yellow" style="background-color:yellow">Żółty</option>
+                        <option value="orange" style="background-color:orange">Pomarańczowy</option>
+                        <option value="red" style="background-color:red">Czerwony</option>
+                    </select>
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="DateTime" class="control-label"></label>
+                    <input asp-for="DateTime" class="form-control" />
+                    <span asp-validation-for="DateTime" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="TriageDate" class="control-label"></label>
+                    <input asp-for="TriageDate" class="form-control" />
+                    <span asp-validation-for="TriageDate" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="EndTime" class="control-label"></label>
+                    <input asp-for="EndTime" class="form-control" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Doctor" class="control-label"></label>
+                    <select class="form-select" id="Doctor" name="Doctor">
+                        <option>@Model.Doctor</option>
+                        <option>Avdieiev Anton</option>
+                        <option>Betkowiak Zuzanna</option>
+                        <option>Binaś Marcin</option>
+                        <option>Chrzanowski Monica</option>
+                        <option>Czekała-Karpiński Dawid</option>
+                        <option>Dabryneuski Uladzimir</option>
+                        <option>Fritzkiewicz Witold</option>
+                        <option>Gąsiorowski Mateusz</option>
+                        <option>Gilier Kamila</option>
+                        <option>Grymuza Maciej</option>
+                        <option>Huzenko Jaroslaw</option>
+                        <option>Junewicz</option>
+                        <option>Kłaczyński Mateusz</option>
+                        <option>Kohan Anastasiia</option>
+                        <option>Łuczak Agnieszka</option>
+                        <option>Makowska Agata</option>
+                        <option>Małkiewicz Tomasz</option>
+                        <option>Miroshnichenko Yurii</option>
+                        <option>Nowak Michał</option>
+                        <option>Pankiewicz Mateusz</option>
+                        <option>Paszkowiak-Ciesielska Hanna</option>
+                        <option>Pisula Piotr</option>
+                        <option>Polupanov Yevhen</option>
+                        <option>Potyka Marek</option>
+                        <option>Razumka</option>
+                        <option>Rojna Maciej</option>
+                        <option>Skrzypek Dariusz</option>
+                        <option>Śliwowski Cezary</option>
+                        <option>Śmidrowicz Bartosz</option>
+                        <option>Wierzchowiecki Jerzy</option>
+                        <option>Woźny Tomasz</option>
+                        <option>Yakymchuk</option>
+                        <option>Zanko Semen</option>
+                        <option>Zhdanov Sergii</option>
+                    </select>
+                    <span asp-validation-for="Doctor" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Active" class="control-label"></label>
+                    <select class="form-select" id="Active" name="Active">
+                        <option>@Model.Active</option>
+                        <option>TAK</option>
+                        <option>NIE</option>
+                    </select>
+                    <span asp-validation-for="Active" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label class="control-label">Do kogo pacjent</label>
+                    <select class="form-select" id="ToWhomThePatient" name="ToWhomThePatient">
+                        <option>@Model.ToWhomThePatient</option>
+                        <option>INTERNISTA</option>
+                        <option>CHIRURG</option>
+                    </select>
+                    <span asp-validation-for="ToWhomThePatient" class="text-danger"></span>
+                </div>
+                <br />
+
+
+                <div class="form-group">
+                    <label class="control-label">Jakie decyzje</label>
+                    <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
+                        <option>@Model.CoDalejZPacjentem</option>
+                        <option>W trakcie diagnostyki SOR</option>
+                        <option>Wypisany do domu</option>
+                        <option>Interna</option>
+                        <option>Urologia</option>
+                        <option>Kardiologia A</option>
+                        <option>Kardiologia B</option>
+                        <option>Neurologia</option>
+                        <option>OIOM</option>
+                        <option>Chirurgia</option>
+                        <option>Ortopedia</option>
+                        <option>Psychiatria</option>
+                        <option>Przekazany do innego szpitala</option>
+                        <option>Neurochirurgia</option>
+                        <option>Ginekologia</option>
+                        <option>Chirurgia szczękowo-twarzowa</option>
+                        <option>Oddalił się z SOR</option>
+                        <option>Zgon</option>
+                    </select>
+                    <span asp-validation-for="CoDalejZPacjentem" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="Epikryza" class="control-label"></label>
+                    <input asp-for="Epikryza" class="form-control" />
+                    <span asp-validation-for="Epikryza" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="ObserwacjeRatPiel" class="control-label"></label>
+                    <input asp-for="ObserwacjeRatPiel" class="form-control" />
+                    <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">ZAPISZ ZMIANY</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

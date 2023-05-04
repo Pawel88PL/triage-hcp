@@ -1,4 +1,6 @@
 ﻿@model triage_hcp.Models.Pacjent
+<link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
+
 
 @{
     ViewData["Title"] = "Szczegóły";
@@ -6,8 +8,8 @@
 }
 
 <div class="container">
-    <div class="row col-lg-7 border shadow p-3 mb-5 bg-white rounded">
-        <form asp-action="Details">
+    <div class="row">
+        <form asp-action="Details" class="col-auto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -22,8 +24,16 @@
                     <option>@Model.TriageDate</option>
                 </select>
 
+                <select class="form-control" id="EndTime" name="EndTime">
+                    <option>@Model.EndTime</option>
+                </select>
+
                 <select class="form-control" id="Diagnosis" name="Diagnosis">
                     <option>@Model.Diagnosis</option>
+                </select>
+
+                <select class="form-control" id="Color" name="Color">
+                    <option>@Model.Color</option>
                 </select>
 
                 <select class="form-control" id="Epikryza" name="Epikryza">
@@ -39,13 +49,23 @@
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
-                    <h1>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h1>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
+                                <h5>@Model.Gender, lat @Model.Age</h5>
+                                <h5>PESEL: @Model.Pesel</h5>
+                            </div>
+                            <div class="col-4">
+                                <h1>@Model.DateTime.ToString("t")</h1>
+                                <h4>@Model.DateTime.ToString("D")</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Data wykonania triage:</p>
-                        <br />
+                <div class="row text-center">
+                    <div class="col-md-4">
                         <p>Imię: </p>
                         <br />
                         <p>Nazwisko: </p>
@@ -73,8 +93,6 @@
                     </div>
 
                     <div class="col-md-6">
-                        <p><b>@Model.DateTime.ToString("f")</b></p>
-                        <br />
                         <div class="form-group">
                             <input asp-for="Name" class="form-control" />
                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -218,27 +236,23 @@
                             </select>
                         </div>
                         <br />
+
                         <div style="font-size: 16px">
                             <p><b>@Model.Diagnosis</b></p>
                         </div>
-
+                        <br />
                     </div>
+                    <hr />
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-danger" style="margin: 2px" id="Color" name="Color" value="red">CZERWONY</button>
-                        <button type="submit" class="btn btn-warning" style="margin: 2px" id="Color" name="Color" value="orange">POMARAŃCZOWY</button>
-                        <button type="submit" class="btn btn-warning" style="margin: 2px; background-color: yellow" id="Color" name="Color" value="yellow">ŻÓŁTY</button>
-                        <button type="submit" class="btn btn-success" style="margin: 2px" id="Color" name="Color" value="lightgreen">ZIELONY</button>
-                        <button type="submit" class="btn btn-primary" style="margin: 2px" id="Color" name="Color" value="lightskyblue">NIEBIESKI</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-danger" style="margin: 2px">ZAPISZ ZMIANY</button>
+                        </div>
+                        <div class="col-6">
+                            <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary" style="margin: 2px">POWRÓT DO LISTY</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div>
-                <p>
-                    * aby zatwierdzić zmiany naciśnij na przycisk z kolorem pacjenta
-                </p>
-
             </div>
         </form>
     </div>

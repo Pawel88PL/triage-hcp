@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-        <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 1200px">
+        <div class="border shadow p-3 mb-5 bg-white rounded">
             <h5 class="text-center">Pacjenci z dzisiejszego dyżuru, z zakończoną obsługą w SOR</h5>
             <br />
             @foreach (var pacjent in Model
@@ -25,28 +25,38 @@
             {
                 if (!(pacjent.Active == "Tak"))
                 {
-                    <div class="pacjent" style="background-color: @pacjent.Color; max-width: 1200px">
+                    <div class="pacjent" style="background-color: @pacjent.Color; max-width: 100%">
                         <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-1">
-                                        <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                    <div class="col-2">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <p>Przyjęto: </p>
+                                                <p>Zakończono: </p>
+                                            </div>
+                                            <div class="col-7">
+                                                <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                                <p><b>@pacjent.EndTime.ToString("g")</b></p>
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div class="col-2">
                                         <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-1">
                                         <b>@pacjent.Pesel</b>
                                     </div>
                                     <div class="col-3">
-                                        <b>@pacjent.Diagnosis</b>
+                                        <b>@pacjent.Diagnosis?.ToUpper()</b>
                                     </div>
                                     <div class="col-2">
-                                        lek. prowadzący: <b>@pacjent.Doctor</b>
+                                        lek. prowadzący: <b>@pacjent.Doctor?.ToUpper()</b>
                                     </div>
                                     <div class="col-2">
-                                        <b> @pacjent.CoDalejZPacjentem</b>
+                                        <b> @pacjent.CoDalejZPacjentem?.ToUpper()</b>
                                     </div>
                                 </div>
                             </div>
