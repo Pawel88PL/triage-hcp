@@ -109,3 +109,8 @@ Data 04.05.2023
 4. W liscie zakończonych pacjntów umieszczono informację o dacie zakończenia obsługi w SOR.
 5. Poprawiono wygląd i funkcjonalność strony Index i Edit w kontrolerze MODIFY.
 6. Usunięto błąd przy aktualizacji danych pacjenta z widoku WithoutDoctor.
+
+Data 05.05.2023
+
+1. Zwiększono czcionkę wyboru lekarza na stronie Lista pacjentów.
+2. Dodano nr Id pacjenta w Liście zakończonych z poprzednich dyżurów.
