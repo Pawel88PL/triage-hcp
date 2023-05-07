@@ -114,3 +114,5 @@ Data 05.05.2023
 
 1. Zwiększono czcionkę wyboru lekarza na stronie Lista pacjentów.
 2. Dodano nr Id pacjenta w Liście zakończonych z poprzednich dyżurów.
+3. Poprawiono wygląd i funkcjonalność stron Lista wszystkich pacjentów i Lista zakończonych.
+4. Dodano licznik pokazujący ilość pacjentów od początku funkcjonowania programu.
