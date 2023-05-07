@@ -38,17 +38,12 @@
                 <div class="form-group">
                     <label class="control-label">Wiek</label>
                     <input asp-for="Age" class="form-control" />
-                    <span asp-validation-for="Age" class="text-danger"></span>
                 </div>
                 <br />
 
                 <div class="form-group">
                     <label class="control-label">Płeć</label>
-                    <select class="form-control" id="Gender" name="Gender">
-                        <option>@Model.Gender</option>
-                        <option>Kobieta</option>
-                        <option>Mężczyzna</option>
-                    </select>
+                    <input asp-for="Gender" class="form-control" />
                     <span asp-validation-for="Gender" class="text-danger"></span>
                 </div>
                 <br />
@@ -129,6 +124,7 @@
                     <label asp-for="Doctor" class="control-label"></label>
                     <select class="form-select" id="Doctor" name="Doctor">
                         <option>@Model.Doctor</option>
+                        <option>Wybierz lekarza</option>
                         <option>Avdieiev Anton</option>
                         <option>Betkowiak Zuzanna</option>
                         <option>Binaś Marcin</option>
@@ -172,8 +168,8 @@
                     <label asp-for="Active" class="control-label"></label>
                     <select class="form-select" id="Active" name="Active">
                         <option>@Model.Active</option>
-                        <option>TAK</option>
-                        <option>NIE</option>
+                        <option>Tak</option>
+                        <option>Nie</option>
                     </select>
                     <span asp-validation-for="Active" class="text-danger"></span>
                 </div>

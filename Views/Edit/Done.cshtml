@@ -5,6 +5,50 @@
     ViewData["Title"] = "Zakończono";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
+    bool PeselCorrect(string? pesel)
+    {
+        if (pesel == null || pesel == "") return false;
+        if (pesel.Length != 11) return false;
+
+        int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
+
+        int suma = 0;
+        for (int i = 0; i < 11; i++)
+        {
+            int r = (int)(pesel[i] - '0');
+            if (r < 0 || r > 9) return false;
+            suma += wagi[i] * r;
+        }
+
+        if (suma % 10 == 0) return true;
+        else return false;
+    }
+
+
+    string PrintGender(string pesel)
+    {
+        if (PeselCorrect(pesel) == false) return "Nie określono płci, ";
+
+        int c = int.Parse(pesel.Substring(9, 1));
+        if (c == 1 || c == 3 || c == 5 || c == 7 || c == 9) return "Mężczyzna, ";
+        else return "Kobieta, ";
+    }
+
+
+    int PrintAge(string pesel)
+    {
+        DateTime YearNow = DateTime.Today;
+
+        if (PeselCorrect(pesel) == false) return 00;
+
+        int Year = YearNow.Year;
+
+        int PeselParse = int.Parse(pesel.Substring(0, 2));
+        int PatientAge =  Year - 1900 - PeselParse;
+
+        return PatientAge;
+    }
+
 }
 
 <div class="container">
@@ -90,7 +134,48 @@
                             </div>
                             <div class="col-5">
                                 <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
-                                <h5>@Model.Gender, lat @Model.Age</h5>
+                                <h5>
+                                    @if (PeselCorrect(Model.Pesel))
+                                    {
+                                        if (Model.Pesel is not null)
+                                        {
+                                            @PrintGender(Model.Pesel)
+                                            ;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Model.Gender is null)
+                                        {
+                                            @PrintGender(Model.Pesel)
+                                        }
+                                        else
+                                        {
+                                            @Model.Gender
+                                        }
+                                    }
+                                    
+                                    @if (PeselCorrect(Model.Pesel))
+                                    {
+                                        if (Model.Pesel is not null)
+                                        {
+                                            @PrintAge(Model.Pesel)
+                                            ;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Model.Age is null)
+                                        {
+                                            @PrintAge(Model.Pesel)
+                                        }
+                                        else
+                                        {
+                                            @Model.Age
+                                        }
+                                    }
+                                    
+                                </h5>
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-3">

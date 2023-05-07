@@ -116,3 +116,7 @@ Data 05.05.2023
 2. Dodano nr Id pacjenta w Liście zakończonych z poprzednich dyżurów.
 3. Poprawiono wygląd i funkcjonalność stron Lista wszystkich pacjentów i Lista zakończonych.
 4. Dodano licznik pokazujący ilość pacjentów od początku funkcjonowania programu.
+
+Data 07.05.2023
+
+1. Na stronie Lista pacjentów dodano funkcję, która z numeru PESEL wyciąga informacje o płci pacjenta i wyświetla ją na ekranie.

@@ -5,6 +5,37 @@
     ViewData["Title"] = "Szczegóły";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var PatientEndTime = DateTime.Now;
+
+    bool PeselCorrect(string? pesel)
+    {
+        if (pesel == null || pesel == "") return false;
+        if (pesel.Length != 11) return false;
+
+        int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
+
+        int suma = 0;
+        for (int i = 0; i < 11; i++)
+        {
+            int r = (int)(pesel[i] - '0');
+            if (r < 0 || r > 9) return false;
+            suma += wagi[i] * r;
+        }
+
+        if (suma % 10 == 0) return true;
+        else return false;
+    }
+
+
+
+    string PrintGender(string pesel)
+    {
+        if (PeselCorrect(pesel) == false) return " ";
+
+        int c = int.Parse(pesel.Substring(9, 1));
+        if (c == 1 || c == 3 || c == 5 || c == 7 || c == 9) return "Mężczyzna";
+        else return "Kobieta";
+    }
+
 }
 
 <div class="container">
@@ -71,7 +102,21 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
-                                        <h5>@Model.Gender, lat @Model.Age</h5>
+                                        <h5>
+                                            @if (PeselCorrect(Model.Pesel))
+                                            {
+                                                if (Model.Pesel is not null)
+                                                {
+                                                    @PrintGender(Model.Pesel)
+                                                    ;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @Model.Gender
+                                            }
+                                            @Model.Age lat
+                                        </h5>
                                         <h5>PESEL: @Model.Pesel</h5>
                                     </div>
                                     <div class="col-6">

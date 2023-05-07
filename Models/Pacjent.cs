@@ -24,7 +24,7 @@ namespace triage_hcp.Models
         [Range(1,120, ErrorMessage = "Wiek pacjenta może mieścić się w zakresie od 1 do 120 lat.")]
         public string? Age { get; set; }
 
-        [Required(ErrorMessage = "Płeć jest wymagana")]
+        
         public string? Gender { get; set; }
 
         [Required(ErrorMessage = "Sala i numer jest wymagana")]

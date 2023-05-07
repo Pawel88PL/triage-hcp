@@ -15,6 +15,39 @@
     & x.Active == "Tak"
     & !(x.CoDalejZPacjentem == "W trakcie diagnostyki SOR")).Count();
 
+
+
+    bool PeselCorrect(string? pesel)
+    {
+        if (pesel == null || pesel == "") return false;
+        if (pesel.Length != 11) return false;
+
+        int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
+
+        int suma = 0;
+        for (int i = 0; i < 11; i++)
+        {
+            int r = (int)(pesel[i] - '0');
+            if (r < 0 || r > 9) return false;
+            suma += wagi[i] * r;
+        }
+
+        if (suma % 10 == 0) return true;
+        else return false;
+    }
+
+
+
+    string PrintGender(string pesel)
+    {
+        if (PeselCorrect(pesel) == false) return "Nie określono płci, ";
+
+        int c = int.Parse(pesel.Substring(9, 1));
+        if (c == 1 || c == 3 || c == 5 || c == 7 || c == 9) return "Mężczyzna, ";
+        else return "Kobieta, ";
+    }
+
+
 }
 
 
@@ -40,7 +73,21 @@
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>
+                                                                    @if (PeselCorrect(pacjent.Pesel))
+                                                                    {
+                                                                        if (pacjent.Pesel is not null)
+                                                                        {
+                                                                            @PrintGender(pacjent.Pesel)
+                                                                            ;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @pacjent.Gender
+                                                                    }
+                                                                    @pacjent.Age lat
+                                                                </p>
                                                                 <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                             </div>
                                                             <div class="col-4">
@@ -196,7 +243,21 @@
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>
+                                                                    @if (PeselCorrect(pacjent.Pesel))
+                                                                    {
+                                                                        if (pacjent.Pesel is not null)
+                                                                        {
+                                                                            @PrintGender(pacjent.Pesel)
+                                                                            ;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @pacjent.Gender
+                                                                    }
+                                                                    @pacjent.Age lat
+                                                                </p>
                                                                 <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                             </div>
                                                             <div class="col-4">
@@ -352,7 +413,21 @@
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>
+                                                                    @if (PeselCorrect(pacjent.Pesel))
+                                                                    {
+                                                                        if (pacjent.Pesel is not null)
+                                                                        {
+                                                                            @PrintGender(pacjent.Pesel)
+                                                                            ;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @pacjent.Gender
+                                                                    }
+                                                                    @pacjent.Age lat
+                                                                </p>
                                                                 <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                             </div>
                                                             <div class="col-4">
@@ -508,7 +583,28 @@
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>
+                                                                    @if (PeselCorrect(pacjent.Pesel))
+                                                                    {
+                                                                        if (pacjent.Pesel is not null)
+                                                                        {
+                                                                            @PrintGender(pacjent.Pesel)
+                                                                            ;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if (pacjent.Gender is null)
+                                                                        {
+                                                                            @PrintGender(pacjent.Pesel)
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @pacjent.Gender
+                                                                        }
+                                                                    }
+                                                                    @pacjent.Age lat
+                                                                </p>
                                                                 <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                             </div>
                                                             <div class="col-4">
@@ -665,7 +761,21 @@
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                                <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                                <p>
+                                                                    @if (PeselCorrect(pacjent.Pesel))
+                                                                    {
+                                                                        if (pacjent.Pesel is not null)
+                                                                        {
+                                                                            @PrintGender(pacjent.Pesel)
+                                                                            ;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @pacjent.Gender
+                                                                    }
+                                                                    @pacjent.Age lat
+                                                                </p>
                                                                 <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                             </div>
                                                             <div class="col-4">
@@ -827,7 +937,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -866,7 +990,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -905,7 +1043,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -944,7 +1096,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -984,7 +1150,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -1032,7 +1212,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -1072,7 +1266,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -1112,7 +1320,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -1152,7 +1374,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
@@ -1193,7 +1429,21 @@
                                                 <div class="row">
                                                     <div class="col-4">
                                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                        <p>@pacjent.Gender @pacjent.Age lat</p>
+                                                        <p>
+                                                            @if (PeselCorrect(pacjent.Pesel))
+                                                            {
+                                                                if (pacjent.Pesel is not null)
+                                                                {
+                                                                    @PrintGender(pacjent.Pesel)
+                                                                    ;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                @pacjent.Gender
+                                                            }
+                                                            @pacjent.Age lat
+                                                        </p>
                                                         <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                     </div>
                                                     <div class="col-4">
