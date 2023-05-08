@@ -45,13 +45,27 @@
 
         if (PeselCorrect(pesel) == false) return "00 ";
 
-        int Year = YearNow.Year;
+        int yearNow = YearNow.Year;
 
-        int PeselParse = int.Parse(pesel.Substring(0, 2));
-        int PatientAge = Year - 1900 - PeselParse;
-        string PrintAge = PatientAge.ToString();
+        int patientYear = int.Parse(pesel.Substring(0, 2));
+        int month = int.Parse(pesel.Substring(2, 2));
 
-        return PrintAge;
+        int ageBefore2000 = yearNow - 1900 - patientYear;
+        int ageAfter2000 = yearNow - 2000 - patientYear;
+
+        string ageBefore = ageBefore2000.ToString();
+        string ageAfter = ageAfter2000.ToString();
+
+        if (month > 12)
+        {
+            return ageAfter;
+
+        }
+        else
+        {
+            return ageBefore;
+        }
+
     }
 }
 
@@ -132,7 +146,7 @@
                                         }
                                         else
                                         {
-                                            if (Model.Gender is null | Model.Age is null)
+                                            if (Model.Gender is null & Model.Age is null)
                                             {
                                                 if (Model.Pesel is not null)
                                                 {

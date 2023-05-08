@@ -20,10 +20,7 @@ namespace triage_hcp.Models
         [StringLength(11)]
         public string? Pesel { get; set; }
 
-        [Required(ErrorMessage = "Podaj wiek pacjenta")]
-        [Range(1,120, ErrorMessage = "Wiek pacjenta może mieścić się w zakresie od 1 do 120 lat.")]
         public string? Age { get; set; }
-
         
         public string? Gender { get; set; }
 

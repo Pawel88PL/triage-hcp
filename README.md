@@ -124,4 +124,7 @@ Data 07.05.2023
 
 Data 08.05.2023
 
-1. Na stronach Details, Done, EditPatientData i WithoutDoctor wprowadzono algorytmy wyciągające dane pacjenta z nr PESEL.
+1. Na stronach Details, Done, EditPatientData i WithoutDoctor wprowadzono algorytmy wyciągające wiek i płeć pacjenta z nr PESEL.
+2. Wprowadzono animacje (mruganie danych pacjenta naprzemiennie czerowny - czarny) jeśli czas bez przypisanego lekarza
+	przekroczy dopuszczalny czas dla danego koloru według systemu Triage Manchester.
+3. Usunięto konieczność podawania wieku pacjenta w sekcji Triage.
