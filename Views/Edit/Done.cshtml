@@ -10,17 +10,17 @@
         if (pesel == null || pesel == "") return false;
         if (pesel.Length != 11) return false;
 
-        int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
+        int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
 
-        int suma = 0;
+        int total = 0;
         for (int i = 0; i < 11; i++)
         {
             int r = (int)(pesel[i] - '0');
             if (r < 0 || r > 9) return false;
-            suma += wagi[i] * r;
+            total += weights[i] * r;
         }
 
-        if (suma % 10 == 0) return true;
+        if (total % 10 == 0) return true;
         else return false;
     }
 
@@ -29,24 +29,29 @@
     {
         if (PeselCorrect(pesel) == false) return "Nie określono płci, ";
 
-        int c = int.Parse(pesel.Substring(9, 1));
-        if (c == 1 || c == 3 || c == 5 || c == 7 || c == 9) return "Mężczyzna, ";
+        int controlNumber = int.Parse(pesel.Substring(9, 1));
+        if (controlNumber == 1 || controlNumber == 3 || controlNumber == 5 ||
+            controlNumber == 7 || controlNumber == 9)
+        {
+            return "Mężczyzna, ";
+        }
         else return "Kobieta, ";
     }
 
 
-    int PrintAge(string pesel)
+    string PrintAge(string pesel)
     {
         DateTime YearNow = DateTime.Today;
 
-        if (PeselCorrect(pesel) == false) return 00;
+        if (PeselCorrect(pesel) == false) return "00 ";
 
         int Year = YearNow.Year;
 
         int PeselParse = int.Parse(pesel.Substring(0, 2));
-        int PatientAge =  Year - 1900 - PeselParse;
+        int PatientAge = Year - 1900 - PeselParse;
+        string PrintAge = PatientAge.ToString();
 
-        return PatientAge;
+        return PrintAge;
     }
 
 }
@@ -134,52 +139,31 @@
                             </div>
                             <div class="col-5">
                                 <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
-                                <h5>
-                                    @if (PeselCorrect(Model.Pesel))
+                                @if (PeselCorrect(Model.Pesel))
+                                {
+                                    if (Model.Pesel is not null)
+                                    {
+                                        <h5>@PrintGender(Model.Pesel) @PrintAge(Model.Pesel) lat</h5>
+                                    }
+                                }
+                                else
+                                {
+                                    if (Model.Gender is null | Model.Age is null)
                                     {
                                         if (Model.Pesel is not null)
                                         {
-                                            @PrintGender(Model.Pesel)
-                                            ;
+                                            <h5>@PrintGender(Model.Pesel) @PrintAge(Model.Pesel)</h5>
                                         }
                                     }
                                     else
                                     {
-                                        if (Model.Gender is null)
-                                        {
-                                            @PrintGender(Model.Pesel)
-                                        }
-                                        else
-                                        {
-                                            @Model.Gender
-                                        }
+                                        <h5>@Model.Gender @Model.Age lat</h5>
                                     }
-                                    
-                                    @if (PeselCorrect(Model.Pesel))
-                                    {
-                                        if (Model.Pesel is not null)
-                                        {
-                                            @PrintAge(Model.Pesel)
-                                            ;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Model.Age is null)
-                                        {
-                                            @PrintAge(Model.Pesel)
-                                        }
-                                        else
-                                        {
-                                            @Model.Age
-                                        }
-                                    }
-                                    
-                                </h5>
+                                }
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-3">
-                                @if (@Model.EndTime <= DateTime.MinValue | @Model.Active == "Tak")
+                                @if (Model.EndTime <= DateTime.MinValue | Model.Active == "Tak")
                                 {
                                     <h4>Pacjent dalej w SOR</h4>
                                 }

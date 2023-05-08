@@ -120,3 +120,8 @@ Data 05.05.2023
 Data 07.05.2023
 
 1. Na stronie Lista pacjentów dodano funkcję, która z numeru PESEL wyciąga informacje o płci pacjenta i wyświetla ją na ekranie.
+2. Usunięto konieczność wybierania płci w sekcji Triage.
+
+Data 08.05.2023
+
+1. Na stronach Details, Done, EditPatientData i WithoutDoctor wprowadzono algorytmy wyciągające dane pacjenta z nr PESEL.
