@@ -10,7 +10,6 @@
             <h2 class="text-center">TRIAGE</h2>
             @using (Html.BeginForm("Triage", "Triage", FormMethod.Post))
             {
-                
 
                 <h5>Imię: </h5>
                 <input asp-for="Name" class="form-control" />
@@ -27,21 +26,9 @@
                 <span asp-validation-for="Pesel" class="text-danger"></span>
                 <br />
 
-                <h5>Wiek: </h5>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-                <br />
-
                 <h5>Objawy: </h5>
                 <input asp-for="Diagnosis" class="form-control" />
                 <span asp-validation-for="Diagnosis" class="text-danger"></span>
-                <br />
-
-                <h5>Płeć:</h5>
-                <select class="form-control" id="Gender" name="Gender">
-                    <option>Kobieta</option>
-                    <option>Mężczyzna</option>
-                </select>
                 <br />
 
                 <h5>Lokalizacja w SOR:</h5>
@@ -71,14 +58,29 @@
                 </select>
                 <br />
 
-                DateTime czas = DateTime.Now;
-
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@czas</option>
+                <h5>Dla kogo pacjent:</h5>
+                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                    <option>INTERNISTA</option>
+                    <option>CHIRURG</option>
                 </select>
                 <br />
 
+
+
+                DateTime TriageDateAndTime = DateTime.Now;
+                DateTime TriageDate = DateTime.Today;
+
                 <div style="display: none">
+                    <select class="form-control" id="DateTime" name="DateTime">
+                        <option>@TriageDateAndTime</option>
+                    </select>
+                    <br />
+
+                    <select class="form-control" id="TriageDate" name="TriageDate">
+                        <option>@TriageDate</option>
+                    </select>
+                    <br />
+
                     <select class="form-control" id="Doctor" name="Doctor">
                         <option>Wybierz lekarza</option>
                     </select>
@@ -86,7 +88,12 @@
                     <select class="form-control" id="Active" name="Active">
                         <option>Tak</option>
                     </select>
+
+                    <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
+                        <option>W trakcie diagnostyki SOR</option>
+                    </select>
                 </div>
+
                 <div>
                     <h5 class="text-center">WYBIERZ PRIORYTET PILNOŚCI</h5>
                     <br>

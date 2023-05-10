@@ -1,0 +1,18 @@
+﻿@model IEnumerable<triage_hcp.Models.Pacjent>
+
+@{
+    ViewData["Title"] = "Statystyki";
+}
+
+<div class="border shadow p-3 mb-5 bg-white rounded">
+    <h3 class="text-center">Statystyki</h3>
+    <br />
+    <div class="row">
+            @foreach (var pacjent in Model.OrderByDescending(x => x.TriageDate))
+            {
+                <div class="border" style="margin: 10px; padding: 5px 5px 5px 15px; border-radius: 5px; max-width: 300px">
+                    <h5>@pacjent.TriageDate.ToString("D") - <b>@pacjent.Id</b></h5>
+                </div>
+            }
+    </div>
+</div>

@@ -39,6 +39,25 @@ namespace triage_hcp.Controllers
 
             return View(pacjentList);
         }
+
+        public IActionResult ViewAllCompleted()
+        {
+            var pacjentList = _triageService.GetAll();
+            return View(pacjentList);
+        }
+
+        public IActionResult Statistics()
+        {
+            var stats = from Pacjent in _triageService.GetAll()
+                        group Pacjent by Pacjent.TriageDate into dateGroup
+                        select new Pacjent()
+                        {
+                            TriageDate = dateGroup.Key,
+                            Id = dateGroup.Count()
+                        };
+            
+            return View(stats);
+        }
     }
 }
 

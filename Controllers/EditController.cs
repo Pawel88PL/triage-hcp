@@ -41,7 +41,7 @@ namespace triage_hcp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem")] Pacjent pacjent)
+        public async Task<IActionResult> Details(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -92,7 +92,56 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Done(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem")] Pacjent pacjent)
+        public async Task<IActionResult> Done(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
+        {
+            if (id != pacjent.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(pacjent);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PacjentExists(pacjent.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("CompletedList", "Pacjent");
+            }
+            return View(pacjent);
+        }
+
+
+        public async Task<IActionResult> EditPatientData(int? id)
+        {
+            if (id == null || _context.Pacjenci == null)
+            {
+                return NotFound();
+            }
+
+            var pacjent = await _context.Pacjenci.FindAsync(id);
+            if (pacjent == null)
+            {
+                return NotFound();
+            }
+            return View(pacjent);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPatientData(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -141,7 +190,7 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> WithoutDoctor(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem")] Pacjent pacjent)
+        public async Task<IActionResult> WithoutDoctor(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {

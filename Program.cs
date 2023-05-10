@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
 using triage_hcp.Models;
 using triage_hcp.Services;
 using triage_hcp.Services.Interfaces;
@@ -8,18 +10,23 @@ namespace triage_hcp
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+            var services = new ServiceCollection();
+
             builder.Services.AddControllersWithViews();
             
             builder.Services.AddScoped<ITriageService, TriageService>();
 
+
             builder.Services.AddDbContext<DbTriageContext>(builder =>
             {
-                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_HCPdatabase;Uid=triageadmin_Porsche911GT2;Password=4DTV2CrM]y+(a6UhU44T;TrustServerCertificate=True");
+                builder.UseSqlServer(configuration.GetConnectionString("MyDatabase"));
             });
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
@@ -32,13 +39,15 @@ namespace triage_hcp
 
             }).AddEntityFrameworkStores<DbTriageContext>();
 
+            var serviceProvider = services.BuildServiceProvider();
+
+            var context = serviceProvider.GetService<DbTriageContext>();
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

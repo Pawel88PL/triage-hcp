@@ -1,0 +1,92 @@
+﻿@model IEnumerable<triage_hcp.Models.Pacjent>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Imię
+            </th>
+            <th>
+                Nazwisko
+            </th>
+            <th>
+                PESEL
+            </th>
+            <th>
+                Wiek
+            </th>
+            <th>
+                Sala
+            </th>
+            <th>
+                Opis w Triage
+            </th>
+            <th>
+                Przyjęcie
+            </th>
+            <th>
+                Lekarz
+            </th>
+            <th>
+                Decyzja
+            </th>
+            <th>
+                Wypisany
+            </th>
+            <th>
+                Edytuj
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.OrderByDescending(x => x.DateTime))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pesel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diagnosis)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoDalejZPacjentem)
+                </td>
+                <td>
+                    @item.EndTime
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","ModifyPatientData", new { Id = item.Id })"
+                       class="text-center" style="text-decoration:none">
+                        <div class="button btn-danger" style="border-radius: 3px; padding: 3px">
+                            EDYTUJ
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

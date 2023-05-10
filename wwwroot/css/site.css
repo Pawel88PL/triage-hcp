@@ -5,9 +5,10 @@ html {
     font-size: 12px;
 }
 
-body {
-    margin-bottom: 40px;
+header {
+    font-size: 12px;
 }
+
 
 footer {
     position: absolute;
