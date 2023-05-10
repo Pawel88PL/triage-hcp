@@ -128,3 +128,7 @@ Data 08.05.2023
 2. Wprowadzono animacje (mruganie danych pacjenta naprzemiennie czerowny - czarny) jeśli czas bez przypisanego lekarza
 	przekroczy dopuszczalny czas dla danego koloru według systemu Triage Manchester.
 3. Usunięto konieczność podawania wieku pacjenta w sekcji Triage.
+
+Data 10.05.2023
+
+1. Przeniesiono ConnectionString do pliku appsettings.json, który wyłączono ze śledzenia w repezytorium GitHib.

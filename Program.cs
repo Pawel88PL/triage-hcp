@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
 using triage_hcp.Models;
 using triage_hcp.Services;
 using triage_hcp.Services.Interfaces;
@@ -8,22 +10,28 @@ namespace triage_hcp
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+            var services = new ServiceCollection();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             
             builder.Services.AddScoped<ITriageService, TriageService>();
 
+
             builder.Services.AddDbContext<DbTriageContext>(builder =>
             {
-                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True");
+                builder.UseSqlServer(configuration.GetConnectionString("MyDatabase"));
             });
 
-            // Conection string - Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
-            // Conection string - Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;
+            // "Server=localhost\SQLEXPRESS;Database=sor_hcp;Trusted_Connection=True;"
+            // "Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True"
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
             {
@@ -34,6 +42,10 @@ namespace triage_hcp
                 options.Password.RequireUppercase = false;
 
             }).AddEntityFrameworkStores<DbTriageContext>();
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            var context = serviceProvider.GetService<DbTriageContext>();
 
             var app = builder.Build();
 

@@ -38,6 +38,7 @@ namespace triage_hcp.Controllers
             return RedirectToAction("List", "Pacjent");
         }
 
+
         [Authorize]
         [HttpGet]
         public IActionResult Register_Admin33()
