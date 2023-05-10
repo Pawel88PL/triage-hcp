@@ -19,7 +19,6 @@ namespace triage_hcp
 
             var services = new ServiceCollection();
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
             
             builder.Services.AddScoped<ITriageService, TriageService>();
@@ -29,9 +28,6 @@ namespace triage_hcp
             {
                 builder.UseSqlServer(configuration.GetConnectionString("MyDatabase"));
             });
-
-            // "Server=localhost\SQLEXPRESS;Database=sor_hcp;Trusted_Connection=True;"
-            // "Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True"
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
             {
@@ -49,11 +45,9 @@ namespace triage_hcp
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
