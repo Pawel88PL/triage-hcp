@@ -132,3 +132,7 @@ Data 08.05.2023
 Data 10.05.2023
 
 1. Przeniesiono ConnectionString do pliku appsettings.json, który wyłączono ze śledzenia w repezytorium GitHib.
+
+Data 13.05.2023
+
+2. ConnectionString przeniesiono z powrotem do pliku Program.cs.
