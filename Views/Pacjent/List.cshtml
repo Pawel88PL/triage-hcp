@@ -39,15 +39,15 @@
 
     string PrintGender(string pesel)
     {
-        if (PeselCorrect(pesel) == false) return "Nie określono płci, ";
+        if (PeselCorrect(pesel) == false) return "Nie określono płci";
 
         int controlNumber = int.Parse(pesel.Substring(9, 1));
         if (controlNumber == 1 || controlNumber == 3 || controlNumber == 5 ||
             controlNumber == 7 || controlNumber == 9)
         {
-            return "Mężczyzna, ";
+            return "Mężczyzna";
         }
-        else return "Kobieta, ";
+        else return "Kobieta";
     }
 
 
@@ -55,7 +55,7 @@
     {
         DateTime YearNow = DateTime.Today;
 
-        if (PeselCorrect(pesel) == false) return "00 ";
+        if (PeselCorrect(pesel) == false) return "00";
 
         int yearNow = YearNow.Year;
 
@@ -109,8 +109,7 @@
 
                     @foreach (var pacjent in Model.
                     Where(x => x.Active == "Tak" &
-                    (x.Doctor == "Wybierz lekarza") &
-                    (x.CoDalejZPacjentem == "W trakcie diagnostyki SOR")).
+                    (x.Doctor == "Wybierz lekarza")).
                     OrderBy(x => x.Color == "red").
                     OrderBy(x => x.Color == "orange").
                     OrderBy(x => x.Color == "yellow").
@@ -480,11 +479,11 @@
                                                         <br />
 
                                                         <select class="form-control" id="Name" name="Name">
-                                                            <option>@pacjent.Name</option>
+                                                            <option>@pacjent.Name?.ToUpper();</option>
                                                         </select>
 
                                                         <select class="form-control" id="Surname" name="Surname">
-                                                            <option>@pacjent.Surname</option>
+                                                            <option>@pacjent.Surname?.ToUpper();</option>
                                                         </select>
 
                                                         <select class="form-control" id="Pesel" name="Pesel">
@@ -492,15 +491,59 @@
                                                         </select>
 
                                                         <select class="form-control" id="Age" name="Age">
-                                                            <option>@pacjent.Age</option>
+                                                            <option>
+                                                                @if (PeselCorrect(pacjent.Pesel))
+                                                                {
+                                                                    if (pacjent.Pesel is not null)
+                                                                    {
+                                                                        @PrintAge(pacjent.Pesel)
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (pacjent.Age is null)
+                                                                    {
+                                                                        if (pacjent.Pesel is not null)
+                                                                        {
+                                                                            @PrintAge(pacjent.Pesel)
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @pacjent.Age
+                                                                    }
+                                                                }
+                                                            </option>
                                                         </select>
 
                                                         <select class="form-control" id="Gender" name="Gender">
-                                                            <option>@pacjent.Gender</option>
+                                                            <option>
+                                                                @if (PeselCorrect(pacjent.Pesel))
+                                                                {
+                                                                    if (pacjent.Pesel is not null)
+                                                                    {
+                                                                        @PrintGender(pacjent.Pesel)
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (pacjent.Gender is null)
+                                                                    {
+                                                                        if (pacjent.Pesel is not null)
+                                                                        {
+                                                                            @PrintGender(pacjent.Pesel)
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @pacjent.Gender
+                                                                    }
+                                                                }
+                                                            </option>
                                                         </select>
 
                                                         <select class="form-control" id="Diagnosis" name="Diagnosis">
-                                                            <option>@pacjent.Diagnosis</option>
+                                                            <option>@pacjent.Diagnosis?.ToUpper();</option>
                                                         </select>
 
                                                         <select class="form-control" id="Room" name="Room">
@@ -614,27 +657,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                    @if (PeselCorrect(pacjent.Pesel))
-                                                    {
-                                                        if (pacjent.Pesel is not null)
-                                                        {
-                                                            <p>@PrintGender(pacjent.Pesel) @PrintAge(pacjent.Pesel) lat</p>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        if (pacjent.Gender is null & pacjent.Age is null)
-                                                        {
-                                                            if (pacjent.Pesel is not null)
-                                                            {
-                                                                <p>@PrintGender(pacjent.Pesel) @PrintAge(pacjent.Pesel)</p>
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                        }
-                                                    }
+                                                    <p>@pacjent.Gender @pacjent.Age lat</p>
                                                     <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                 </div>
                                                 <div class="col-4">
@@ -690,27 +713,7 @@
                                             <div class="row">
                                                 <div class="col-4">
                                                     <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
-                                                    @if (PeselCorrect(pacjent.Pesel))
-                                                    {
-                                                        if (pacjent.Pesel is not null)
-                                                        {
-                                                            <p>@PrintGender(pacjent.Pesel) @PrintAge(pacjent.Pesel) lat</p>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        if (pacjent.Gender is null & pacjent.Age is null)
-                                                        {
-                                                            if (pacjent.Pesel is not null)
-                                                            {
-                                                                <p>@PrintGender(pacjent.Pesel) @PrintAge(pacjent.Pesel)</p>
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                        }
-                                                    }
+                                                    <p>@pacjent.Gender @pacjent.Age lat</p>
                                                     <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                 </div>
                                                 <div class="col-4">

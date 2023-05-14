@@ -135,4 +135,11 @@ Data 10.05.2023
 
 Data 13.05.2023
 
-2. ConnectionString przeniesiono z powrotem do pliku Program.cs.
+1. ConnectionString przeniesiono z powrotem do pliku Program.cs.
+2. Na stronie Details zmieniono formatowanie zmiennej EndTime do formatu DD-MM-RRRR GG-MM.
+
+Data 14.05.2023
+
+1. Algorytmy, które pobierają wiek i płeć z numeru PESEL pacjenta uzupełniono o funckję zapisania tej informacji z bazie danych.
+2. Na stronie WithoutDoctor wprowadzono licznik czasu oczekiwania na lekarza i animację według schematu Triage Manchester.
+3. Zmienne DateTime sformatowano funkcją ToString("g").
