@@ -5,6 +5,25 @@
     ViewData["Title"] = "Zakończono";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
+
+    string Hours()
+    {
+
+        string hours = Convert.ToString(Model.TotalTime);
+        int controlNumber = int.Parse(hours.Substring(0, 1));
+
+        if (controlNumber == 2 || controlNumber == 3 || controlNumber == 4)
+        {
+            return "godziny";
+        }
+        else
+        {
+            return "godzin";
+        }
+        
+    }
+
+
 }
 
 <div class="container">
@@ -75,6 +94,14 @@
                 <select class="form-control" id="EndTime" name="EndTime">
                     <option>@Model.EndTime</option>
                 </select>
+
+                <select class="form-control" id="WaitingTime" name="WaitingTime">
+                    <option>@Model.WaitingTime</option>
+                </select>
+
+                <select class="form-control" id="TotalTime" name="TotalTime">
+                    <option>@Model.TotalTime</option>
+                </select>
             </div>
 
 
@@ -112,12 +139,18 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-5">
                                 <br />
                                 <p>Gdzie pacjent przebywał: </p>
                                 <br />
 
                                 <p>Do kogo był wykonany TRIAGE:</p>
+                                <br />
+
+                                <p>Jak długo pacjent czekał za lekarzem:</p>
+                                <br />
+
+                                <p>Łączny czas przebywania w SOR:</p>
                                 <br />
 
                                 <p>Lekarz prowadzący:</p>
@@ -139,11 +172,25 @@
                                 <p><b>@Model.ToWhomThePatient?.ToUpper()</b></p>
                                 <br />
 
+                                <p><b>@Model.WaitingTime</b> minut</p>
+                                <br />
+
+                                @if (Model.TotalTime < 1)
+                                {
+                                    <p><b>Mniej niż 1 godzinę</b></p>
+                                }
+                                else
+                                {
+                                    <p><b>@Convert.ToInt32(Model.TotalTime)</b> @Hours()</p>
+                                }
+                                <br />
+
                                 <p><b>@Model.Doctor?.ToUpper()</b></p>
                                 <br />
 
                                 <p><b>@Model.CoDalejZPacjentem?.ToUpper()</b></p>
                                 <br />
+
 
                                 <div class="form-group col-6">
                                     <select class="form-select" id="Active" name="Active">

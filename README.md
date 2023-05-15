@@ -143,3 +143,7 @@ Data 14.05.2023
 1. Algorytmy, które pobierają wiek i płeć z numeru PESEL pacjenta uzupełniono o funckję zapisania tej informacji z bazie danych.
 2. Na stronie WithoutDoctor wprowadzono licznik czasu oczekiwania na lekarza i animację według schematu Triage Manchester.
 3. Zmienne DateTime sformatowano funkcją ToString("g").
+
+Data 15.05.2023
+
+1. Utworzono dwie nowe kolumny dla tabeli Patients: WaitingTime i TotalTime. Przeprowadzono migrację i update bazy danych.

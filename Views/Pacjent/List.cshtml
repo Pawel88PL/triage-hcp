@@ -478,12 +478,17 @@
                                                         </select>
                                                         <br />
 
+                                                        <select class="form-control" id="WaitingTime" name="WaitingTime">
+                                                            <option>@WaitingTime(pacjent.DateTime)</option>
+                                                        </select>
+                                                        <br />
+
                                                         <select class="form-control" id="Name" name="Name">
-                                                            <option>@pacjent.Name?.ToUpper();</option>
+                                                            <option>@pacjent.Name?.ToUpper()</option>
                                                         </select>
 
                                                         <select class="form-control" id="Surname" name="Surname">
-                                                            <option>@pacjent.Surname?.ToUpper();</option>
+                                                            <option>@pacjent.Surname?.ToUpper()</option>
                                                         </select>
 
                                                         <select class="form-control" id="Pesel" name="Pesel">
@@ -543,7 +548,7 @@
                                                         </select>
 
                                                         <select class="form-control" id="Diagnosis" name="Diagnosis">
-                                                            <option>@pacjent.Diagnosis?.ToUpper();</option>
+                                                            <option>@pacjent.Diagnosis?.ToUpper()</option>
                                                         </select>
 
                                                         <select class="form-control" id="Room" name="Room">
@@ -574,6 +579,10 @@
                                                             <option>@pacjent.ToWhomThePatient</option>
                                                         </select>
 
+                                                        <select class="form-control" id="WaitingTime" name="WaitingTime">
+                                                            <option>@WaitingTime(pacjent.DateTime)</option>
+                                                        </select>
+
                                                     </div>
 
                                                     <select class="form-select" id="Doctor" name="Doctor" style="font-size:12px">
@@ -602,14 +611,14 @@
                                                         <option>Pisula Piotr</option>
                                                         <option>Polupanov Yevhen</option>
                                                         <option>Potyka Marek</option>
-                                                        <option>Razumka</option>
+                                                        <option>Razumka Krystyna</option>
                                                         <option>Rojna Maciej</option>
                                                         <option>Skrzypek Dariusz</option>
                                                         <option>Śliwowski Cezary</option>
                                                         <option>Śmidrowicz Bartosz</option>
                                                         <option>Wierzchowiecki Jerzy</option>
                                                         <option>Woźny Tomasz</option>
-                                                        <option>Yakymchuk</option>
+                                                        <option>Yakymchuk </option>
                                                         <option>Zanko Semen</option>
                                                         <option>Zhdanov Sergii</option>
                                                     </select>
@@ -766,7 +775,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -790,7 +799,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -814,7 +823,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -827,7 +836,7 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p><b>R</b></p>
+                                <p><b>Rk</b></p>
                             </div>
                         </div>
                         <div class="col-9">
@@ -838,7 +847,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -866,7 +875,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -890,7 +899,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -914,7 +923,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -938,7 +947,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -962,7 +971,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -990,7 +999,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1014,7 +1023,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1038,7 +1047,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1066,7 +1075,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1090,7 +1099,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1114,7 +1123,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1142,7 +1151,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1166,7 +1175,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1190,7 +1199,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1213,7 +1222,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1236,7 +1245,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }
@@ -1259,7 +1268,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()
+                                            <p>@pacjent.Surname?.ToUpper() pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }

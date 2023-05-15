@@ -1,5 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace triage_hcp.Models
 {
@@ -53,5 +55,10 @@ namespace triage_hcp.Models
         public string? ToWhomThePatient { get; set; }
 
         public DateTime EndTime { get; set; }
+
+        public int WaitingTime { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalTime { get; set; }
     }
 }

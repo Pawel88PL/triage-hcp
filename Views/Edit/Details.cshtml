@@ -7,7 +7,18 @@
 
     var PatientEndTime = DateTime.Now.ToString("g");
 
-    
+    decimal TotalPatientTime(DateTime triageTime)
+    {
+        DateTime startTime = Model.DateTime;
+        DateTime endTime = DateTime.Now;
+
+        TimeSpan totalTime = endTime - startTime;
+
+        double totalHours = totalTime.TotalHours;
+        decimal totalPatientTime = Math.Round(Convert.ToDecimal(totalHours), 2);
+
+        return totalPatientTime;
+    }
 
 }
 
@@ -22,18 +33,17 @@
                 <select class="form-control" id="DateTime" name="DateTime">
                     <option>@Model.DateTime</option>
                 </select>
-                <span asp-validation-for="DateTime" class="text-danger"></span>
 
                 <select class="form-control" id="TriageDate" name="TriageDate">
                     <option>@Model.TriageDate</option>
                 </select>
 
                 <select class="form-control" id="Name" name="Name">
-                    <option>@Model.Name</option>
+                    <option>@Model.Name?.ToUpper()</option>
                 </select>
 
                 <select class="form-control" id="Surname" name="Surname">
-                    <option>@Model.Surname</option>
+                    <option>@Model.Surname?.ToUpper()</option>
                 </select>
 
                 <select class="form-control" id="Pesel" name="Pesel">
@@ -54,6 +64,16 @@
 
                 <select class="form-control" id="EndTime" name="EndTime">
                     <option>@PatientEndTime</option>
+                </select>
+
+                <select class="form-control" id="TotalTime" name="TotalTime">
+                    <option>
+                        @TotalPatientTime(Model.DateTime)
+                    </option>
+                </select>
+
+                <select class="form-control" id="WaitingTime" name="WaitingTime">
+                    <option>@Model.WaitingTime</option>
                 </select>
 
             </div>
@@ -79,8 +99,9 @@
                                         <h5>PESEL: @Model.Pesel</h5>
                                     </div>
                                     <div class="col-6">
-                                        <h1>@Model.DateTime.ToString("t")</h1>
+                                        <h4>@Model.CoDalejZPacjentem</h4>
                                         <h4>@Model.DateTime.ToString("D")</h4>
+                                        <h2>@Model.DateTime.ToString("t")</h2>
                                     </div>
                                 </div>
                             </div>
