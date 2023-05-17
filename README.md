@@ -147,3 +147,4 @@ Data 14.05.2023
 Data 15.05.2023
 
 1. Utworzono dwie nowe kolumny dla tabeli Patients: WaitingTime i TotalTime. Przeprowadzono migrację i update bazy danych.
+2. Na stronie Details utworzono przycisk "Wypisz pacjenta"

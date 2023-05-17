@@ -227,8 +227,6 @@
                             <div class="col-4">
                                 <p><b>JAKIE DECYZJE:</b></p>
                                 <br />
-                                <p><b>PACJENT DALEJ W SOR?</b></p>
-                                <br />
                             </div>
 
                             <div class="col-6">
@@ -256,30 +254,29 @@
                                     </select>
                                 </div>
                                 <br />
-
-                                <div class="form-group">
-                                    <select class="form-select" id="Active" name="Active">
-                                        <option>@Model.Active</option>
-                                        <option>Tak</option>
-                                        <option>Nie</option>
-                                    </select>
-                                    <span asp-validation-for="Active" class="text-danger"></span>
-                                </div>
-                                <br />
                             </div>
                         </div>
-                        <hr />
                         <br />
 
 
                         <div class="row">
-                            <div class="col-5">
-                                <button type="submit" class="btn btn-danger">ZAPISZ ZMIANY</button>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-success" id="Active" name="Active" value="Tak">
+                                    ZAPISZ ZMIANY
+                                </button>
                             </div>
-                            <div class="col-5">
+
+                            <div class="col-4">
                                 <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary">POWRÓT DO LISTY</button>
                             </div>
+
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-danger" id="Active" name="Active" value="Nie">
+                                    WYPISZ PACJENTA
+                                </button>
+                            </div>
                         </div>
+                        <hr />
 
                     </div>
 

@@ -12,7 +12,11 @@
         string hours = Convert.ToString(Model.TotalTime);
         int controlNumber = int.Parse(hours.Substring(0, 1));
 
-        if (controlNumber == 2 || controlNumber == 3 || controlNumber == 4)
+        if (controlNumber == 1)
+        {
+            return "godzina";
+        }
+        else if (controlNumber == 2 || controlNumber == 3 || controlNumber == 4)
         {
             return "godziny";
         }
@@ -20,7 +24,7 @@
         {
             return "godzin";
         }
-        
+
     }
 
 
@@ -179,9 +183,13 @@
                                 {
                                     <p><b>Mniej niż 1 godzinę</b></p>
                                 }
+                                else if (Model.TotalTime > 9)
+                                {
+                                    <p><b>@Model.TotalTime</b> godzin</p>
+                                }
                                 else
                                 {
-                                    <p><b>@Convert.ToInt32(Model.TotalTime)</b> @Hours()</p>
+                                    <p><b>@Model.TotalTime</b> @Hours()</p>
                                 }
                                 <br />
 
