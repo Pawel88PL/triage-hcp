@@ -148,3 +148,7 @@ Data 15.05.2023
 
 1. Utworzono dwie nowe kolumny dla tabeli Patients: WaitingTime i TotalTime. Przeprowadzono migrację i update bazy danych.
 2. Na stronie Details utworzono przycisk "Wypisz pacjenta"
+
+Data 19.05.2023
+
+1. Utworzono okno dialogowe (modal) na stronie Detailas, gdzie trzeba podać jaką podjęło się decyzje przy wypisaniu pacjenta.
