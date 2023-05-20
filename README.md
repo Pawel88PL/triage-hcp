@@ -152,3 +152,4 @@ Data 15.05.2023
 Data 19.05.2023
 
 1. Utworzono okno dialogowe (modal) na stronie Detailas, gdzie trzeba podać jaką podjęło się decyzje przy wypisaniu pacjenta.
+2. Modal ze strony Details przesunięto na środek dzięki czemu poprawiono czytelność.
