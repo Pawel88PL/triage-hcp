@@ -33,7 +33,7 @@
                     <strong>ZAKOŃCZONO</strong>
                 </div>
                 <div class="col-2">
-                    <strong>IMIĘ I NAZWISKO</strong>
+                    <strong>NAZWISKO I IMIĘ</strong>
                 </div>
                 <div class="col-1">
                     <strong>PESEL</strong>
@@ -49,9 +49,9 @@
                 </div>
             </div>
             <hr />
-
+            
             @foreach (var pacjent in Model
-            .Where(x => x.DateTime > DateTime.Today)
+            .Where(x => x.DateTime.Date == DateTime.Today.Date)
             .OrderByDescending(x => x.DateTime))
             {
                 if (!(pacjent.Active == "Tak"))
@@ -73,7 +73,7 @@
                                         <p><b>@pacjent.EndTime.ToString("g")</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@pacjent.Name?.ToUpper() @pacjent.Surname?.ToUpper()</b>
+                                        <b>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</b>
                                     </div>
                                     <div class="border-end col-1">
                                         <b>@pacjent.Pesel</b>

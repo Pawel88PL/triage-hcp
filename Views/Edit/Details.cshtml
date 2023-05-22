@@ -38,6 +38,10 @@
                     <option>@Model.TriageDate</option>
                 </select>
 
+                <select class="form-control" id="WaitingTime" name="WaitingTime">
+                    <option>@Model.WaitingTime</option>
+                </select>
+
                 <select class="form-control" id="Name" name="Name">
                     <option>@Model.Name?.ToUpper()</option>
                 </select>
@@ -70,13 +74,6 @@
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
                     <div class="container">
                         <div class="row">
-                            <div class="col-2">
-                                <a href="~/docs/karta_wit.pdf" target="_blank" class="text-center" style="text-decoration:none">
-                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 16px">
-                                        DRUKUJ DOKUMENTY
-                                    </div>
-                                </a>
-                            </div>
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col-6">
@@ -91,13 +88,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-2">
-                                <a href="@Url.Action("EditPatientData","Edit", new { Id = Model.Id })"
-                                   class="text-center" style="text-decoration:none">
-                                    <div class="button btn-danger" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 16px">
-                                        EDYTUJ DANE PACJENTA
-                                    </div>
-                                </a>
+                            <div class="col-4">
+                                <h4>@Model.Diagnosis?.ToUpper()</h4>
                             </div>
                         </div>
                     </div>
@@ -243,48 +235,47 @@
                             </div>
                         </div>
                         <br />
-
-
-                        <div class="row">
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-success" id="Active" name="Active" value="Tak">
-                                    ZAPISZ ZMIANY
-                                </button>
-                            </div>
-
-                            <div class="col-4">
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    USUŃ PACJENTA
-                                </button>
-                            </div>
-                            
-                            <div class="col-4">
-                                <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary">POWRÓT DO LISTY</button>
-                            </div>
-                        </div>
-                        <hr />
-
                     </div>
 
 
                     <div class="col-6">
                         <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
                             <div style="background-color:white; padding: 10px 10px 40px 10px">
-                                <h5 class="text-center">OPIS TRIAGE</h5>
-                                <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 50px">
-                                    <br />
-                                    <h4>@Model.Diagnosis?.ToUpper()</h4>
-                                </div>
-
-                                <h5>Obserwacje ratowniczo pielęgniarskie</h5>
+                                <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="8">
+                                    <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="9">
                                         @Model.ObserwacjeRatPiel</textarea>
-                                    <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
                                 </div>
                             </div>
-                            <br />
                         </div>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row">
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-success" id="Active" name="Active" value="Tak">
+                            ZAPISZ ZMIANY
+                        </button>
+                    </div>
+
+                    <div class="col-3">
+                        <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary">POWRÓT DO LISTY</button>
+                    </div>
+
+                    <div class="col-3">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            WYPISZ PACJENTA
+                        </button>
+                    </div>
+
+                    <div class="col-3">
+                        <a href="@Url.Action("EditPatientData","Edit", new { Id = Model.Id })"
+                           class="text-center" style="text-decoration:none">
+                            <div class="button btn-warning" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 18px">
+                                EDYTUJ DANE
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -373,7 +364,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Czy na pewno chcesz usunąć z listy pacjentów?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Czy na pewno chcesz wypisać pacjenta?</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

@@ -190,13 +190,6 @@
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
                     <div class="container">
                         <div class="row">
-                            <div class="col-2">
-                                <a href="~/docs/karta_wit.pdf" target="_blank" class="text-center" style="text-decoration:none">
-                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 16px">
-                                        DRUKUJ DOKUMENTY
-                                    </div>
-                                </a>
-                            </div>
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col-6">
@@ -418,13 +411,8 @@
                                 </div>
                             </div>
 
-                            <div class="col-2">
-                                <a href="@Url.Action("EditPatientData","Edit", new { Id = Model.Id })"
-                                   class="text-center" style="text-decoration:none">
-                                    <div class="button btn-danger" style="border-radius: 3px; padding: 3px; max-width: 150px; font-size: 16px">
-                                        EDYTUJ DANE PACJENTA
-                                    </div>
-                                </a>
+                            <div class="col-3">
+                                <h3>@Model.Diagnosis?.ToUpper()</h3>
                             </div>
                         </div>
                     </div>
@@ -552,24 +540,16 @@
                             </div>
                         </div>
 
-
                     </div>
 
 
                     <div class="col-6">
                         <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
                             <div style="background-color:white; padding: 10px 10px 40px 10px">
-                                <h5 class="text-center">OPIS TRIAGE</h5>
-                                <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 50px">
-                                    <br />
-                                    <h4>@Model.Diagnosis?.ToUpper()</h4>
-                                </div>
-
-                                <h5>Obserwacje ratowniczo pielęgniarskie</h5>
+                                <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="8">
+                                    <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10">
                                         @Model.ObserwacjeRatPiel</textarea>
-                                    <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
                                 </div>
                             </div>
                             <br />

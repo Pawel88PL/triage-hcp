@@ -126,7 +126,7 @@
                                                    style="text-decoration:none; color:black">
                                                     <div class="row">
                                                         <div class="col-4">
-
+                                                            
                                                             @if (pacjent.Color == "red")
                                                             {
                                                                 @if (WaitingTime(pacjent.DateTime) > 1)
@@ -1264,7 +1264,7 @@
                                     <div class="pacjent_sala" style="background-color: @pacjent.Color">
                                         <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() pacjent.Name?.ToUpper()</p>
+                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
                                         </a>
                                     </div>
                                 }

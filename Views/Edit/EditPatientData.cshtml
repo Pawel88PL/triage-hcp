@@ -6,72 +6,11 @@
     ViewData["Title"] = "Edycja";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    bool PeselCorrect(string? pesel)
-    {
-        if (pesel == null || pesel == "") return false;
-        if (pesel.Length != 11) return false;
 
-        int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
-
-        int total = 0;
-        for (int i = 0; i < 11; i++)
-        {
-            int r = (int)(pesel[i] - '0');
-            if (r < 0 || r > 9) return false;
-            total += weights[i] * r;
-        }
-
-        if (total % 10 == 0) return true;
-        else return false;
-    }
-
-
-    string PrintGender(string pesel)
-    {
-        if (PeselCorrect(pesel) == false) return "Nie określono płci, ";
-
-        int controlNumber = int.Parse(pesel.Substring(9, 1));
-        if (controlNumber == 1 || controlNumber == 3 || controlNumber == 5 ||
-            controlNumber == 7 || controlNumber == 9)
-        {
-            return "Mężczyzna, ";
-        }
-        else return "Kobieta, ";
-    }
-
-
-    string PrintAge(string pesel)
-    {
-        DateTime YearNow = DateTime.Today;
-
-        if (PeselCorrect(pesel) == false) return "00 ";
-
-        int yearNow = YearNow.Year;
-
-        int patientYear = int.Parse(pesel.Substring(0, 2));
-        int month = int.Parse(pesel.Substring(2, 2));
-
-        int ageBefore2000 = yearNow - 1900 - patientYear;
-        int ageAfter2000 = yearNow - 2000 - patientYear;
-
-        string ageBefore = ageBefore2000.ToString();
-        string ageAfter = ageAfter2000.ToString();
-
-        if (month > 12)
-        {
-            return ageAfter;
-
-        }
-        else
-        {
-            return ageBefore;
-        }
-
-    }
 
 }
 
-<div class="container">
+<div class="container col-7">
     <div class="row">
         <form asp-action="Details" class="col-auto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -111,6 +50,26 @@
                     <option>@Model.ObserwacjeRatPiel</option>
                 </select>
 
+                <select class="form-control" id="Room" name="Room">
+                    <option>@Model.Room</option>
+                </select>
+
+                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
+                    <option>@Model.ToWhomThePatient</option>
+                </select>
+
+                <select class="form-control" id="Doctor" name="Doctor">
+                    <option>@Model.Doctor</option>
+                </select>
+
+                <select class="form-control" id="Active" name="Active">
+                    <option>@Model.Active</option>
+                </select>
+
+                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
+                    <option>@Model.CoDalejZPacjentem</option>
+                </select>
+
             </div>
 
 
@@ -120,27 +79,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
-                                @if (PeselCorrect(Model.Pesel))
-                                {
-                                    if (Model.Pesel is not null)
-                                    {
-                                        <h5>@PrintGender(Model.Pesel) @PrintAge(Model.Pesel) lat</h5>
-                                    }
-                                }
-                                else
-                                {
-                                    if (Model.Gender is null & Model.Age is null)
-                                    {
-                                        if (Model.Pesel is not null)
-                                        {
-                                            <h5>@PrintGender(Model.Pesel) @PrintAge(Model.Pesel)</h5>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <h5>@Model.Gender @Model.Age lat</h5>
-                                    }
-                                }
+                                <h5>@Model.Gender @Model.Age lat</h5>
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-4">
@@ -163,20 +102,8 @@
                         <br />
                         <p>Płeć: </p>
                         <br />
-                        <p>Lokalizacja: </p>
-                        <br />
-                        <p>Do kogo pacjent:</p>
-                        <br />
-                        <p>Lekarz prowadzący:</p>
-                        <br />
-                        <p>Pacjent dalej w SOR?</p>
-                        <br />
-                        <p>Jakie decyzje?</p>
-                        <br />
                         <p>Opis w traiage: </p>
                         <br />
-
-
                     </div>
 
                     <div class="col-md-6">
@@ -209,119 +136,6 @@
                             <option>Kobieta</option>
                             <option>Mężczyzna</option>
                         </select>
-                        <br />
-
-                        <div class="form-group">
-                            <select class="form-control" id="Room" name="Room">
-                                <option>@Model.Room</option>
-                                <option>Poczekalnia</option>
-                                <option>Korytarz</option>
-                                <option>Wituś</option>
-                                <option>Wituś 1</option>
-                                <option>Wituś 2</option>
-                                <option>Wituś 3</option>
-                                <option>WIT</option>
-                                <option>WIT 1</option>
-                                <option>WIT 2</option>
-                                <option>WIT 3</option>
-                                <option>WIT 4</option>
-                                <option>Sala obserwacyjna 5</option>
-                                <option>Sala obserwacyjna 6</option>
-                                <option>Sala obserwacyjna 7</option>
-                                <option>Sala obserwacyjna 8</option>
-                                <option>Sala obserwacyjna 9</option>
-                                <option>Sala obserwacyjna 10</option>
-                                <option>Izolatka Z1</option>
-                                <option>Izolatka Z2</option>
-                                <option>Izolatka Z3</option>
-                                <option>Dekontaminacja</option>
-                            </select>
-                            <span asp-validation-for="Room" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                            <option>@Model.ToWhomThePatient</option>
-                            <option>INTERNISTA</option>
-                            <option>CHIRURG</option>
-                        </select>
-                        <br />
-
-
-                        <div class="form-group">
-                            <select class="form-control" id="Doctor" name="Doctor">
-                                <option>@Model.Doctor</option>
-                                <option>Avdieiev Anton</option>
-                                <option>Betkowiak Zuzanna</option>
-                                <option>Binaś Marcin</option>
-                                <option>Chrzanowski Monica</option>
-                                <option>Czekała-Karpiński Dawid</option>
-                                <option>Dabryneuski Uladzimir</option>
-                                <option>Fritzkiewicz Witold</option>
-                                <option>Gąsiorowski Mateusz</option>
-                                <option>Gilier Kamila</option>
-                                <option>Grymuza Maciej</option>
-                                <option>Huzenko Jaroslaw</option>
-                                <option>Junewicz</option>
-                                <option>Kłaczyński Mateusz</option>
-                                <option>Kohan Anastasiia</option>
-                                <option>Łuczak Agnieszka</option>
-                                <option>Makowska Agata</option>
-                                <option>Małkiewicz Tomasz</option>
-                                <option>Miroshnichenko Yurii</option>
-                                <option>Nowak Michał</option>
-                                <option>Pankiewicz Mateusz</option>
-                                <option>Paszkowiak-Ciesielska Hanna</option>
-                                <option>Pisula Piotr</option>
-                                <option>Polupanov Yevhen</option>
-                                <option>Potyka Marek</option>
-                                <option>Razumka</option>
-                                <option>Rojna Maciej</option>
-                                <option>Skrzypek Dariusz</option>
-                                <option>Śliwowski Cezary</option>
-                                <option>Śmidrowicz Bartosz</option>
-                                <option>Wierzchowiecki Jerzy</option>
-                                <option>Woźny Tomasz</option>
-                                <option>Yakymchuk</option>
-                                <option>Zanko Semen</option>
-                                <option>Zhdanov Sergii</option>
-                            </select>
-                            <span asp-validation-for="Doctor" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <select class="form-control" id="Active" name="Active">
-                                <option>@Model.Active</option>
-                                <option>Tak</option>
-                                <option>Nie</option>
-                            </select>
-                            <span asp-validation-for="Active" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
-                                <option>@Model.CoDalejZPacjentem</option>
-                                <option>W trakcie diagnostyki SOR</option>
-                                <option>Wypisany do domu</option>
-                                <option>Interna</option>
-                                <option>Urologia</option>
-                                <option>Kardiologia A</option>
-                                <option>Kardiologia B</option>
-                                <option>Neurologia</option>
-                                <option>OIOM</option>
-                                <option>Chirurgia</option>
-                                <option>Ortopedia</option>
-                                <option>Psychiatria</option>
-                                <option>Przekazany do innego szpitala</option>
-                                <option>Neurochirurgia</option>
-                                <option>Ginekologia</option>
-                                <option>Chirurgia szczękowo-twarzowa</option>
-                                <option>Oddalił się z SOR</option>
-                                <option>Zgon</option>
-                            </select>
-                        </div>
                         <br />
 
                         <div style="font-size: 16px">
