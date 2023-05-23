@@ -22,7 +22,7 @@ span.animation {
     }
 }
 
-button.btn{
+button.btn, a.btn{
     font-size: 16px;
 }
 

@@ -153,6 +153,10 @@ Data 19.05.2023
 
 1. Utworzono okno dialogowe (modal) na stronie Detailas, gdzie trzeba podać jaką podjęło się decyzje przy wypisaniu pacjenta.
 2. Modal ze strony Details przesunięto na środek dzięki czemu poprawiono czytelność.
-3. Usunięto możliwość edycji danych pacjenta z widoku WithoutDoctor.
-4. Poprawiono czytelność strony WithoutDoctor.
-5. W liście zakończonych z dzisiejszego dyżuru i liście wszystkich pacjentów zmieniono kolejność wyświetlania -> najpierw nazwisko.
+
+Data 22.05.2023
+
+1. Usunięto możliwość edycji danych pacjenta z widoku WithoutDoctor, usunięto przycisk Drukuj dokumenty.
+2. Poprawiono czytelność strony WithoutDoctor.
+3. W liście zakończonych z dzisiejszego dyżuru i liście wszystkich pacjentów zmieniono kolejność wyświetlania -> najpierw nazwisko.
+4. Usunięto błąd powodujący kasowanie informacj o czasie oczekiwania za lekarzem.
