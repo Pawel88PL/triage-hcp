@@ -165,4 +165,9 @@ Data 23.05.2023
 
 1. Z listy do kogo pacjent usunięto wybór ORTOPEDA i NEUROLOG.
 2. Przyciski na stronie Details połączono w jedną grupę.
-3. Opublikowano wersję 4.2.0.
+<h3> Opublikowano wersję 4.2.0. </h3>
+
+Data 24.05.2023
+
+1. Usunięto możliwość wypisania pacjenta bez określenia do jakiego lekarza pacjent należy.
+2. Przy liście lóżek zastosotwano algorytm (animacja nazwiska i imienia) przypominający o przekroczonym czasie na rozpoczęcie diagnostyki dla danego pacjenta. 

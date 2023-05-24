@@ -754,7 +754,7 @@
         <div class="col-lg-3">
             <div class="border shadow p-3 mb-5 bg-white rounded">
                 <h5 class="text-center">Wituś</h5>
-                <br />
+                <hr />
 
                 <div id="Wituś 1">
                     <div class="row">
@@ -764,17 +764,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś 1" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Wituś 1" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś 1" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -788,17 +895,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś 2" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Wituś 2" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś 2" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -812,17 +1026,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś 3" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Wituś 3" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś 3" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -836,17 +1157,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Wituś" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Wituś" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -854,7 +1282,7 @@
 
                 <br />
                 <h5 class="text-center">WIT</h5>
-                <br />
+                <hr />
 
                 <div id="WIT 1">
                     <div class="row">
@@ -864,17 +1292,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 1" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "WIT 1" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 1" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -888,17 +1423,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 2" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "WIT 2" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 2" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -912,17 +1554,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 3" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "WIT 3" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 3" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -936,17 +1685,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 4" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "WIT 4" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT 4" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -956,49 +1812,263 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p><b>W</b></p>
+                                <p><b>Wk</b></p>
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "WIT" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "WIT" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
                 </div>
 
                 <br />
-                <h5 class="text-center">Sala obserwacyjna 1</h5>
-                <br />
+                <h5 class="text-center">SALA OBSERWACYJNA 1</h5>
+                <hr />
 
                 <div id="Sala obserwacyjna 5">
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p>O5</p>
+                                <p>Obs 5</p>
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 5" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Sala obserwacyjna 5" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 5" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1008,21 +2078,128 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p>O6</p>
+                                <p>Obs 6</p>
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 6" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Sala obserwacyjna 6" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 6" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1032,49 +2209,263 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p>O7</p>
+                                <p>Obs 7</p>
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 7" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Sala obserwacyjna 7" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 7" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
                 </div>
 
                 <br />
-                <h5 class="text-center">Sala obserwacyjna 2</h5>
-                <br />
+                <h5 class="text-center">SALA OBSERWACYJNA 2</h5>
+                <hr />
 
                 <div id="Sala obserwacyjna 8">
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p>O8</p>
+                                <p>Obs 8</p>
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 8" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Sala obserwacyjna 8" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 8" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1084,21 +2475,128 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p>O9</p>
+                                <p>Obs 9</p>
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 9" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Sala obserwacyjna 9" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 9" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1108,21 +2606,128 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="nr_lozka">
-                                <p>O10</p>
+                                <p>Obs 10</p>
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 10" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Sala obserwacyjna 10" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Sala obserwacyjna 10" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1140,17 +2745,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Izolatka Z1" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Izolatka Z1" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Izolatka Z1" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1164,17 +2876,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Izolatka Z2" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Izolatka Z2" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Izolatka Z2" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1188,17 +3007,124 @@
                             </div>
                         </div>
                         <div class="col-9">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Izolatka Z3" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Izolatka Z3" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Izolatka Z3" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1211,17 +3137,124 @@
                 <div id="Korytarz">
                     <div class="row">
                         <div class="col-12">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Korytarz" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Korytarz" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Korytarz" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1234,17 +3267,124 @@
                 <div id="Poczekalnia">
                     <div class="row">
                         <div class="col-12">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Poczekalnia" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Poczekalnia" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Poczekalnia" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
@@ -1257,25 +3397,129 @@
                 <div id="Dekontaminacja">
                     <div class="row">
                         <div class="col-12">
-                            @foreach (var pacjent in Model)
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Dekontaminacja" &
+                            x.Active == "Tak" &
+                            (x.Doctor == "Wybierz lekarza")))
                             {
-                                if (pacjent.Room == "Dekontaminacja" & pacjent.Active == "Tak")
-                                {
-                                    <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
-                                           style="text-decoration:none; color:black">
-                                            <p>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</p>
-                                        </a>
-                                    </div>
-                                }
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        @if (pacjent.Color == "red")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 1)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "orange")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 10)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "yellow")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 60)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightgreen")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 120)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+
+                                        @if (pacjent.Color == "lightskyblue")
+                                        {
+                                            @if (WaitingTime(pacjent.DateTime) > 240)
+                                            {
+                                                <h5>
+                                                    <span class="animation">
+                                                        @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                    </span>
+                                                </h5>
+
+                                            }
+                                            else
+                                            {
+                                                <h5>
+                                                    @pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()
+                                                </h5>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            }
+
+
+                            @foreach (var pacjent in Model.
+                            Where(x => x.Room == "Dekontaminacja" &
+                            x.Active == "Tak" &
+                            !(x.Doctor == "Wybierz lekarza")))
+                            {
+                                <div class="pacjent_sala" style="background-color: @pacjent.Color">
+                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                       style="text-decoration:none; color:black">
+                                        <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     </div>
 </div>
