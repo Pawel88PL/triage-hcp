@@ -160,3 +160,9 @@ Data 22.05.2023
 2. Poprawiono czytelność strony WithoutDoctor.
 3. W liście zakończonych z dzisiejszego dyżuru i liście wszystkich pacjentów zmieniono kolejność wyświetlania -> najpierw nazwisko.
 4. Usunięto błąd powodujący kasowanie informacj o czasie oczekiwania za lekarzem.
+
+Data 23.05.2023
+
+1. Z listy do kogo pacjent usunięto wybór ORTOPEDA i NEUROLOG.
+2. Przyciski na stronie Details połączono w jedną grupę.
+3. Opublikowano wersję 4.2.0.
