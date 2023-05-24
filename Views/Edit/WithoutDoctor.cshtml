@@ -171,7 +171,7 @@
                 </select>
 
                 <select class="form-control" id="Diagnosis" name="Diagnosis">
-                    <option>@Model.Diagnosis</option>
+                    <option>@Model.Diagnosis?.ToUpper()</option>
                 </select>
 
                 <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
