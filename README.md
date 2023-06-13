@@ -174,3 +174,7 @@ Data 24.05.2023
    diagnostyki dla danego pacjenta.
 3. Odzielono poszczególne lokalizacje SOR znakiem lini.
 <h3> Opublikowano wersję 4.3.0. </h3>
+
+Data 13.05.2023
+
+1. Dodano nowego lekarza do systemu.
