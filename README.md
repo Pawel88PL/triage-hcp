@@ -183,3 +183,4 @@ Data 28.06.2023
 
 1. Dodano nowych lekarzy do systemu.
 2. Zmieniono akcję w kontrolerze "Triage", która przekierowuje do dokumentów pacjenta po zakończeniu czynności triage.
+<h3> Opublikowano wersję 4.4.0. </h3>
