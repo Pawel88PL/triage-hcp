@@ -41,7 +41,7 @@ namespace triage_hcp.Controllers
 
             TempData["PacjentId"] = Id;
 
-            return RedirectToAction("List", "Pacjent");
+            return Redirect("/docs/SOR.pdf");
         }
     }
 }

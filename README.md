@@ -178,3 +178,8 @@ Data 24.05.2023
 Data 13.05.2023
 
 1. Dodano nowego lekarza do systemu.
+
+Data 28.06.2023
+
+1. Dodano nowych lekarzy do systemu.
+2. Zmieniono akcję w kontrolerze "Triage", która przekierowuje do dokumentów pacjenta po zakończeniu czynności triage.
