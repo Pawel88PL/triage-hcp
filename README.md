@@ -184,3 +184,7 @@ Data 28.06.2023
 1. Dodano nowych lekarzy do systemu.
 2. Zmieniono akcję w kontrolerze "Triage", która przekierowuje do dokumentów pacjenta po zakończeniu czynności triage.
 <h3> Opublikowano wersję 4.4.0. </h3>
+
+Data 30.06.2023
+
+1. W kontrolerze TriageController utworzono metody, które generują plik ".docx" z danymi pacjenta po wykonaniu czynności triage.
