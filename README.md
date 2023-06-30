@@ -188,3 +188,7 @@ Data 28.06.2023
 Data 30.06.2023
 
 1. W kontrolerze TriageController utworzono metody, które generują plik ".docx" z danymi pacjenta po wykonaniu czynności triage.
+2. W widoku "Lista pacjentów" utworzono link, po którym następuje pobranie wygenerowanego dokumentu klikając na pacjenta bez przypisanego lekarza.
+3. W widoku "Szczegóły pacjenta" utworzono odnośnik do pobrania dokumentów.
+4. Usunięto widok "Pacjent bez lekarza".
+<h3> Opublikowano wersję 5.0.0. </h3>

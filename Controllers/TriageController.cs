@@ -43,21 +43,19 @@ namespace triage_hcp.Controllers
             var Id = _triageService.Save(body);
 
             GeneratePatientDocument(Id);
-            return RedirectToAction("List", "Pacjent");
+            return RedirectToAction("List", "Pacjent", new { downloadedId = Id });
         }
 
 
-        public void GeneratePatientDocument(int Id)
+        public IActionResult GeneratePatientDocument(int Id)
         {
-            // Pobierz dane pacjenta na podstawie ID
+            
             Pacjent pacjent = _triageService.Get(Id);
 
             string templatePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "Documents.docx");
-            
             string outputPath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{Id}.docx");
-           
 
-            // Słownik słów kluczowych i ich wartości do zastąpienia
+            
             Dictionary<string, string> keywordData = new Dictionary<string, string>
             {
                 { "@name", pacjent.Name.ToUpper() },
@@ -69,13 +67,21 @@ namespace triage_hcp.Controllers
                 { "room", pacjent.Room },
                 { "color", pacjent.Color },
                 { "time", pacjent.DateTime.ToString("t") },
-            // Dodaj inne słowa kluczowe i ich wartości
+                
             };
-
 
             ReplaceKeywordsInDocx(templatePath, outputPath, keywordData);
 
+            SetDocumentAsReadOnly(outputPath);
+
+            var fileBytes = System.IO.File.ReadAllBytes(outputPath);
+            var fileName = $"{Id}.docx";
+            
+            Response.Headers.Add("Content-Disposition", $"attachment; filename={fileName}");
+            
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
         }
+
 
         public void ReplaceKeywordsInDocx(string templatePath, string outputPath, Dictionary<string, string> keywordData)
         {
@@ -84,23 +90,20 @@ namespace triage_hcp.Controllers
 
             using (WordprocessingDocument doc = WordprocessingDocument.Open(outputPath, true))
             {
-                // Pobierz główną część dokumentu
+                
                 MainDocumentPart mainPart = doc.MainDocumentPart;
 
-                // Przejdź przez akapity w dokumencie
+                
                 foreach (var paragraph in mainPart.Document.Body.Descendants<Paragraph>())
                 {
-                    // Przejdź przez tekst w akapicie
                     foreach (var run in paragraph.Elements<Run>())
                     {
                         foreach (var text in run.Elements<Text>())
                         {
-                            // Sprawdź, czy tekst zawiera słowo kluczowe
                             foreach (var keyword in keywordData)
                             {
                                 if (text.Text.Contains(keyword.Key))
                                 {
-                                    // Zastąp słowo kluczowe nową wartością
                                     text.Text = text.Text.Replace(keyword.Key, keyword.Value);
                                 }
                             }
@@ -108,8 +111,29 @@ namespace triage_hcp.Controllers
                     }
                 }
 
-                // Zapisz zmieniony dokument
                 mainPart.Document.Save();
+            }
+        }
+
+        public void SetDocumentAsReadOnly(string docxFilePath)
+        {
+            using (WordprocessingDocument doc = WordprocessingDocument.Open(docxFilePath, true))
+            {
+                DocumentSettingsPart settingsPart = doc.MainDocumentPart.GetPartsOfType<DocumentSettingsPart>().FirstOrDefault();
+                if (settingsPart == null)
+                {
+                    settingsPart = doc.MainDocumentPart.AddNewPart<DocumentSettingsPart>();
+                    settingsPart.Settings = new Settings();
+                }
+
+                DocumentProtection documentProtection = new DocumentProtection()
+                {
+                    Edit = DocumentProtectionValues.ReadOnly,
+                    Enforcement = true,
+                };
+
+                settingsPart.Settings.AppendChild(documentProtection);
+                settingsPart.Settings.Save();
             }
         }
     }

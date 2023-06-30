@@ -271,6 +271,11 @@
                         EDYTUJ DANE
                     </a>
 
+                    <a href="@Url.Action("GeneratePatientDocument","Triage", new { Id = Model.Id })"
+                       class="btn btn-secondary">
+                        DRUKUJ DOKUMENTY
+                    </a>
+
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         WYPISZ PACJENTA
                     </button>

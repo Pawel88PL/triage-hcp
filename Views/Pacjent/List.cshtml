@@ -99,6 +99,7 @@
 
 
 
+
 <div class="container">
     <div class="row">
         <div class="col-lg-9">
@@ -122,7 +123,7 @@
                                     <div class="pacjent" style="background-color: @pacjent.Color">
                                         <div class="row">
                                             <div class="col-9">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                <a href="@Url.Action("GeneratePatientDocument","Triage", new { Id = pacjent.Id })"
                                                    style="text-decoration:none; color:black">
                                                     <div class="row">
                                                         <div class="col-4">

@@ -12,11 +12,6 @@ namespace triage_hcp.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
 
     }
 }
