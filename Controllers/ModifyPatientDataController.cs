@@ -81,7 +81,21 @@ namespace triage_hcp.Controllers
             return View(pacjent);
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var pacjent = await _context.Pacjenci.FindAsync(id);
+            if (pacjent == null)
+            {
+                return NotFound();
+            }
+
+            _context.Pacjenci.Remove(pacjent);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
 
         private bool PacjentExists(int id)
         {
