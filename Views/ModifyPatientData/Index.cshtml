@@ -45,7 +45,7 @@
     </thead>
     <tbody>
 
-        @foreach (var item in Model.OrderByDescending(x => x.DateTime))
+        @foreach (var item in Model.OrderByDescending(x => x.DateTime).Take(200))
         {
             <tr>
                 <td>
@@ -85,6 +85,14 @@
                             EDYTUJ
                         </div>
                     </a>
+                </td>
+                <td>
+                    @using (Html.BeginForm("Delete", "ModifyPatientData", new { id = item.Id }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Delete" class="btn btn-danger" 
+                        onclick="return confirm('Are you sure you want to delete this patient?');" />
+                    }
                 </td>
             </tr>
         }

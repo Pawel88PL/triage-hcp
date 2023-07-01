@@ -192,3 +192,7 @@ Data 30.06.2023
 3. W widoku "Szczegóły pacjenta" utworzono odnośnik do pobrania dokumentów.
 4. Usunięto widok "Pacjent bez lekarza".
 <h3> Opublikowano wersję 5.0.0. </h3>
+
+Data 01.07.2023
+
+1. Dodano metodę DELETE dla kontrolera ModifyPatientData
