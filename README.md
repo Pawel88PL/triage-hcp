@@ -196,3 +196,5 @@ Data 30.06.2023
 Data 01.07.2023
 
 1. Dodano metodę DELETE dla kontrolera ModifyPatientData
+2. Poprawiono formularz TRIAGE o pobranie aktualnego czasu do bazy danych w momencie wysłania formularza.
+3. Zmieniono przekierowanie po wykonaniu triażu na stronę "Lista pacjentów".

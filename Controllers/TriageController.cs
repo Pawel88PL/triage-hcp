@@ -40,10 +40,16 @@ namespace triage_hcp.Controllers
                 return View(body);
             }
 
+            var now = DateTime.Now;
+            var today = DateTime.Today;
+
+            body.DateTime = now;
+            body.TriageDate = today;
+
             var Id = _triageService.Save(body);
 
             GeneratePatientDocument(Id);
-            return RedirectToAction("List", "Pacjent", new { downloadedId = Id });
+            return RedirectToAction("List", "Pacjent");
         }
 
 
