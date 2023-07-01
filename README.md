@@ -198,3 +198,5 @@ Data 01.07.2023
 1. Dodano metodę DELETE dla kontrolera ModifyPatientData
 2. Poprawiono formularz TRIAGE o pobranie aktualnego czasu do bazy danych w momencie wysłania formularza.
 3. Zmieniono przekierowanie po wykonaniu triażu na stronę "Lista pacjentów".
+4. Do modelu Pacjent dodano pola takie jak: alergie na leki, ciśnienie tętnicze, puls, saturacja, temperatura, skala GCS.
+5. Stworzono odpowiednie pola w formularzu Triage, aby pobrać te dane.
