@@ -44,7 +44,8 @@ namespace triage_hcp.Controllers
         public async Task<IActionResult> Details(int id,
             [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
             "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
-            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime")] Pacjent pacjent)
+            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -98,7 +99,8 @@ namespace triage_hcp.Controllers
         public async Task<IActionResult> Done(int id,
             [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
             "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
-            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime")] Pacjent pacjent)
+            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -150,7 +152,8 @@ namespace triage_hcp.Controllers
         public async Task<IActionResult> EditPatientData(int id,
             [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,"
             + "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,"
-            + "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime")] Pacjent pacjent)
+            + "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {

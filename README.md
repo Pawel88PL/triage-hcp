@@ -200,3 +200,10 @@ Data 01.07.2023
 3. Zmieniono przekierowanie po wykonaniu triażu na stronę "Lista pacjentów".
 4. Do modelu Pacjent dodano pola takie jak: alergie na leki, ciśnienie tętnicze, puls, saturacja, temperatura, skala GCS.
 5. Stworzono odpowiednie pola w formularzu Triage, aby pobrać te dane.
+6. Przeprowadzono migrację i aktualizację bazy danych o nowe pola.
+<h3> Opublikowano wersję 5.1.0. </h3>
+
+Data.02.07.2023
+
+1. Usunięto błąd, który uniemożliwiał dostęp do dokumentów pacjenta z widoku "Details".
+2. Usunięto błąd, który wymazywał parametry pacjenta po przypisaniu mu lekarza.

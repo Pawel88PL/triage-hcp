@@ -30,7 +30,7 @@ namespace triage_hcp.Models
         public string? Room { get; set; }
 
         [Required(ErrorMessage = "Napisz kilka słów na temat stanu lub objawów pacjenta")]
-        [StringLength(150)]
+        [StringLength(130)]
         public string? Diagnosis { get; set; }
 
 
@@ -61,25 +61,25 @@ namespace triage_hcp.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalTime { get; set; }
 
+        [StringLength(30)]
         public string? Allergies { get; set; }
 
+        [StringLength(3)]
+        public string? SBP { get; set; }
 
-        [Range(0, 300, ErrorMessage = "Ciśnienie skurczowe (SBP) musi być między 0 a 300.")]
-        public int SBP { get; set; }
+        [StringLength(3)]
+        public string? DBP { get; set; }
 
-        [Range(0, 200, ErrorMessage = "Ciśnienie rozkurczowe (DBP) musi być między 0 a 200.")]
-        public int DBP { get; set; }
+        [StringLength(3)]
+        public string? HeartRate { get; set; }
 
-        [Range(0, 300, ErrorMessage = "Częstość uderzeń serca (HeartRate) musi być między 0 a 300.")]
-        public int HeartRate { get; set; }
+        [StringLength(3)]
+        public string? Spo2 { get; set; }
 
-        [Range(0, 100, ErrorMessage = "Saturacja (Spo2) musi być między 0 a 100.")]
-        public int Spo2 { get; set; }
+        [StringLength(2)]
+        public string? GCS { get; set; }
 
-        [Range(3, 15, ErrorMessage = "Skala Glasgow (GCS) musi być między 3 a 15.")]
-        public int GCS { get; set; }
-
-        [Range(34.0, 43.0, ErrorMessage = "Temperatura ciała musi być między 34.0 a 43.0.")]
-        public double BodyTemperature { get; set; }
+        [StringLength(3)]
+        public string? BodyTemperature { get; set; }
     }
 }

@@ -73,6 +73,12 @@ namespace triage_hcp.Controllers
                 { "room", pacjent.Room },
                 { "color", pacjent.Color },
                 { "time", pacjent.DateTime.ToString("t") },
+                { "sbp", pacjent.SBP },
+                { "dbp", pacjent.DBP },
+                { "hrr", pacjent.HeartRate },
+                { "spo2", pacjent.Spo2 },
+                { "gccs", pacjent.GCS },
+                { "temp", pacjent.BodyTemperature },
                 
             };
 
