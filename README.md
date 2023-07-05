@@ -207,3 +207,10 @@ Data.02.07.2023
 
 1. Usunięto błąd, który uniemożliwiał dostęp do dokumentów pacjenta z widoku "Details".
 2. Usunięto błąd, który wymazywał parametry pacjenta po przypisaniu mu lekarza.
+
+Data 05.07.2023
+
+1. Do kontrolera EditController przywrócono metodę WithoutDoctor, która odpowiada z widok szczegółów pacjenta bez przypisanego lekarza.
+2. W metodzie Triage zmieniono nazwę przekazywanego parametru z "body" na "pacjent".
+3. Z widoku "Details" do kontrolera "EditController" przeniesiono logikę, która oblicza łączny czas przebywania pacjenta w SOR
+   i zapisuje ten czas w bazie danych.

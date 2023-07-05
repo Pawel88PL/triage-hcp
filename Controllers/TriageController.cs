@@ -33,20 +33,20 @@ namespace triage_hcp.Controllers
 
 
         [HttpPost]
-        public IActionResult Triage(Pacjent body)
+        public IActionResult Triage(Pacjent pacjent)
         {
             if (!ModelState.IsValid)
             {
-                return View(body);
+                return View(pacjent);
             }
 
             var now = DateTime.Now;
             var today = DateTime.Today;
 
-            body.DateTime = now;
-            body.TriageDate = today;
+            pacjent.DateTime = now;
+            pacjent.TriageDate = today;
 
-            var Id = _triageService.Save(body);
+            var Id = _triageService.Save(pacjent);
 
             GeneratePatientDocument(Id);
             return RedirectToAction("List", "Pacjent");

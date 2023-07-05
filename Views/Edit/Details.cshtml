@@ -4,22 +4,6 @@
 @{
     ViewData["Title"] = "Szczegóły";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    var PatientEndTime = DateTime.Now.ToString("g");
-
-    decimal TotalPatientTime(DateTime triageTime)
-    {
-        DateTime startTime = Model.DateTime;
-        DateTime endTime = DateTime.Now;
-
-        TimeSpan totalTime = endTime - startTime;
-
-        double totalHours = totalTime.TotalHours;
-        decimal totalPatientTime = Math.Round(Convert.ToDecimal(totalHours), 2);
-
-        return totalPatientTime;
-    }
-
 }
 
 <div class="container">
@@ -306,13 +290,12 @@
             </select>
 
             <select class="form-control" id="EndTime" name="EndTime">
-                <option>@PatientEndTime</option>
+                <option>@Model.EndTime</option>
             </select>
 
             <select class="form-control" id="TotalTime" name="TotalTime">
                 <option>
-                    @TotalPatientTime(Model.DateTime)
-                </option>
+                    @Model.TotalTime</option>
             </select>
 
             <select class="form-control" id="Name" name="Name">
