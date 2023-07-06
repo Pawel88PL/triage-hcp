@@ -49,7 +49,10 @@ namespace triage_hcp.Controllers
             var Id = _triageService.Save(pacjent);
 
             GeneratePatientDocument(Id);
-            return RedirectToAction("List", "Pacjent");
+
+            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{Id}.docx");
+
+            return PhysicalFile(filePath, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
         }
 
 

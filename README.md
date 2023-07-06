@@ -214,3 +214,12 @@ Data 05.07.2023
 2. W metodzie Triage zmieniono nazwę przekazywanego parametru z "body" na "pacjent".
 3. Z widoku "Details" do kontrolera "EditController" przeniesiono logikę, która oblicza łączny czas przebywania pacjenta w SOR
    i zapisuje ten czas w bazie danych.
+
+Data 06.07.2023
+
+1. Zmieniono wygląd przycisków nawigacyjnych, dodano do nich ikony i tzw. tooltip-y.
+2. Przycisk "WYLOGUJ" ma zmienioną nazwę na zalogowanego użytkownika z zachowaną funkcjonalnością tego przycisku.
+3. Zmieniono metodę generowania dokumentacji pacjenta - jest gotowa do druku bezpośrednio po wykonaniu triażu.
+4. Przywrócono widok "WithoutDoctor" dla pacjentów bez lekarza i dodano w nim możliwość drukowania dokumentów pacjenta.
+5. W formularzu "Triage" określono jako wymagane wybranie "Do kogo pacjent".
+<h3> Opublikowano wersję 5.2.0. </h3>
