@@ -35,6 +35,8 @@ namespace triage_hcp.Controllers
             // logika która loguje
             await _signInManager.PasswordSignInAsync(userLoginData.UserName, userLoginData.Password, true, false);
 
+            ViewData["UserName"] = userLoginData.UserName;
+
             return RedirectToAction("List", "Pacjent");
         }
 

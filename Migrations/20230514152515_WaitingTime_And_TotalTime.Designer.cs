@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using triage_hcp;
 
@@ -11,9 +12,10 @@ using triage_hcp;
 namespace triage_hcp.Migrations
 {
     [DbContext(typeof(DbTriageContext))]
-    partial class DbTriageContextModelSnapshot : ModelSnapshot
+    [Migration("20230514152515_WaitingTime_And_TotalTime")]
+    partial class WaitingTime_And_TotalTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,19 +171,10 @@ namespace triage_hcp.Migrations
                     b.Property<string>("Age")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Allergies")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BodyTemperature")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CoDalejZPacjentem")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DBP")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateTime")
@@ -201,13 +194,7 @@ namespace triage_hcp.Migrations
                     b.Property<string>("Epikryza")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GCS")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HeartRate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -225,12 +212,6 @@ namespace triage_hcp.Migrations
 
                     b.Property<string>("Room")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SBP")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Spo2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")

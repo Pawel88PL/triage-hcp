@@ -135,4 +135,91 @@ Data 10.05.2023
 
 Data 13.05.2023
 
-2. ConnectionString przeniesiono z powrotem do pliku Program.cs.
+1. ConnectionString przeniesiono z powrotem do pliku Program.cs.
+2. Na stronie Details zmieniono formatowanie zmiennej EndTime do formatu DD-MM-RRRR GG-MM.
+
+Data 14.05.2023
+
+1. Algorytmy, które pobierają wiek i płeć z numeru PESEL pacjenta uzupełniono o funckję zapisania tej informacji z bazie danych.
+2. Na stronie WithoutDoctor wprowadzono licznik czasu oczekiwania na lekarza i animację według schematu Triage Manchester.
+3. Zmienne DateTime sformatowano funkcją ToString("g").
+
+Data 15.05.2023
+
+1. Utworzono dwie nowe kolumny dla tabeli Patients: WaitingTime i TotalTime. Przeprowadzono migrację i update bazy danych.
+2. Na stronie Details utworzono przycisk "Wypisz pacjenta"
+
+Data 19.05.2023
+
+1. Utworzono okno dialogowe (modal) na stronie Detailas, gdzie trzeba podać jaką podjęło się decyzje przy wypisaniu pacjenta.
+2. Modal ze strony Details przesunięto na środek dzięki czemu poprawiono czytelność.
+
+Data 22.05.2023
+
+1. Usunięto możliwość edycji danych pacjenta z widoku WithoutDoctor, usunięto przycisk Drukuj dokumenty.
+2. Poprawiono czytelność strony WithoutDoctor.
+3. W liście zakończonych z dzisiejszego dyżuru i liście wszystkich pacjentów zmieniono kolejność wyświetlania -> najpierw nazwisko.
+4. Usunięto błąd powodujący kasowanie informacj o czasie oczekiwania za lekarzem.
+
+Data 23.05.2023
+
+1. Z listy do kogo pacjent usunięto wybór ORTOPEDA i NEUROLOG.
+2. Przyciski na stronie Details połączono w jedną grupę.
+<h3> Opublikowano wersję 4.2.0. </h3>
+
+Data 24.05.2023
+
+1. Usunięto możliwość wypisania pacjenta bez określenia do jakiego lekarza pacjent należy.
+2. Przy liście lóżek zastosotwano algorytm (animacja nazwiska i imienia) przypominający o przekroczonym czasie na rozpoczęcie
+   diagnostyki dla danego pacjenta.
+3. Odzielono poszczególne lokalizacje SOR znakiem lini.
+<h3> Opublikowano wersję 4.3.0. </h3>
+
+Data 13.05.2023
+
+1. Dodano nowego lekarza do systemu.
+
+Data 28.06.2023
+
+1. Dodano nowych lekarzy do systemu.
+2. Zmieniono akcję w kontrolerze "Triage", która przekierowuje do dokumentów pacjenta po zakończeniu czynności triage.
+<h3> Opublikowano wersję 4.4.0. </h3>
+
+Data 30.06.2023
+
+1. W kontrolerze TriageController utworzono metody, które generują plik ".docx" z danymi pacjenta po wykonaniu czynności triage.
+2. W widoku "Lista pacjentów" utworzono link, po którym następuje pobranie wygenerowanego dokumentu klikając na pacjenta bez przypisanego lekarza.
+3. W widoku "Szczegóły pacjenta" utworzono odnośnik do pobrania dokumentów.
+4. Usunięto widok "Pacjent bez lekarza".
+<h3> Opublikowano wersję 5.0.0. </h3>
+
+Data 01.07.2023
+
+1. Dodano metodę DELETE dla kontrolera ModifyPatientData
+2. Poprawiono formularz TRIAGE o pobranie aktualnego czasu do bazy danych w momencie wysłania formularza.
+3. Zmieniono przekierowanie po wykonaniu triażu na stronę "Lista pacjentów".
+4. Do modelu Pacjent dodano pola takie jak: alergie na leki, ciśnienie tętnicze, puls, saturacja, temperatura, skala GCS.
+5. Stworzono odpowiednie pola w formularzu Triage, aby pobrać te dane.
+6. Przeprowadzono migrację i aktualizację bazy danych o nowe pola.
+<h3> Opublikowano wersję 5.1.0. </h3>
+
+Data.02.07.2023
+
+1. Usunięto błąd, który uniemożliwiał dostęp do dokumentów pacjenta z widoku "Details".
+2. Usunięto błąd, który wymazywał parametry pacjenta po przypisaniu mu lekarza.
+
+Data 05.07.2023
+
+1. Do kontrolera EditController przywrócono metodę WithoutDoctor, która odpowiada z widok szczegółów pacjenta bez przypisanego lekarza.
+2. W metodzie Triage zmieniono nazwę przekazywanego parametru z "body" na "pacjent".
+3. Z widoku "Details" do kontrolera "EditController" przeniesiono logikę, która oblicza łączny czas przebywania pacjenta w SOR
+   i zapisuje ten czas w bazie danych.
+
+Data 06.07.2023
+
+1. Zmieniono wygląd przycisków nawigacyjnych, dodano do nich ikony i tzw. tooltip-y.
+2. Przycisk "WYLOGUJ" ma zmienioną nazwę na zalogowanego użytkownika z zachowaną funkcjonalnością tego przycisku.
+3. Zmieniono metodę generowania dokumentacji pacjenta - jest gotowa do druku bezpośrednio po wykonaniu triażu.
+4. Przywrócono widok "WithoutDoctor" dla pacjentów bez lekarza i dodano w nim możliwość drukowania dokumentów pacjenta.
+5. W formularzu "Triage" określono jako wymagane wybranie "Do kogo pacjent".
+<h3> Opublikowano wersję 5.2.0. </h3>

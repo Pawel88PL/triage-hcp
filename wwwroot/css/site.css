@@ -5,12 +5,43 @@ html {
     font-size: 12px;
 }
 
+
 header {
-    font-size: 12px;
+    font-size: 14px;
+    margin-bottom: 50px;
 }
 
 
 footer {
     position: absolute;
     bottom: 0;
+    font-size: 8px;
 }
+
+.tooltip-btn {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+    .tooltip-btn::before {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #000;
+        color: #fff;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .tooltip-btn:hover::before {
+        opacity: 1;
+        visibility: visible;
+    }
+

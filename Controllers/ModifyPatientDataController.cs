@@ -48,7 +48,11 @@ namespace triage_hcp.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
+        public async Task<IActionResult> Edit(int id,
+            [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,"
+            + "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,"
+            + "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -78,7 +82,21 @@ namespace triage_hcp.Controllers
             return View(pacjent);
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var pacjent = await _context.Pacjenci.FindAsync(id);
+            if (pacjent == null)
+            {
+                return NotFound();
+            }
+
+            _context.Pacjenci.Remove(pacjent);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
 
         private bool PacjentExists(int id)
         {

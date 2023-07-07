@@ -6,7 +6,7 @@
     padding-left: 0.8rem;
 }
 
-div.animation {
+span.animation {
     animation-name: datetime;
     animation-duration: 1s;
     animation-iteration-count: infinite
@@ -22,7 +22,7 @@ div.animation {
     }
 }
 
-button.btn{
+button.btn, a.btn{
     font-size: 16px;
 }
 

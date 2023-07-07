@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/triage.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/triage_hcp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body class="bg-light bg-gradient">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar fixed-top navbar-expand-sm navbar-toggleable-sm bg-white navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                        CM HCP SOR
-                    </div>
-                </a>
+                <button type="button" class="btn btn-lg btn-outline-dark tooltip-btn m-2"
+                        data-tooltip="Strona główna"
+                        onclick="location.href='@Url.Action("Index", "Home")'">
+                    <i class="bi bi-hospital"></i> CM HCP SOR
+                </button>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,48 +29,49 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="List">
-                                    <div class="btn-success" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                        LISTA PACJENTÓW 
-                                    </div>
-                                </a>
+                                <button type="button" class="btn btn-lg btn-outline-success tooltip-btn m-2"
+                                        data-tooltip="Wyświetl aktualną listę pacjentów w SOR"
+                                        onclick="location.href='@Url.Action("List", "Pacjent")'">
+                                    <i class="bi bi-person-lines-fill"></i> LISTA PACJENTÓW
+                                </button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Triage" asp-action="Triage">
-                                    <div class="btn-danger" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                        TRIAGE
-                                    </div>
-                                </a>
+                                <button type="button" class="btn btn-lg btn-outline-danger tooltip-btn m-2"
+                                        data-tooltip="Wykonaj triage nowego pacjenta"
+                                        onclick="location.href='@Url.Action("Triage", "Triage")'">
+                                    <i class="bi bi-heart-pulse"></i> TRIAGE
+                                </button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="CompletedList">
-                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                        LISTA ZAKOŃCZONYCH
-                                    </div>
-                                </a>
+                                <button type="button" class="btn btn-lg btn-outline-primary tooltip-btn m-2"
+                                        data-tooltip="Archiwum pacjentów"
+                                        onclick="location.href='@Url.Action("CompletedList", "Pacjent")'">
+                                    <i class="bi bi-clock-history"></i> ARCHIWUM
+                                </button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Pacjent" asp-action="Statistics">
-                                    <div class="btn-info" style="border-radius: 3px; padding: 3px 10px 3px 10px; color:white">
-                                        STATYSTYKI
-                                    </div>
-                                </a>
+                                <button type="button" class="btn btn-lg btn-outline-info tooltip-btn m-2"
+                                        data-tooltip="Wyświetl satystyki z dyżurów"
+                                        onclick="location.href='@Url.Action("Statistics", "Pacjent")'">
+                                    <i class="bi bi-clipboard2-data-fill"></i> STATYSTYKI
+                                </button>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">
-                                    <div class="btn-secondary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                        WYLOGUJ
-                                    </div>
-                                </a>
+                                <button type="button" class="btn btn-lg btn-outline-secondary tooltip-btn m-2"
+                                        data-tooltip="Naciśnij, aby się wylogować"
+                                        onclick="location.href='@Url.Action("LogOut", "Account")'">
+                                    <i class="bi bi-file-person"></i> @User.Identity.Name?.ToUpper()
+                                </button>
                             </li>
                         }
                         else
                         {
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">
-                                <div class="btn-secondary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                    ZALOGUJ
-                                </div>
-                            </a>
+                            <li>
+                                <button type="button" class="btn btn-lg btn-outline-secondary m-2"
+                                        onclick="location.href='@Url.Action("Login", "Account")'">
+                                    <i class="bi bi-file-person"></i> ZALOGUJ
+                                </button>
+                            </li>
                         }
                     </ul>
                 </div>
@@ -84,7 +86,7 @@
 
     <footer class="footer text-muted">
         <div class="container border">
-            &copy; 2023 Created by Paweł Staniul || wersja 4.0.0, data publikacji 08.05.2023 ||
+            <p>Copyright &copy; 2023 Paweł Staniul. All rights reserved. Ver. 5.2.0. Published 06.07.2023.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

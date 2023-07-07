@@ -15,10 +15,12 @@ namespace triage_hcp.Controllers
     public class EditController : Controller
     {
         private readonly DbTriageContext _context;
+        private DateTime _currentTime;
 
         public EditController(DbTriageContext context)
         {
             _context = context;
+            _currentTime = DateTime.Now;
         }
 
         
@@ -35,13 +37,20 @@ namespace triage_hcp.Controllers
             {
                 return NotFound();
             }
+
+            DateTime StartTime = pacjent.DateTime;
+            pacjent.TotalTime = CalculateTotalPatientTime(StartTime, _currentTime);
             return View(pacjent);
         }
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
+        public async Task<IActionResult> Details(int id,
+            [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
+            "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
+            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -50,6 +59,9 @@ namespace triage_hcp.Controllers
 
             if (ModelState.IsValid)
             {
+                pacjent.EndTime = _currentTime;
+                pacjent.TotalTime = CalculateTotalPatientTime(pacjent.DateTime, pacjent.EndTime);
+
                 try
                 {
                     _context.Update(pacjent);
@@ -92,7 +104,11 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Done(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
+        public async Task<IActionResult> Done(int id,
+            [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
+            "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
+            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -141,7 +157,11 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPatientData(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
+        public async Task<IActionResult> EditPatientData(int id,
+            [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,"
+            + "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,"
+            + "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -190,7 +210,11 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> WithoutDoctor(int id, [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color,DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel,CoDalejZPacjentem,ToWhomThePatient,EndTime")] Pacjent pacjent)
+        public async Task<IActionResult> WithoutDoctor(int id,
+            [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
+            "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
+            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent pacjent)
         {
             if (id != pacjent.Id)
             {
@@ -218,6 +242,14 @@ namespace triage_hcp.Controllers
                 return RedirectToAction("List", "Pacjent");
             }
             return View(pacjent);
+        }
+
+        private decimal CalculateTotalPatientTime(DateTime startTime, DateTime endTime)
+        {
+            TimeSpan totalTime = endTime - startTime;
+            double totalHours = totalTime.TotalHours;
+            decimal totalPatientTime = Math.Round(Convert.ToDecimal(totalHours), 2);
+            return totalPatientTime;
         }
 
 
