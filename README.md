@@ -223,3 +223,10 @@ Data 06.07.2023
 4. Przywrócono widok "WithoutDoctor" dla pacjentów bez lekarza i dodano w nim możliwość drukowania dokumentów pacjenta.
 5. W formularzu "Triage" określono jako wymagane wybranie "Do kogo pacjent".
 <h3> Opublikowano wersję 5.2.0. </h3>
+
+Data 08.07.2023
+
+1. Zwiększono długość łańcucha znaków dla pola "BodyTemperature" o 1 znak, dzięki czemu można podać wartość po przecinku.
+2. Utworzono klasę DocumentService, która dziedziczy po interfejsie IDocumentService. Przeniesiono do niej, z kontrolera 
+   TriageController, metody: GeneratePatientDocument(), ReplaceKeywordsInDocx() i SetDocumentAsReadOnly().
+

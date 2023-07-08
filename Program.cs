@@ -16,15 +16,14 @@ namespace triage_hcp
             builder.Services.AddControllersWithViews();
             
             builder.Services.AddScoped<ITriageService, TriageService>();
+            builder.Services.AddScoped<IDocumentService, DocumentService>();
 
             builder.Services.AddDbContext<DbTriageContext>(builder =>
             {
-                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True");
+                builder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ratunkowy_hcp;Trusted_Connection=True");
             });
 
-            // "Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True"
-            // "Server=localhost\\SQLEXPRESS;Database=sor_hcp;Uid=sa;Password=Pawel1234!"
-            // "Server=localhost\\SQLEXPRESS;Database=SOR;Trusted_Connection=True;"
+           
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
             {
