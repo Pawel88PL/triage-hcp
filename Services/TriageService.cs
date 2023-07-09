@@ -20,6 +20,12 @@ namespace triage_hcp.Services
         public async Task<int> DeleteAsync(int Id)
         {
             var pacjent = await _context.Pacjenci.FindAsync(Id);
+
+            if(pacjent == null)
+            {
+                _logger.LogError("Nie znaleziono pacjenta o Id: {Id}", Id);
+                return -1;
+            }
             _context.Pacjenci.Remove(pacjent);
             await _context.SaveChangesAsync();
 
@@ -28,9 +34,14 @@ namespace triage_hcp.Services
             return Id;
         }
 
-        public async Task<Pacjent> GetAsync(int Id)
+        public async Task<Pacjent?> GetAsync(int Id)
         {
             var pacjent = await _context.Pacjenci.FindAsync(Id);
+
+            if (pacjent == null)
+            {
+                _logger.LogError("Nie znaleziono pacjenta o Id: {Id}", Id);
+            }
 
             return pacjent;
         }
@@ -44,7 +55,6 @@ namespace triage_hcp.Services
 
         public async Task<int> SaveAsync(Pacjent pacjent)
         {
-            // logika zapisująca do bazy
             await _context.Pacjenci.AddAsync(pacjent);
             await _context.SaveChangesAsync();
 

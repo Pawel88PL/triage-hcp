@@ -262,3 +262,6 @@ Data 09.07.2023
 6. Stworzono wyszukiwarkę pacjentów. Utworzono SearchController, PatientSearchViewModel, ISearchPatientService i klasę
    SearchPatientService. Wyszukiwarkę pacjentów umieszczono po prawej stronie paska nawigacyjnego.
 7. Poprawiono opisy z tzw. tooltip.
+8. Metody, które uzyskują płeć i wiek z numeru pesel przeniesiono do osobnego serwisu - PeselService. Utworzono interfejs
+   IPeselService i wstrzyknięto zależność do kontrolera TriageController.
+9. Poprawiono kod w związku z ostrzeżeniami o możliwej wartości null.

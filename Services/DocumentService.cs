@@ -28,21 +28,21 @@ namespace triage_hcp.Services
 
             Dictionary<string, string> keywordData = new Dictionary<string, string>
             {
-                { "@name", pacjent.Name.ToUpper() },
-                { "@sur", pacjent.Surname.ToUpper() },
-                { "towhom", pacjent.ToWhomThePatient.ToUpper() },
-                { "pesel", pacjent.Pesel },
+                { "@name", (pacjent.Name ?? "").ToUpper() },
+                { "@sur", (pacjent.Surname ?? "" ).ToUpper() },
+                { "towhom", (pacjent.ToWhomThePatient ?? "").ToUpper() },
+                { "pesel", (pacjent.Pesel ?? "") },
                 { "date", pacjent.DateTime.ToString("g") },
-                { "diagnosis", pacjent.Diagnosis.ToUpper() },
-                { "room", pacjent.Room },
-                { "color", pacjent.Color },
+                { "diagnosis", (pacjent.Diagnosis ?? "").ToUpper() },
+                { "room", (pacjent.Room ?? "") },
+                { "color", (pacjent.Color ?? "") },
                 { "time", pacjent.DateTime.ToString("t") },
-                { "sbp", pacjent.SBP },
-                { "dbp", pacjent.DBP },
-                { "hrr", pacjent.HeartRate },
-                { "spo2", pacjent.Spo2 },
-                { "gccs", pacjent.GCS },
-                { "temp", pacjent.BodyTemperature },
+                { "sbp", (pacjent.SBP ?? "") },
+                { "dbp", (pacjent.DBP ?? "") },
+                { "hrr", (pacjent.HeartRate ?? "") },
+                { "spo2", (pacjent.Spo2 ?? "") },
+                { "gccs", (pacjent.GCS ?? "") },
+                { "temp", (pacjent.BodyTemperature ?? "") },
 
             };
 
@@ -62,7 +62,7 @@ namespace triage_hcp.Services
             using (WordprocessingDocument doc = WordprocessingDocument.Open(outputPath, true))
             {
 
-                MainDocumentPart mainPart = doc.MainDocumentPart;
+                MainDocumentPart? mainPart = doc.MainDocumentPart;
 
 
                 foreach (var paragraph in mainPart.Document.Body.Descendants<Paragraph>())

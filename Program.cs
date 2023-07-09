@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using triage_hcp.Models;
@@ -20,6 +21,7 @@ namespace triage_hcp
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<ITriageService, TriageService>();
+            builder.Services.AddScoped<IPeselService, PeselService>();
             builder.Services.AddScoped<IDocumentService, DocumentService>();
             builder.Services.AddScoped<ISearchPatientService, SearchPatientService>();
 

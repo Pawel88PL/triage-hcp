@@ -9,11 +9,13 @@ namespace triage_hcp.Controllers
     public class TriageController : Controller
     {
         private readonly ITriageService _triageService;
+        private readonly IPeselService _peselService;
         private readonly IDocumentService _documentService;
 
-        public TriageController(ITriageService triageService, IDocumentService documentService)
+        public TriageController(ITriageService triageService, IPeselService peselService, IDocumentService documentService)
         {
             _triageService = triageService;
+            _peselService = peselService;
             _documentService = documentService;
         }
 
@@ -28,13 +30,26 @@ namespace triage_hcp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewPatient(Pacjent pacjent)
         {
+            var now = DateTime.Now;
+            var today = DateTime.Today;
+
             if (!ModelState.IsValid)
             {
                 return View(pacjent);
             }
 
-            var now = DateTime.Now;
-            var today = DateTime.Today;
+            if (string.IsNullOrEmpty(pacjent.Pesel) || !_peselService.IsPeselCorrect(pacjent.Pesel))
+            {
+                ModelState.AddModelError("Pesel", "Niepoprawny numer PESEL");
+                pacjent.Age = "00";
+                pacjent.Gender = "Nieokreślono";
+            }
+            else
+            {
+                pacjent.Age = _peselService.CalculateAge(pacjent.Pesel);
+                pacjent.Gender = _peselService.DetermineGender(pacjent.Pesel);
+
+            }
 
             pacjent.DateTime = now;
             pacjent.TriageDate = today;
