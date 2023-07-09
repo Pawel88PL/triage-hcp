@@ -8,22 +8,24 @@ namespace triage_hcp
 {
     public class Program
     {
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Configuration
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
             builder.Services.AddControllersWithViews();
-            
+
             builder.Services.AddScoped<ITriageService, TriageService>();
             builder.Services.AddScoped<IDocumentService, DocumentService>();
 
-            builder.Services.AddDbContext<DbTriageContext>(builder =>
+            builder.Services.AddDbContext<DbTriageContext>(options =>
             {
-                builder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ratunkowy_hcp;Trusted_Connection=True");
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MyDataBase"));
             });
-
-           
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
             {

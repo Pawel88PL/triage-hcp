@@ -250,7 +250,7 @@ Data 08.07.2023
 1. Zwiększono długość łańcucha znaków dla pola "BodyTemperature" o 1 znak, dzięki czemu można podać wartość po przecinku.
 2. Utworzono klasę DocumentService, która dziedziczy po interfejsie IDocumentService. Przeniesiono do niej, z kontrolera 
    TriageController, metody: GeneratePatientDocument(), ReplaceKeywordsInDocx() i SetDocumentAsReadOnly().
-3. Rozpoczęto refaktoryzację klasy TriageService.
+3. Przeprowadzono refaktoryzację klasy TriageService i interfejsu ITriageService.
 
 Data 09.07.2023
 
@@ -258,3 +258,4 @@ Data 09.07.2023
 2. Metodę GeneratePatientDocument() zmieniono na asynchroniczną.
 3. PatientController zmieniono na ListsOfPatientsController, zmieniono nazwy widoków w tym kontrolerze.
 4. Usunięto widok "Lista wsystkich pacjentów".
+5. ConnectionString przeniesiono do pliku appsetings.json.
