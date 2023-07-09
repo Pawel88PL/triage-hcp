@@ -78,7 +78,7 @@ namespace triage_hcp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("List", "Pacjent");
+                return RedirectToAction("MainList", "ListsOfPatients");
             }
             return View(pacjent);
         }
@@ -186,7 +186,7 @@ namespace triage_hcp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("List", "Pacjent");
+                return RedirectToAction("MainList", "ListsOfPatients");
             }
             return View(pacjent);
         }
@@ -239,7 +239,7 @@ namespace triage_hcp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("List", "Pacjent");
+                return RedirectToAction("MainList", "ListsOfPatients");
             }
             return View(pacjent);
         }

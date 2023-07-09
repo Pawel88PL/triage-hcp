@@ -2,7 +2,7 @@
 {
     public interface IDocumentService
     {
-        byte[] GeneratePatientDocument(int Id);
+        Task <byte[]> GeneratePatientDocumentAsync(int Id);
         void ReplaceKeywordsInDocx(string templatePath, string outputPath, Dictionary<string, string> keywordData);
         void SetDocumentAsReadOnly(string docxFilePath);
     }

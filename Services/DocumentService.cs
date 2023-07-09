@@ -17,10 +17,10 @@ namespace triage_hcp.Services
             _triageService = triageService;
         }
 
-        public byte[] GeneratePatientDocument(int Id)
+        public async Task <byte[]> GeneratePatientDocumentAsync(int Id)
         {
 
-            Pacjent pacjent = _triageService.Get(Id);
+            Pacjent pacjent = await _triageService.GetAsync(Id);
 
             string templatePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "Documents.docx");
             string outputPath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{Id}.docx");
@@ -46,11 +46,11 @@ namespace triage_hcp.Services
 
             };
 
-            ReplaceKeywordsInDocx(templatePath, outputPath, keywordData);
+            await Task.Run(() => ReplaceKeywordsInDocx(templatePath, outputPath, keywordData));
 
-            SetDocumentAsReadOnly(outputPath);
+            await Task.Run(() => SetDocumentAsReadOnly(outputPath));
 
-            return System.IO.File.ReadAllBytes(outputPath);
+            return await System.IO.File.ReadAllBytesAsync(outputPath);
 
         }
 

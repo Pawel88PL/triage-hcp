@@ -1,4 +1,25 @@
-# triage-hcp
+# Triage-HCP
+
+Triage-HCP to system do zarządzania pacjentami w Szpitalnym Oddziale Ratunkowym Centrum Medycznym HCP w Poznaniu. 
+Celem programu jest skrócenie czasu oczekiwania na lekarza poprzez efektywne triażowanie pacjentów, 
+monitorowanie ich obsługi oraz generowanie dokumentacji medycznej do wydrukowania.
+
+Główne funkcjonalności:
+- Ratownik medyczny przeprowadza triaż pacjentów, przydzielając im priorytet pilności według schematu Triage Manchester.
+- Pacjenci wyświetlają się na monitorach w poszczególnych gabinetach, salach intensywnego nadzoru i dyżurkach lekarskich Oddziału Ratunkowego.
+- Lekarze przypisują sobie pacjentów i rozpoczynają diagnostykę.
+- System informuje o przekroczeniu czasu oczekiwania na diagnostykę, poprzez migające kolory na monitorach.
+- Po zakończonej obsłudze, pacjenci są wypisywani z systemu i ich dane przechodzą do archiwum.
+- System generuje dokumentację medyczną dla każdego pacjenta, która może być wydrukowana w formacie pliku ".docx".
+
+Technologie:
+- Aplikacja została napisana w technologii ASP.NET Core MVC.
+- Wykorzystuje Entity Framework Core i Microsoft SQL Server jako bazę danych.
+
+Dzięki Triage-HCP personel medyczny może efektywnie zarządzać pacjentami, skracać czas oczekiwania na lekarza,
+monitorować i analizować dane związane z obsługą pacjentów, a także generować dokumentację medyczną gotową do wydruku.
+
+<h3>Chronologia zmian</h3>
 
 Data: 29.03.2023, wersja 2.0.0
 
@@ -229,4 +250,11 @@ Data 08.07.2023
 1. Zwiększono długość łańcucha znaków dla pola "BodyTemperature" o 1 znak, dzięki czemu można podać wartość po przecinku.
 2. Utworzono klasę DocumentService, która dziedziczy po interfejsie IDocumentService. Przeniesiono do niej, z kontrolera 
    TriageController, metody: GeneratePatientDocument(), ReplaceKeywordsInDocx() i SetDocumentAsReadOnly().
+3. Rozpoczęto refaktoryzację klasy TriageService.
 
+Data 09.07.2023
+
+1. Zmieniono nazwę akcji Triage w kontrolerze TriageController na AddNewPacjent i zmieniono ją na metodę asynchroniczną.
+2. Metodę GeneratePatientDocument() zmieniono na asynchroniczną.
+3. PatientController zmieniono na ListsOfPatientsController, zmieniono nazwy widoków w tym kontrolerze.
+4. Usunięto widok "Lista wsystkich pacjentów".

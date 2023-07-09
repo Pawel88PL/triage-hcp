@@ -1,51 +1,55 @@
-﻿using triage_hcp.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Services
 {
     public class TriageService : ITriageService
     {
-        
         private readonly DbTriageContext _context;
+        private readonly ILogger<TriageService> _logger;
 
-        public TriageService(DbTriageContext context)
+        public TriageService(DbTriageContext context, ILogger<TriageService> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        public int Delete(int Id)
+        public async Task<int> DeleteAsync(int Id)
         {
-            var pacjent = _context.Pacjenci.Find(Id);
+            var pacjent = await _context.Pacjenci.FindAsync(Id);
             _context.Pacjenci.Remove(pacjent);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
+            _logger.LogInformation("Usunięto pacjenta o Id: {Id}", Id);
 
             return Id;
         }
 
-        public Pacjent Get(int Id)
+        public async Task<Pacjent> GetAsync(int Id)
         {
-            var pacjent = _context.Pacjenci.Find(Id);
+            var pacjent = await _context.Pacjenci.FindAsync(Id);
 
             return pacjent;
         }
 
-        public List<Pacjent> GetAll()
+        public async Task<List<Pacjent>> GetAllAsync()
         {
-            var pacjenci = _context.Pacjenci.ToList();
+            var pacjenci = await _context.Pacjenci.ToListAsync();
 
             return pacjenci;
         }
 
-        public int Save(Pacjent pacjent)
+        public async Task<int> SaveAsync(Pacjent pacjent)
         {
             // logika zapisująca do bazy
-            _context.Pacjenci.Add(pacjent);
+            await _context.Pacjenci.AddAsync(pacjent);
+            await _context.SaveChangesAsync();
 
-            if (_context.SaveChanges() > 0)
-            {
-                Console.WriteLine("Wprowadzono kolejnego pacjenta o Id: {0}", pacjent.Id);
-            }
-            
+            _logger.LogInformation("Wprowadzono kolejnego pacjenta o Id: {Id}", pacjent.Id);
+
             return pacjent.Id;
         }
     }

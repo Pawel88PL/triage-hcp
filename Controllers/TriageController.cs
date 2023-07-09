@@ -19,14 +19,14 @@ namespace triage_hcp.Controllers
 
 
         [HttpGet]
-        public IActionResult Triage()
+        public IActionResult AddNewPatient()
         {
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult Triage(Pacjent pacjent)
+        public async Task<IActionResult> AddNewPatient(Pacjent pacjent)
         {
             if (!ModelState.IsValid)
             {
@@ -39,14 +39,26 @@ namespace triage_hcp.Controllers
             pacjent.DateTime = now;
             pacjent.TriageDate = today;
 
-            var Id = _triageService.Save(pacjent);
+            var Id = await _triageService.SaveAsync(pacjent);
 
-            var fileBytes = _documentService.GeneratePatientDocument(Id);
+            var fileBytes = await _documentService.GeneratePatientDocumentAsync(Id);
             var fileName = $"{Id}.docx";
 
             Response.Headers.Add("Content-Disposition", $"attachment; filename={fileName}");
 
             return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GeneratePatientDocument(int Id)
+        {
+            var fileBytes = await _documentService.GeneratePatientDocumentAsync(Id);
+            var fileName = $"{Id}.docx";
+
+            Response.Headers.Add("Content-Disposition", $"attachment; filename={fileName}");
+
+            return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+        }
+
     }
 }

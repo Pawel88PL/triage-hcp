@@ -248,7 +248,7 @@
                         ZAPISZ ZMIANY
                     </button>
 
-                    <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary">POWRÓT DO LISTY</button>
+                    <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO LISTY</button>
 
                     <a href="@Url.Action("EditPatientData","Edit", new { Id = Model.Id })"
                        class="btn btn-warning">

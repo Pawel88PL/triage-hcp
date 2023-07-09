@@ -4,9 +4,9 @@ namespace triage_hcp.Services.Interfaces
 {
     public interface ITriageService
     {
-        int Save(Pacjent pacjent);
-        List<Pacjent> GetAll();
-        Pacjent Get(int Id);
-        int Delete(int Id);
+        Task<int> DeleteAsync(int Id);
+        Task<Pacjent> GetAsync(int Id);
+        Task<List<Pacjent>> GetAllAsync();
+        Task<int> SaveAsync(Pacjent pacjent);
     }
 }
