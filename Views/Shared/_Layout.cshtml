@@ -30,35 +30,35 @@
                         {
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-success tooltip-btn m-2"
-                                        data-tooltip="Wyświetl aktualną listę pacjentów w SOR"
+                                        data-tooltip="Aktualna lista pacjentów w SOR"
                                         onclick="location.href='@Url.Action("MainList", "ListsOfPatients")'">
                                     <i class="bi bi-person-lines-fill"></i> LISTA PACJENTÓW
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-danger tooltip-btn m-2"
-                                        data-tooltip="Wykonaj triage nowego pacjenta"
+                                        data-tooltip="Dodaj nowego pacjenta"
                                         onclick="location.href='@Url.Action("AddNewPatient", "Triage")'">
                                     <i class="bi bi-heart-pulse"></i> TRIAGE
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-primary tooltip-btn m-2"
-                                        data-tooltip="Archiwum pacjentów"
+                                        data-tooltip="Lista zakończonych z dzisiejszego dyżuru"
                                         onclick="location.href='@Url.Action("TodayEndList", "ListsOfPatients")'">
                                     <i class="bi bi-clock-history"></i> ARCHIWUM
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-info tooltip-btn m-2"
-                                        data-tooltip="Wyświetl satystyki z dyżurów"
+                                        data-tooltip="Satystyki ruchu chorych"
                                         onclick="location.href='@Url.Action("Statistics", "ListsOfPatients")'">
                                     <i class="bi bi-clipboard2-data-fill"></i> STATYSTYKI
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-secondary tooltip-btn m-2"
-                                        data-tooltip="Naciśnij, aby się wylogować"
+                                        data-tooltip="Naciśnij, aby wylogować się"
                                         onclick="location.href='@Url.Action("LogOut", "Account")'">
                                     <i class="bi bi-file-person"></i> @User.Identity.Name?.ToUpper()
                                 </button>

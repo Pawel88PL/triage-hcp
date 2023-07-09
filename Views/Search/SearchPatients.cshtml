@@ -47,39 +47,78 @@
             @foreach (var pacjent in Model.Patients.OrderByDescending(x => x.DateTime))
             {
                 <div class="pacjent" style="background-color: @pacjent.Color; max-width: 100%">
-                    <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
-                       style="text-decoration:none; color:black">
-                        <div class="container">
-                            <div class="row">
-                                <div class="border-end col-1">
-                                    <strong>@pacjent.Id</strong>
-                                </div>
-                                <div class="border-end col-1">
-                                    <p>Przyjęto: </p>
-                                    <p><b>@pacjent.DateTime.ToString("g")</b></p>
-                                </div>
-                                <div class="border-end col-1">
-                                    <p>Zakończono: </p>
-                                    <p><b>@pacjent.EndTime.ToString("g")</b></p>
-                                </div>
-                                <div class="border-end col-2">
-                                    <b>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</b>
-                                </div>
-                                <div class="border-end col-1">
-                                    <b>@pacjent.Pesel</b>
-                                </div>
-                                <div class="border-end col-2">
-                                    <b>@pacjent.Diagnosis?.ToUpper()</b>
-                                </div>
-                                <div class="border-end col-2">
-                                    lek. prowadzący: <b>@pacjent.Doctor?.ToUpper()</b>
-                                </div>
-                                <div class="col-2">
-                                    <b> @pacjent.CoDalejZPacjentem?.ToUpper()</b>
+                    @if (pacjent.Active == "Tak")
+                    {
+                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                           style="text-decoration:none; color:black">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="border-end col-1">
+                                        <strong>@pacjent.Id</strong>
+                                    </div>
+                                    <div class="border-end col-1">
+                                        <p>Przyjęto: </p>
+                                        <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                    </div>
+                                    <div class="border-end col-1">
+                                        <p>Zakończono: </p>
+                                        <p><b>W trakcie</b></p>
+                                    </div>
+                                    <div class="border-end col-2">
+                                        <b>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</b>
+                                    </div>
+                                    <div class="border-end col-1">
+                                        <b>@pacjent.Pesel</b>
+                                    </div>
+                                    <div class="border-end col-2">
+                                        <b>@pacjent.Diagnosis?.ToUpper()</b>
+                                    </div>
+                                    <div class="border-end col-2">
+                                        lek. prowadzący: <b>@pacjent.Doctor?.ToUpper()</b>
+                                    </div>
+                                    <div class="col-2">
+                                        <b> @pacjent.CoDalejZPacjentem?.ToUpper()</b>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
+                           style="text-decoration:none; color:black">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="border-end col-1">
+                                        <strong>@pacjent.Id</strong>
+                                    </div>
+                                    <div class="border-end col-1">
+                                        <p>Przyjęto: </p>
+                                        <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                    </div>
+                                    <div class="border-end col-1">
+                                        <p>Zakończono: </p>
+                                        <p><b>@pacjent.EndTime.ToString("g")</b></p>
+                                    </div>
+                                    <div class="border-end col-2">
+                                        <b>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</b>
+                                    </div>
+                                    <div class="border-end col-1">
+                                        <b>@pacjent.Pesel</b>
+                                    </div>
+                                    <div class="border-end col-2">
+                                        <b>@pacjent.Diagnosis?.ToUpper()</b>
+                                    </div>
+                                    <div class="border-end col-2">
+                                        lek. prowadzący: <b>@pacjent.Doctor?.ToUpper()</b>
+                                    </div>
+                                    <div class="col-2">
+                                        <b> @pacjent.CoDalejZPacjentem?.ToUpper()</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
                 </div>
             }
             <br />

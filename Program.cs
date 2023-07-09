@@ -25,7 +25,7 @@ namespace triage_hcp
 
             builder.Services.AddDbContext<DbTriageContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("MyDataBase"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("local"));
             });
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>

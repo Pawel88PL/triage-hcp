@@ -261,3 +261,4 @@ Data 09.07.2023
 5. ConnectionString przeniesiono do pliku appsetings.json.
 6. Stworzono wyszukiwarkę pacjentów. Utworzono SearchController, PatientSearchViewModel, ISearchPatientService i klasę
    SearchPatientService. Wyszukiwarkę pacjentów umieszczono po prawej stronie paska nawigacyjnego.
+7. Poprawiono opisy z tzw. tooltip.
