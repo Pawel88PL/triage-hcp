@@ -259,3 +259,5 @@ Data 09.07.2023
 3. PatientController zmieniono na ListsOfPatientsController, zmieniono nazwy widoków w tym kontrolerze.
 4. Usunięto widok "Lista wsystkich pacjentów".
 5. ConnectionString przeniesiono do pliku appsetings.json.
+6. Stworzono wyszukiwarkę pacjentów. Utworzono SearchController, PatientSearchViewModel, ISearchPatientService i klasę
+   SearchPatientService. Wyszukiwarkę pacjentów umieszczono po prawej stronie paska nawigacyjnego.

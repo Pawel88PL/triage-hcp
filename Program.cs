@@ -21,6 +21,7 @@ namespace triage_hcp
 
             builder.Services.AddScoped<ITriageService, TriageService>();
             builder.Services.AddScoped<IDocumentService, DocumentService>();
+            builder.Services.AddScoped<ISearchPatientService, SearchPatientService>();
 
             builder.Services.AddDbContext<DbTriageContext>(options =>
             {

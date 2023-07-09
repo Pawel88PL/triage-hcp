@@ -26,7 +26,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-success tooltip-btn m-2"
@@ -74,6 +74,14 @@
                             </li>
                         }
                     </ul>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <form class="d-flex" asp-controller="Search" asp-action="SearchPatients" method="get">
+                            <input class="form-control form-control-lg m-2" type="search" name="query"
+                                   placeholder="Znajdź pacjenta ..." aria-label="Search">
+                            <button class="btn btn-lg btn-outline-success m-2" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    }
                 </div>
             </div>
         </nav>
