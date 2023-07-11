@@ -19,12 +19,8 @@ namespace triage_hcp
 
             builder.Services.AddDbContext<DbTriageContext>(builder =>
             {
-                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True");
+                builder.UseSqlServer("ConnectionString);
             });
-
-            // "Data Source=mssql2.webio.pl,2401;Database=triageadmin_mydatabase;Uid=triageadmin_mydatabase;Password=&(MxH*TA/Q4]$Q-%NEk_;TrustServerCertificate=True"
-            // "Server=localhost\\SQLEXPRESS;Database=sor_hcp;Uid=sa;Password=Pawel1234!"
-
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
             {
