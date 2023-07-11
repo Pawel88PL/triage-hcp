@@ -1,7 +1,10 @@
-﻿using triage_hcp.Services.Interfaces;
+﻿using triage_hcp;
+using triage_hcp.Models;
+using triage_hcp.Services.Interfaces;
 
 public class PeselService : IPeselService
 {
+    
     public bool IsPeselCorrect(string pesel)
     {
         if (pesel == null || pesel == "") return false;
@@ -60,5 +63,20 @@ public class PeselService : IPeselService
             return "Mężczyzna";
         }
         else return "Kobieta";
+    }
+
+    public void SetAgeAndGender(Pacjent pacjent)
+    {
+        // Sprawdzenie czy wprowadzono nr pesel lub czy nr pesel jest prawidłowy.
+        if (string.IsNullOrEmpty(pacjent.Pesel) || !IsPeselCorrect(pacjent.Pesel))
+        {
+            pacjent.Age = "00";
+            pacjent.Gender = "Nieokreślono";
+        }
+        else
+        {
+            pacjent.Age = CalculateAge(pacjent.Pesel);
+            pacjent.Gender = DetermineGender(pacjent.Pesel);
+        }
     }
 }

@@ -122,32 +122,6 @@
             </div>
 
 
-            var TriageDateAndTime = DateTime.Now.ToString("g");
-            var TriageDate = DateTime.Today.ToString("g");
-
-            <div style="display: none">
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@TriageDateAndTime</option>
-                </select>
-                <br />
-
-                <select class="form-control" id="TriageDate" name="TriageDate">
-                    <option>@TriageDate</option>
-                </select>
-                <br />
-
-                <select class="form-control" id="Doctor" name="Doctor">
-                    <option>Wybierz lekarza</option>
-                </select>
-
-                <select class="form-control" id="Active" name="Active">
-                    <option>Tak</option>
-                </select>
-
-                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                    <option>W trakcie diagnostyki SOR</option>
-                </select>
-            </div>
             <div class="d-flex justify-content-center flex-wrap">
                 <button type="submit" class="btn btn-danger btn-lg mx-2" id="Color" name="Color" value="red">CZERWONY</button>
                 <button type="submit" class="btn btn-warning btn-lg mx-2" id="Color" name="Color" value="orange">POMARAŃCZOWY</button>

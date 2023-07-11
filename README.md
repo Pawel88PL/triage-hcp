@@ -254,10 +254,10 @@ Data 08.07.2023
 
 Data 09.07.2023
 
-1. Zmieniono nazwę akcji Triage w kontrolerze TriageController na AddNewPacjent i zmieniono ją na metodę asynchroniczną.
+1. Zmieniono nazwę akcji "Triage" w kontrolerze TriageController na "AddNewPacjent" i zmieniono ją na metodę asynchroniczną.
 2. Metodę GeneratePatientDocument() zmieniono na asynchroniczną.
 3. PatientController zmieniono na ListsOfPatientsController, zmieniono nazwy widoków w tym kontrolerze.
-4. Usunięto widok "Lista wsystkich pacjentów".
+4. Usunięto widok "Lista wszystkich pacjentów".
 5. ConnectionString przeniesiono do pliku appsetings.json.
 6. Stworzono wyszukiwarkę pacjentów. Utworzono SearchController, PatientSearchViewModel, ISearchPatientService i klasę
    SearchPatientService. Wyszukiwarkę pacjentów umieszczono po prawej stronie paska nawigacyjnego.
@@ -265,3 +265,12 @@ Data 09.07.2023
 8. Metody, które uzyskują płeć i wiek z numeru pesel przeniesiono do osobnego serwisu - PeselService. Utworzono interfejs
    IPeselService i wstrzyknięto zależność do kontrolera TriageController.
 9. Poprawiono kod w związku z ostrzeżeniami o możliwej wartości null.
+
+Data 10.07.2023
+
+1. Utworzono DocumentationControler i przeniesiono do niego metodę GeneratePatientDocument() z kontrolera TriageController
+   zgodnie z zasadami SOLID (z zasadą pojedynczej odpowiedzialności i zasadą segregacji interfejsu).
+2. W klasie PeselService utworzono metodę SetAgeAndGender(), która korzysta z algorytmów wyciągających wiek i płeć z nr pesel
+   (IsPeselCorrect(), CalculateAge(), DetermineGender()) i przypisuje je do bazy danych dla konkretnego pacjenta.
+3. W klasie TriageService utworzono metodę SetDefaultPatientFields(), która nowemu pacjentowi przypisuje domyślne wartości
+   dla określonych pól.

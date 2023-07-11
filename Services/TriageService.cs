@@ -62,5 +62,15 @@ namespace triage_hcp.Services
 
             return pacjent.Id;
         }
+
+        public void SetDefaultPatientFields(Pacjent pacjent)
+        {
+            pacjent.DateTime = DateTime.Now;
+            pacjent.TriageDate = DateTime.Today;
+            pacjent.Doctor = "Wybierz lekarza";
+            pacjent.Active = "Tak";
+            pacjent.CoDalejZPacjentem = "W trakcie diagnostyki SOR";
+        }
+
     }
 }

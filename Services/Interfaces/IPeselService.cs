@@ -1,4 +1,6 @@
-﻿namespace triage_hcp.Services.Interfaces
+﻿using triage_hcp.Models;
+
+namespace triage_hcp.Services.Interfaces
 {
     public interface IPeselService
     {
@@ -7,5 +9,7 @@
         string CalculateAge(string pesel);
 
         string DetermineGender(string pesel);
+
+        void SetAgeAndGender(Pacjent pacjent);
     }
 }
