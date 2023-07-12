@@ -278,3 +278,16 @@ Data 10.07.2023
 Data 11.07.2023
 
 <h3> Opublikowano wersję 5.3.0. </h3>
+
+Data 12.07.2023
+
+1. Utworzono klasę DeleteService w której zadeklarowano asynchroniczoną metodę DeletePatientAsync(). Utworzono interfejs 
+   IDeleteServis i kontroler DeleteController, który odpowiada za usuwanie pacjentów z bazy danych
+2. Utworzono klasę DetailsService z metodami: GetAsync(), UpdatePacjentAsync() i CalculateTotalPatientTime().
+   Metody te są przekazywane za pośrednictwem interfejsu IDetailsService do kontrolera DetailsController.
+3. Utworzono klasę ListService z asynchroniczną metodą GetAllAsync(), którą przekazuję za pośrednictwem interfejsu do
+   kontrolera ListsOfPatientsController.
+4. Usunięto ModifyPatientDataController.
+5. Utworzono domyślny widok NotFound w katalogu Shared.
+6. Zarejestrowano nowe serwisy w kontenerze wstrzykiwania zależności (Dependency Injection, DI) w klasie Program.cs.
+7. Na stronie MainList zmieniono nazwy widoków z Edit na WithDoctor i WithoutDoctor.
