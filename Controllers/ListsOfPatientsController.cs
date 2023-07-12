@@ -9,31 +9,39 @@ namespace triage_hcp.Controllers
     [Authorize]
     public class ListsOfPatientsController : Controller
     {
-        private readonly ITriageService _triageService;
+        private readonly IListService _listService;
         
-        public ListsOfPatientsController(ITriageService triageService)
+        public ListsOfPatientsController(IListService listService)
         {
-            _triageService = triageService;
+            _listService = listService;
+        }
+
+
+        public async Task<IActionResult> AdminList()
+        {
+            var patientList = await _listService.GetAllAsync();
+
+            return View(patientList);
         }
 
 
         public async Task<IActionResult> MainList()
         {
-            var patientList = await _triageService.GetAllAsync();
+            var patientList = await _listService.GetAllAsync();
 
             return View(patientList);
         }
 
         public async Task<IActionResult> TodayEndList()
         {
-            var patientList = await _triageService.GetAllAsync();
+            var patientList = await _listService.GetAllAsync();
 
             return View(patientList);
         }
 
         public async Task<IActionResult> Statistics()
         {
-            var stats = from Pacjent in await _triageService.GetAllAsync()
+            var stats = from Pacjent in await _listService.GetAllAsync()
                         group Pacjent by Pacjent.TriageDate into dateGroup
                         select new Pacjent()
                         {

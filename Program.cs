@@ -20,10 +20,13 @@ namespace triage_hcp
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<ITriageService, TriageService>();
-            builder.Services.AddScoped<IPeselService, PeselService>();
+            builder.Services.AddScoped<IDeleteService, DeleteService>();
+            builder.Services.AddScoped<IDetailsService, DetailsService>();
             builder.Services.AddScoped<IDocumentService, DocumentService>();
+            builder.Services.AddScoped<IListService, ListService>();
+            builder.Services.AddScoped<IPeselService, PeselService>();
             builder.Services.AddScoped<ISearchPatientService, SearchPatientService>();
+            builder.Services.AddScoped<ITriageService, TriageService>();
 
             builder.Services.AddDbContext<DbTriageContext>(options =>
             {

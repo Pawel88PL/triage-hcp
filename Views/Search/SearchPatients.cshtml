@@ -49,7 +49,7 @@
                 <div class="pacjent" style="background-color: @pacjent.Color; max-width: 100%">
                     @if (pacjent.Active == "Tak")
                     {
-                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                        <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">
@@ -85,7 +85,7 @@
                     }
                     else
                     {
-                        <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
+                        <a href="@Url.Action("Done","Details", new { Id = pacjent.Id })"
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">

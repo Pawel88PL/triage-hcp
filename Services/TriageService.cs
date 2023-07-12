@@ -17,41 +17,6 @@ namespace triage_hcp.Services
             _logger = logger;
         }
 
-        public async Task<int> DeleteAsync(int Id)
-        {
-            var pacjent = await _context.Pacjenci.FindAsync(Id);
-
-            if(pacjent == null)
-            {
-                _logger.LogError("Nie znaleziono pacjenta o Id: {Id}", Id);
-                return -1;
-            }
-            _context.Pacjenci.Remove(pacjent);
-            await _context.SaveChangesAsync();
-
-            _logger.LogInformation("Usunięto pacjenta o Id: {Id}", Id);
-
-            return Id;
-        }
-
-        public async Task<Pacjent?> GetAsync(int Id)
-        {
-            var pacjent = await _context.Pacjenci.FindAsync(Id);
-
-            if (pacjent == null)
-            {
-                _logger.LogError("Nie znaleziono pacjenta o Id: {Id}", Id);
-            }
-
-            return pacjent;
-        }
-
-        public async Task<List<Pacjent>> GetAllAsync()
-        {
-            var pacjenci = await _context.Pacjenci.ToListAsync();
-
-            return pacjenci;
-        }
 
         public async Task<int> SaveAsync(Pacjent pacjent)
         {

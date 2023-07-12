@@ -11,7 +11,6 @@ public class SearchController : Controller
     }
 
     [HttpGet]
-    [HttpGet]
     public async Task<IActionResult> SearchPatients(string query)
     {
         var results = await _searchPatientService.SearchPatientsAsync(query);

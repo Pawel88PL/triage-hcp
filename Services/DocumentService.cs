@@ -9,18 +9,18 @@ namespace triage_hcp.Services
     public class DocumentService: IDocumentService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly ITriageService _triageService;
+        private readonly IDetailsService _editService;
 
-        public DocumentService(IWebHostEnvironment webHostEnvironment, ITriageService triageService)
+        public DocumentService(IWebHostEnvironment webHostEnvironment, IDetailsService editService)
         {
             _webHostEnvironment = webHostEnvironment;
-            _triageService = triageService;
+            _editService = editService;
         }
 
         public async Task <byte[]> GeneratePatientDocumentAsync(int Id)
         {
 
-            Pacjent pacjent = await _triageService.GetAsync(Id);
+            Pacjent pacjent = await _editService.GetAsync(Id);
 
             string templatePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "Documents.docx");
             string outputPath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{Id}.docx");

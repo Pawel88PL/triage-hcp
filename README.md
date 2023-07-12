@@ -274,3 +274,7 @@ Data 10.07.2023
    (IsPeselCorrect(), CalculateAge(), DetermineGender()) i przypisuje je do bazy danych dla konkretnego pacjenta.
 3. W klasie TriageService utworzono metodę SetDefaultPatientFields(), która nowemu pacjentowi przypisuje domyślne wartości
    dla określonych pól.
+
+Data 11.07.2023
+
+<h3> Opublikowano wersję 5.3.0. </h3>
