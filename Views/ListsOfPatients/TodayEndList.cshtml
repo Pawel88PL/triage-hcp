@@ -9,14 +9,6 @@
 }
 
 <div class="container">
-    <div class="border shadow p-3 mb-5 bg-white rounded" style="max-width: 600px">
-        <a href="~/Pacjent/ViewAllCompleted/" class="text-center" style="text-decoration:none">
-            <div class="btn-primary" style="border-radius: 3px; padding: 3px; font-size: 14px">
-                LISTA WSZYSTKICH PACJENTÓW: <b>@count</b>
-            </div>
-        </a>
-    </div>
-
     <div class="row">
         <div class="border shadow p-3 mb-5 bg-white rounded">
             <h2 class="text-center">Pacjenci z dzisiejszego dyżuru, z zakończoną obsługą w SOR</h2>
@@ -57,7 +49,7 @@
                 if (!(pacjent.Active == "Tak"))
                 {
                     <div class="pacjent" style="background-color: @pacjent.Color; max-width: 100%">
-                        <a href="@Url.Action("Done","Edit", new { Id = pacjent.Id })"
+                        <a href="@Url.Action("Done","Details", new { Id = pacjent.Id })"
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">

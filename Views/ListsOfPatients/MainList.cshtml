@@ -17,68 +17,6 @@
 
 
 
-    bool PeselCorrect(string? pesel)
-    {
-        if (pesel == null || pesel == "") return false;
-        if (pesel.Length != 11) return false;
-
-        int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
-
-        int total = 0;
-        for (int i = 0; i < 11; i++)
-        {
-            int r = (int)(pesel[i] - '0');
-            if (r < 0 || r > 9) return false;
-            total += weights[i] * r;
-        }
-
-        if (total % 10 == 0) return true;
-        else return false;
-    }
-
-
-    string PrintGender(string pesel)
-    {
-        if (PeselCorrect(pesel) == false) return "Nie określono płci";
-
-        int controlNumber = int.Parse(pesel.Substring(9, 1));
-        if (controlNumber == 1 || controlNumber == 3 || controlNumber == 5 ||
-            controlNumber == 7 || controlNumber == 9)
-        {
-            return "Mężczyzna";
-        }
-        else return "Kobieta";
-    }
-
-
-    string PrintAge(string pesel)
-    {
-        DateTime YearNow = DateTime.Today;
-
-        if (PeselCorrect(pesel) == false) return "00";
-
-        int yearNow = YearNow.Year;
-
-        int patientYear = int.Parse(pesel.Substring(0, 2));
-        int month = int.Parse(pesel.Substring(2, 2));
-
-        int ageBefore2000 = yearNow - 1900 - patientYear;
-        int ageAfter2000 = yearNow - 2000 - patientYear;
-
-        string ageBefore = ageBefore2000.ToString();
-        string ageAfter = ageAfter2000.ToString();
-
-        if (month > 12)
-        {
-            return ageAfter;
-
-        }
-        else
-        {
-            return ageBefore;
-        }
-
-    }
 
     int WaitingTime(DateTime triagedate)
     {
@@ -100,7 +38,7 @@
 
 
 
-<div class="container">
+<div class="container pt-4">
     <div class="row">
         <div class="col-lg-9">
             <div>
@@ -123,7 +61,7 @@
                                     <div class="pacjent" style="background-color: @pacjent.Color">
                                         <div class="row">
                                             <div class="col-9">
-                                                <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                                <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                                    style="text-decoration:none; color:black">
                                                     <div class="row">
                                                         <div class="col-4">
@@ -223,28 +161,7 @@
                                                                 }
                                                             }
 
-
-                                                            @if (PeselCorrect(pacjent.Pesel))
-                                                            {
-                                                                if (pacjent.Pesel is not null)
-                                                                {
-                                                                    <p>@PrintGender(pacjent.Pesel) @PrintAge(pacjent.Pesel) lat</p>
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                if (pacjent.Gender is null & pacjent.Age is null)
-                                                                {
-                                                                    if (pacjent.Pesel is not null)
-                                                                    {
-                                                                        <p>@PrintGender(pacjent.Pesel) @PrintAge(pacjent.Pesel)</p>
-                                                                    }
-                                                                }
-                                                                else
-                                                                {
-                                                                    <p>@pacjent.Gender @pacjent.Age lat</p>
-                                                                }
-                                                            }
+                                                            <p>@pacjent.Gender @pacjent.Age lat</p>
                                                             <p>PESEL: <b>@pacjent.Pesel</b></p>
                                                         </div>
 
@@ -464,7 +381,7 @@
 
 
                                             <div class="col-3">
-                                                @using (Html.BeginForm("Details", "Edit", FormMethod.Post))
+                                                @using (Html.BeginForm("Update", "Details", FormMethod.Post))
                                                 {
                                                     <input type="hidden" name="Id" value="@pacjent.Id" />
 
@@ -497,55 +414,11 @@
                                                         </select>
 
                                                         <select class="form-control" id="Age" name="Age">
-                                                            <option>
-                                                                @if (PeselCorrect(pacjent.Pesel))
-                                                                {
-                                                                    if (pacjent.Pesel is not null)
-                                                                    {
-                                                                        @PrintAge(pacjent.Pesel)
-                                                                    }
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (pacjent.Age is null)
-                                                                    {
-                                                                        if (pacjent.Pesel is not null)
-                                                                        {
-                                                                            @PrintAge(pacjent.Pesel)
-                                                                        }
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        @pacjent.Age
-                                                                    }
-                                                                }
-                                                            </option>
+                                                            <option>@pacjent.Age</option>
                                                         </select>
 
                                                         <select class="form-control" id="Gender" name="Gender">
-                                                            <option>
-                                                                @if (PeselCorrect(pacjent.Pesel))
-                                                                {
-                                                                    if (pacjent.Pesel is not null)
-                                                                    {
-                                                                        @PrintGender(pacjent.Pesel)
-                                                                    }
-                                                                }
-                                                                else
-                                                                {
-                                                                    if (pacjent.Gender is null)
-                                                                    {
-                                                                        if (pacjent.Pesel is not null)
-                                                                        {
-                                                                            @PrintGender(pacjent.Pesel)
-                                                                        }
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        @pacjent.Gender
-                                                                    }
-                                                                }
-                                                            </option>
+                                                            <option>@pacjent.Gender</option>
                                                         </select>
 
                                                         <select class="form-control" id="Diagnosis" name="Diagnosis">
@@ -578,6 +451,30 @@
 
                                                         <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
                                                             <option>@pacjent.ToWhomThePatient</option>
+                                                        </select>
+
+                                                        <select class="form-control" id="SBP" name="SBP">
+                                                            <option>@pacjent.SBP</option>
+                                                        </select>
+
+                                                        <select class="form-control" id="DBP" name="DBP">
+                                                            <option>@pacjent.DBP</option>
+                                                        </select>
+
+                                                        <select class="form-control" id="HeartRate" name="HeartRate">
+                                                            <option>@pacjent.HeartRate</option>
+                                                        </select>
+
+                                                        <select class="form-control" id="Spo2" name="Spo2">
+                                                            <option>@pacjent.Spo2</option>
+                                                        </select>
+
+                                                        <select class="form-control" id="GCS" name="GCS">
+                                                            <option>@pacjent.GCS</option>
+                                                        </select>
+
+                                                        <select class="form-control" id="BodyTemperature" name="BodyTemperature">
+                                                            <option>@pacjent.BodyTemperature</option>
                                                         </select>
 
                                                     </div>
@@ -667,7 +564,7 @@
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="pacjent" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                        <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
                                             <div class="row">
                                                 <div class="col-4">
@@ -723,7 +620,7 @@
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="pacjent" style="background-color: @pacjent.Color">
-                                        <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                        <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                            style="text-decoration:none; color:black">
                                             <div class="row">
                                                 <div class="col-4">
@@ -780,7 +677,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -887,7 +784,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -911,7 +808,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1018,7 +915,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1042,7 +939,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1149,7 +1046,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1173,7 +1070,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1280,7 +1177,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1308,7 +1205,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1415,7 +1312,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1439,7 +1336,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1546,7 +1443,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1570,7 +1467,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1677,7 +1574,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1701,7 +1598,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1808,7 +1705,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1832,7 +1729,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -1939,7 +1836,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -1967,7 +1864,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2074,7 +1971,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -2098,7 +1995,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2205,7 +2102,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -2229,7 +2126,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2336,7 +2233,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -2364,7 +2261,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2471,7 +2368,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -2495,7 +2392,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2602,7 +2499,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -2626,7 +2523,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2733,7 +2630,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -2761,7 +2658,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2868,7 +2765,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -2892,7 +2789,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -2999,7 +2896,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -3023,7 +2920,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -3130,7 +3027,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -3153,7 +3050,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -3260,7 +3157,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -3283,7 +3180,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -3390,7 +3287,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>
@@ -3413,7 +3310,7 @@
                             (x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("WithoutDoctor","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithoutDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         @if (pacjent.Color == "red")
                                         {
@@ -3520,7 +3417,7 @@
                             !(x.Doctor == "Wybierz lekarza")))
                             {
                                 <div class="pacjent_sala" style="background-color: @pacjent.Color">
-                                    <a href="@Url.Action("Details","Edit", new { Id = pacjent.Id })"
+                                    <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
                                        style="text-decoration:none; color:black">
                                         <h5>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</h5>
                                     </a>

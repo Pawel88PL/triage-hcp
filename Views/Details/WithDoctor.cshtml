@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row">
-        <form asp-action="Details">
+        <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -48,6 +48,30 @@
 
                 <select class="form-control" id="Diagnosis" name="Diagnosis">
                     <option>@Model.Diagnosis</option>
+                </select>
+
+                <select class="form-control" id="SBP" name="SBP">
+                    <option>@Model.SBP</option>
+                </select>
+
+                <select class="form-control" id="DBP" name="DBP">
+                    <option>@Model.DBP</option>
+                </select>
+
+                <select class="form-control" id="HeartRate" name="HeartRate">
+                    <option>@Model.HeartRate</option>
+                </select>
+
+                <select class="form-control" id="Spo2" name="Spo2">
+                    <option>@Model.Spo2</option>
+                </select>
+
+                <select class="form-control" id="GCS" name="GCS">
+                    <option>@Model.GCS</option>
+                </select>
+
+                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
+                    <option>@Model.BodyTemperature</option>
                 </select>
 
             </div>
@@ -248,14 +272,14 @@
                         ZAPISZ ZMIANY
                     </button>
 
-                    <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary">POWRÓT DO LISTY</button>
+                    <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO LISTY</button>
 
-                    <a href="@Url.Action("EditPatientData","Edit", new { Id = Model.Id })"
+                    <a href="@Url.Action("Edit","Details", new { Id = Model.Id })"
                        class="btn btn-warning">
                         EDYTUJ DANE
                     </a>
 
-                    <a href="@Url.Action("GeneratePatientDocument","Triage", new { Id = Model.Id })"
+                    <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.Id })"
                        class="btn btn-secondary">
                         DRUKUJ DOKUMENTY
                     </a>
@@ -270,7 +294,7 @@
 
 
 
-    <form asp-action="Details">
+    <form asp-action="Update">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
 
@@ -340,6 +364,30 @@
 
             <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
                 <option>@Model.ObserwacjeRatPiel</option>
+            </select>
+
+            <select class="form-control" id="SBP" name="SBP">
+                <option>@Model.SBP</option>
+            </select>
+
+            <select class="form-control" id="DBP" name="DBP">
+                <option>@Model.DBP</option>
+            </select>
+
+            <select class="form-control" id="HeartRate" name="HeartRate">
+                <option>@Model.HeartRate</option>
+            </select>
+
+            <select class="form-control" id="Spo2" name="Spo2">
+                <option>@Model.Spo2</option>
+            </select>
+
+            <select class="form-control" id="GCS" name="GCS">
+                <option>@Model.GCS</option>
+            </select>
+
+            <select class="form-control" id="BodyTemperature" name="BodyTemperature">
+                <option>@Model.BodyTemperature</option>
             </select>
 
 

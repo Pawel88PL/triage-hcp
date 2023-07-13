@@ -26,39 +26,39 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-success tooltip-btn m-2"
-                                        data-tooltip="Wyświetl aktualną listę pacjentów w SOR"
-                                        onclick="location.href='@Url.Action("List", "Pacjent")'">
+                                        data-tooltip="Aktualna lista pacjentów w SOR"
+                                        onclick="location.href='@Url.Action("MainList", "ListsOfPatients")'">
                                     <i class="bi bi-person-lines-fill"></i> LISTA PACJENTÓW
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-danger tooltip-btn m-2"
-                                        data-tooltip="Wykonaj triage nowego pacjenta"
-                                        onclick="location.href='@Url.Action("Triage", "Triage")'">
+                                        data-tooltip="Dodaj nowego pacjenta"
+                                        onclick="location.href='@Url.Action("AddNewPatient", "Triage")'">
                                     <i class="bi bi-heart-pulse"></i> TRIAGE
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-primary tooltip-btn m-2"
-                                        data-tooltip="Archiwum pacjentów"
-                                        onclick="location.href='@Url.Action("CompletedList", "Pacjent")'">
+                                        data-tooltip="Lista zakończonych z dzisiejszego dyżuru"
+                                        onclick="location.href='@Url.Action("TodayEndList", "ListsOfPatients")'">
                                     <i class="bi bi-clock-history"></i> ARCHIWUM
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-info tooltip-btn m-2"
-                                        data-tooltip="Wyświetl satystyki z dyżurów"
-                                        onclick="location.href='@Url.Action("Statistics", "Pacjent")'">
+                                        data-tooltip="Satystyki ruchu chorych"
+                                        onclick="location.href='@Url.Action("Statistics", "ListsOfPatients")'">
                                     <i class="bi bi-clipboard2-data-fill"></i> STATYSTYKI
                                 </button>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-secondary tooltip-btn m-2"
-                                        data-tooltip="Naciśnij, aby się wylogować"
+                                        data-tooltip="Naciśnij, aby wylogować się"
                                         onclick="location.href='@Url.Action("LogOut", "Account")'">
                                     <i class="bi bi-file-person"></i> @User.Identity.Name?.ToUpper()
                                 </button>
@@ -74,6 +74,14 @@
                             </li>
                         }
                     </ul>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <form class="d-flex" asp-controller="Search" asp-action="SearchPatients" method="get">
+                            <input class="form-control form-control-lg m-2" type="search" name="query"
+                                   placeholder="Znajdź pacjenta ..." aria-label="Search">
+                            <button class="btn btn-lg btn-outline-success m-2" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    }
                 </div>
             </div>
         </nav>
@@ -86,7 +94,7 @@
 
     <footer class="footer text-muted">
         <div class="container border">
-            <p>Copyright &copy; 2023 Paweł Staniul. All rights reserved. Ver. 5.2.0. Published 06.07.2023.</p>
+            <p>Copyright &copy; 2023 Paweł Staniul. All rights reserved. Ver. 5.4.0. Published 13.07.2023.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -12,7 +12,7 @@
 
 <div class="container col-7">
     <div class="row">
-        <form asp-action="Details" class="col-auto">
+        <form asp-action="Update" class="col-auto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -68,6 +68,30 @@
 
                 <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
                     <option>@Model.CoDalejZPacjentem</option>
+                </select>
+
+                <select class="form-control" id="SBP" name="SBP">
+                    <option>@Model.SBP</option>
+                </select>
+
+                <select class="form-control" id="DBP" name="DBP">
+                    <option>@Model.DBP</option>
+                </select>
+
+                <select class="form-control" id="HeartRate" name="HeartRate">
+                    <option>@Model.HeartRate</option>
+                </select>
+
+                <select class="form-control" id="Spo2" name="Spo2">
+                    <option>@Model.Spo2</option>
+                </select>
+
+                <select class="form-control" id="GCS" name="GCS">
+                    <option>@Model.GCS</option>
+                </select>
+
+                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
+                    <option>@Model.BodyTemperature</option>
                 </select>
 
             </div>
@@ -150,7 +174,7 @@
                             <button type="submit" class="btn btn-danger" style="margin: 2px">ZAPISZ ZMIANY</button>
                         </div>
                         <div class="col-6">
-                            <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary" style="margin: 2px">POWRÓT DO LISTY</button>
+                            <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary" style="margin: 2px">POWRÓT DO LISTY</button>
                         </div>
                     </div>
                 </div>

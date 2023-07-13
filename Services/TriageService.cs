@@ -1,52 +1,41 @@
-﻿using triage_hcp.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Services
 {
     public class TriageService : ITriageService
     {
-        
         private readonly DbTriageContext _context;
+        private readonly ILogger<TriageService> _logger;
 
-        public TriageService(DbTriageContext context)
+        public TriageService(DbTriageContext context, ILogger<TriageService> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        public int Delete(int Id)
+
+        public async Task<int> SaveAsync(Pacjent pacjent)
         {
-            var pacjent = _context.Pacjenci.Find(Id);
-            _context.Pacjenci.Remove(pacjent);
-            _context.SaveChanges();
+            await _context.Pacjenci.AddAsync(pacjent);
+            await _context.SaveChangesAsync();
 
-            return Id;
-        }
+            _logger.LogInformation("Wprowadzono kolejnego pacjenta o Id: {Id}", pacjent.Id);
 
-        public Pacjent Get(int Id)
-        {
-            var pacjent = _context.Pacjenci.Find(Id);
-
-            return pacjent;
-        }
-
-        public List<Pacjent> GetAll()
-        {
-            var pacjenci = _context.Pacjenci.ToList();
-
-            return pacjenci;
-        }
-
-        public int Save(Pacjent pacjent)
-        {
-            // logika zapisująca do bazy
-            _context.Pacjenci.Add(pacjent);
-
-            if (_context.SaveChanges() > 0)
-            {
-                Console.WriteLine("Wprowadzono kolejnego pacjenta o Id: {0}", pacjent.Id);
-            }
-            
             return pacjent.Id;
         }
+
+        public void SetDefaultPatientFields(Pacjent pacjent)
+        {
+            pacjent.DateTime = DateTime.Now;
+            pacjent.TriageDate = DateTime.Today;
+            pacjent.Doctor = "Wybierz lekarza";
+            pacjent.Active = "Tak";
+            pacjent.CoDalejZPacjentem = "W trakcie diagnostyki SOR";
+        }
+
     }
 }

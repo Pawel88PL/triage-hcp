@@ -5,68 +5,7 @@
     ViewData["Title"] = "Przypisz lekarza!";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    bool PeselCorrect(string? pesel)
-    {
-        if (pesel == null || pesel == "") return false;
-        if (pesel.Length != 11) return false;
-
-        int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
-
-        int total = 0;
-        for (int i = 0; i < 11; i++)
-        {
-            int r = (int)(pesel[i] - '0');
-            if (r < 0 || r > 9) return false;
-            total += weights[i] * r;
-        }
-
-        if (total % 10 == 0) return true;
-        else return false;
-    }
-
-
-    string PrintGender(string pesel)
-    {
-        if (PeselCorrect(pesel) == false) return "Nie określono płci";
-
-        int controlNumber = int.Parse(pesel.Substring(9, 1));
-        if (controlNumber == 1 || controlNumber == 3 || controlNumber == 5 ||
-            controlNumber == 7 || controlNumber == 9)
-        {
-            return "Mężczyzna";
-        }
-        else return "Kobieta";
-    }
-
-
-    string PrintAge(string pesel)
-    {
-        DateTime YearNow = DateTime.Today;
-
-        if (PeselCorrect(pesel) == false) return "00";
-
-        int yearNow = YearNow.Year;
-
-        int patientYear = int.Parse(pesel.Substring(0, 2));
-        int month = int.Parse(pesel.Substring(2, 2));
-
-        int ageBefore2000 = yearNow - 1900 - patientYear;
-        int ageAfter2000 = yearNow - 2000 - patientYear;
-
-        string ageBefore = ageBefore2000.ToString();
-        string ageAfter = ageAfter2000.ToString();
-
-        if (month > 12)
-        {
-            return ageAfter;
-
-        }
-        else
-        {
-            return ageBefore;
-        }
-
-    }
+    
 
     int WaitingTime(DateTime triagedate)
     {
@@ -86,7 +25,7 @@
 
 <div class="container">
     <div class="row">
-        <form asp-action="Details">
+        <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
@@ -119,55 +58,11 @@
                 </select>
 
                 <select class="form-control" id="Age" name="Age">
-                    <option>
-                        @if (PeselCorrect(Model.Pesel))
-                        {
-                            if (Model.Pesel is not null)
-                            {
-                                @PrintAge(Model.Pesel)
-                            }
-                        }
-                        else
-                        {
-                            if (Model.Age is null)
-                            {
-                                if (Model.Pesel is not null)
-                                {
-                                    @PrintAge(Model.Pesel)
-                                }
-                            }
-                            else
-                            {
-                                @Model.Age
-                            }
-                        }
-                    </option>
+                    <option>@Model.Age</option>
                 </select>
 
                 <select class="form-control" id="Gender" name="Gender">
-                    <option>
-                        @if (PeselCorrect(Model.Pesel))
-                        {
-                            if (Model.Pesel is not null)
-                            {
-                                @PrintGender(Model.Pesel)
-                            }
-                        }
-                        else
-                        {
-                            if (Model.Gender is null)
-                            {
-                                if (Model.Pesel is not null)
-                                {
-                                    @PrintGender(Model.Pesel)
-                                }
-                            }
-                            else
-                            {
-                                @Model.Gender
-                            }
-                        }
-                    </option>
+                    <option>@Model.Gender</option>
                 </select>
 
                 <select class="form-control" id="Diagnosis" name="Diagnosis">
@@ -180,6 +75,31 @@
 
                 <select class="form-control" id="Active" name="Active">
                     <option>@Model.Active</option>
+                </select>
+
+
+                <select class="form-control" id="SBP" name="SBP">
+                    <option>@Model.SBP</option>
+                </select>
+
+                <select class="form-control" id="DBP" name="DBP">
+                    <option>@Model.DBP</option>
+                </select>
+
+                <select class="form-control" id="HeartRate" name="HeartRate">
+                    <option>@Model.HeartRate</option>
+                </select>
+
+                <select class="form-control" id="Spo2" name="Spo2">
+                    <option>@Model.Spo2</option>
+                </select>
+
+                <select class="form-control" id="GCS" name="GCS">
+                    <option>@Model.GCS</option>
+                </select>
+
+                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
+                    <option>@Model.BodyTemperature</option>
                 </select>
 
             </div>
@@ -288,27 +208,8 @@
                                             }
                                         }
 
-                                        @if (PeselCorrect(Model.Pesel))
-                                        {
-                                            if (Model.Pesel is not null)
-                                            {
-                                                <h5>@PrintGender(Model.Pesel) @PrintAge(Model.Pesel) lat</h5>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (Model.Gender is null & Model.Age is null)
-                                            {
-                                                if (Model.Pesel is not null)
-                                                {
-                                                    <h5>@PrintGender(Model.Pesel) @PrintAge(Model.Pesel)</h5>
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <h5>@Model.Gender @Model.Age lat</h5>
-                                            }
-                                        }
+                                        
+                                        <h5>@Model.Gender @Model.Age lat</h5> 
                                         <h5>PESEL: @Model.Pesel</h5>
                                     </div>
 
@@ -545,13 +446,13 @@
                                 <button type="submit" class="btn btn-danger">ZAPISZ ZMIANY</button>
                             </div>
                             <div class="col-4">
-                                <a href="@Url.Action("GeneratePatientDocument","Triage", new { Id = Model.Id })"
+                                <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.Id })"
                                    class="btn btn-secondary">
                                     DRUKUJ DOKUMENTY
                                 </a>
                             </div>
                             <div class="col-4">
-                                <button asp-controller="Pacjent" asp-action="List" class="btn btn-primary">POWRÓT DO LISTY</button>
+                                <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO LISTY</button>
                             </div>
                         </div>
 

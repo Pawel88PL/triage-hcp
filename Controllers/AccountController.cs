@@ -37,7 +37,7 @@ namespace triage_hcp.Controllers
 
             ViewData["UserName"] = userLoginData.UserName;
 
-            return RedirectToAction("List", "Pacjent");
+            return RedirectToAction("MainList", "ListsOfPatients");
         }
 
 

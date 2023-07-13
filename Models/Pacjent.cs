@@ -79,7 +79,7 @@ namespace triage_hcp.Models
         [StringLength(2)]
         public string? GCS { get; set; }
 
-        [StringLength(3)]
+        [StringLength(4)]
         public string? BodyTemperature { get; set; }
     }
 }
