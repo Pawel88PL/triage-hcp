@@ -291,3 +291,6 @@ Data 12.07.2023
 5. Utworzono domyślny widok NotFound w katalogu Shared.
 6. Zarejestrowano nowe serwisy w kontenerze wstrzykiwania zależności (Dependency Injection, DI) w klasie Program.cs.
 7. Na stronie MainList zmieniono nazwy widoków z Edit na WithDoctor i WithoutDoctor.
+<hr/>
+
+<h3> Opublikowano wersję 5.4.0. </h3>
