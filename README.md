@@ -292,5 +292,10 @@ Data 12.07.2023
 6. Zarejestrowano nowe serwisy w kontenerze wstrzykiwania zależności (Dependency Injection, DI) w klasie Program.cs.
 7. Na stronie MainList zmieniono nazwy widoków z Edit na WithDoctor i WithoutDoctor.
 <hr/>
-
 <h3> Opublikowano wersję 5.4.0. </h3>
+
+Data 13.07.2023
+
+1. Przeniesiono bazę danych na lokalny serwer.
+2. W widoku WithDoctor w sekcji "display: none" dodano formularze z parametrami pacjenta. Usunięto tym samym błąd, który powodował
+   wyczyszczenie tych pól z bazy danych po wypisywaniu pacjenta z systemu.
