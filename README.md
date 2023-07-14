@@ -341,3 +341,8 @@ Data 13.07.2023
 1. Przeniesiono bazę danych na lokalny serwer.
 2. W widoku WithDoctor w sekcji "display: none" dodano formularze z parametrami pacjenta. Usunięto tym samym błąd, który powodował
    wyczyszczenie tych pól z bazy danych po wypisywaniu pacjenta z systemu.
+3. Utworzono widoki Partial View do przesyłania ukrytych pól formularzy dla stron "Done", WithDoctor", "WithoutDoctor".
+4. Listę lekarzy przeniesiono do Partial View jako DoctorsList.cshtml.
+5. Listę lokalizacji w SOR przeniesiono do Partial View jako RoomList.cshtml.
+6. Listę rozwijalną "Jaka decyzja?" przeniesiono do Partial View jako WhatDecision.cshtml.
+7. Poprawiono wygląd i funkcjonalność formularza edycji danych pacjenta dla widoku "Admin".

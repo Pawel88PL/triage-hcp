@@ -31,43 +31,7 @@
 
             <div style="display:none">
 
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@Model.DateTime</option>
-                </select>
-                <span asp-validation-for="DateTime" class="text-danger"></span>
-
-                <select class="form-control" id="TriageDate" name="TriageDate">
-                    <option>@Model.TriageDate</option>
-                </select>
-
-                <select class="form-control" id="WaitingTime" name="WaitingTime">
-                    <option>@WaitingTime(@Model.DateTime)</option>
-                </select>
-                <br />
-
-                <select class="form-control" id="Name" name="Name">
-                    <option>@Model.Name</option>
-                </select>
-
-                <select class="form-control" id="Surname" name="Surname">
-                    <option>@Model.Surname</option>
-                </select>
-
-                <select class="form-control" id="Pesel" name="Pesel">
-                    <option>@Model.Pesel</option>
-                </select>
-
-                <select class="form-control" id="Age" name="Age">
-                    <option>@Model.Age</option>
-                </select>
-
-                <select class="form-control" id="Gender" name="Gender">
-                    <option>@Model.Gender</option>
-                </select>
-
-                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                    <option>@Model.Diagnosis?.ToUpper()</option>
-                </select>
+                @await Html.PartialAsync("HiddenFormFields")
 
                 <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
                     <option>@Model.CoDalejZPacjentem</option>
@@ -75,31 +39,6 @@
 
                 <select class="form-control" id="Active" name="Active">
                     <option>@Model.Active</option>
-                </select>
-
-
-                <select class="form-control" id="SBP" name="SBP">
-                    <option>@Model.SBP</option>
-                </select>
-
-                <select class="form-control" id="DBP" name="DBP">
-                    <option>@Model.DBP</option>
-                </select>
-
-                <select class="form-control" id="HeartRate" name="HeartRate">
-                    <option>@Model.HeartRate</option>
-                </select>
-
-                <select class="form-control" id="Spo2" name="Spo2">
-                    <option>@Model.Spo2</option>
-                </select>
-
-                <select class="form-control" id="GCS" name="GCS">
-                    <option>@Model.GCS</option>
-                </select>
-
-                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
-                    <option>@Model.BodyTemperature</option>
                 </select>
 
             </div>
@@ -340,27 +279,7 @@
                                 <div class="form-group">
                                     <select class="form-select" id="Room" name="Room">
                                         <option>@Model.Room</option>
-                                        <option>Poczekalnia</option>
-                                        <option>Korytarz</option>
-                                        <option>Wituś</option>
-                                        <option>Wituś 1</option>
-                                        <option>Wituś 2</option>
-                                        <option>Wituś 3</option>
-                                        <option>WIT</option>
-                                        <option>WIT 1</option>
-                                        <option>WIT 2</option>
-                                        <option>WIT 3</option>
-                                        <option>WIT 4</option>
-                                        <option>Sala obserwacyjna 5</option>
-                                        <option>Sala obserwacyjna 6</option>
-                                        <option>Sala obserwacyjna 7</option>
-                                        <option>Sala obserwacyjna 8</option>
-                                        <option>Sala obserwacyjna 9</option>
-                                        <option>Sala obserwacyjna 10</option>
-                                        <option>Izolatka Z1</option>
-                                        <option>Izolatka Z2</option>
-                                        <option>Izolatka Z3</option>
-                                        <option>Dekontaminacja</option>
+                                        @await Html.PartialAsync("RoomList")
                                     </select>
                                     <span asp-validation-for="Room" class="text-danger"></span>
                                 </div>
@@ -374,62 +293,14 @@
                                 <br />
 
                                 <select class="form-select" id="Color" name="Color">
-                                    <option value="@Model.Color" style="background-color:@Model.Color">Czy zmienić kolor?</option>
-                                    <option value="lightskyblue" style="background-color:lightskyblue">Niebieski</option>
-                                    <option value="lightgreen" style="background-color:lightgreen">Zielony</option>
-                                    <option value="yellow" style="background-color:yellow">Żółty</option>
-                                    <option value="orange" style="background-color:orange">Pomarańczowy</option>
-                                    <option value="red" style="background-color:red">Czerwony</option>
+                                    @await Html.PartialAsync("ColorList")
                                 </select>
                                 <br />
 
 
                                 <div class="form-group">
                                     <select class="form-select" id="Doctor" name="Doctor">
-                                        <option>@Model.Doctor</option>
-                                        <option>Avdieiev Anton</option>
-                                        <option>Betkowiak Zuzanna</option>
-                                        <option>Binaś Marcin</option>
-                                        <option>Chrzanowski Monica</option>
-                                        <option>Czekała-Karpiński Dawid</option>
-                                        <option>Dabryneuski Uladzimir</option>
-                                        <option>Domin Remigiusz</option>
-                                        <option>Elantkowski Łukasz</option>
-                                        <option>Fritzkiewicz Witold</option>
-                                        <option>Gąsiorowski Mateusz</option>
-                                        <option>Gilier Kamila</option>
-                                        <option>Grymuza Maciej</option>
-                                        <option>Guliński Marcin</option>
-                                        <option>Huzenko Jaroslaw</option>
-                                        <option>Junewicz</option>
-                                        <option>Kłaczyński Mateusz</option>
-                                        <option>Knasiecka Magdalena</option>
-                                        <option>Kochman Karol</option>
-                                        <option>Kohan Anastasiia</option>
-                                        <option>Kosharna Anna</option>
-                                        <option>Lesiak Karol</option>
-                                        <option>Łuczak Agnieszka</option>
-                                        <option>Makowska Agata</option>
-                                        <option>Malik Arkadiusz</option>
-                                        <option>Małkiewicz Tomasz</option>
-                                        <option>Miroshnichenko Yurii</option>
-                                        <option>Nowak Michał</option>
-                                        <option>Pankiewicz Mateusz</option>
-                                        <option>Paszkowiak-Ciesielska Hanna</option>
-                                        <option>Pisula Piotr</option>
-                                        <option>Polupanov Yevhen</option>
-                                        <option>Potyka Marek</option>
-                                        <option>Razumka Krystyna</option>
-                                        <option>Rojna Maciej</option>
-                                        <option>Sesiuk Aleksandra</option>
-                                        <option>Skrzypek Dariusz</option>
-                                        <option>Śliwowski Cezary</option>
-                                        <option>Śmidrowicz Bartosz</option>
-                                        <option>Wierzchowiecki Jerzy</option>
-                                        <option>Woźny Tomasz</option>
-                                        <option>Yakymchuk Yuri</option>
-                                        <option>Zanko Semen</option>
-                                        <option>Zhdanov Sergii</option>
+                                        @await Html.PartialAsync("DoctorsList")
                                     </select>
                                     <span asp-validation-for="Doctor" class="text-danger"></span>
                                 </div>
