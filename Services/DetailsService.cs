@@ -14,7 +14,7 @@ namespace triage_hcp.Services
             _logger = logger;
         }
 
-        public async Task<Pacjent?> GetAsync(int Id)
+        public async Task<Patient?> GetAsync(int Id)
         {
             var pacjent = await _context.Pacjenci.FindAsync(Id);
 
@@ -26,7 +26,7 @@ namespace triage_hcp.Services
             return pacjent;
         }
 
-        public async Task UpdatePacjentAsync(Pacjent pacjent)
+        public async Task UpdatePacjentAsync(Patient pacjent)
         {
             _context.Update(pacjent);
             await _context.SaveChangesAsync();

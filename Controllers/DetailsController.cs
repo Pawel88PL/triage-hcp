@@ -132,7 +132,7 @@ namespace triage_hcp.Controllers
             [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
             "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
             "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
-            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent patient)
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Patient patient)
         {
             if (id != patient.Id)
             {

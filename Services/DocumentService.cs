@@ -20,7 +20,7 @@ namespace triage_hcp.Services
         public async Task <byte[]> GeneratePatientDocumentAsync(int Id)
         {
 
-            Pacjent pacjent = await _editService.GetAsync(Id);
+            Patient pacjent = await _editService.GetAsync(Id);
 
             string templatePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "Documents.docx");
             string outputPath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{Id}.docx");

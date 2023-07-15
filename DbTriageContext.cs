@@ -8,12 +8,12 @@ namespace triage_hcp
     {
         public DbTriageContext(DbContextOptions<DbTriageContext> options) : base(options) { }
 
-        public DbSet<Pacjent> Pacjenci { get; set; }
+        public DbSet<Patient> Pacjenci { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<Pacjent>()
+            builder.Entity<Patient>()
                 .Property(p => p.Color)
                 .IsRequired(false);
         }

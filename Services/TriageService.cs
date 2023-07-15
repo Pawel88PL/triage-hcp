@@ -18,7 +18,7 @@ namespace triage_hcp.Services
         }
 
 
-        public async Task<int> SaveAsync(Pacjent pacjent)
+        public async Task<int> SaveAsync(Patient pacjent)
         {
             await _context.Pacjenci.AddAsync(pacjent);
             await _context.SaveChangesAsync();
@@ -28,7 +28,7 @@ namespace triage_hcp.Services
             return pacjent.Id;
         }
 
-        public void SetDefaultPatientFields(Pacjent pacjent)
+        public void SetDefaultPatientFields(Patient pacjent)
         {
             pacjent.DateTime = DateTime.Now;
             pacjent.TriageDate = DateTime.Today;

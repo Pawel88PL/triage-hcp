@@ -4,9 +4,9 @@ namespace triage_hcp.Services.Interfaces
 {
     public interface IDetailsService
     {
-        Task<Pacjent?> GetAsync(int Id);
+        Task<Patient?> GetAsync(int Id);
 
-        Task UpdatePacjentAsync(Pacjent pacjent);
+        Task UpdatePacjentAsync(Patient pacjent);
 
         decimal CalculateTotalPatientTime(DateTime startTime, DateTime endTime);
 

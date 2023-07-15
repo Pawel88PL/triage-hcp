@@ -65,7 +65,7 @@ public class PeselService : IPeselService
         else return "Kobieta";
     }
 
-    public void SetAgeAndGender(Pacjent pacjent)
+    public void SetAgeAndGender(Patient pacjent)
     {
         // Sprawdzenie czy wprowadzono nr pesel lub czy nr pesel jest prawidłowy.
         if (string.IsNullOrEmpty(pacjent.Pesel) || !IsPeselCorrect(pacjent.Pesel))

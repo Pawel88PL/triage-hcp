@@ -351,3 +351,4 @@ Data 15.07.2023
 
 1. Usunięto błąd ze strony WithDoctor, który polegał na błędnym odwoładniu to widoku ukrytych pól formularzy PartialView
    HiddenFormFields.cshtml.
+2. Klasę Pacjent.cs zmieniono na Patient.cs.

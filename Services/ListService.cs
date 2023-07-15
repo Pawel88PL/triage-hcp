@@ -13,7 +13,7 @@ namespace triage_hcp.Services
             _context = context;
         }
 
-        public async Task<List<Pacjent>> GetAllAsync()
+        public async Task<List<Patient>> GetAllAsync()
         {
             var pacjenci = await _context.Pacjenci.ToListAsync();
 

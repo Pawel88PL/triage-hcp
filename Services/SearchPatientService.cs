@@ -14,11 +14,11 @@ public class SearchPatientService : ISearchPatientService
         _context = context;
     }
 
-    public async Task<IEnumerable<Pacjent>> SearchPatientsAsync(string query)
+    public async Task<IEnumerable<Patient>> SearchPatientsAsync(string query)
     {
         if (string.IsNullOrEmpty(query))
         {
-            return new List<Pacjent>();
+            return new List<Patient>();
         }
 
         return await _context.Pacjenci

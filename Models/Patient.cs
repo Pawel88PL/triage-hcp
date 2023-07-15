@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace triage_hcp.Models
 {
-    public class Pacjent
+    public class Patient
     {
         [Key]
         public int Id { get; set; }

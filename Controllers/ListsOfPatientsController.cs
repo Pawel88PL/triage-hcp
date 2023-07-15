@@ -43,7 +43,7 @@ namespace triage_hcp.Controllers
         {
             var stats = from Pacjent in await _listService.GetAllAsync()
                         group Pacjent by Pacjent.TriageDate into dateGroup
-                        select new Pacjent()
+                        select new Patient()
                         {
                             TriageDate = dateGroup.Key,
                             Id = dateGroup.Count()

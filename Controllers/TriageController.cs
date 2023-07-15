@@ -32,7 +32,7 @@ namespace triage_hcp.Controllers
         
         // Akcja dodająca nowego pacjenta do systemu.
         [HttpPost]
-        public async Task<IActionResult> AddNewPatient(Pacjent pacjent)
+        public async Task<IActionResult> AddNewPatient(Patient pacjent)
         {
             // Sprawdzenie czy wprowadzone dane są poprawne.
             if (!ModelState.IsValid)
