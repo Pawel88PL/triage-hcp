@@ -12,7 +12,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
-            @await Html.PartialAsync("WithDoctorFormFields")
+            @await Html.PartialAsync("HiddenFormFields")
 
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
@@ -153,7 +153,7 @@
 
         <div style="display:none">
 
-            @await Html.PartialAsync("WithDoctorFormFields")
+            @await Html.PartialAsync("HiddenFormFields")
 
             <select class="form-control" id="Color" name="Color">
                 <option>@Model.Color</option>

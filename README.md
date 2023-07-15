@@ -346,3 +346,8 @@ Data 13.07.2023
 5. Listę lokalizacji w SOR przeniesiono do Partial View jako RoomList.cshtml.
 6. Listę rozwijalną "Jaka decyzja?" przeniesiono do Partial View jako WhatDecision.cshtml.
 7. Poprawiono wygląd i funkcjonalność formularza edycji danych pacjenta dla widoku "Admin".
+
+Data 15.07.2023
+
+1. Usunięto błąd ze strony WithDoctor, który polegał na błędnym odwoładniu to widoku ukrytych pól formularzy PartialView
+   HiddenFormFields.cshtml.
