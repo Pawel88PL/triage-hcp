@@ -77,9 +77,12 @@
                                 </select>
                                 <br />
 
-                                <select asp-for="DoctorId" class="form-select">
-                                    @await Html.PartialAsync("DoctorsList")
-                                </select>
+                                <div class="form-group">
+                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList" 
+                                        class="form-select">
+                                        <option value="">Wybierz lekarza...</option>
+                                    </select>
+                                </div>
 
                             </div>
                         </div>
@@ -121,7 +124,7 @@
                 <hr />
 
                 <div class="btn-group" role="group" style="margin-left: 20px">
-                    <button type="submit" class="btn btn-success" id="Active" name="Active" value="Tak">
+                    <button type="submit" class="btn btn-success" id="IsActive" name="IsActive" value="true">
                         ZAPISZ ZMIANY
                     </button>
 
