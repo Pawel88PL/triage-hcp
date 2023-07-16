@@ -15,10 +15,14 @@ namespace triage_hcp.Services
 
         public async Task<List<Patient>> GetAllAsync()
         {
-            var pacjenci = await _context.Patients.ToListAsync();
+            var patients = await _context.Patients
+                .Include(p => p.Location)
+                .Include(p => p.Doctor)
+                .ToListAsync();
 
-            return pacjenci;
+            return patients;
         }
+
 
         public async Task<List<Doctor>> GetAllDoctorsAsync()
         {

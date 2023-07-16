@@ -375,3 +375,4 @@ Data 16.07.2023
 3. Przeprowadzono migrację NewTables_Patients_Doctors_And_Locations i update testowej bazy danych.
 4. Do klasy ListService dodano metodę GetAllDoctorsAsync(), która zwraca listę wszystkich lekarzy z tabeli "Doctors".
 5. W widokach MainList.cshtml, WithDoctor.cshtml i WithoutDoctor.cshtml zastosowano listę lekarzy pobieraną z bazy danych.
+6. Poprawiono wyświetlanie lekarza przy danym pacjencie z Id lekarza na jego imię i nazwisko.

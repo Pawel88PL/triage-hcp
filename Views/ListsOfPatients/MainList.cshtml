@@ -373,7 +373,7 @@
                                                                 }
                                                             }
 
-                                                            <p>Lokalizacja: <b>@patient.LocationId</b></p>
+                                                            <p>Lokalizacja: <b>@patient?.Location?.LocationName</b></p>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -388,7 +388,7 @@
                                                     <div style="display:none">
 
                                                         <select class="form-control" id="StartTime" name="StartTime">
-                                                            <option>@patient.StartTime</option>
+                                                            <option>@patient?.StartTime</option>
                                                         </select>
 
                                                         <select class="form-control" id="WaitingTime" name="WaitingTime">
@@ -416,7 +416,7 @@
                                                             <option>@patient.Gender</option>
                                                         </select>
 
-                                                        <select class="form-control" id="Diagnosis" name="Diagnosis">
+                                                        <select class="form-control" id="Symptoms" name="Symptoms">
                                                             <option>@patient.Symptoms?.ToUpper()</option>
                                                         </select>
 
@@ -472,7 +472,7 @@
 
                                                     <select name="DoctorId" id="DoctorId" asp-items="@ViewData["Doctors"] as SelectList" 
                                                         class="form-select" style="font-size: 12px">
-                                                        <option value="">Wybierz lekarza...</option>
+                                                        <option value="null">Wybierz lekarza...</option>
                                                     </select>
                                                     <br />
 
@@ -529,7 +529,7 @@
                                                         @patient.StartTime.ToString("g")
                                                     </h5>
                                                     <p>do kogo: <b>@patient.ToWhomThePatient</b></p>
-                                                    <p>Lokalizacja: <b>@patient.LocationId</b></p>
+                                                    <p>Lokalizacja: <b>@patient?.Location?.LocationName</b></p>
                                                 </div>
                                             </div>
                                         </a>
@@ -537,8 +537,9 @@
                                 </div>
 
                                 <div class="border col-lg-3 doctor">
-                                    <p>lekarz prowadzący: <b>@patient.DoctorId</b></p>
+                                    <p>lekarz prowadzący: <b>@patient?.Doctor?.Name @patient?.Doctor?.Surname</b></p>
                                 </div>
+
                             </div>
                         </div>
                     }
