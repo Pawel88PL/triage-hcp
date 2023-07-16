@@ -297,10 +297,11 @@
                                 <br />
 
                                 <div class="form-group">
-                                    <select asp-for="DoctorId" class="form-select">
-                                        @await Html.PartialAsync("DoctorsList")
+                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList" class="form-select">
+                                        <option value="">Wybierz lekarza...</option>
                                     </select>
                                 </div>
+
                                 <br />
                             </div>
                         </div>

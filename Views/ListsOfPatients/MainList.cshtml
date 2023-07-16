@@ -5,13 +5,13 @@
 @{
     ViewData["Title"] = "Lista";
 
-    var withoutDoctor = Model.Where(x => x.DoctorId == 1 & x.IsActive == true).Count();
+    var withoutDoctor = Model.Where(x => x.DoctorId == null & x.IsActive == true).Count();
 
-    var inProgress = Model.Where(x => !(x.DoctorId == 1)
+    var inProgress = Model.Where(x => !(x.DoctorId == null)
     & x.IsActive == true
     & x.WhatNext == "W trakcie diagnostyki SOR").Count();
 
-    var done = Model.Where(x => !(x.DoctorId == 1)
+    var done = Model.Where(x => !(x.DoctorId == null)
     & x.IsActive == true
     & !(x.WhatNext == "W trakcie diagnostyki SOR")).Count();
 
@@ -48,7 +48,7 @@
 
                     @foreach (var patient in Model.
                     Where(x => x.IsActive == true &
-                    (x.DoctorId == 1)).
+                    (x.DoctorId == null)).
                     OrderBy(x => x.Color == "red").
                     OrderBy(x => x.Color == "orange").
                     OrderBy(x => x.Color == "yellow").
@@ -383,7 +383,7 @@
                                             <div class="col-3">
                                                 @using (Html.BeginForm("Update", "Details", FormMethod.Post))
                                                 {
-                                                    <input type="hidden" name="Id" value="@patient.PatientId" />
+                                                    <input type="hidden" name="PatientId" value="@patient.PatientId" />
 
                                                     <div style="display:none">
 
@@ -470,8 +470,9 @@
 
                                                     </div>
 
-                                                    <select class="form-select" id="DoctorId" name="DoctorId" style="font-size:12px">
-                                                        <option></option>
+                                                    <select name="DoctorId" id="DoctorId" asp-items="@ViewData["Doctors"] as SelectList" 
+                                                        class="form-select" style="font-size: 12px">
+                                                        <option value="">Wybierz lekarza...</option>
                                                     </select>
                                                     <br />
 
@@ -500,7 +501,7 @@
 
                     @foreach (var patient in Model.
                     Where(x => x.IsActive == true &
-                    !(x.DoctorId == 1) &
+                    !(x.DoctorId == null) &
                     (x.WhatNext == "W trakcie diagnostyki SOR")).
                     OrderBy(x => x.Color == "red").
                     OrderBy(x => x.Color == "orange").
@@ -556,7 +557,7 @@
 
                     @foreach (var patient in Model.
                     Where(x => x.IsActive == true &
-                    !(x.DoctorId == 1) &
+                    !(x.DoctorId == null) &
                     !(x.WhatNext == "W trakcie diagnostyki SOR")).
                     OrderBy(x => x.Color == "red").
                     OrderBy(x => x.Color == "orange").

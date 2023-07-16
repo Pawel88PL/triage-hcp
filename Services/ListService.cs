@@ -19,5 +19,12 @@ namespace triage_hcp.Services
 
             return pacjenci;
         }
+
+        public async Task<List<Doctor>> GetAllDoctorsAsync()
+        {
+            var doctors = await _context.Doctors.ToListAsync();
+
+            return doctors;
+        }
     }
 }

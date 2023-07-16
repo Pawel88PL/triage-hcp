@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
@@ -28,6 +29,14 @@ namespace triage_hcp.Controllers
         public async Task<IActionResult> MainList()
         {
             var patientList = await _listService.GetAllAsync();
+
+            var doctors = await _listService.GetAllDoctorsAsync();
+            var doctorSelectList = doctors.Select(d => new {
+                d.DoctorId,
+                FullName = d.Name + " " + d.Surname
+            }).ToList();
+
+            ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
 
             return View(patientList);
         }

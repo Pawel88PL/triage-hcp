@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.InkML;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,13 +18,15 @@ namespace triage_hcp.Controllers
     public class DetailsController : Controller
     {
         private readonly IDetailsService _detailsService;
+        private readonly IListService _listService;
         private readonly ILogger<TriageService> _logger;
 
 
-        public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger)
+        public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger, IListService listService)
         {
             _detailsService = detailsService;
             _logger = logger;
+            _listService = listService;
         }
 
         [HttpGet]
@@ -40,6 +43,14 @@ namespace triage_hcp.Controllers
             {
                 return View("NotFound");
             }
+
+            var doctors = await _listService.GetAllDoctorsAsync();
+            var doctorSelectList = doctors.Select(d => new {
+                d.DoctorId,
+                FullName = d.Name + " " + d.Surname
+            }).ToList();
+
+            ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
 
 
             return View(patient);
@@ -61,6 +72,15 @@ namespace triage_hcp.Controllers
                 return View("NotFound");
             }
 
+            var doctors = await _listService.GetAllDoctorsAsync();
+            var doctorSelectList = doctors.Select(d => new {
+                d.DoctorId,
+                FullName = d.Name + " " + d.Surname
+            }).ToList();
+
+            ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
+
+
 
             return View(patient);
         }
@@ -81,7 +101,15 @@ namespace triage_hcp.Controllers
                 return View("NotFound");
             }
 
-            
+            var doctors = await _listService.GetAllDoctorsAsync();
+            var doctorSelectList = doctors.Select(d => new {
+                d.DoctorId,
+                FullName = d.Name + " " + d.Surname
+            }).ToList();
+
+            ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
+
+
             return View(patient);
         }
 

@@ -31,7 +31,7 @@ namespace triage_hcp.Services
         public void SetDefaultPatientFields(Patient pacjent)
         {
             pacjent.StartTime = DateTime.Now;
-            pacjent.DoctorId = 0;
+            pacjent.DoctorId = null;
             pacjent.IsActive = true;
             pacjent.WhatNext = "W trakcie diagnostyki SOR";
         }
