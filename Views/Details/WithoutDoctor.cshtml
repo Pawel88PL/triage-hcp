@@ -27,18 +27,18 @@
     <div class="row">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PatientId" />
 
             <div style="display:none">
 
                 @await Html.PartialAsync("HiddenFormFields")
 
-                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                    <option>@Model.CoDalejZPacjentem</option>
+                <select asp-for="WhatNext" class="form-control">
+                    <option>@Model.WhatNext</option>
                 </select>
 
-                <select class="form-control" id="Active" name="Active">
-                    <option>@Model.Active</option>
+                <select asp-for="IsActive" class="form-control">
+                    <option>@Model.IsActive</option>
                 </select>
 
             </div>
@@ -54,7 +54,7 @@
                                     <div class="col-6">
                                         @if (Model.Color == "red")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 1)
+                                            @if (WaitingTime(Model.StartTime) > 1)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -73,7 +73,7 @@
 
                                         @if (Model.Color == "orange")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 10)
+                                            @if (WaitingTime(Model.StartTime) > 10)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -92,7 +92,7 @@
 
                                         @if (Model.Color == "yellow")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 60)
+                                            @if (WaitingTime(Model.StartTime) > 60)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -111,7 +111,7 @@
 
                                         @if (Model.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 120)
+                                            @if (WaitingTime(Model.StartTime) > 120)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -130,7 +130,7 @@
 
                                         @if (Model.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 240)
+                                            @if (WaitingTime(Model.StartTime) > 240)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -155,95 +155,95 @@
                                     <div class="col-6">
                                         @if (Model.Color == "red")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 1)
+                                            @if (WaitingTime(Model.StartTime) > 1)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                                 </span>
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "orange")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 10)
+                                            @if (WaitingTime(Model.StartTime) > 10)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "yellow")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 60)
+                                            @if (WaitingTime(Model.StartTime) > 60)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 120)
+                                            @if (WaitingTime(Model.StartTime) > 120)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 240)
+                                            @if (WaitingTime(Model.StartTime) > 240)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.StartTime)</b> minut</p>
                                             }
                                         }
 
@@ -252,7 +252,7 @@
                             </div>
 
                             <div class="col-3">
-                                <h3>@Model.Diagnosis?.ToUpper()</h3>
+                                <h3>@Model.Symptoms?.ToUpper()</h3>
                             </div>
                         </div>
                     </div>
@@ -277,35 +277,31 @@
                             <div class="col-6">
                                 <br />
                                 <div class="form-group">
-                                    <select class="form-select" id="Room" name="Room">
-                                        <option>@Model.Room</option>
+                                    <select asp-for="LocationId" class="form-select">
+                                        <option>@Model.LocationId</option>
                                         @await Html.PartialAsync("RoomList")
                                     </select>
-                                    <span asp-validation-for="Room" class="text-danger"></span>
                                 </div>
                                 <br />
 
-                                <select class="form-select" id="ToWhomThePatient" name="ToWhomThePatient">
+                                <select asp-for="ToWhomThePatient" class="form-select">
                                     <option>@Model.ToWhomThePatient</option>
                                     <option>INTERNISTA</option>
                                     <option>CHIRURG</option>
                                 </select>
                                 <br />
 
-                                <select class="form-select" id="Color" name="Color">
+                                <select asp-for="Color" class="form-select">
                                     @await Html.PartialAsync("ColorList")
                                 </select>
                                 <br />
 
-
                                 <div class="form-group">
-                                    <select class="form-select" id="Doctor" name="Doctor">
+                                    <select asp-for="DoctorId" class="form-select">
                                         @await Html.PartialAsync("DoctorsList")
                                     </select>
-                                    <span asp-validation-for="Doctor" class="text-danger"></span>
                                 </div>
                                 <br />
-
                             </div>
                         </div>
                         <hr />
@@ -317,7 +313,7 @@
                                 <button type="submit" class="btn btn-danger">ZAPISZ ZMIANY</button>
                             </div>
                             <div class="col-4">
-                                <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.Id })"
+                                <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.PatientId })"
                                    class="btn btn-secondary">
                                     DRUKUJ DOKUMENTY
                                 </a>
@@ -336,7 +332,7 @@
                                 <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="form-group">
                                     <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10">
-                                        @Model.ObserwacjeRatPiel</textarea>
+                                        @Model.Remarks</textarea>
                                 </div>
                             </div>
                             <br />

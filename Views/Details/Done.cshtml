@@ -34,7 +34,7 @@
     <div class="row">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PatientId" />
 
             @await Html.PartialAsync("DoneFormFields")
 
@@ -45,8 +45,8 @@
                         <div class="row">
                             <div class="col-4">
                                 <h5>Przyjęty w SOR:</h5>
-                                <h4>@Model.DateTime.ToString("D")</h4>
-                                <h1>@Model.DateTime.ToString("t")</h1>
+                                <h4>@Model.StartTime.ToString("D")</h4>
+                                <h1>@Model.StartTime.ToString("t")</h1>
                             </div>
                             <div class="col-5">
                                 <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
@@ -54,7 +54,7 @@
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-3">
-                                @if (Model.EndTime <= DateTime.MinValue | Model.Active == "Tak")
+                                @if (Model.EndTime <= DateTime.MinValue | Model.IsActive == true)
                                 {
                                     <h4>Pacjent dalej w SOR</h4>
                                 }
@@ -99,7 +99,7 @@
 
                             <div class="col-6">
                                 <br />
-                                <p><b>@Model.Room?.ToUpper()</b></p>
+                                <p><b>@Model.LocationId</b></p>
                                 <br />
 
                                 <p><b>@Model.ToWhomThePatient?.ToUpper()</b></p>
@@ -122,20 +122,20 @@
                                 }
                                 <br />
 
-                                <p><b>@Model.Doctor?.ToUpper()</b></p>
+                                <p><b>@Model.DoctorId</b></p>
                                 <br />
 
-                                <p><b>@Model.CoDalejZPacjentem?.ToUpper()</b></p>
+                                <p><b>@Model.WhatNext?.ToUpper()</b></p>
                                 <br />
 
 
                                 <div class="form-group col-6">
-                                    <select class="form-select" id="Active" name="Active">
-                                        <option>@Model.Active</option>
-                                        <option>Tak</option>
-                                        <option>Nie</option>
+                                    <select asp-for="IsActive" class="form-select" required>
+                                        <option></option>
+                                        <option value="true">Tak</option>
+                                        <option value="false">Nie</option>
                                     </select>
-                                    <span asp-validation-for="Active" class="text-danger"></span>
+                                    <span asp-validation-for="IsActive" class="text-danger"></span>
                                 </div>
                                 <br />
                             </div>
@@ -150,13 +150,13 @@
                                 <h5 class="text-center">OPIS TRIAGE</h5>
                                 <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
-                                    <h4>@Model.Diagnosis?.ToUpper()</h4>
+                                    <h4>@Model.Symptoms?.ToUpper()</h4>
                                 </div>
 
                                 <h5>Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
-                                    <h4>@Model.ObserwacjeRatPiel?.ToUpper()</h4>
+                                    <h4>@Model.Remarks?.ToUpper()</h4>
                                 </div>
                             </div>
                             <br />

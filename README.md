@@ -333,6 +333,7 @@ Data 12.07.2023
 5. Utworzono domyślny widok NotFound w katalogu Shared.
 6. Zarejestrowano nowe serwisy w kontenerze wstrzykiwania zależności (Dependency Injection, DI) w klasie Program.cs.
 7. Na stronie MainList zmieniono nazwy widoków z Edit na WithDoctor i WithoutDoctor.
+
 <h3> Opublikowano wersję 5.4.0. </h3>
 <hr/>
 
@@ -346,6 +347,7 @@ Data 13.07.2023
 5. Listę lokalizacji w SOR przeniesiono do Partial View jako RoomList.cshtml.
 6. Listę rozwijalną "Jaka decyzja?" przeniesiono do Partial View jako WhatDecision.cshtml.
 7. Poprawiono wygląd i funkcjonalność formularza edycji danych pacjenta dla widoku "Admin".
+<hr/>
 
 Data 15.07.2023
 
@@ -360,4 +362,11 @@ Data 15.07.2023
 7. Dla ciśnienia tętniczego, saturacji, tętna, temperatury i skali GCS pola te zmieniono ze string na int.
 8. Utworzono klasę Location.cs, która będzie modelem do tabeli "Lokalizacja w Sor".
 9. Utworzono klasę Doctor.cs, która będzie modelem do tabeli "Lekarze".
-10. Poprawiono DetailsControler, TriageService, DocumentService, Admin.cshtml o zmienione pola z modelu Patient. 
+10. Poprawiono DetailsControler, TriageService, DocumentService, Admin.cshtml o zmienione pola z modelu Patient.
+<h3>Utworzono nową gałąź - version 6.0.0</h3>
+<hr/>
+
+Data 16.07.2023
+
+1. Poprawiono widok AdminList.cshtml, MainList.cshtml, Done.cshtml, Edit.cshtml, WithDoctor.cshtml, WithoutDoctor.cshtml
+   o zmienione pola modelu Patient.

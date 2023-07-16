@@ -11,7 +11,7 @@
     <div class="row">
         <form asp-action="Update" class="col-auto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PatientId" />
             @await Html.PartialAsync("EditFormFields")
             
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
@@ -24,8 +24,8 @@
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-4">
-                                <h1>@Model.DateTime.ToString("t")</h1>
-                                <h4>@Model.DateTime.ToString("D")</h4>
+                                <h1>@Model.StartTime.ToString("t")</h1>
+                                <h4>@Model.StartTime.ToString("D")</h4>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <br />
 
                         <div style="font-size: 16px">
-                            <p><b>@Model.Diagnosis</b></p>
+                            <p><b>@Model.Symptoms</b></p>
                         </div>
                         <br />
                     </div>
