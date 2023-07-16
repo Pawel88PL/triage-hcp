@@ -41,12 +41,12 @@ namespace triage_hcp.Controllers
 
         public async Task<IActionResult> Statistics()
         {
-            var stats = from Pacjent in await _listService.GetAllAsync()
-                        group Pacjent by Pacjent.TriageDate into dateGroup
+            var stats = from Patient in await _listService.GetAllAsync()
+                        group Patient by Patient.StartTime.Date into dateGroup
                         select new Patient()
                         {
-                            TriageDate = dateGroup.Key,
-                            Id = dateGroup.Count()
+                            StartTime = dateGroup.Key,
+                            PatientId = dateGroup.Count()
                         };
             
             return View(stats);

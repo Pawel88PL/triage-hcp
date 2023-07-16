@@ -18,23 +18,22 @@ namespace triage_hcp.Services
         }
 
 
-        public async Task<int> SaveAsync(Patient pacjent)
+        public async Task<int> SaveAsync(Patient patient)
         {
-            await _context.Pacjenci.AddAsync(pacjent);
+            await _context.Pacjenci.AddAsync(patient);
             await _context.SaveChangesAsync();
 
-            _logger.LogInformation("Wprowadzono kolejnego pacjenta o Id: {Id}", pacjent.Id);
+            _logger.LogInformation("Wprowadzono kolejnego pacjenta o Id: {Id}", patient.PatientId);
 
-            return pacjent.Id;
+            return patient.PatientId;
         }
 
         public void SetDefaultPatientFields(Patient pacjent)
         {
-            pacjent.DateTime = DateTime.Now;
-            pacjent.TriageDate = DateTime.Today;
-            pacjent.Doctor = "Wybierz lekarza";
-            pacjent.Active = "Tak";
-            pacjent.CoDalejZPacjentem = "W trakcie diagnostyki SOR";
+            pacjent.StartTime = DateTime.Now;
+            pacjent.DoctorId = 0;
+            pacjent.IsActive = true;
+            pacjent.WhatNext = "W trakcie diagnostyki SOR";
         }
 
     }

@@ -2,13 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Numerics;
 
 namespace triage_hcp.Models
 {
     public class Patient
     {
         [Key]
-        public int Id { get; set; }
+        public int PatientId { get; set; }
 
         [Required(ErrorMessage = "Podaj imię pacjenta lub wpisz NN.")]
         [MaxLength(20)]
@@ -22,35 +23,23 @@ namespace triage_hcp.Models
         [StringLength(11)]
         public string? Pesel { get; set; }
 
-        public string? Age { get; set; }
-
-        public string? Gender { get; set; }
-
-        [Required(ErrorMessage = "Sala i numer jest wymagana")]
-        public string? Room { get; set; }
-
         [Required(ErrorMessage = "Napisz kilka słów na temat stanu lub objawów pacjenta")]
         [StringLength(130)]
-        public string? Diagnosis { get; set; }
+        public string? Symptoms { get; set; }
 
+        public string? Age { get; set; }
+        
+        public string? Gender { get; set; }
 
         public string? Color { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime StartTime { get; set; }
 
+        public bool IsActive { get; set; }
 
-        public string? Doctor { get; set; }
+        public string? Remarks { get; set; }
 
-
-        public string? Active { get; set; }
-
-        public string? Epikryza { get; set; }
-
-        public string? ObserwacjeRatPiel { get; set; }
-
-        public string? CoDalejZPacjentem { get; set; }
-
-        public DateTime TriageDate { get; set; }
+        public string? WhatNext { get; set; }
 
         public string? ToWhomThePatient { get; set; }
 
@@ -62,24 +51,37 @@ namespace triage_hcp.Models
         public decimal TotalTime { get; set; }
 
         [StringLength(30)]
-        public string? Allergies { get; set; }
+        public List<string>? Allergies { get; set; }
 
-        [StringLength(3)]
-        public string? SBP { get; set; }
+        [Range(0, 400)]
+        public int SBP { get; set; }
 
-        [StringLength(3)]
-        public string? DBP { get; set; }
+        [Range(0, 200)]
+        public int DBP { get; set; }
 
-        [StringLength(3)]
-        public string? HeartRate { get; set; }
+        [Range(0, 300)]
+        public int HeartRate { get; set; }
 
-        [StringLength(3)]
-        public string? Spo2 { get; set; }
+        [Range(0, 100)]
+        public int Spo2 { get; set; }
 
-        [StringLength(2)]
-        public string? GCS { get; set; }
+        [Range(3, 15)]
+        public int GCS { get; set; }
 
-        [StringLength(4)]
-        public string? BodyTemperature { get; set; }
+        [Range(15, 50)]
+        public decimal BodyTemperature { get; set; }
+
+
+
+        // Klucze obce do tabel Location i Doctors.
+
+        [ForeignKey("Location")]
+        public int LocationId { get; set; }
+        public Location? Location { get; set; }
+
+        [ForeignKey("Doctor")]
+        public int DoctorId { get; set; }
+        public Doctor? Doctor { get; set; }
+
     }
 }

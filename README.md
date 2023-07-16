@@ -352,3 +352,12 @@ Data 15.07.2023
 1. Usunięto błąd ze strony WithDoctor, który polegał na błędnym odwoładniu to widoku ukrytych pól formularzy PartialView
    HiddenFormFields.cshtml.
 2. Klasę Pacjent.cs zmieniono na Patient.cs.
+3. W Klasie Patient.cs pole Id zmieniono na IdPacjenta, pole Room zmieniono na LocationId jako klucz obcy do tabeli Locations,
+   pole Doctor zmieniono na DoctorId jako klucz obcy do tabeli Doctors.
+4. Pole Diagnosis zmieniono na Symptoms, pole DateTime zmieniono na StartTime, string Active zmieniono na bool IsActive.
+5. Usunięto pole Epikryza. Pole ObserwacjeRatPiel zmieniono na Remarks, pole CoDalejZPacjentem zmieniono na WhatNext.
+6. Usunięto pole TriageDate.
+7. Dla ciśnienia tętniczego, saturacji, tętna, temperatury i skali GCS pola te zmieniono ze string na int.
+8. Utworzono klasę Location.cs, która będzie modelem do tabeli "Lokalizacja w Sor".
+9. Utworzono klasę Doctor.cs, która będzie modelem do tabeli "Lekarze".
+10. Poprawiono DetailsControler, TriageService, DocumentService, Admin.cshtml o zmienione pola z modelu Patient. 

@@ -10,7 +10,7 @@
     <hr />
     <form asp-action="Update">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="PatientId" />
 
         <div class="row">
             <div class="col-md-4">
@@ -51,11 +51,10 @@
 
                 <div class="form-group">
                     <label class="control-label">Lokalizacja:</label>
-                    <select class="form-select" id="Room" name="Room">
-                        <option>@Model.Room</option>
+                    <select asp-for="LocationId" class="form-select">
+                        <option>@Model.LocationId</option>
                         @await Html.PartialAsync("RoomList")
                     </select>
-                    <span asp-validation-for="Room" class="text-danger"></span>
                 </div>
                 <br />
 
@@ -64,16 +63,14 @@
                     <select class="form-select" id="Color" name="Color">
                         @await Html.PartialAsync("ColorList")
                     </select>
-                    <span asp-validation-for="Color" class="text-danger"></span>
                 </div>
                 <br />
 
                 <div class="form-group">
                     <label class="control-label">Lekarz:</label>
-                    <select class="form-select" id="Doctor" name="Doctor">
+                    <select asp-for="DoctorId" class="form-select">
                         @await Html.PartialAsync("DoctorsList")
                     </select>
-                    <span asp-validation-for="Doctor" class="text-danger"></span>
                 </div>
                 <br />
             </div>
@@ -81,22 +78,15 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label">Objawy:</label>
-                    <input asp-for="Diagnosis" class="form-control">
-                    <span asp-validation-for="Diagnosis" class="text-danger"></span>
+                    <input asp-for="Symptoms" class="form-control">
+                    <span asp-validation-for="Symptoms" class="text-danger"></span>
                 </div>
                 <br />
 
                 <div class="form-group">
                     <label class="control-label">Data i godzina triage:</label>
-                    <input asp-for="DateTime" class="form-control" />
-                    <span asp-validation-for="DateTime" class="text-danger"></span>
-                </div>
-                <br />
-
-                <div class="form-group">
-                    <label class="control-label">Data triage:</label>
-                    <input asp-for="TriageDate" class="form-control" />
-                    <span asp-validation-for="TriageDate" class="text-danger"></span>
+                    <input asp-for="StartTime" class="form-control" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
                 </div>
                 <br />
 
@@ -109,8 +99,8 @@
 
                 <div class="form-group">
                     <label class="control-label">Obserwacje ratowniczo-pielęgniarskie:</label>
-                    <input asp-for="ObserwacjeRatPiel" class="form-control" />
-                    <span asp-validation-for="ObserwacjeRatPiel" class="text-danger"></span>
+                    <input asp-for="Remarks" class="form-control" />
+                    <span asp-validation-for="Remarks" class="text-danger"></span>
                 </div>
                 <br />
 
@@ -130,7 +120,7 @@
 
                 <div class="form-group">
                     <label class="control-label">Do kogo pacjent:</label>
-                    <select class="form-select" id="ToWhomThePatient" name="ToWhomThePatient">
+                    <select asp-for="ToWhomThePatient" class="form-select">
                         <option>@Model.ToWhomThePatient</option>
                         <option>INTERNISTA</option>
                         <option>CHIRURG</option>
@@ -143,22 +133,20 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label">Jakie decyzje:</label>
-                    <select class="form-select" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
-                        <option>@Model.CoDalejZPacjentem</option>
+                    <select asp-for="WhatNext" class="form-select">
+                        <option>@Model.WhatNext</option>
                         @await Html.PartialAsync("WhatDecision")
                     </select>
-                    <span asp-validation-for="CoDalejZPacjentem" class="text-danger"></span>
                 </div>
                 <br />
 
                 <div class="form-group">
                     <label class="control-label">Status pacjenta</label>
-                    <select class="form-select" id="Active" name="Active">
-                        <option>@Model.Active</option>
-                        <option>Tak</option>
-                        <option>Nie</option>
+                    <select asp-for="IsActive" class="form-select">
+                        <option>@Model.IsActive</option>
+                        <option value="true">Tak</option>
+                        <option value="false">Nie</option>
                     </select>
-                    <span asp-validation-for="Active" class="text-danger"></span>
                 </div>
                 <br />
                 

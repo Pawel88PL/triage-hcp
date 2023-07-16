@@ -30,7 +30,7 @@ namespace triage_hcp
 
             builder.Services.AddDbContext<DbTriageContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("local"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("test"));
             });
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>

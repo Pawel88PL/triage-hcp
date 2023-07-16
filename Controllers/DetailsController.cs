@@ -128,13 +128,13 @@ namespace triage_hcp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id,
-            [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
-            "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
-            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+        public async Task<IActionResult> Update(int PatientId,
+            [Bind("PatientId,Name,Surname,Pesel,Age,Gender,LocationId,Symptoms,Color," +
+            "StartTime,DoctorId,IsActive,Remarks," +
+            "WhatNext,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
             "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Patient patient)
         {
-            if (id != patient.Id)
+            if (PatientId != patient.PatientId)
             {
                 return NotFound();
             }
@@ -142,7 +142,7 @@ namespace triage_hcp.Controllers
             if (ModelState.IsValid)
             {
                 patient.EndTime = DateTime.Now;
-                patient.TotalTime = _detailsService.CalculateTotalPatientTime(patient.DateTime, patient.EndTime);
+                patient.TotalTime = _detailsService.CalculateTotalPatientTime(patient.StartTime, patient.EndTime);
 
                 try
                 {
@@ -150,7 +150,7 @@ namespace triage_hcp.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (await _detailsService.GetAsync(patient.Id) == null)
+                    if (await _detailsService.GetAsync(patient.PatientId) == null)
                     {
                         return View("NotFound");
                     }
@@ -163,7 +163,7 @@ namespace triage_hcp.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Wystąpił błąd podczas aktualizacji danych pacjenta o Id: {Id}", patient.Id);
+                    _logger.LogError(ex, "Wystąpił błąd podczas aktualizacji danych pacjenta o Id: {Id}", patient.PatientId);
                     ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas aktualizacji danych pacjenta." +
                         " Spróbuj ponownie później.");
                     return View(patient);
