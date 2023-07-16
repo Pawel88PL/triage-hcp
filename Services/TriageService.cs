@@ -20,7 +20,7 @@ namespace triage_hcp.Services
 
         public async Task<int> SaveAsync(Patient patient)
         {
-            await _context.Pacjenci.AddAsync(patient);
+            await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Wprowadzono kolejnego pacjenta o Id: {Id}", patient.PatientId);

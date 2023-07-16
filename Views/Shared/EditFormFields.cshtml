@@ -2,12 +2,8 @@
 
 <div style="display:none">
 
-    <select class="form-control" id="DateTime" name="DateTime">
-        <option>@Model.DateTime</option>
-    </select>
-
-    <select class="form-control" id="TriageDate" name="TriageDate">
-        <option>@Model.TriageDate</option>
+    <select class="form-control" id="StartTime" name="StartTime">
+        <option>@Model.StartTime</option>
     </select>
 
     <select class="form-control" id="EndTime" name="EndTime">
@@ -18,24 +14,20 @@
         <option>@Model.WaitingTime</option>
     </select>
 
-    <select class="form-control" id="Diagnosis" name="Diagnosis">
-        <option>@Model.Diagnosis</option>
+    <select class="form-control" id="Symptoms" name="Symptoms">
+        <option>@Model.Symptoms</option>
     </select>
 
     <select class="form-control" id="Color" name="Color">
         <option>@Model.Color</option>
     </select>
 
-    <select class="form-control" id="Epikryza" name="Epikryza">
-        <option>@Model.Epikryza</option>
+    <select class="form-control" id="Remarks" name="Remarks">
+        <option>@Model.Remarks</option>
     </select>
 
-    <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-        <option>@Model.ObserwacjeRatPiel</option>
-    </select>
-
-    <select class="form-control" id="Room" name="Room">
-        <option>@Model.Room</option>
+    <select class="form-control" id="LocationId" name="LocationId">
+        <option>@Model.LocationId</option>
     </select>
 
     <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
@@ -46,12 +38,12 @@
         <option>@Model.Doctor</option>
     </select>
 
-    <select class="form-control" id="Active" name="Active">
-        <option>@Model.Active</option>
+    <select class="form-control" id="IsActive" name="IsActive">
+        <option>@Model.IsActive</option>
     </select>
 
-    <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
-        <option>@Model.CoDalejZPacjentem</option>
+    <select class="form-control" id="WhatNext" name="WhatNext">
+        <option>@Model.WhatNext</option>
     </select>
 
     <select class="form-control" id="SBP" name="SBP">

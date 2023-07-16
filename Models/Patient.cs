@@ -47,11 +47,11 @@ namespace triage_hcp.Models
 
         public int WaitingTime { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(4,2)")]
         public decimal TotalTime { get; set; }
 
         [StringLength(30)]
-        public List<string>? Allergies { get; set; }
+        public string? Allergies { get; set; }
 
         [Range(0, 400)]
         public int SBP { get; set; }
@@ -68,7 +68,8 @@ namespace triage_hcp.Models
         [Range(3, 15)]
         public int GCS { get; set; }
 
-        [Range(15, 50)]
+        [Column(TypeName = "decimal(3,1)")]
+        [Range(15, 45)]
         public decimal BodyTemperature { get; set; }
 
 

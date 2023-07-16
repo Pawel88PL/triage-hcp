@@ -41,7 +41,7 @@ namespace triage_hcp.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IActionResult Register_Admin33()
         {

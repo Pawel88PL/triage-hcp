@@ -21,7 +21,7 @@ public class SearchPatientService : ISearchPatientService
             return new List<Patient>();
         }
 
-        return await _context.Pacjenci
+        return await _context.Patients
             .Where(p =>
             (p.Name != null && p.Name.Contains(query)) ||
             (p.Surname != null && p.Surname.Contains(query)) ||

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace triage_hcp.Migrations
 {
-    public partial class AddUsers : Migration
+    public partial class NewTables_Patients_Doctors_And_Locations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,34 @@ namespace triage_hcp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Doctors",
+                columns: table => new
+                {
+                    DoctorId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    PWZNumber = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Doctors", x => x.DoctorId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Locations",
+                columns: table => new
+                {
+                    LocationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LocationName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Locations", x => x.LocationId);
                 });
 
             migrationBuilder.CreateTable(
@@ -154,6 +182,54 @@ namespace triage_hcp.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Patients",
+                columns: table => new
+                {
+                    PatientId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Pesel = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    Symptoms = table.Column<string>(type: "nvarchar(130)", maxLength: 130, nullable: false),
+                    Age = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WhatNext = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ToWhomThePatient = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    WaitingTime = table.Column<int>(type: "int", nullable: false),
+                    TotalTime = table.Column<decimal>(type: "decimal(4,2)", nullable: false),
+                    Allergies = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    SBP = table.Column<int>(type: "int", nullable: false),
+                    DBP = table.Column<int>(type: "int", nullable: false),
+                    HeartRate = table.Column<int>(type: "int", nullable: false),
+                    Spo2 = table.Column<int>(type: "int", nullable: false),
+                    GCS = table.Column<int>(type: "int", nullable: false),
+                    BodyTemperature = table.Column<decimal>(type: "decimal(3,1)", nullable: false),
+                    LocationId = table.Column<int>(type: "int", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patients", x => x.PatientId);
+                    table.ForeignKey(
+                        name: "FK_Patients_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Doctors",
+                        principalColumn: "DoctorId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Patients_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "LocationId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -192,6 +268,16 @@ namespace triage_hcp.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_DoctorId",
+                table: "Patients",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_LocationId",
+                table: "Patients",
+                column: "LocationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -212,10 +298,19 @@ namespace triage_hcp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Patients");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Doctors");
+
+            migrationBuilder.DropTable(
+                name: "Locations");
         }
     }
 }

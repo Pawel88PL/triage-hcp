@@ -44,40 +44,40 @@
             </div>
             <hr />
 
-            @foreach (var pacjent in Model.Patients.OrderByDescending(x => x.DateTime))
+            @foreach (var patient in Model.Patients.OrderByDescending(x => x.StartTime))
             {
-                <div class="pacjent" style="background-color: @pacjent.Color; max-width: 100%">
-                    @if (pacjent.Active == "Tak")
+                <div class="pacjent" style="background-color: @patient.Color; max-width: 100%">
+                    @if (patient.IsActive == true)
                     {
-                        <a href="@Url.Action("WithDoctor","Details", new { Id = pacjent.Id })"
+                        <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">
                                     <div class="border-end col-1">
-                                        <strong>@pacjent.Id</strong>
+                                        <strong>@patient.PatientId</strong>
                                     </div>
                                     <div class="border-end col-1">
                                         <p>Przyjęto: </p>
-                                        <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                        <p><b>@patient.StartTime.ToString("g")</b></p>
                                     </div>
                                     <div class="border-end col-1">
                                         <p>Zakończono: </p>
                                         <p><b>W trakcie</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</b>
+                                        <b>@patient.Surname?.ToUpper() @patient.Name?.ToUpper()</b>
                                     </div>
                                     <div class="border-end col-1">
-                                        <b>@pacjent.Pesel</b>
+                                        <b>@patient.Pesel</b>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@pacjent.Diagnosis?.ToUpper()</b>
+                                        <b>@patient.Symptoms?.ToUpper()</b>
                                     </div>
                                     <div class="border-end col-2">
-                                        lek. prowadzący: <b>@pacjent.Doctor?.ToUpper()</b>
+                                        lek. prowadzący: <b>@patient.DoctorId</b>
                                     </div>
                                     <div class="col-2">
-                                        <b> @pacjent.CoDalejZPacjentem?.ToUpper()</b>
+                                        <b> @patient.WhatNext?.ToUpper()</b>
                                     </div>
                                 </div>
                             </div>
@@ -85,35 +85,35 @@
                     }
                     else
                     {
-                        <a href="@Url.Action("Done","Details", new { Id = pacjent.Id })"
+                        <a href="@Url.Action("Done","Details", new { Id = patient.PatientId })"
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">
                                     <div class="border-end col-1">
-                                        <strong>@pacjent.Id</strong>
+                                        <strong>@patient.PatientId</strong>
                                     </div>
                                     <div class="border-end col-1">
                                         <p>Przyjęto: </p>
-                                        <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                        <p><b>@patient.StartTime.ToString("g")</b></p>
                                     </div>
                                     <div class="border-end col-1">
                                         <p>Zakończono: </p>
-                                        <p><b>@pacjent.EndTime.ToString("g")</b></p>
+                                        <p><b>@patient.EndTime.ToString("g")</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</b>
+                                        <b>@patient.Surname?.ToUpper() @patient.Name?.ToUpper()</b>
                                     </div>
                                     <div class="border-end col-1">
-                                        <b>@pacjent.Pesel</b>
+                                        <b>@patient.Pesel</b>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@pacjent.Diagnosis?.ToUpper()</b>
+                                        <b>@patient.Symptoms?.ToUpper()</b>
                                     </div>
                                     <div class="border-end col-2">
-                                        lek. prowadzący: <b>@pacjent.Doctor?.ToUpper()</b>
+                                        lek. prowadzący: <b>@patient.DoctorId</b>
                                     </div>
                                     <div class="col-2">
-                                        <b> @pacjent.CoDalejZPacjentem?.ToUpper()</b>
+                                        <b> @patient.WhatNext?.ToUpper()</b>
                                     </div>
                                 </div>
                             </div>

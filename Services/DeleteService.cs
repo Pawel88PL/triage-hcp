@@ -18,14 +18,14 @@ namespace triage_hcp.Services
 
         public async Task<bool> DeletePatientAsync(int id)
         {
-            var pacjent = await _context.Pacjenci.FindAsync(id);
+            var pacjent = await _context.Patients.FindAsync(id);
             if (pacjent == null)
             {
                 _logger.LogError("Nie znaleziono pacjenta o Id: {Id}", id);
                 return false;
             }
 
-            _context.Pacjenci.Remove(pacjent);
+            _context.Patients.Remove(pacjent);
             await _context.SaveChangesAsync();
 
             _logger.LogInformation("Usunięto pacjenta o Id: {Id}", id);

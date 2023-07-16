@@ -28,36 +28,16 @@
                     <br />
 
                     <h5><i class="bi bi-house-heart"></i> Lokalizacja w SOR:</h5>
-                    <select class="form-control" id="Room" name="Room">
-                        <option>Poczekalnia</option>
-                        <option>Korytarz</option>
-                        <option>Wituś</option>
-                        <option>Wituś 1</option>
-                        <option>Wituś 2</option>
-                        <option>Wituś 3</option>
-                        <option>WIT</option>
-                        <option>WIT 1</option>
-                        <option>WIT 2</option>
-                        <option>WIT 3</option>
-                        <option>WIT 4</option>
-                        <option>Sala obserwacyjna 5</option>
-                        <option>Sala obserwacyjna 6</option>
-                        <option>Sala obserwacyjna 7</option>
-                        <option>Sala obserwacyjna 8</option>
-                        <option>Sala obserwacyjna 9</option>
-                        <option>Sala obserwacyjna 10</option>
-                        <option>Izolatka Z1</option>
-                        <option>Izolatka Z2</option>
-                        <option>Izolatka Z3</option>
-                        <option>Dekontaminacja</option>
+                    <select asp-for="LocationId" class="form-control">
+                        <option></option>
                     </select>
                     <br />
-
                 </div>
+
                 <div class="col-md-6">
                     <h5><i class="bi bi-chat-dots"></i> Objawy: </h5>
-                    <textarea asp-for="Diagnosis" class="form-control" rows="5"></textarea>
-                    <span asp-validation-for="Diagnosis" class="text-danger"></span>
+                    <textarea asp-for="Symptoms" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Symptoms" class="text-danger"></span>
                     <br />
 
                     <h5><i class="bi bi-capsule-pill"></i> Alergie na leki: </h5>

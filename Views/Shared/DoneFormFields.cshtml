@@ -3,11 +3,7 @@
 <div style="display:none">
 
     <select class="form-control" id="DateTime" name="DateTime">
-        <option>@Model.DateTime</option>
-    </select>
-
-    <select class="form-control" id="TriageDate" name="TriageDate">
-        <option>@Model.TriageDate</option>
+        <option>@Model.StartTime</option>
     </select>
 
     <select class="form-control" id="Name" name="Name">
@@ -31,7 +27,7 @@
     </select>
 
     <select class="form-control" id="Diagnosis" name="Diagnosis">
-        <option>@Model.Diagnosis</option>
+        <option>@Model.Symptoms</option>
     </select>
 
     <select class="form-control" id="Color" name="Color">
@@ -39,7 +35,7 @@
     </select>
 
     <select class="form-control" id="Room" name="Room">
-        <option>@Model.Room</option>
+        <option>@Model.LocationId</option>
     </select>
 
     <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
@@ -51,11 +47,11 @@
     </select>
 
     <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-        <option>@Model.CoDalejZPacjentem</option>
+        <option>@Model.WhatNext</option>
     </select>
 
     <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-        <option>@Model.ObserwacjeRatPiel</option>
+        <option>@Model.Remarks</option>
     </select>
 
     <select class="form-control" id="EndTime" name="EndTime">
@@ -97,6 +93,5 @@
     <select class="form-control" id="BodyTemperature" name="BodyTemperature">
         <option>@Model.BodyTemperature</option>
     </select>
-
     
 </div>

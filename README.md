@@ -370,3 +370,6 @@ Data 16.07.2023
 
 1. Poprawiono widok AdminList.cshtml, MainList.cshtml, Done.cshtml, Edit.cshtml, WithDoctor.cshtml, WithoutDoctor.cshtml
    o zmienione pola modelu Patient.
+2. Ciąg dalszy poprawek: - poprawiono widok Statistics.cshtml, TodayEndList.cshtml, SearchPatients.cshtml,
+   DoneFormFields.cshtml, EditFormFields.cshtml, HiddenFormFields.cshtml, AddNewPatient.cshtml.
+3. Przeprowadzono migrację NewTables_Patients_Doctors_And_Locations i update testowej bazy danych.
