@@ -19,25 +19,28 @@ namespace triage_hcp.Controllers
     {
         private readonly IDetailsService _detailsService;
         private readonly IListService _listService;
+        private readonly ITriageService _triageService;
         private readonly ILogger<TriageService> _logger;
 
 
-        public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger, IListService listService)
+        public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger,
+            IListService listService, ITriageService triageService)
         {
             _detailsService = detailsService;
             _logger = logger;
             _listService = listService;
+            _triageService = triageService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Admin(int id)
         {
-            if (_detailsService.GetAsync == null)
+            if (_detailsService.GetPatientAsync == null)
             {
                 return View("NotFound");
             }
 
-            var patient = await _detailsService.GetAsync(id);
+            var patient = await _detailsService.GetPatientAsync(id);
 
             if (patient == null)
             {
@@ -60,12 +63,12 @@ namespace triage_hcp.Controllers
         [HttpGet]
         public async Task<IActionResult> WithoutDoctor(int id)
         {
-            if (_detailsService.GetAsync == null)
+            if (_detailsService.GetPatientAsync == null)
             {
                 return View("NotFound");
             }
 
-            var patient = await _detailsService.GetAsync(id);
+            var patient = await _detailsService.GetPatientAsync(id);
 
             if (patient == null)
             {
@@ -80,6 +83,9 @@ namespace triage_hcp.Controllers
 
             ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
 
+            var locations = await _triageService.GetAvailableLocationsAsync();
+            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
+
 
 
             return View(patient);
@@ -89,12 +95,12 @@ namespace triage_hcp.Controllers
         [HttpGet]
         public async Task<IActionResult> WithDoctor(int id)
         {
-            if (_detailsService.GetAsync == null)
+            if (_detailsService.GetPatientAsync == null)
             {
                 return View("NotFound");
             }
 
-            var patient = await _detailsService.GetAsync(id);
+            var patient = await _detailsService.GetPatientAsync(id);
             
             if (patient == null)
             {
@@ -109,6 +115,9 @@ namespace triage_hcp.Controllers
 
             ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
 
+            var locations = await _triageService.GetAvailableLocationsAsync();
+            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
+
 
             return View(patient);
         }
@@ -116,12 +125,12 @@ namespace triage_hcp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            if (_detailsService.GetAsync == null)
+            if (_detailsService.GetPatientAsync == null)
             {
                 return View("NotFound");
             }
 
-            var patient = await _detailsService.GetAsync(id);
+            var patient = await _detailsService.GetPatientAsync(id);
 
             if (patient == null)
             {
@@ -136,12 +145,12 @@ namespace triage_hcp.Controllers
         [HttpGet]
         public async Task<IActionResult> Done(int id)
         {
-            if (_detailsService.GetAsync == null)
+            if (_detailsService.GetPatientAsync == null)
             {
                 return View("NotFound");
             }
 
-            var patient = await _detailsService.GetAsync(id);
+            var patient = await _detailsService.GetPatientAsync(id);
 
             if (patient == null)
             {
@@ -174,11 +183,18 @@ namespace triage_hcp.Controllers
 
                 try
                 {
-                    await _detailsService.UpdatePacjentAsync(patient);
+                    await _detailsService.UpdatePatientAsync(patient);
+
+                    if (!patient.IsActive)
+                    {
+                        var location = await _detailsService.GetLocationAsync(patient.LocationId);
+                        location.IsAvailable = true;
+                        await _detailsService.UpdateLocationAsync(location);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (await _detailsService.GetAsync(patient.PatientId) == null)
+                    if (await _detailsService.GetPatientAsync(patient.PatientId) == null)
                     {
                         return View("NotFound");
                     }

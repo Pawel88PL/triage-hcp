@@ -382,3 +382,4 @@ Data 17.07.2023
 
 1. W modelu Patient.cs umożliwiono, aby pola z parametrami jak ciśnienie, tętno, saturacja i skala GCS mogły być null,
    przeprowadzono migrację Patient_Parameters_Nullable i update bazy danych.
+2. Do modelu Location.cs dodano pole bool IsAvailable, które będzie wskazywać czy dana lokalizacja jest dostępna.

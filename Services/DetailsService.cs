@@ -14,21 +14,39 @@ namespace triage_hcp.Services
             _logger = logger;
         }
 
-        public async Task<Patient?> GetAsync(int Id)
+        public async Task<Patient?> GetPatientAsync(int patientId)
         {
-            var pacjent = await _context.Patients.FindAsync(Id);
+            var patient = await _context.Patients.FindAsync(patientId);
 
-            if (pacjent == null)
+            if (patient == null)
             {
-                _logger.LogError("Nie znaleziono pacjenta o Id: {Id}", Id);
+                _logger.LogError($"Nie znaleziono pacjenta o Id: {patientId}", patientId);
             }
 
-            return pacjent;
+            return patient;
         }
 
-        public async Task UpdatePacjentAsync(Patient patient)
+        public async Task<Location?> GetLocationAsync(int locationId)
+        {
+            var location = await _context.Locations.FindAsync(locationId);
+
+            if (location == null)
+            {
+                _logger.LogError($"Nie znaleziono łóżka o Id: {locationId}", locationId);
+            }
+
+            return location;
+        }
+
+        public async Task UpdatePatientAsync(Patient patient)
         {
             _context.Update(patient);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateLocationAsync(Location location)
+        {
+            _context.Update(location);
             await _context.SaveChangesAsync();
         }
 

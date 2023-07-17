@@ -6,5 +6,6 @@ namespace triage_hcp.Services.Interfaces
     {
         Task<List<Patient>> GetAllAsync();
         Task<List<Doctor>> GetAllDoctorsAsync();
+        Task<List<Location>> GetLocationsAsync();
     }
 }

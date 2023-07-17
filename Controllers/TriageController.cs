@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
 
@@ -24,12 +25,17 @@ namespace triage_hcp.Controllers
         
         // Pobranie widoku formularza Triage.
         [HttpGet]
-        public IActionResult AddNewPatient()
+        public async Task<IActionResult> AddNewPatient()
         {
+            var locations = await _triageService.GetAvailableLocationsAsync();
+            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
             return View();
         }
 
-        
+
+
+
+
         // Akcja dodająca nowego pacjenta do systemu.
         [HttpPost]
         public async Task<IActionResult> AddNewPatient(Patient pacjent)
@@ -47,7 +53,7 @@ namespace triage_hcp.Controllers
             _triageService.SetDefaultPatientFields(pacjent);
 
             // Zapisanie nowego rekordu (pacjenta) w bazie danych
-            var Id = await _triageService.SaveAsync(pacjent);
+            var Id = await _triageService.AddNewPatientAsync(pacjent);
 
             // Wygenerowanie pliku IdPacjenta.docx z dokumentacją do druku
             var fileBytes = await _documentService.GeneratePatientDocumentAsync(Id);
