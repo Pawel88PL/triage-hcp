@@ -376,3 +376,9 @@ Data 16.07.2023
 4. Do klasy ListService dodano metodę GetAllDoctorsAsync(), która zwraca listę wszystkich lekarzy z tabeli "Doctors".
 5. W widokach MainList.cshtml, WithDoctor.cshtml i WithoutDoctor.cshtml zastosowano listę lekarzy pobieraną z bazy danych.
 6. Poprawiono wyświetlanie lekarza przy danym pacjencie z Id lekarza na jego imię i nazwisko.
+<hr/>
+
+Data 17.07.2023
+
+1. W modelu Patient.cs umożliwiono, aby pola z parametrami jak ciśnienie, tętno, saturacja i skala GCS mogły być null,
+   przeprowadzono migrację Patient_Parameters_Nullable i update bazy danych.

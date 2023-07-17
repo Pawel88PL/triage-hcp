@@ -54,19 +54,19 @@ namespace triage_hcp.Models
         public string? Allergies { get; set; }
 
         [Range(0, 400)]
-        public int SBP { get; set; }
+        public int? SBP { get; set; }
 
         [Range(0, 200)]
-        public int DBP { get; set; }
+        public int? DBP { get; set; }
 
         [Range(0, 300)]
-        public int HeartRate { get; set; }
+        public int? HeartRate { get; set; }
 
         [Range(0, 100)]
-        public int Spo2 { get; set; }
+        public int? Spo2 { get; set; }
 
         [Range(3, 15)]
-        public int GCS { get; set; }
+        public int? GCS { get; set; }
 
         [Column(TypeName = "decimal(3,1)")]
         [Range(15, 45)]
