@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using triage_hcp.Models;
+using triage_hcp.Services;
 using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Controllers
@@ -12,14 +13,17 @@ namespace triage_hcp.Controllers
         private readonly ITriageService _triageService;
         private readonly IPeselService _peselService;
         private readonly IDocumentService _documentService;
+        private readonly IListService _listService;
 
         
         // Wstrzykiwanie zależności.
-        public TriageController(ITriageService triageService, IPeselService peselService, IDocumentService documentService)
+        public TriageController(ITriageService triageService, IPeselService peselService,
+            IDocumentService documentService, IListService listService)
         {
             _triageService = triageService;
             _peselService = peselService;
             _documentService = documentService;
+            _listService = listService;
         }
 
         
@@ -29,6 +33,8 @@ namespace triage_hcp.Controllers
         {
             var locations = await _triageService.GetAvailableLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
+            ViewBag.AvailableLocations = await _listService.GetLocationsAsync();
+
             return View();
         }
 

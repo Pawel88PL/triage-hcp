@@ -383,3 +383,6 @@ Data 17.07.2023
 1. W modelu Patient.cs umożliwiono, aby pola z parametrami jak ciśnienie, tętno, saturacja i skala GCS mogły być null,
    przeprowadzono migrację Patient_Parameters_Nullable i update bazy danych.
 2. Do modelu Location.cs dodano pole bool IsAvailable, które będzie wskazywać czy dana lokalizacja jest dostępna.
+3. Dodano logikę, która przypisuje wartość 'false' w polu IsAvailable w momencie położenia pacjenta na jakieś łóżko.
+4. Zaimplementowano logikę, która zwalnia łóżko jeśli pacjent jest wypisany z SOR.
+5. W widoku 'AddNewPatient.cshtml' dodano kolumnę, która wyświetla listę dostępnych łóżek.
