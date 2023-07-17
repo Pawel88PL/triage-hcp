@@ -386,3 +386,5 @@ Data 17.07.2023
 3. Dodano logikę, która przypisuje wartość 'false' w polu IsAvailable w momencie położenia pacjenta na jakieś łóżko.
 4. Zaimplementowano logikę, która zwalnia łóżko jeśli pacjent jest wypisany z SOR.
 5. W widoku 'AddNewPatient.cshtml' dodano kolumnę, która wyświetla listę dostępnych łóżek.
+6. W widoku 'MainList.cshtml' usunięto wartość null, która była przypisana do formularza wyboru lekarza i generowała błąd
+   w momencie wybrania z listy opcji 'Wybierz lekarza ...'.
