@@ -26,15 +26,19 @@ namespace triage_hcp.Controllers
             _listService = listService;
         }
 
-        
-        // Pobranie widoku formularza Triage.
-        [HttpGet]
-        public async Task<IActionResult> AddNewPatient()
+
+        private async Task SetViewBagLocations()
         {
             var locations = await _triageService.GetAvailableLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
             ViewBag.AvailableLocations = await _listService.GetLocationsAsync();
+        }
 
+        // Pobranie widoku formularza Triage.
+        [HttpGet]
+        public async Task<IActionResult> AddNewPatient()
+        {
+            await SetViewBagLocations();
             return View();
         }
 
@@ -49,6 +53,7 @@ namespace triage_hcp.Controllers
             // Sprawdzenie czy wprowadzone dane są poprawne.
             if (!ModelState.IsValid)
             {
+                await SetViewBagLocations();
                 return View(pacjent);
             }
 

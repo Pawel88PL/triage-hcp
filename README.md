@@ -388,3 +388,5 @@ Data 17.07.2023
 5. W widoku 'AddNewPatient.cshtml' dodano kolumnę, która wyświetla listę dostępnych łóżek.
 6. W widoku 'MainList.cshtml' usunięto wartość null, która była przypisana do formularza wyboru lekarza i generowała błąd
    w momencie wybrania z listy opcji 'Wybierz lekarza ...'.
+7. W kontrolerze TriageController utworzono metodę SetViewBagLocations(), która przekazuje aktualne łóżka do widoku
+   AddNewPatient.cshtml.
