@@ -14,22 +14,24 @@ namespace triage_hcp.Controllers
         private readonly IPeselService _peselService;
         private readonly IDocumentService _documentService;
         private readonly IListService _listService;
+        private readonly ILocationService _locationService;
 
         
         // Wstrzykiwanie zależności.
         public TriageController(ITriageService triageService, IPeselService peselService,
-            IDocumentService documentService, IListService listService)
+            IDocumentService documentService, IListService listService, ILocationService locationService)
         {
             _triageService = triageService;
             _peselService = peselService;
             _documentService = documentService;
             _listService = listService;
+            _locationService = locationService;
         }
 
 
         private async Task SetViewBagLocations()
         {
-            var locations = await _triageService.GetAvailableLocationsAsync();
+            var locations = await _locationService.GetAvailableLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
             ViewBag.AvailableLocations = await _listService.GetLocationsAsync();
         }
@@ -41,9 +43,6 @@ namespace triage_hcp.Controllers
             await SetViewBagLocations();
             return View();
         }
-
-
-
 
 
         // Akcja dodająca nowego pacjenta do systemu.

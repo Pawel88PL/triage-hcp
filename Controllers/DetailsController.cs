@@ -19,17 +19,27 @@ namespace triage_hcp.Controllers
     {
         private readonly IDetailsService _detailsService;
         private readonly IListService _listService;
+        private readonly ILocationService _locationService;
         private readonly ITriageService _triageService;
         private readonly ILogger<TriageService> _logger;
 
 
         public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger,
-            IListService listService, ITriageService triageService)
+            IListService listService, ITriageService triageService, ILocationService locationService)
         {
             _detailsService = detailsService;
             _logger = logger;
             _listService = listService;
             _triageService = triageService;
+            _locationService = locationService;
+        }
+
+
+        private async Task SetViewBagLocations()
+        {
+            var locations = await _locationService.GetAvailableLocationsAsync();
+            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
+            ViewBag.AvailableLocations = await _listService.GetLocationsAsync();
         }
 
         [HttpGet]
@@ -83,7 +93,7 @@ namespace triage_hcp.Controllers
 
             ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
 
-            var locations = await _triageService.GetAvailableLocationsAsync();
+            var locations = await _locationService.GetAvailableLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
 
 
@@ -115,9 +125,8 @@ namespace triage_hcp.Controllers
 
             ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
 
-            var locations = await _triageService.GetAvailableLocationsAsync();
+            var locations = await _locationService.GetAvailableLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
-
 
             return View(patient);
         }
@@ -137,7 +146,6 @@ namespace triage_hcp.Controllers
                 return View("NotFound");
             }
 
-
             return View(patient);
         }
 
@@ -156,7 +164,6 @@ namespace triage_hcp.Controllers
             {
                 return View("NotFound");
             }
-
 
             return View(patient);
         }
@@ -187,9 +194,9 @@ namespace triage_hcp.Controllers
 
                     if (!patient.IsActive)
                     {
-                        var location = await _detailsService.GetLocationAsync(patient.LocationId);
+                        var location = await _locationService.GetLocationAsync(patient.LocationId);
                         location.IsAvailable = true;
-                        await _detailsService.UpdateLocationAsync(location);
+                        await _locationService.UpdateLocationAsync(location);
                     }
                 }
                 catch (DbUpdateConcurrencyException)

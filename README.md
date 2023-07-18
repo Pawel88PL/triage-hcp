@@ -390,3 +390,6 @@ Data 17.07.2023
    w momencie wybrania z listy opcji 'Wybierz lekarza ...'.
 7. W kontrolerze TriageController utworzono metodę SetViewBagLocations(), która przekazuje aktualne łóżka do widoku
    AddNewPatient.cshtml.
+8. Utworzono LocationServis, w którym są metody odpowiedzialne za generowanie listy dostępnych łóżek, przydzielanie
+   pacjenta do danego łóżka i zwalniania go w momencie wypisania pacjenta.
+9. W widok 'AddNewPatient.cshtml' listę dostępnych łóżek umieszczono w jednym kontenerze 'border shadow' z formularzami.

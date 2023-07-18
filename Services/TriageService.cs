@@ -19,15 +19,7 @@ namespace triage_hcp.Services
             _logger = logger;
         }
 
-        public async Task<List<Location>> GetAvailableLocationsAsync()
-        {
-
-            var locations = await _context.Locations
-                .Where(l => l.IsAvailable)
-                .ToListAsync();
-
-            return locations;
-        }
+        
 
 
         public async Task<int> AddNewPatientAsync(Patient patient)

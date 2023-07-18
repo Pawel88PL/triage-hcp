@@ -14,7 +14,6 @@
 
             @await Html.PartialAsync("HiddenFormFields")
 
-
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
 
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
@@ -60,11 +59,12 @@
                             <div class="col-6">
                                 <br />
                                 <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
+                                <option>@Model.LocationId</option>
                                 </select>
                                 <br />
 
                                 <select asp-for="Color" class="form-select">
-                                    @await Html.PartialAsync("ColorList")
+                                    @await Html.PartialAsync("_ColorList")
                                 </select>
                                 <br />
 
@@ -97,7 +97,8 @@
                                 <div class="form-group">
                                     <select asp-for="WhatNext" class="form-select">
                                         <option>@Model.WhatNext</option>
-                                        @await Html.PartialAsync("WhatDecision")
+                                        <option>W trakcie diagnostyki SOR</option>
+                                        @await Html.PartialAsync("_WhatNext")
                                     </select>
                                 </div>
                                 <br />
@@ -190,23 +191,7 @@
                         <br />
                         <div class="form-group">
                             <select asp-for="WhatNext" class="form-select">
-                                <option>Wypisany do domu</option>
-                                <option>Interna</option>
-                                <option>Urologia</option>
-                                <option>Kardiologia A</option>
-                                <option>Kardiologia B</option>
-                                <option>Neurologia</option>
-                                <option>OIOM</option>
-                                <option>Chirurgia</option>
-                                <option>Ortopedia</option>
-                                <option>Psychiatria</option>
-                                <option>Przekazany do innego szpitala</option>
-                                <option>Neurochirurgia</option>
-                                <option>Ginekologia</option>
-                                <option>Chirurgia szczękowo-twarzowa</option>
-                                <option>Oddalił się z SOR</option>
-                                <option>Przekazano Policji</option>
-                                <option>Zgon</option>
+                               @await Html.PartialAsync("_WhatNext")
                             </select>
                         </div>
                         <br />
