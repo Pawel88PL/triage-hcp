@@ -731,7 +731,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 4 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -755,7 +755,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 5 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -862,7 +862,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 5 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -886,7 +886,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 6 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -993,7 +993,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 6 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1017,7 +1017,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 3 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -1124,7 +1124,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 3 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1152,7 +1152,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 8 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -1259,7 +1259,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 8 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1283,7 +1283,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 9 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -1390,7 +1390,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 9 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1414,7 +1414,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 10 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -1521,7 +1521,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 10 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1545,7 +1545,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 11 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -1652,7 +1652,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 11 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1676,7 +1676,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 7 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -1783,7 +1783,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 7 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1811,7 +1811,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 12 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -1918,7 +1918,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 12 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -1942,7 +1942,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 13 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2049,7 +2049,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 13 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2073,7 +2073,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 14 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2180,7 +2180,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 14 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2208,7 +2208,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 15 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2315,7 +2315,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 15 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2339,7 +2339,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 16 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2446,7 +2446,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 16 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2470,7 +2470,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 17 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2577,7 +2577,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 17 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2605,7 +2605,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 18 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2712,7 +2712,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 18 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2736,7 +2736,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 19 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2843,7 +2843,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 19 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2867,7 +2867,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 20 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -2974,7 +2974,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 20 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -2997,7 +2997,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 2 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -3104,7 +3104,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 2 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -3127,7 +3127,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 1 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -3234,7 +3234,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 1 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -3257,7 +3257,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 21 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
@@ -3364,7 +3364,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 21 &
                             x.IsActive == true &
-                            !(x.DoctorId == 1)))
+                            !(x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"

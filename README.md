@@ -411,3 +411,6 @@ Data 19.07.2023
 5. W kontrolerze DetailsController utworzono widok 'Update.cshtml', który informuje o tym, że nie udało się zaktualizować
    danych pacjenta.
 6. W widoku 'MainList.cshtml' poprawiono algorytm wyświetlający lokalizacje pacjenta w SOR.
+7. Zrefaktoryzowano DetailsController, przenosząc logikę dotyczącą obsługi błędów i aktualizacji pacjentów do serwisu
+   DetailsService.
+8. Zmieniono sposób obsługi błędów w metodzie Update, tak aby prawidłowo zwracać widok po wystąpieniu błędu.

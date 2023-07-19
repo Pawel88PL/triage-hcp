@@ -50,14 +50,8 @@ namespace triage_hcp.Controllers
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> WithoutDoctor(int id)
+        private async Task<IActionResult> HandleRequest(int id, string viewName)
         {
-            if (_detailsService.GetPatientAsync == null)
-            {
-                return View("NotFound");
-            }
-
             var patient = await _detailsService.GetPatientAsync(id);
 
             if (patient == null)
@@ -66,84 +60,23 @@ namespace triage_hcp.Controllers
             }
 
             await SetViewBagDoctorsAndLocations();
-            return View(patient);
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> WithDoctor(int id)
-        {
-            if (_detailsService.GetPatientAsync == null)
-            {
-                return View("NotFound");
-            }
-
-            var patient = await _detailsService.GetPatientAsync(id);
-            
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
-            await SetViewBagDoctorsAndLocations();
-            return View(patient);
+            return View(viewName, patient);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            if (_detailsService.GetPatientAsync == null)
-            {
-                return View("NotFound");
-            }
-
-            var patient = await _detailsService.GetPatientAsync(id);
-
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
-            return View(patient);
-        }
-
+        public Task<IActionResult> WithoutDoctor(int id) => HandleRequest(id, "WithoutDoctor");
 
         [HttpGet]
-        public async Task<IActionResult> Done(int id)
-        {
-            if (_detailsService.GetPatientAsync == null)
-            {
-                return View("NotFound");
-            }
-
-            var patient = await _detailsService.GetPatientAsync(id);
-
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
-            return View(patient);
-        }
+        public Task<IActionResult> WithDoctor(int id) => HandleRequest(id, "WithDoctor");
 
         [HttpGet]
-        public async Task<IActionResult> Update(int id)
-        {
-            if (_detailsService.GetPatientAsync == null)
-            {
-                return View("NotFound");
-            }
+        public Task<IActionResult> Edit(int id) => HandleRequest(id, "Edit");
 
-            var patient = await _detailsService.GetPatientAsync(id);
+        [HttpGet]
+        public Task<IActionResult> Done(int id) => HandleRequest(id, "Done");
 
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
-            return View(patient);
-        }
-
+        [HttpGet]
+        public Task<IActionResult> Update(int id) => HandleRequest(id, "Update");
 
 
         [HttpPost]
@@ -159,49 +92,27 @@ namespace triage_hcp.Controllers
                 return View("NotFound");
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                patient.EndTime = DateTime.Now;
-                patient.TotalTime = _detailsService.CalculateTotalPatientTime(patient.StartTime, patient.EndTime);
+                await SetViewBagDoctorsAndLocations();
+                return View(patient);
+            }
 
-                try
-                {
-                    await _detailsService.UpdatePatientAsync(patient);
+            var result = await _detailsService.UpdatePatientAsync(patient);
 
-                    if (!patient.IsActive)
-                    {
-                        var location = await _locationService.GetLocationAsync(patient.LocationId);
-                        location.IsAvailable = true;
-                        await _locationService.UpdateLocationAsync(location);
-                    }
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (await _detailsService.GetPatientAsync(patient.PatientId) == null)
-                    {
-                        return View("NotFound");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Nie można zaktualizować danych pacjenta, " +
-                            "ponieważ zostały one zmienione przez innego użytkownika. Odśwież stronę i spróbuj ponownie.");
-                        await SetViewBagDoctorsAndLocations();
-                        return View(patient);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Wystąpił błąd podczas aktualizacji danych pacjenta o Id: {Id}", patient.PatientId);
-                    ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas aktualizacji danych pacjenta." +
-                        " Spróbuj ponownie później.");
-                    await SetViewBagDoctorsAndLocations();
-                    return View(patient);
-                }
+            if (result.IsSuccess)
+            {
                 return RedirectToAction("MainList", "ListsOfPatients");
             }
-            await SetViewBagDoctorsAndLocations();
-            return View(patient);
+
+            return HandleUpdateError(result.Error, patient);
         }
 
+        private IActionResult HandleUpdateError(Exception ex, Patient patient)
+        {
+            _logger.LogError(ex, "Wystąpił błąd podczas aktualizacji danych pacjenta o Id: {Id}", patient.PatientId);
+            ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas aktualizacji danych pacjenta. Spróbuj ponownie później.");
+            return View(patient);
+        }
     }
 }
