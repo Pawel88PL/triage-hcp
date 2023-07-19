@@ -25,7 +25,10 @@ public class SearchPatientService : ISearchPatientService
             .Where(p =>
             (p.Name != null && p.Name.Contains(query)) ||
             (p.Surname != null && p.Surname.Contains(query)) ||
-            (p.Symptoms != null && p.Symptoms.Contains(query)))
+            (p.Symptoms != null && p.Symptoms.Contains(query)) ||
+            (p.Pesel != null && p.Pesel.Contains(query)))
+            .Include(p => p.Doctor)
+            .Include(p => p.Location)
         .ToListAsync();
     }
 }

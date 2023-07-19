@@ -1,4 +1,5 @@
-﻿using triage_hcp.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Services
@@ -16,7 +17,10 @@ namespace triage_hcp.Services
 
         public async Task<Patient?> GetPatientAsync(int patientId)
         {
-            var patient = await _context.Patients.FindAsync(patientId);
+            var patient = await _context.Patients
+                    .Include(p => p.Doctor)
+                    .Include(p => p.Location)
+                    .FirstOrDefaultAsync(p => p.PatientId == patientId);
 
             if (patient == null)
             {

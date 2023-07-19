@@ -33,7 +33,7 @@ namespace triage_hcp.Controllers
         {
             var locations = await _locationService.GetAvailableLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
-            ViewBag.AvailableLocations = await _listService.GetLocationsAsync();
+            ViewBag.AvailableLocations = await _locationService.GetAllLocationsAsync();
         }
 
         // Pobranie widoku formularza Triage.

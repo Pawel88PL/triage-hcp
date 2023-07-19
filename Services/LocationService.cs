@@ -28,14 +28,21 @@ namespace triage_hcp.Services
             return location;
         }
 
+        public async Task<List<Location>> GetAllLocationsAsync()
+        {
+            var alllocations = await _context.Locations.ToListAsync();
+
+            return alllocations;
+        }
+
         public async Task<List<Location>> GetAvailableLocationsAsync()
         {
 
-            var locations = await _context.Locations
+            var availableLocations = await _context.Locations
                 .Where(l => l.IsAvailable)
                 .ToListAsync();
 
-            return locations;
+            return availableLocations;
         }
 
         public async Task UpdateLocationAsync(Location location)

@@ -80,14 +80,6 @@
                         @item.EndTime
                     </td>
                     <td>
-                        <a href="@Url.Action("Admin","Details", new { Id = item.PatientId })"
-                           class="text-center" style="text-decoration:none">
-                            <div class="button btn-danger" style="border-radius: 3px; padding: 3px">
-                                EDYTUJ
-                            </div>
-                        </a>
-                    </td>
-                    <td>
                         @using (Html.BeginForm("DeletePatient", "Delete", new { id = item.PatientId }, FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()

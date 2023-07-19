@@ -9,21 +9,30 @@
     string Hours()
     {
 
-        string hours = Convert.ToString(Model.TotalTime);
-        int controlNumber = int.Parse(hours.Substring(0, 1));
+        string? hours = Convert.ToString(Model?.TotalTime);
 
-        if (controlNumber == 1)
+        if (!(hours == null))
         {
-            return "godzina";
-        }
-        else if (controlNumber == 2 || controlNumber == 3 || controlNumber == 4)
-        {
-            return "godziny";
+            int controlNumber = int.Parse(hours.Substring(0, 1));
+            if (controlNumber == 1)
+            {
+                return "godzina";
+            }
+            else if (controlNumber == 2 || controlNumber == 3 || controlNumber == 4)
+            {
+                return "godziny";
+            }
+            else
+            {
+                return "godzin";
+            }
+
         }
         else
         {
-            return "godzin";
+            return "";
         }
+
 
     }
 
@@ -99,33 +108,33 @@
 
                             <div class="col-6">
                                 <br />
-                                <p><b>@Model.LocationId</b></p>
+                                <p><b>@Model?.Location?.LocationName</b></p>
                                 <br />
 
-                                <p><b>@Model.ToWhomThePatient?.ToUpper()</b></p>
+                                <p><b>@Model?.ToWhomThePatient?.ToUpper()</b></p>
                                 <br />
 
-                                <p><b>@Model.WaitingTime</b> minut</p>
+                                <p><b>@Model?.WaitingTime</b> minut</p>
                                 <br />
 
-                                @if (Model.TotalTime < 1)
+                                @if (Model?.TotalTime < 1)
                                 {
                                     <p><b>Mniej niż 1 godzinę</b></p>
                                 }
-                                else if (Model.TotalTime > 9)
+                                else if (Model?.TotalTime > 9)
                                 {
-                                    <p><b>@Model.TotalTime</b> godzin</p>
+                                    <p><b>@Model?.TotalTime</b> godzin</p>
                                 }
                                 else
                                 {
-                                    <p><b>@Model.TotalTime</b> @Hours()</p>
+                                    <p><b>@Model?.TotalTime</b> @Hours()</p>
                                 }
                                 <br />
 
-                                <p><b>@Model.DoctorId</b></p>
+                                <p><b>@Model?.Doctor?.Name @Model?.Doctor?.Surname</b></p>
                                 <br />
 
-                                <p><b>@Model.WhatNext?.ToUpper()</b></p>
+                                <p><b>@Model?.WhatNext?.ToUpper()</b></p>
                                 <br />
 
 
@@ -145,18 +154,18 @@
 
 
                     <div class="col-6">
-                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
+                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model?.Color">
                             <div style="background-color:white; padding: 10px 10px 40px 10px">
                                 <h5 class="text-center">OPIS TRIAGE</h5>
                                 <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
-                                    <h4>@Model.Symptoms?.ToUpper()</h4>
+                                    <h4>@Model?.Symptoms?.ToUpper()</h4>
                                 </div>
 
                                 <h5>Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
-                                    <h4>@Model.Remarks?.ToUpper()</h4>
+                                    <h4>@Model?.Remarks?.ToUpper()</h4>
                                 </div>
                             </div>
                             <br />

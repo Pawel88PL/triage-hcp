@@ -283,14 +283,14 @@
                                 <br />
 
                                 <select asp-for="ToWhomThePatient" class="form-select">
-                                    <option>@Model.ToWhomThePatient</option>
+                                    <option>@Model?.ToWhomThePatient</option>
                                     <option>INTERNISTA</option>
                                     <option>CHIRURG</option>
                                 </select>
                                 <br />
 
                                 <select asp-for="Color" class="form-select">
-                                    @await Html.PartialAsync("ColorList")
+                                    @await Html.PartialAsync("_ColorList")
                                 </select>
                                 <br />
 

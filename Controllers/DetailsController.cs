@@ -35,28 +35,8 @@ namespace triage_hcp.Controllers
         }
 
 
-        private async Task SetViewBagLocations()
+        private async Task SetViewBagDoctorsAndLocations()
         {
-            var locations = await _locationService.GetAvailableLocationsAsync();
-            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
-            ViewBag.AvailableLocations = await _listService.GetLocationsAsync();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Admin(int id)
-        {
-            if (_detailsService.GetPatientAsync == null)
-            {
-                return View("NotFound");
-            }
-
-            var patient = await _detailsService.GetPatientAsync(id);
-
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
             var doctors = await _listService.GetAllDoctorsAsync();
             var doctorSelectList = doctors.Select(d => new {
                 d.DoctorId,
@@ -64,9 +44,8 @@ namespace triage_hcp.Controllers
             }).ToList();
 
             ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
-
-
-            return View(patient);
+            var locations = await _locationService.GetAllLocationsAsync();
+            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
         }
 
 
@@ -85,19 +64,7 @@ namespace triage_hcp.Controllers
                 return View("NotFound");
             }
 
-            var doctors = await _listService.GetAllDoctorsAsync();
-            var doctorSelectList = doctors.Select(d => new {
-                d.DoctorId,
-                FullName = d.Name + " " + d.Surname
-            }).ToList();
-
-            ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
-
-            var locations = await _locationService.GetAvailableLocationsAsync();
-            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
-
-
-
+            await SetViewBagDoctorsAndLocations();
             return View(patient);
         }
 
@@ -117,17 +84,7 @@ namespace triage_hcp.Controllers
                 return View("NotFound");
             }
 
-            var doctors = await _listService.GetAllDoctorsAsync();
-            var doctorSelectList = doctors.Select(d => new {
-                d.DoctorId,
-                FullName = d.Name + " " + d.Surname
-            }).ToList();
-
-            ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
-
-            var locations = await _locationService.GetAvailableLocationsAsync();
-            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
-
+            await SetViewBagDoctorsAndLocations();
             return View(patient);
         }
 
@@ -180,7 +137,7 @@ namespace triage_hcp.Controllers
         {
             if (PatientId != patient.PatientId)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
             if (ModelState.IsValid)
@@ -209,6 +166,7 @@ namespace triage_hcp.Controllers
                     {
                         ModelState.AddModelError(string.Empty, "Nie można zaktualizować danych pacjenta, " +
                             "ponieważ zostały one zmienione przez innego użytkownika. Odśwież stronę i spróbuj ponownie.");
+                        await SetViewBagDoctorsAndLocations();
                         return View(patient);
                     }
                 }
@@ -217,10 +175,12 @@ namespace triage_hcp.Controllers
                     _logger.LogError(ex, "Wystąpił błąd podczas aktualizacji danych pacjenta o Id: {Id}", patient.PatientId);
                     ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas aktualizacji danych pacjenta." +
                         " Spróbuj ponownie później.");
+                    await SetViewBagDoctorsAndLocations();
                     return View(patient);
                 }
                 return RedirectToAction("MainList", "ListsOfPatients");
             }
+            await SetViewBagDoctorsAndLocations();
             return View(patient);
         }
 

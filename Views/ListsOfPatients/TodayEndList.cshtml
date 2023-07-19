@@ -46,9 +46,9 @@
             .Where(x => x.StartTime.Date == DateTime.Today.Date)
             .OrderByDescending(x => x.StartTime))
             {
-                if (!(patient.IsActive == true))
+                if (patient.IsActive == false)
                 {
-                    <div class="pacjent" style="background-color: @patient.Color; max-width: 100%">
+                    <div class="patient" style="background-color: @patient.Color; max-width: 100%">
                         <a href="@Url.Action("Done","Details", new { Id = patient.PatientId })"
                            style="text-decoration:none; color:black">
                             <div class="container">
@@ -65,19 +65,20 @@
                                         <p><b>@patient.EndTime.ToString("g")</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@patient.Surname?.ToUpper() @patient.Name?.ToUpper()</b>
+                                        <p><b>@patient.Surname?.ToUpper() @patient.Name?.ToUpper()</b></p>
                                     </div>
                                     <div class="border-end col-1">
-                                        <b>@patient.Pesel</b>
+                                        <p><b>@patient.Pesel</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@patient.Symptoms?.ToUpper()</b>
+                                        <p><b>@patient.Symptoms?.ToUpper()</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        lek. prowadzący: <b>@patient.DoctorId</b>
+                                        <p>lek. prowadzący:</p>
+                                        <p><b>@patient?.Doctor?.Name @patient?.Doctor?.Surname </b></p>
                                     </div>
                                     <div class="col-2">
-                                        <b> @patient.WhatNext?.ToUpper()</b>
+                                       <p><b> @patient?.WhatNext?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>

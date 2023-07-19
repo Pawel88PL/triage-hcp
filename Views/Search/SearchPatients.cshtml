@@ -4,7 +4,7 @@
 
 @{
     ViewData["Title"] = "Wyszukiwanie";
-    var count = Model.Patients.Count();
+    var count = Model?.Patients?.Count();
 
 }
 
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="border shadow p-3 mb-5 bg-white rounded">
             <h2 class="text-center">
-                @(string.IsNullOrEmpty(Model.Query) ? "Wyszukaj pacjentów" : $"Wyniki wyszukiwania dla \"{Model.Query}\"")
+                @(string.IsNullOrEmpty(Model?.Query) ? "Wyszukaj pacjentów" : $"Wyniki wyszukiwania dla \"{Model.Query}\"")
             </h2>
             <br />
 
@@ -46,7 +46,7 @@
 
             @foreach (var patient in Model.Patients.OrderByDescending(x => x.StartTime))
             {
-                <div class="pacjent" style="background-color: @patient.Color; max-width: 100%">
+                <div class="patient" style="background-color: @patient.Color; max-width: 100%">
                     @if (patient.IsActive == true)
                     {
                         <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
@@ -74,10 +74,11 @@
                                         <b>@patient.Symptoms?.ToUpper()</b>
                                     </div>
                                     <div class="border-end col-2">
-                                        lek. prowadzący: <b>@patient.DoctorId</b>
+                                        <p>lek. prowadzący: </p>
+                                        <b>@patient?.Doctor?.Name @patient?.Doctor?.Surname</b>
                                     </div>
                                     <div class="col-2">
-                                        <b> @patient.WhatNext?.ToUpper()</b>
+                                        <b> @patient?.WhatNext?.ToUpper()</b>
                                     </div>
                                 </div>
                             </div>
@@ -110,10 +111,11 @@
                                         <b>@patient.Symptoms?.ToUpper()</b>
                                     </div>
                                     <div class="border-end col-2">
-                                        lek. prowadzący: <b>@patient.DoctorId</b>
+                                        <p>lek. prowadzący:</p> 
+                                        <p><b>@patient?.Doctor?.Name @patient?.Doctor?.Surname</b>
                                     </div>
                                     <div class="col-2">
-                                        <b> @patient.WhatNext?.ToUpper()</b>
+                                        <b> @patient?.WhatNext?.ToUpper()</b>
                                     </div>
                                 </div>
                             </div>

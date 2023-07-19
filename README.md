@@ -401,3 +401,9 @@ Data 18.07.2023
 2. W widoku MainList.cshtml zmieniono algorytm wyświetlający lokalizjacę pacjenta, wcześniej 'LocationId = 1' było przypisane
    dla łókka 'Wituś 1'.
 <hr/>
+
+Data 19.07.2023
+
+1. Usunięto widok Admin.cshtml.
+2. Poprawiono metodę GetPatientAsync() o powiązanie pacjenta z danym lekarzem i lokalizacją.
+3. Usunięto błąd, który powodował 'NullReferenceException' w momencie pobierania listy lokalizacji z bazy danych.

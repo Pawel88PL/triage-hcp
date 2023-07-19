@@ -30,12 +30,5 @@ namespace triage_hcp.Services
 
             return doctors;
         }
-
-        public async Task<List<Location>> GetLocationsAsync()
-        {
-            var locations = await _context.Locations.ToListAsync();
-
-            return locations;
-        }
     }
 }
