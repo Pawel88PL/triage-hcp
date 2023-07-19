@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -109,6 +110,24 @@ namespace triage_hcp.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Done(int id)
+        {
+            if (_detailsService.GetPatientAsync == null)
+            {
+                return View("NotFound");
+            }
+
+            var patient = await _detailsService.GetPatientAsync(id);
+
+            if (patient == null)
+            {
+                return View("NotFound");
+            }
+
+            return View(patient);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
         {
             if (_detailsService.GetPatientAsync == null)
             {

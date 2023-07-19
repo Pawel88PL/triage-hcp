@@ -407,3 +407,6 @@ Data 19.07.2023
 1. Usunięto widok Admin.cshtml.
 2. Poprawiono metodę GetPatientAsync() o powiązanie pacjenta z danym lekarzem i lokalizacją.
 3. Usunięto błąd, który powodował 'NullReferenceException' w momencie pobierania listy lokalizacji z bazy danych.
+4. Poprawiono błędne pola formularza '_DoneFormFields.cshtml'.
+5. W kontrolerze DetailsController utworzono widok 'Update.cshtml', który informuje o tym, że nie udało się zaktualizować
+   danych pacjenta.
