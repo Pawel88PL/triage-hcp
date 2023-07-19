@@ -393,3 +393,11 @@ Data 17.07.2023
 8. Utworzono LocationServis, w którym są metody odpowiedzialne za generowanie listy dostępnych łóżek, przydzielanie
    pacjenta do danego łóżka i zwalniania go w momencie wypisania pacjenta.
 9. W widok 'AddNewPatient.cshtml' listę dostępnych łóżek umieszczono w jednym kontenerze 'border shadow' z formularzami.
+<hr/>
+
+Data 18.07.2023
+
+1. W bazie danych zmieniono kolejność lokalizacji, zaczynając od 'LocationID = 1' dla Poczekalni, następnie 'Korytarz'.
+2. W widoku MainList.cshtml zmieniono algorytm wyświetlający lokalizjacę pacjenta, wcześniej 'LocationId = 1' było przypisane
+   dla łókka 'Wituś 1'.
+<hr/>
