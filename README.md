@@ -410,3 +410,4 @@ Data 19.07.2023
 4. Poprawiono błędne pola formularza '_DoneFormFields.cshtml'.
 5. W kontrolerze DetailsController utworzono widok 'Update.cshtml', który informuje o tym, że nie udało się zaktualizować
    danych pacjenta.
+6. W widoku 'MainList.cshtml' poprawiono algorytm wyświetlający lokalizacje pacjenta w SOR.

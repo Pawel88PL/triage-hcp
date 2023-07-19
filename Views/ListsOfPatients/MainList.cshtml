@@ -624,7 +624,7 @@
                             @foreach (var patient in Model.
                             Where(x => x.LocationId == 4 &
                             x.IsActive == true &
-                            (x.DoctorId == 1)))
+                            (x.DoctorId == null)))
                             {
                                 <div class="patient_sala" style="background-color: @patient.Color">
                                     <a href="@Url.Action("WithoutDoctor","Details", new { Id = patient.PatientId })"
