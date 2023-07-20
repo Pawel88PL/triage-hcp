@@ -50,6 +50,7 @@ namespace triage_hcp.Controllers
         }
 
 
+
         private async Task<IActionResult> HandleRequest(int id, string viewName)
         {
             var patient = await _detailsService.GetPatientAsync(id);
@@ -96,6 +97,26 @@ namespace triage_hcp.Controllers
             {
                 await SetViewBagDoctorsAndLocations();
                 return View(patient);
+            }
+
+            var patientWithCurrentLocation = await _detailsService.GetPatientAsync(PatientId);
+
+            if (patientWithCurrentLocation == null)
+            {
+                return View("NotFound");
+            }
+
+            // Here, we assume that the location of the patient might have been changed. We will check if it was changed and if so,
+            // we will transfer the patient to the new location.
+            if (patientWithCurrentLocation.LocationId != patient.LocationId)
+            {
+                var transferResult = await _locationService.TransferPatientAsync(patient.PatientId, patientWithCurrentLocation.LocationId, patient.LocationId);
+
+                if (!transferResult.IsSuccess)
+                {
+                    // If the transfer was not successful, you might want to handle it here.
+                    return HandleUpdateError(transferResult.Error, patient);
+                }
             }
 
             var result = await _detailsService.UpdatePatientAsync(patient);

@@ -50,5 +50,53 @@ namespace triage_hcp.Services
             _context.Update(location);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<(bool IsSuccess, Exception? Error)> TransferPatientAsync(int patientId, int oldLocationId, int newLocationId)
+        {
+            try
+            {
+                // Pobieramy pacjenta
+                var patient = await _context.Patients.FindAsync(patientId);
+
+                // Sprawdzamy, czy pacjent jest aktualnie w prawidłowej lokalizacji
+                if (patient.LocationId != oldLocationId)
+                {
+                    throw new Exception("Pacjent nie jest w oczekiwanej lokalizacji.");
+                }
+
+                // Pobieramy aktualną lokalizację pacjenta
+                var oldLocation = await _context.Locations.FindAsync(oldLocationId);
+
+                // Pobieramy nową lokalizację
+                var newLocation = await _context.Locations.FindAsync(newLocationId);
+
+                // Sprawdzamy, czy jest dostępne miejsce w nowej lokalizacji
+                if (newLocation.IsAvailable)
+                {
+                    // Zmieniamy lokalizację pacjenta na nową
+                    patient.LocationId = newLocationId;
+
+                    // Zwalniamy miejsce w poprzedniej lokalizacji
+                    oldLocation.IsAvailable = true;
+
+                    // Zajmujemy miejsce w nowej lokalizacji
+                    newLocation.IsAvailable = false;
+
+                    // Zapisujemy zmiany
+                    await _context.SaveChangesAsync();
+                    return (true, null);
+                }
+                else
+                {
+                    throw new Exception("Brak dostępnych miejsc w nowej lokalizacji.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex);
+            }
+        }
+
+
     }
 }

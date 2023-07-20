@@ -5,7 +5,7 @@ using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Services
 {
-    public class DetailsService: IDetailsService
+    public class DetailsService : IDetailsService
     {
         private readonly DbTriageContext _context;
         private readonly ILogger<TriageService> _logger;
@@ -37,30 +37,37 @@ namespace triage_hcp.Services
         {
             try
             {
-                patient.EndTime = DateTime.Now;
-                patient.TotalTime = CalculateTotalPatientTime(patient.StartTime, patient.EndTime);
-                _context.Update(patient);
-                await _context.SaveChangesAsync();
-
-                if (!patient.IsActive)
+                var patientInDb = await _context.Patients.FindAsync(patient.PatientId);
+                if (patientInDb != null)
                 {
-                    var location = await _locationService.GetLocationAsync(patient.LocationId);
-                    location.IsAvailable = true;
-                    await _locationService.UpdateLocationAsync(location);
-                }
+                    patientInDb.Color = patient.Color;
+                    patientInDb.DoctorId = patient.DoctorId;
+                    patientInDb.ToWhomThePatient = patient.ToWhomThePatient;
+                    patientInDb.LocationId = patient.LocationId;
+                    patientInDb.WhatNext = patient.WhatNext;
+                    patientInDb.IsActive = patient.IsActive;
+                    patient.EndTime = DateTime.Now;
+                    patient.TotalTime = CalculateTotalPatientTime(patient.StartTime, patient.EndTime);
 
-                return (true, null);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (await GetPatientAsync(patient.PatientId) == null)
-                {
-                    return (false, new InvalidOperationException($"Nie znaleziono pacjenta o Id: {patient.PatientId}"));
+                    if (!patient.IsActive)
+                    {
+                        var location = await _locationService.GetLocationAsync(patient.LocationId);
+                        location.IsAvailable = true;
+                        await _locationService.UpdateLocationAsync(location);
+                    }
+
+                    await _context.SaveChangesAsync();
+                    return (true, null);
                 }
                 else
                 {
-                    return (false, new ArgumentException("Nie można zaktualizować danych pacjenta, ponieważ zostały one zmienione przez innego użytkownika. Odśwież stronę i spróbuj ponownie."));
+                    return (false, new InvalidOperationException($"Nie znaleziono pacjenta o Id: {patient.PatientId}"));
                 }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+                return (false, new ArgumentException("Nie można zaktualizować danych pacjenta, ponieważ zostały one zmienione przez innego użytkownika. Odśwież stronę i spróbuj ponownie."));
             }
             catch (Exception ex)
             {

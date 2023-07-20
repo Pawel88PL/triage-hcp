@@ -414,3 +414,16 @@ Data 19.07.2023
 7. Zrefaktoryzowano DetailsController, przenosząc logikę dotyczącą obsługi błędów i aktualizacji pacjentów do serwisu
    DetailsService.
 8. Zmieniono sposób obsługi błędów w metodzie Update, tak aby prawidłowo zwracać widok po wystąpieniu błędu.
+<hr/>
+
+Data 20.07.2023
+
+1. Rozwiązano problem System.InvalidOperationException, który był spowodowany próbą śledzenia wielu instancji tego samego
+   obiektu 'Patient' przez Entity Framework Core. Problem rozwiązano, pobierając istniejącego pacjenta z bazy danych,
+   aktualizując właściwości tego obiektu, a następnie zapisując zmiany.
+2. Wprowadzono mechanizm aktualizacji w metodzie `UpdatePatientAsync`, pozwalający na zmiany konkretnych właściwości
+   obiektu 'Patient', takich jak 'Color', 'EndTime', 'TotalTime', 'LocationId', 'DoctorId', 'WhatNext' oraz 'IsActive'. 
+3. Dokonano dostosowań, aby obsłużyć sytuacje, gdy obiekt 'Patient' staje się nieaktywny, co skutkuje aktualizacją statusu
+   powiązanego 'Location' na 'IsAvailable'.
+4. Usprawniono obsługę wyjątków w metodzie `UpdatePatientAsync`, aby dostarczać bardziej znaczące komunikaty o błędach,
+   co poprawia możliwość debugowania i śledzenia błędów.

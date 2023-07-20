@@ -12,5 +12,6 @@ namespace triage_hcp.Services.Interfaces
         
         Task UpdateLocationAsync(Location location);
 
+        Task<(bool IsSuccess, Exception? Error)> TransferPatientAsync(int patientId, int oldLocationId, int newLocationId);
     }
 }
