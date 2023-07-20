@@ -15,24 +15,6 @@
     & x.IsActive == true
     & !(x.WhatNext == "W trakcie diagnostyki SOR")).Count();
 
-
-
-
-    int WaitingTime(DateTime triagedate)
-    {
-
-        DateTime aktualTime = DateTime.Now;
-        DateTime triageDate = triagedate;
-
-        TimeSpan interval = aktualTime - triageDate;
-
-        double minutes = interval.TotalMinutes;
-        int totalMinutes = Convert.ToInt32(minutes);
-
-        return totalMinutes;
-
-    }
-
 }
 
 
@@ -68,7 +50,7 @@
 
                                                             @if (patient.Color == "red")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 1)
+                                                                @if (patient.WaitingTime > 1)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -87,7 +69,7 @@
 
                                                             @if (patient.Color == "orange")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 10)
+                                                                @if (patient.WaitingTime > 10)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -106,7 +88,7 @@
 
                                                             @if (patient.Color == "yellow")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 60)
+                                                                @if (patient.WaitingTime > 60)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -125,7 +107,7 @@
 
                                                             @if (patient.Color == "lightgreen")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 120)
+                                                                @if (patient.WaitingTime > 120)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -144,7 +126,7 @@
 
                                                             @if (patient.Color == "lightskyblue")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 240)
+                                                                @if (patient.WaitingTime > 240)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -171,90 +153,90 @@
 
                                                             @if (patient.Color == "red")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 1)
+                                                                @if (patient.WaitingTime > 1)
                                                                 {
                                                                     <p>
                                                                         <span class="animation">
-                                                                            Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                            Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                         </span>
                                                                     </p>
                                                                 }
                                                                 else
                                                                 {
                                                                     <p>
-                                                                        Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                        Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                     </p>
                                                                 }
                                                             }
 
                                                             @if (patient.Color == "orange")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 10)
+                                                                @if (patient.WaitingTime > 10)
                                                                 {
                                                                     <p>
                                                                         <span class="animation">
-                                                                            Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                            Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                         </span>
                                                                     </p>
                                                                 }
                                                                 else
                                                                 {
                                                                     <p>
-                                                                        Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                        Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                     </p>
                                                                 }
                                                             }
 
                                                             @if (patient.Color == "yellow")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 60)
+                                                                @if (patient.WaitingTime > 60)
                                                                 {
                                                                     <p>
                                                                         <span class="animation">
-                                                                            Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                            Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                         </span>
                                                                     </p>
                                                                 }
                                                                 else
                                                                 {
                                                                     <p>
-                                                                        Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                        Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                     </p>
                                                                 }
                                                             }
 
                                                             @if (patient.Color == "lightgreen")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 120)
+                                                                @if (patient.WaitingTime > 120)
                                                                 {
                                                                     <p>
                                                                         <span class="animation">
-                                                                            Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                            Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                         </span>
                                                                     </p>
                                                                 }
                                                                 else
                                                                 {
                                                                     <p>
-                                                                        Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                        Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                     </p>
                                                                 }
                                                             }
 
                                                             @if (patient.Color == "lightskyblue")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 240)
+                                                                @if (patient.WaitingTime > 240)
                                                                 {
                                                                     <p>
                                                                         <span class="animation">
-                                                                            Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                            Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                         </span>
                                                                     </p>
                                                                 }
                                                                 else
                                                                 {
                                                                     <p>
-                                                                        Czas oczekiwania na lekarza: <b>@WaitingTime(patient.StartTime)</b> minut
+                                                                        Czas oczekiwania na lekarza: <b>@patient.WaitingTime</b> minut
                                                                     </p>
                                                                 }
                                                             }
@@ -265,7 +247,7 @@
                                                         <div class="col-3">
                                                             @if (patient.Color == "red")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 1)
+                                                                @if (patient.WaitingTime > 1)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -287,7 +269,7 @@
 
                                                             @if (patient.Color == "orange")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 10)
+                                                                @if (patient.WaitingTime > 10)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -309,7 +291,7 @@
 
                                                             @if (patient.Color == "yellow")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 60)
+                                                                @if (patient.WaitingTime > 60)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -331,7 +313,7 @@
 
                                                             @if (patient.Color == "lightgreen")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 120)
+                                                                @if (patient.WaitingTime > 120)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -353,7 +335,7 @@
 
                                                             @if (patient.Color == "lightskyblue")
                                                             {
-                                                                @if (WaitingTime(patient.StartTime) > 240)
+                                                                @if (patient.WaitingTime > 240)
                                                                 {
                                                                     <h5>
                                                                         <span class="animation">
@@ -392,7 +374,7 @@
                                                         </select>
 
                                                         <select class="form-control" id="WaitingTime" name="WaitingTime">
-                                                            <option>@WaitingTime(patient.StartTime)</option>
+                                                            <option>@patient.WaitingTime</option>
                                                         </select>
                                                         <br />
 
@@ -579,14 +561,14 @@
                                                     <p>PESEL: <b>@patient.Pesel</b></p>
                                                 </div>
                                                 <div class="col-4">
-                                                    <p>@patient.Symptoms?.ToUpper()</p>
+                                                    <p><b>@patient.Symptoms?.ToUpper()</b></p>
                                                 </div>
                                                 <div class="col-4">
                                                     <h5>
                                                         @patient.StartTime.ToString("g")
                                                     </h5>
-                                                    <p>Lokalizacja: <b>@patient.LocationId</b></p>
-                                                    <p>Jaka decyzja: <b>@patient.WhatNext?.ToUpper()</b></p>
+                                                    <p>Lokalizacja: <b>@patient?.Location?.LocationName</b></p>
+                                                    <p>Jaka decyzja: <b>@patient?.WhatNext?.ToUpper()</b></p>
                                                 </div>
                                             </div>
                                         </a>
@@ -594,7 +576,7 @@
                                 </div>
 
                                 <div class="border col-lg-3 doctor">
-                                    <p>lekarz prowadzący: <b>@patient.DoctorId</b></p>
+                                    <p>lekarz prowadzący: <b>@patient?.Doctor?.Name @patient?.Doctor?.Surname</b></p>
                                 </div>
                             </div>
                         </div>
@@ -631,7 +613,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -650,7 +632,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -669,7 +651,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -688,7 +670,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -707,7 +689,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -762,7 +744,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -781,7 +763,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -800,7 +782,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -819,7 +801,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -838,7 +820,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -893,7 +875,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -912,7 +894,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -931,7 +913,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -950,7 +932,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -969,7 +951,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1024,7 +1006,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1043,7 +1025,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1062,7 +1044,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1081,7 +1063,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1100,7 +1082,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1159,7 +1141,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1178,7 +1160,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1197,7 +1179,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1216,7 +1198,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1235,7 +1217,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1290,7 +1272,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1309,7 +1291,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1328,7 +1310,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1347,7 +1329,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1366,7 +1348,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1421,7 +1403,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1440,7 +1422,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1459,7 +1441,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1478,7 +1460,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1497,7 +1479,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1552,7 +1534,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1571,7 +1553,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1590,7 +1572,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1609,7 +1591,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1628,7 +1610,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1683,7 +1665,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1702,7 +1684,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1721,7 +1703,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1740,7 +1722,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1759,7 +1741,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1818,7 +1800,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1837,7 +1819,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1856,7 +1838,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1875,7 +1857,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1894,7 +1876,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1949,7 +1931,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1968,7 +1950,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -1987,7 +1969,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2006,7 +1988,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2025,7 +2007,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2080,7 +2062,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2099,7 +2081,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2118,7 +2100,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2137,7 +2119,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2156,7 +2138,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2215,7 +2197,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2234,7 +2216,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2253,7 +2235,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2272,7 +2254,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2291,7 +2273,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2346,7 +2328,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2365,7 +2347,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2384,7 +2366,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2403,7 +2385,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2422,7 +2404,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2477,7 +2459,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2496,7 +2478,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2515,7 +2497,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2534,7 +2516,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2553,7 +2535,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2612,7 +2594,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2631,7 +2613,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2650,7 +2632,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2669,7 +2651,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2688,7 +2670,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2743,7 +2725,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2762,7 +2744,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2781,7 +2763,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2800,7 +2782,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2819,7 +2801,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2874,7 +2856,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2893,7 +2875,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2912,7 +2894,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2931,7 +2913,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -2950,7 +2932,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3004,7 +2986,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3023,7 +3005,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3042,7 +3024,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3061,7 +3043,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3080,7 +3062,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3134,7 +3116,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3153,7 +3135,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3172,7 +3154,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3191,7 +3173,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3210,7 +3192,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3264,7 +3246,7 @@
                                        style="text-decoration:none; color:black">
                                         @if (patient.Color == "red")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 1)
+                                            @if (patient.WaitingTime > 1)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3283,7 +3265,7 @@
 
                                         @if (patient.Color == "orange")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 10)
+                                            @if (patient.WaitingTime > 10)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3302,7 +3284,7 @@
 
                                         @if (patient.Color == "yellow")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 60)
+                                            @if (patient.WaitingTime > 60)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3321,7 +3303,7 @@
 
                                         @if (patient.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 120)
+                                            @if (patient.WaitingTime > 120)
                                             {
                                                 <h5>
                                                     <span class="animation">
@@ -3340,7 +3322,7 @@
 
                                         @if (patient.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(patient.StartTime) > 240)
+                                            @if (patient.WaitingTime > 240)
                                             {
                                                 <h5>
                                                     <span class="animation">

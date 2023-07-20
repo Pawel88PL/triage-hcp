@@ -45,7 +45,7 @@ namespace triage_hcp.Controllers
             }).ToList();
 
             ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
-            var locations = await _locationService.GetAllLocationsAsync();
+            var locations = await _listService.GetAllLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
         }
 
@@ -106,15 +106,12 @@ namespace triage_hcp.Controllers
                 return View("NotFound");
             }
 
-            // Here, we assume that the location of the patient might have been changed. We will check if it was changed and if so,
-            // we will transfer the patient to the new location.
             if (patientWithCurrentLocation.LocationId != patient.LocationId)
             {
                 var transferResult = await _locationService.TransferPatientAsync(patient.PatientId, patientWithCurrentLocation.LocationId, patient.LocationId);
 
                 if (!transferResult.IsSuccess)
                 {
-                    // If the transfer was not successful, you might want to handle it here.
                     return HandleUpdateError(transferResult.Error, patient);
                 }
             }

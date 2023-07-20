@@ -10,12 +10,15 @@ namespace triage_hcp.Services
         private readonly DbTriageContext _context;
         private readonly ILogger<TriageService> _logger;
         private readonly ILocationService _locationService;
+        private readonly ITimeService _timeService;
 
-        public DetailsService(DbTriageContext context, ILogger<TriageService> logger, ILocationService locationService)
+        public DetailsService(DbTriageContext context, ILogger<TriageService> logger,
+            ILocationService locationService, ITimeService timeService)
         {
             _context = context;
             _logger = logger;
             _locationService = locationService;
+            _timeService = timeService;
         }
 
         public async Task<Patient?> GetPatientAsync(int patientId)
@@ -46,14 +49,18 @@ namespace triage_hcp.Services
                     patientInDb.LocationId = patient.LocationId;
                     patientInDb.WhatNext = patient.WhatNext;
                     patientInDb.IsActive = patient.IsActive;
-                    patient.EndTime = DateTime.Now;
-                    patient.TotalTime = CalculateTotalPatientTime(patient.StartTime, patient.EndTime);
+                    patientInDb.WaitingTime = patient.WaitingTime;
 
                     if (!patient.IsActive)
                     {
+                        patient.EndTime = DateTime.Now;
+                        patient.TotalTime = _timeService.CalculateTotalPatientTime(patient.StartTime, patient.EndTime);
                         var location = await _locationService.GetLocationAsync(patient.LocationId);
-                        location.IsAvailable = true;
-                        await _locationService.UpdateLocationAsync(location);
+                        if (!(location == null))
+                        {
+                            location.IsAvailable = true;
+                            await _locationService.UpdateLocationAsync(location);
+                        }
                     }
 
                     await _context.SaveChangesAsync();
@@ -75,14 +82,5 @@ namespace triage_hcp.Services
                 return (false, ex);
             }
         }
-
-        public decimal CalculateTotalPatientTime(DateTime startTime, DateTime endTime)
-        {
-            TimeSpan totalTime = endTime - startTime;
-            double totalHours = totalTime.TotalHours;
-            decimal totalPatientTime = Math.Round(Convert.ToDecimal(totalHours), 2);
-            return totalPatientTime;
-        }
-
     }
 }

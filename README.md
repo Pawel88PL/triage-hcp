@@ -427,3 +427,8 @@ Data 20.07.2023
    powiązanego 'Location' na 'IsAvailable'.
 4. Usprawniono obsługę wyjątków w metodzie `UpdatePatientAsync`, aby dostarczać bardziej znaczące komunikaty o błędach,
    co poprawia możliwość debugowania i śledzenia błędów.
+5. Zmieniono widok 'Update.cshtml'. Użytkownik dostaje takie komunikat: "Próba zmiany lokalizjacji pacjenta nie powiodła się,
+	ponieważ lokalizacja docelowa jest zajęta. Wróć na stronę LISTA PACJENTÓW i zobacz dostępne lokalizacje". Pod komunikatem
+	znajduje się przycisk kierujący do listy pacjentów.
+6. Do serwisu DetailsService przeniesiono metodę 'CalculatePatientWaitingTime()' z widoku 'MainList.cshtml'.
+7. Utworzono serwis TimeService, w którym umieszczono metody 'CalculatePatientWaitingTime()' i 'CalculateTotalPatientTime'.

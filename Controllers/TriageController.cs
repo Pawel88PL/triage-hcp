@@ -31,9 +31,9 @@ namespace triage_hcp.Controllers
 
         private async Task SetViewBagLocations()
         {
-            var locations = await _locationService.GetAvailableLocationsAsync();
+            var locations = await _listService.GetAvailableLocationsAsync();
             ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
-            ViewBag.AvailableLocations = await _locationService.GetAllLocationsAsync();
+            ViewBag.AvailableLocations = await _listService.GetAllLocationsAsync();
         }
 
         // Pobranie widoku formularza Triage.

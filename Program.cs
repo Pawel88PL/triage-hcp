@@ -27,6 +27,7 @@ namespace triage_hcp
             builder.Services.AddScoped<ILocationService, LocationService>();
             builder.Services.AddScoped<IPeselService, PeselService>();
             builder.Services.AddScoped<ISearchPatientService, SearchPatientService>();
+            builder.Services.AddScoped<ITimeService, TimeService>();
             builder.Services.AddScoped<ITriageService, TriageService>();
 
             builder.Services.AddDbContext<DbTriageContext>(options =>

@@ -13,7 +13,7 @@ namespace triage_hcp.Services
             _context = context;
         }
 
-        public async Task<List<Patient>> GetAllAsync()
+        public async Task<List<Patient>> GetAllPatientsAsync()
         {
             var patients = await _context.Patients
                 .Include(p => p.Location)
@@ -23,12 +23,28 @@ namespace triage_hcp.Services
             return patients;
         }
 
-
         public async Task<List<Doctor>> GetAllDoctorsAsync()
         {
             var doctors = await _context.Doctors.ToListAsync();
 
             return doctors;
+        }
+
+        public async Task<List<Location>> GetAllLocationsAsync()
+        {
+            var alllocations = await _context.Locations.ToListAsync();
+
+            return alllocations;
+        }
+
+        public async Task<List<Location>> GetAvailableLocationsAsync()
+        {
+
+            var availableLocations = await _context.Locations
+                .Where(l => l.IsAvailable)
+                .ToListAsync();
+
+            return availableLocations;
         }
     }
 }

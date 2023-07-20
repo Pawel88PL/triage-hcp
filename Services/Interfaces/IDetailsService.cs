@@ -7,8 +7,5 @@ namespace triage_hcp.Services.Interfaces
         Task<Patient?> GetPatientAsync(int patientId);
 
         Task<(bool IsSuccess, Exception? Error)> UpdatePatientAsync(Patient patient);
-
-        decimal CalculateTotalPatientTime(DateTime startTime, DateTime endTime);
-
     }
 }
