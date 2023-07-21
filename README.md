@@ -445,3 +445,7 @@ Data 21.07.2023
 	'WithoutDoctor.cshtml'.
 2. W serwisie 'DetailsServis', w metodzie 'UpdatePatientAsync()' dodano rozszerzenie 'ToUpper()' dla stringów 'name',
 	'surname', 'gender', 'whatNext' i 'toWhomThePatient'.
+3. W metodzie 'AddNewPatient()' w kontrolerze 'TriageController' zmieniono przekierowanie na widok 'WithoutDoctor.cshtml'
+	po prawidłowym dodaniu nowego pacjenta.
+4. W widoku 'WithoutDoctor.cshtml' utworzono modal, który pojawia się automatycznie po załadowaniu okna z zapytaniem:
+	"Czy chcesz wydrukować dokumenty pacjenta (imię, nazwisko)?".

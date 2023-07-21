@@ -36,7 +36,6 @@ namespace triage_hcp.Controllers
             ViewBag.AvailableLocations = await _listService.GetAllLocationsAsync();
         }
 
-        // Pobranie widoku formularza Triage.
         [HttpGet]
         public async Task<IActionResult> AddNewPatient()
         {
@@ -45,31 +44,22 @@ namespace triage_hcp.Controllers
         }
 
 
-        // Akcja dodająca nowego pacjenta do systemu.
         [HttpPost]
         public async Task<IActionResult> AddNewPatient(Patient pacjent)
         {
-            // Sprawdzenie czy wprowadzone dane są poprawne.
             if (!ModelState.IsValid)
             {
                 await SetViewBagLocations();
                 return View(pacjent);
             }
 
-            // Zapisanie w bazie danych informacji o płci i wieku z numeru PESEL.
             _peselService.SetAgeAndGender(pacjent);
 
-            // Deklaracja domyślnych pól dla nowego pacjenta
             _triageService.SetDefaultPatientFields(pacjent);
 
-            // Zapisanie nowego rekordu (pacjenta) w bazie danych
             var Id = await _triageService.AddNewPatientAsync(pacjent);
 
-            // Wygenerowanie pliku IdPacjenta.docx z dokumentacją do druku
-            var fileBytes = await _documentService.GeneratePatientDocumentAsync(Id);
-            var fileName = $"{Id}.docx";
-            Response.Headers.Add("Content-Disposition", $"attachment; filename={fileName}");
-            return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            return RedirectToAction("WithoutDoctor", "Details", new { id = Id });
         }
 
     }
