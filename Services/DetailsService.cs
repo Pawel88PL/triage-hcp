@@ -53,7 +53,7 @@ namespace triage_hcp.Services
                     patientInDb.DoctorId = patient?.DoctorId;
                     patientInDb.ToWhomThePatient = patient?.ToWhomThePatient?.ToUpper();
                     patientInDb.LocationId = patient.LocationId;
-                    patientInDb.WhatNext = patient?.WhatNext?.ToUpper();
+                    patientInDb.WhatNext = patient?.WhatNext;
                     patientInDb.IsActive = patient.IsActive;
                     patientInDb.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, patient.StartDiagnosis);
 

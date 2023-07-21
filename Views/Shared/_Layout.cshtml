@@ -30,32 +30,32 @@
                         @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
-                                <button type="button" class="btn btn-lg btn-outline-success tooltip-btn m-2"
+                                <a class="btn btn-lg btn-outline-success tooltip-btn m-2"
                                         data-tooltip="Aktualna lista pacjentów w SOR"
-                                        onclick="location.href='@Url.Action("MainList", "ListsOfPatients")'">
+                                        href="@Url.Action("MainList", "ListsOfPatients")">
                                     <i class="bi bi-person-lines-fill"></i> LISTA PACJENTÓW
-                                </button>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <button type="button" class="btn btn-lg btn-outline-danger tooltip-btn m-2"
+                                <a class="btn btn-lg btn-outline-danger tooltip-btn m-2"
                                         data-tooltip="Dodaj nowego pacjenta"
-                                        onclick="location.href='@Url.Action("AddNewPatient", "Triage")'">
+                                        href="@Url.Action("AddNewPatient", "Triage")">
                                     <i class="bi bi-heart-pulse"></i> TRIAGE
-                                </button>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <button type="button" class="btn btn-lg btn-outline-primary tooltip-btn m-2"
+                                <a class="btn btn-lg btn-outline-primary tooltip-btn m-2"
                                         data-tooltip="Lista zakończonych z dzisiejszego dyżuru"
-                                        onclick="location.href='@Url.Action("TodayEndList", "ListsOfPatients")'">
+                                        href="@Url.Action("TodayEndList", "ListsOfPatients")">
                                     <i class="bi bi-clock-history"></i> ARCHIWUM
-                                </button>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <button type="button" class="btn btn-lg btn-outline-info tooltip-btn m-2"
+                                <a class="btn btn-lg btn-outline-info tooltip-btn m-2"
                                         data-tooltip="Satystyki ruchu chorych"
-                                        onclick="location.href='@Url.Action("Statistics", "ListsOfPatients")'">
+                                        href="@Url.Action("Statistics", "ListsOfPatients")">
                                     <i class="bi bi-clipboard2-data-fill"></i> STATYSTYKI
-                                </button>
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <button type="button" class="btn btn-lg btn-outline-secondary tooltip-btn m-2"
@@ -95,7 +95,7 @@
 
     <footer class="footer text-muted">
         <div class="container border">
-            <p>Copyright &copy; 2023 Paweł Staniul. All rights reserved. Ver. 5.4.0. Published 13.07.2023.</p>
+            <p>Copyright &copy; 2023 Paweł Staniul. All rights reserved. Ver. 6.0.0. Published 21.07.2023.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

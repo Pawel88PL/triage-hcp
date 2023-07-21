@@ -449,3 +449,5 @@ Data 21.07.2023
 	po prawidłowym dodaniu nowego pacjenta.
 4. W widoku 'WithoutDoctor.cshtml' utworzono modal, który pojawia się automatycznie po załadowaniu okna z zapytaniem:
 	"Czy chcesz wydrukować dokumenty pacjenta (imię, nazwisko)?".
+<h3>Opublikowano wersję 6.0.0</h3>
+<hr/>
