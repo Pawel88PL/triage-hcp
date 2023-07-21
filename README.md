@@ -437,3 +437,9 @@ Data 20.07.2023
 	przez lekarza. Utworzono migrację i update bazy danych.
 10. W serwisie 'DetailsServis', w metodzie 'UpdatePatientAsync()' poprawiono błąd, przez który w bazie danych nie zapisywał się
 	'WaitingTime', 'EndTime' i 'TotalTime'.
+<hr/>
+
+Data 21.07.2023
+
+1. W kontrolerze 'DetailsController' dodano warunek wyświetlania aktualnego czasu oczekiwania na lekarza tylko dla widoku
+	'WithoutDoctor.cshtml'.

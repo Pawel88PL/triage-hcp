@@ -4,39 +4,6 @@
 @{
     ViewData["Title"] = "Zakończono";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-
-    string Hours()
-    {
-
-        string? hours = Convert.ToString(Model?.TotalTime);
-
-        if (!(hours == null))
-        {
-            int controlNumber = int.Parse(hours.Substring(0, 1));
-            if (controlNumber == 1)
-            {
-                return "godzina";
-            }
-            else if (controlNumber == 2 || controlNumber == 3 || controlNumber == 4)
-            {
-                return "godziny";
-            }
-            else
-            {
-                return "godzin";
-            }
-
-        }
-        else
-        {
-            return "";
-        }
-
-
-    }
-
-
 }
 
 <div class="container">
@@ -63,16 +30,9 @@
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-3">
-                                @if (Model.EndTime <= DateTime.MinValue | Model.IsActive == true)
-                                {
-                                    <h4>Pacjent dalej w SOR</h4>
-                                }
-                                else
-                                {
-                                    <p>Zakończono: </p>
-                                    <h4>@Model.EndTime.ToString("D")</h4>
-                                    <h1>@Model.EndTime.ToString("t")</h1>
-                                }
+                                <p>Zakończono: </p>
+                                <h4>@Model.EndTime.ToString("D")</h4>
+                                <h1>@Model.EndTime.ToString("t")</h1>
                             </div>
                         </div>
                     </div>
@@ -117,18 +77,7 @@
                                 <p><b>@Model?.WaitingTime</b> minut</p>
                                 <br />
 
-                                @if (Model?.TotalTime < 1)
-                                {
-                                    <p><b>Mniej niż 1 godzinę</b></p>
-                                }
-                                else if (Model?.TotalTime > 9)
-                                {
-                                    <p><b>@Model?.TotalTime</b> godzin</p>
-                                }
-                                else
-                                {
-                                    <p><b>@Model?.TotalTime</b> @Hours()</p>
-                                }
+                                <p><b>@Model?.TotalTime</b> h</p>
                                 <br />
 
                                 <p><b>@Model?.Doctor?.Name @Model?.Doctor?.Surname</b></p>

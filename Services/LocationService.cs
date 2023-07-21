@@ -4,10 +4,16 @@ using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Services
 {
-    public class LocationService: ILocationService
+    public class LocationService : ILocationService
     {
         private readonly DbTriageContext _context;
         private readonly ILogger<TriageService> _logger;
+        
+        private static readonly List<string> AlwaysAvailable = new List<string>
+        {
+            "Korytarz", "Poczekalnia", "Wituś", "WIT", "Dekontaminacja"
+        };
+
 
         public LocationService(DbTriageContext context, ILogger<TriageService> logger)
         {
@@ -49,13 +55,19 @@ namespace triage_hcp.Services
 
                 var newLocation = await _context.Locations.FindAsync(newLocationId);
 
-                if (newLocation.IsAvailable)
+                if (newLocation.IsAvailable || AlwaysAvailable.Contains(newLocation.LocationName))
                 {
                     patient.LocationId = newLocationId;
 
-                    oldLocation.IsAvailable = true;
+                    if (!AlwaysAvailable.Contains(oldLocation.LocationName))
+                    {
+                        oldLocation.IsAvailable = true;
+                    }
 
-                    newLocation.IsAvailable = false;
+                    if (!AlwaysAvailable.Contains(newLocation.LocationName))
+                    {
+                        newLocation.IsAvailable = false;
+                    }
 
                     await _context.SaveChangesAsync();
                     return (true, null);

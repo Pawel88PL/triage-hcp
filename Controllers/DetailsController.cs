@@ -62,8 +62,11 @@ namespace triage_hcp.Controllers
             {
                 return View("NotFound");
             }
-            patient.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, DateTime.Now);
 
+            if (viewName == "WithoutDoctor")
+            {
+                patient.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, DateTime.Now);
+            }
             await SetViewBagDoctorsAndLocations();
             return View(viewName, patient);
         }
