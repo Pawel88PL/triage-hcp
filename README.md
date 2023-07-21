@@ -443,3 +443,5 @@ Data 21.07.2023
 
 1. W kontrolerze 'DetailsController' dodano warunek wyświetlania aktualnego czasu oczekiwania na lekarza tylko dla widoku
 	'WithoutDoctor.cshtml'.
+2. W serwisie 'DetailsServis', w metodzie 'UpdatePatientAsync()' dodano rozszerzenie 'ToUpper()' dla stringów 'name',
+	'surname', 'gender', 'whatNext' i 'toWhomThePatient'.

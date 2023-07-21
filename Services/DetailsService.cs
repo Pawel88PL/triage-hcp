@@ -44,11 +44,16 @@ namespace triage_hcp.Services
                 {
                     await _timeService.RegisterDoctorAssignmentAsync(patient);
                     
-                    patientInDb.Color = patient.Color;
-                    patientInDb.DoctorId = patient.DoctorId;
-                    patientInDb.ToWhomThePatient = patient.ToWhomThePatient;
+                    patientInDb.Name = patient?.Name?.ToUpper();
+                    patientInDb.Surname = patient?.Surname?.ToUpper();
+                    patientInDb.Pesel = patient?.Pesel;
+                    patientInDb.Age = patient?.Age;
+                    patientInDb.Gender = patient?.Gender?.ToUpper();
+                    patientInDb.Color = patient?.Color?.ToUpper();
+                    patientInDb.DoctorId = patient?.DoctorId;
+                    patientInDb.ToWhomThePatient = patient?.ToWhomThePatient?.ToUpper();
                     patientInDb.LocationId = patient.LocationId;
-                    patientInDb.WhatNext = patient.WhatNext;
+                    patientInDb.WhatNext = patient?.WhatNext?.ToUpper();
                     patientInDb.IsActive = patient.IsActive;
                     patientInDb.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, patient.StartDiagnosis);
 
