@@ -32,7 +32,6 @@ namespace triage_hcp.Services
             {
                 _logger.LogError($"Nie znaleziono pacjenta o Id: {patientId}", patientId);
             }
-
             return patient;
         }
 
@@ -43,18 +42,21 @@ namespace triage_hcp.Services
                 var patientInDb = await _context.Patients.FindAsync(patient.PatientId);
                 if (patientInDb != null)
                 {
+                    await _timeService.RegisterDoctorAssignmentAsync(patient);
+                    
                     patientInDb.Color = patient.Color;
                     patientInDb.DoctorId = patient.DoctorId;
                     patientInDb.ToWhomThePatient = patient.ToWhomThePatient;
                     patientInDb.LocationId = patient.LocationId;
                     patientInDb.WhatNext = patient.WhatNext;
                     patientInDb.IsActive = patient.IsActive;
-                    patientInDb.WaitingTime = patient.WaitingTime;
+                    patientInDb.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, patient.StartDiagnosis);
 
                     if (!patient.IsActive)
                     {
-                        patient.EndTime = DateTime.Now;
-                        patient.TotalTime = _timeService.CalculateTotalPatientTime(patient.StartTime, patient.EndTime);
+                        var endTime = DateTime.Now;
+                        patientInDb.EndTime = endTime;
+                        patientInDb.TotalTime = _timeService.CalculateTotalPatientTime(patient.StartTime, endTime);
                         var location = await _locationService.GetLocationAsync(patient.LocationId);
                         if (!(location == null))
                         {
@@ -62,7 +64,6 @@ namespace triage_hcp.Services
                             await _locationService.UpdateLocationAsync(location);
                         }
                     }
-
                     await _context.SaveChangesAsync();
                     return (true, null);
                 }

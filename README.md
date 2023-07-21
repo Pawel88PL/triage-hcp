@@ -432,3 +432,8 @@ Data 20.07.2023
 	znajduje się przycisk kierujący do listy pacjentów.
 6. Do serwisu DetailsService przeniesiono metodę 'CalculatePatientWaitingTime()' z widoku 'MainList.cshtml'.
 7. Utworzono serwis TimeService, w którym umieszczono metody 'CalculatePatientWaitingTime()' i 'CalculateTotalPatientTime'.
+8. Usunięto widok 'AdminList.cshtml'.
+9. Do tabeli 'Patients' dodano nową kolumnę 'StartDiagnosis', w której będzie przechowywana dana i czas rozpoczęcia diagnostyki
+	przez lekarza. Utworzono migrację i update bazy danych.
+10. W serwisie 'DetailsServis', w metodzie 'UpdatePatientAsync()' poprawiono błąd, przez który w bazie danych nie zapisywał się
+	'WaitingTime', 'EndTime' i 'TotalTime'.

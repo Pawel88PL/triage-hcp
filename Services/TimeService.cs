@@ -1,12 +1,20 @@
-﻿using triage_hcp.Services.Interfaces;
+﻿using triage_hcp.Models;
+using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Services
 {
     public class TimeService: ITimeService
     {
-        public int CalculatePatientWaitingTime(DateTime startDate, DateTime doctorTakePatientTime)
+        private readonly DbTriageContext _context;
+
+        public TimeService(DbTriageContext context)
         {
-            TimeSpan interval = doctorTakePatientTime - startDate;
+            _context = context;
+        }
+
+        public int CalculatePatientWaitingTime(DateTime start, DateTime end)
+        {
+            TimeSpan interval = end - start;
             double minutes = interval.TotalMinutes;
             return Convert.ToInt32(minutes);
         }
@@ -19,5 +27,16 @@ namespace triage_hcp.Services
             decimal totalPatientTime = Math.Round(Convert.ToDecimal(totalHours), 2);
             return totalPatientTime;
         }
+
+        public async Task RegisterDoctorAssignmentAsync(Patient patient)
+        {
+            var patientInDb = await _context.Patients.FindAsync(patient.PatientId);
+            if (patientInDb != null && patientInDb.DoctorId == null && patient.DoctorId != null)
+            {
+                patientInDb.StartDiagnosis = DateTime.Now;
+                await _context.SaveChangesAsync();
+            }
+        }
+
     }
 }

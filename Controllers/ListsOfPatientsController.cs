@@ -20,15 +20,6 @@ namespace triage_hcp.Controllers
             _timeService = timeService;
         }
 
-
-        public async Task<IActionResult> AdminList()
-        {
-            var patientList = await _listService.GetAllPatientsAsync();
-
-            return View(patientList);
-        }
-
-
         public async Task<IActionResult> MainList()
         {
             var patientList = await _listService.GetAllPatientsAsync();
@@ -48,7 +39,6 @@ namespace triage_hcp.Controllers
 
             return View(patientList);
         }
-
 
         public async Task<IActionResult> TodayEndList()
         {

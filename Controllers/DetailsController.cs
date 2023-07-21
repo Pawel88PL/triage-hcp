@@ -21,18 +21,21 @@ namespace triage_hcp.Controllers
         private readonly IDetailsService _detailsService;
         private readonly IListService _listService;
         private readonly ILocationService _locationService;
+        private readonly ITimeService _timeService;
         private readonly ITriageService _triageService;
         private readonly ILogger<TriageService> _logger;
 
 
         public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger,
-            IListService listService, ITriageService triageService, ILocationService locationService)
+            IListService listService, ITriageService triageService, ILocationService locationService,
+            ITimeService timeService)
         {
             _detailsService = detailsService;
             _logger = logger;
             _listService = listService;
             _triageService = triageService;
             _locationService = locationService;
+            _timeService = timeService;
         }
 
 
@@ -59,6 +62,7 @@ namespace triage_hcp.Controllers
             {
                 return View("NotFound");
             }
+            patient.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, DateTime.Now);
 
             await SetViewBagDoctorsAndLocations();
             return View(viewName, patient);
@@ -84,7 +88,7 @@ namespace triage_hcp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int PatientId,
             [Bind("PatientId,Name,Surname,Pesel,Age,Gender,LocationId,Symptoms,Color," +
-            "StartTime,DoctorId,IsActive,Remarks," +
+            "StartTime,StartDiagnosis,DoctorId,IsActive,Remarks," +
             "WhatNext,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
             "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Patient patient)
         {

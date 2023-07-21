@@ -34,6 +34,8 @@ namespace triage_hcp.Models
         public string? Color { get; set; }
 
         public DateTime StartTime { get; set; }
+        
+        public DateTime StartDiagnosis { get; set; }
 
         public bool IsActive { get; set; }
 
