@@ -1,105 +1,29 @@
-﻿@model triage_hcp.Models.Pacjent
+﻿@model triage_hcp.Models.Patient
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Przypisz lekarza!";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    
-
-    int WaitingTime(DateTime triagedate)
-    {
-
-        DateTime aktualTime = DateTime.Now;
-        DateTime triageDate = triagedate;
-
-        TimeSpan interval = aktualTime - triageDate;
-
-        double minutes = interval.TotalMinutes;
-        int totalMinutes = Convert.ToInt32(minutes);
-
-        return totalMinutes;
-
-    }
 }
 
 <div class="container">
     <div class="row">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PatientId" />
 
             <div style="display:none">
 
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@Model.DateTime</option>
-                </select>
-                <span asp-validation-for="DateTime" class="text-danger"></span>
+                @await Html.PartialAsync("_HiddenFormFields")
 
-                <select class="form-control" id="TriageDate" name="TriageDate">
-                    <option>@Model.TriageDate</option>
+                <select asp-for="WhatNext" class="form-control">
+                    <option>@Model.WhatNext</option>
                 </select>
 
-                <select class="form-control" id="WaitingTime" name="WaitingTime">
-                    <option>@WaitingTime(@Model.DateTime)</option>
-                </select>
-                <br />
-
-                <select class="form-control" id="Name" name="Name">
-                    <option>@Model.Name</option>
-                </select>
-
-                <select class="form-control" id="Surname" name="Surname">
-                    <option>@Model.Surname</option>
-                </select>
-
-                <select class="form-control" id="Pesel" name="Pesel">
-                    <option>@Model.Pesel</option>
-                </select>
-
-                <select class="form-control" id="Age" name="Age">
-                    <option>@Model.Age</option>
-                </select>
-
-                <select class="form-control" id="Gender" name="Gender">
-                    <option>@Model.Gender</option>
-                </select>
-
-                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                    <option>@Model.Diagnosis?.ToUpper()</option>
-                </select>
-
-                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                    <option>@Model.CoDalejZPacjentem</option>
-                </select>
-
-                <select class="form-control" id="Active" name="Active">
-                    <option>@Model.Active</option>
-                </select>
-
-
-                <select class="form-control" id="SBP" name="SBP">
-                    <option>@Model.SBP</option>
-                </select>
-
-                <select class="form-control" id="DBP" name="DBP">
-                    <option>@Model.DBP</option>
-                </select>
-
-                <select class="form-control" id="HeartRate" name="HeartRate">
-                    <option>@Model.HeartRate</option>
-                </select>
-
-                <select class="form-control" id="Spo2" name="Spo2">
-                    <option>@Model.Spo2</option>
-                </select>
-
-                <select class="form-control" id="GCS" name="GCS">
-                    <option>@Model.GCS</option>
-                </select>
-
-                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
-                    <option>@Model.BodyTemperature</option>
+                <select asp-for="IsActive" class="form-control">
+                    <option>@Model.IsActive</option>
                 </select>
 
             </div>
@@ -115,7 +39,7 @@
                                     <div class="col-6">
                                         @if (Model.Color == "red")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 1)
+                                            @if (Model.WaitingTime > 1)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -134,7 +58,7 @@
 
                                         @if (Model.Color == "orange")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 10)
+                                            @if (Model.WaitingTime > 10)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -153,7 +77,7 @@
 
                                         @if (Model.Color == "yellow")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 60)
+                                            @if (Model.WaitingTime > 60)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -172,7 +96,7 @@
 
                                         @if (Model.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 120)
+                                            @if (Model.WaitingTime > 120)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -191,7 +115,7 @@
 
                                         @if (Model.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 240)
+                                            @if (Model.WaitingTime > 240)
                                             {
                                                 <h2>
                                                     <span class="animation">
@@ -216,95 +140,95 @@
                                     <div class="col-6">
                                         @if (Model.Color == "red")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 1)
+                                            @if (Model.WaitingTime > 1)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                                 </span>
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "orange")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 10)
+                                            @if (Model.WaitingTime > 10)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "yellow")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 60)
+                                            @if (Model.WaitingTime > 60)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "lightgreen")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 120)
+                                            @if (Model.WaitingTime > 120)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                             }
                                         }
 
                                         @if (Model.Color == "lightskyblue")
                                         {
-                                            @if (WaitingTime(Model.DateTime) > 240)
+                                            @if (Model.WaitingTime > 240)
                                             {
                                                 <span class="animation">
-                                                    <h1>@Model.DateTime.ToString("t")</h1>
-                                                    <h4>@Model.DateTime.ToString("D")</h4>
-                                                    <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                    <h1>@Model.StartTime.ToString("t")</h1>
+                                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                                    <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                                 </span>
 
                                             }
                                             else
                                             {
-                                                <h1>@Model.DateTime.ToString("t")</h1>
-                                                <h4>@Model.DateTime.ToString("D")</h4>
-                                                <p>Czas oczekiwania na lekarza: <b>@WaitingTime(Model.DateTime)</b> minut</p>
+                                                <h1>@Model.StartTime.ToString("t")</h1>
+                                                <h4>@Model.StartTime.ToString("D")</h4>
+                                                <p>Czas oczekiwania na lekarza: <b>@Model.WaitingTime</b> minut</p>
                                             }
                                         }
 
@@ -313,7 +237,7 @@
                             </div>
 
                             <div class="col-3">
-                                <h3>@Model.Diagnosis?.ToUpper()</h3>
+                                <h3>@Model.Symptoms?.ToUpper()</h3>
                             </div>
                         </div>
                     </div>
@@ -338,103 +262,31 @@
                             <div class="col-6">
                                 <br />
                                 <div class="form-group">
-                                    <select class="form-select" id="Room" name="Room">
-                                        <option>@Model.Room</option>
-                                        <option>Poczekalnia</option>
-                                        <option>Korytarz</option>
-                                        <option>Wituś</option>
-                                        <option>Wituś 1</option>
-                                        <option>Wituś 2</option>
-                                        <option>Wituś 3</option>
-                                        <option>WIT</option>
-                                        <option>WIT 1</option>
-                                        <option>WIT 2</option>
-                                        <option>WIT 3</option>
-                                        <option>WIT 4</option>
-                                        <option>Sala obserwacyjna 5</option>
-                                        <option>Sala obserwacyjna 6</option>
-                                        <option>Sala obserwacyjna 7</option>
-                                        <option>Sala obserwacyjna 8</option>
-                                        <option>Sala obserwacyjna 9</option>
-                                        <option>Sala obserwacyjna 10</option>
-                                        <option>Izolatka Z1</option>
-                                        <option>Izolatka Z2</option>
-                                        <option>Izolatka Z3</option>
-                                        <option>Dekontaminacja</option>
+                                    <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
                                     </select>
-                                    <span asp-validation-for="Room" class="text-danger"></span>
                                 </div>
                                 <br />
 
-                                <select class="form-select" id="ToWhomThePatient" name="ToWhomThePatient">
-                                    <option>@Model.ToWhomThePatient</option>
+                                <select asp-for="ToWhomThePatient" class="form-select">
+                                    <option>@Model?.ToWhomThePatient</option>
                                     <option>INTERNISTA</option>
                                     <option>CHIRURG</option>
                                 </select>
                                 <br />
 
-                                <select class="form-select" id="Color" name="Color">
-                                    <option value="@Model.Color" style="background-color:@Model.Color">Czy zmienić kolor?</option>
-                                    <option value="lightskyblue" style="background-color:lightskyblue">Niebieski</option>
-                                    <option value="lightgreen" style="background-color:lightgreen">Zielony</option>
-                                    <option value="yellow" style="background-color:yellow">Żółty</option>
-                                    <option value="orange" style="background-color:orange">Pomarańczowy</option>
-                                    <option value="red" style="background-color:red">Czerwony</option>
+                                <select asp-for="Color" class="form-select">
+                                    @await Html.PartialAsync("_ColorList")
                                 </select>
                                 <br />
 
-
                                 <div class="form-group">
-                                    <select class="form-select" id="Doctor" name="Doctor">
-                                        <option>@Model.Doctor</option>
-                                        <option>Avdieiev Anton</option>
-                                        <option>Betkowiak Zuzanna</option>
-                                        <option>Binaś Marcin</option>
-                                        <option>Chrzanowski Monica</option>
-                                        <option>Czekała-Karpiński Dawid</option>
-                                        <option>Dabryneuski Uladzimir</option>
-                                        <option>Domin Remigiusz</option>
-                                        <option>Elantkowski Łukasz</option>
-                                        <option>Fritzkiewicz Witold</option>
-                                        <option>Gąsiorowski Mateusz</option>
-                                        <option>Gilier Kamila</option>
-                                        <option>Grymuza Maciej</option>
-                                        <option>Guliński Marcin</option>
-                                        <option>Huzenko Jaroslaw</option>
-                                        <option>Junewicz</option>
-                                        <option>Kłaczyński Mateusz</option>
-                                        <option>Knasiecka Magdalena</option>
-                                        <option>Kochman Karol</option>
-                                        <option>Kohan Anastasiia</option>
-                                        <option>Kosharna Anna</option>
-                                        <option>Lesiak Karol</option>
-                                        <option>Łuczak Agnieszka</option>
-                                        <option>Makowska Agata</option>
-                                        <option>Malik Arkadiusz</option>
-                                        <option>Małkiewicz Tomasz</option>
-                                        <option>Miroshnichenko Yurii</option>
-                                        <option>Nowak Michał</option>
-                                        <option>Pankiewicz Mateusz</option>
-                                        <option>Paszkowiak-Ciesielska Hanna</option>
-                                        <option>Pisula Piotr</option>
-                                        <option>Polupanov Yevhen</option>
-                                        <option>Potyka Marek</option>
-                                        <option>Razumka Krystyna</option>
-                                        <option>Rojna Maciej</option>
-                                        <option>Sesiuk Aleksandra</option>
-                                        <option>Skrzypek Dariusz</option>
-                                        <option>Śliwowski Cezary</option>
-                                        <option>Śmidrowicz Bartosz</option>
-                                        <option>Wierzchowiecki Jerzy</option>
-                                        <option>Woźny Tomasz</option>
-                                        <option>Yakymchuk Yuri</option>
-                                        <option>Zanko Semen</option>
-                                        <option>Zhdanov Sergii</option>
+                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList"
+                                        class="form-select">
+                                        <option value="">Wybierz lekarza...</option>
                                     </select>
-                                    <span asp-validation-for="Doctor" class="text-danger"></span>
                                 </div>
-                                <br />
 
+                                <br />
                             </div>
                         </div>
                         <hr />
@@ -446,7 +298,7 @@
                                 <button type="submit" class="btn btn-danger">ZAPISZ ZMIANY</button>
                             </div>
                             <div class="col-4">
-                                <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.Id })"
+                                <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.PatientId })"
                                    class="btn btn-secondary">
                                     DRUKUJ DOKUMENTY
                                 </a>
@@ -465,7 +317,7 @@
                                 <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="form-group">
                                     <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10">
-                                        @Model.ObserwacjeRatPiel</textarea>
+                                        @Model.Remarks</textarea>
                                 </div>
                             </div>
                             <br />
@@ -476,6 +328,41 @@
         </form>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="printModalLabel">Drukowanie dokumentów</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Zamknij">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Czy chcesz wydrukować dokumenty pacjenta <b>@Model.Name @Model.Surname?</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ANULUJ</button>
+                <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.PatientId })" class="btn btn-danger" id="printButton">DRUKUJ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#printModal').modal('show');
+        $('.close, .btn-secondary, #printButton').click(function () {
+            $('#printModal').modal('hide');
+        });
+    });
+</script>
+
 
 @section Scripts {
     @{

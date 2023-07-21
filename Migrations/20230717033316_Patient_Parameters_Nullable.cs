@@ -4,119 +4,101 @@
 
 namespace triage_hcp.Migrations
 {
-    public partial class nullable_new_fields : Migration
+    public partial class Patient_Parameters_Nullable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AlterColumn<int>(
                 name: "Spo2",
-                table: "Pacjenci",
-                type: "nvarchar(max)",
+                table: "Patients",
+                type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
 
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AlterColumn<int>(
                 name: "SBP",
-                table: "Pacjenci",
-                type: "nvarchar(max)",
+                table: "Patients",
+                type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
 
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AlterColumn<int>(
                 name: "HeartRate",
-                table: "Pacjenci",
-                type: "nvarchar(max)",
+                table: "Patients",
+                type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
 
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AlterColumn<int>(
                 name: "GCS",
-                table: "Pacjenci",
-                type: "nvarchar(max)",
+                table: "Patients",
+                type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
 
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AlterColumn<int>(
                 name: "DBP",
-                table: "Pacjenci",
-                type: "nvarchar(max)",
+                table: "Patients",
+                type: "int",
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "BodyTemperature",
-                table: "Pacjenci",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(double),
-                oldType: "float");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(
                 name: "Spo2",
-                table: "Pacjenci",
+                table: "Patients",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldClrType: typeof(int),
+                oldType: "int",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "SBP",
-                table: "Pacjenci",
+                table: "Patients",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldClrType: typeof(int),
+                oldType: "int",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "HeartRate",
-                table: "Pacjenci",
+                table: "Patients",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldClrType: typeof(int),
+                oldType: "int",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "GCS",
-                table: "Pacjenci",
+                table: "Patients",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldClrType: typeof(int),
+                oldType: "int",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
                 name: "DBP",
-                table: "Pacjenci",
+                table: "Patients",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<double>(
-                name: "BodyTemperature",
-                table: "Pacjenci",
-                type: "float",
-                nullable: false,
-                defaultValue: 0.0,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
+                oldClrType: typeof(int),
+                oldType: "int",
                 oldNullable: true);
         }
     }

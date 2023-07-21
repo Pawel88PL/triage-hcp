@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace triage_hcp.Migrations
 {
-    public partial class TriageDate : Migration
+    public partial class DateTimeStartDiagnosis : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                name: "TriageDate",
-                table: "Pacjenci",
+                name: "StartDiagnosis",
+                table: "Patients",
                 type: "datetime2",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
@@ -20,8 +20,8 @@ namespace triage_hcp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "TriageDate",
-                table: "Pacjenci");
+                name: "StartDiagnosis",
+                table: "Patients");
         }
     }
 }

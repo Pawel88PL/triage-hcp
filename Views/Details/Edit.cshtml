@@ -1,102 +1,19 @@
-﻿@model triage_hcp.Models.Pacjent
-<link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
+﻿@model triage_hcp.Models.Patient
 
+<link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Edycja";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-
-
 }
 
 <div class="container col-7">
     <div class="row">
         <form asp-action="Update" class="col-auto">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-
-            <div style="display:none">
-
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@Model.DateTime</option>
-                </select>
-
-                <select class="form-control" id="TriageDate" name="TriageDate">
-                    <option>@Model.TriageDate</option>
-                </select>
-
-                <select class="form-control" id="EndTime" name="EndTime">
-                    <option>@Model.EndTime</option>
-                </select>
-
-                <select class="form-control" id="WaitingTime" name="WaitingTime">
-                    <option>@Model.WaitingTime</option>
-                </select>
-
-                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                    <option>@Model.Diagnosis</option>
-                </select>
-
-                <select class="form-control" id="Color" name="Color">
-                    <option>@Model.Color</option>
-                </select>
-
-                <select class="form-control" id="Epikryza" name="Epikryza">
-                    <option>@Model.Epikryza</option>
-                </select>
-
-                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                    <option>@Model.ObserwacjeRatPiel</option>
-                </select>
-
-                <select class="form-control" id="Room" name="Room">
-                    <option>@Model.Room</option>
-                </select>
-
-                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                    <option>@Model.ToWhomThePatient</option>
-                </select>
-
-                <select class="form-control" id="Doctor" name="Doctor">
-                    <option>@Model.Doctor</option>
-                </select>
-
-                <select class="form-control" id="Active" name="Active">
-                    <option>@Model.Active</option>
-                </select>
-
-                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
-                    <option>@Model.CoDalejZPacjentem</option>
-                </select>
-
-                <select class="form-control" id="SBP" name="SBP">
-                    <option>@Model.SBP</option>
-                </select>
-
-                <select class="form-control" id="DBP" name="DBP">
-                    <option>@Model.DBP</option>
-                </select>
-
-                <select class="form-control" id="HeartRate" name="HeartRate">
-                    <option>@Model.HeartRate</option>
-                </select>
-
-                <select class="form-control" id="Spo2" name="Spo2">
-                    <option>@Model.Spo2</option>
-                </select>
-
-                <select class="form-control" id="GCS" name="GCS">
-                    <option>@Model.GCS</option>
-                </select>
-
-                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
-                    <option>@Model.BodyTemperature</option>
-                </select>
-
-            </div>
-
-
+            <input type="hidden" asp-for="PatientId" />
+            @await Html.PartialAsync("_EditFormFields")
+            
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
                     <div class="container">
@@ -107,8 +24,8 @@
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-4">
-                                <h1>@Model.DateTime.ToString("t")</h1>
-                                <h4>@Model.DateTime.ToString("D")</h4>
+                                <h1>@Model.StartTime.ToString("t")</h1>
+                                <h4>@Model.StartTime.ToString("D")</h4>
                             </div>
                         </div>
                     </div>
@@ -163,7 +80,7 @@
                         <br />
 
                         <div style="font-size: 16px">
-                            <p><b>@Model.Diagnosis</b></p>
+                            <p><b>@Model.Symptoms</b></p>
                         </div>
                         <br />
                     </div>

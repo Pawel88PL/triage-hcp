@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,161 +19,125 @@ namespace triage_hcp.Controllers
     public class DetailsController : Controller
     {
         private readonly IDetailsService _detailsService;
+        private readonly IListService _listService;
+        private readonly ILocationService _locationService;
+        private readonly ITimeService _timeService;
+        private readonly ITriageService _triageService;
         private readonly ILogger<TriageService> _logger;
 
 
-        public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger)
+        public DetailsController(IDetailsService detailsService, ILogger<TriageService> logger,
+            IListService listService, ITriageService triageService, ILocationService locationService,
+            ITimeService timeService)
         {
             _detailsService = detailsService;
             _logger = logger;
+            _listService = listService;
+            _triageService = triageService;
+            _locationService = locationService;
+            _timeService = timeService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Admin(int id)
-        {
-            if (_detailsService.GetAsync == null)
-            {
-                return View("NotFound");
-            }
 
-            var patient = await _detailsService.GetAsync(id);
+        private async Task SetViewBagDoctorsAndLocations()
+        {
+            var doctors = await _listService.GetAllDoctorsAsync();
+            var doctorSelectList = doctors.Select(d => new {
+                d.DoctorId,
+                FullName = d.Name + " " + d.Surname
+            }).ToList();
+
+            ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
+            var locations = await _listService.GetAllLocationsAsync();
+            ViewBag.Locations = new SelectList(locations, "LocationId", "LocationName");
+        }
+
+
+
+        private async Task<IActionResult> HandleRequest(int id, string viewName)
+        {
+            var patient = await _detailsService.GetPatientAsync(id);
 
             if (patient == null)
             {
                 return View("NotFound");
             }
 
-
-            return View(patient);
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> WithoutDoctor(int id)
-        {
-            if (_detailsService.GetAsync == null)
+            if (viewName == "WithoutDoctor")
             {
-                return View("NotFound");
+                patient.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, DateTime.Now);
             }
-
-            var patient = await _detailsService.GetAsync(id);
-
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
-
-            return View(patient);
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> WithDoctor(int id)
-        {
-            if (_detailsService.GetAsync == null)
-            {
-                return View("NotFound");
-            }
-
-            var patient = await _detailsService.GetAsync(id);
-            
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
-            
-            return View(patient);
+            await SetViewBagDoctorsAndLocations();
+            return View(viewName, patient);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
-        {
-            if (_detailsService.GetAsync == null)
-            {
-                return View("NotFound");
-            }
-
-            var patient = await _detailsService.GetAsync(id);
-
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
-
-
-            return View(patient);
-        }
-
+        public Task<IActionResult> WithoutDoctor(int id) => HandleRequest(id, "WithoutDoctor");
 
         [HttpGet]
-        public async Task<IActionResult> Done(int id)
-        {
-            if (_detailsService.GetAsync == null)
-            {
-                return View("NotFound");
-            }
+        public Task<IActionResult> WithDoctor(int id) => HandleRequest(id, "WithDoctor");
 
-            var patient = await _detailsService.GetAsync(id);
+        [HttpGet]
+        public Task<IActionResult> Edit(int id) => HandleRequest(id, "Edit");
 
-            if (patient == null)
-            {
-                return View("NotFound");
-            }
+        [HttpGet]
+        public Task<IActionResult> Done(int id) => HandleRequest(id, "Done");
 
-
-            return View(patient);
-        }
-
+        [HttpGet]
+        public Task<IActionResult> Update(int id) => HandleRequest(id, "Update");
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id,
-            [Bind("Id,Name,Surname,Pesel,Age,Gender,Room,Diagnosis,Color," +
-            "DateTime,TriageDate,Doctor,Active,Epikryza,ObserwacjeRatPiel," +
-            "CoDalejZPacjentem,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
-            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Pacjent patient)
+        public async Task<IActionResult> Update(int PatientId,
+            [Bind("PatientId,Name,Surname,Pesel,Age,Gender,LocationId,Symptoms,Color," +
+            "StartTime,StartDiagnosis,DoctorId,IsActive,Remarks," +
+            "WhatNext,ToWhomThePatient,EndTime,WaitingTime,TotalTime," +
+            "Allergies,SBP,DBP,HeartRate,Spo2,GCS,BodyTemperature")] Patient patient)
         {
-            if (id != patient.Id)
+            if (PatientId != patient.PatientId)
             {
-                return NotFound();
+                return View("NotFound");
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                patient.EndTime = DateTime.Now;
-                patient.TotalTime = _detailsService.CalculateTotalPatientTime(patient.DateTime, patient.EndTime);
+                await SetViewBagDoctorsAndLocations();
+                return View(patient);
+            }
 
-                try
+            var patientWithCurrentLocation = await _detailsService.GetPatientAsync(PatientId);
+
+            if (patientWithCurrentLocation == null)
+            {
+                return View("NotFound");
+            }
+
+            if (patientWithCurrentLocation.LocationId != patient.LocationId)
+            {
+                var transferResult = await _locationService.TransferPatientAsync(patient.PatientId, patientWithCurrentLocation.LocationId, patient.LocationId);
+
+                if (!transferResult.IsSuccess)
                 {
-                    await _detailsService.UpdatePacjentAsync(patient);
+                    return HandleUpdateError(transferResult.Error, patient);
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (await _detailsService.GetAsync(patient.Id) == null)
-                    {
-                        return View("NotFound");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "Nie można zaktualizować danych pacjenta, " +
-                            "ponieważ zostały one zmienione przez innego użytkownika. Odśwież stronę i spróbuj ponownie.");
-                        return View(patient);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Wystąpił błąd podczas aktualizacji danych pacjenta o Id: {Id}", patient.Id);
-                    ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas aktualizacji danych pacjenta." +
-                        " Spróbuj ponownie później.");
-                    return View(patient);
-                }
+            }
+
+            var result = await _detailsService.UpdatePatientAsync(patient);
+
+            if (result.IsSuccess)
+            {
                 return RedirectToAction("MainList", "ListsOfPatients");
             }
-            return View(patient);
+
+            return HandleUpdateError(result.Error, patient);
         }
 
+        private IActionResult HandleUpdateError(Exception ex, Patient patient)
+        {
+            _logger.LogError(ex, "Wystąpił błąd podczas aktualizacji danych pacjenta o Id: {Id}", patient.PatientId);
+            ModelState.AddModelError(string.Empty, "Wystąpił błąd podczas aktualizacji danych pacjenta. Spróbuj ponownie później.");
+            return View(patient);
+        }
     }
 }

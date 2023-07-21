@@ -4,6 +4,6 @@ namespace triage_hcp.Services.Interfaces
 {
     public interface ISearchPatientService
     {
-        Task<IEnumerable<Pacjent>> SearchPatientsAsync(string searchTerm);
+        Task<IEnumerable<Patient>> SearchPatientsAsync(string searchTerm);
     }
 }

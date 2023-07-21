@@ -14,18 +14,21 @@ public class SearchPatientService : ISearchPatientService
         _context = context;
     }
 
-    public async Task<IEnumerable<Pacjent>> SearchPatientsAsync(string query)
+    public async Task<IEnumerable<Patient>> SearchPatientsAsync(string query)
     {
         if (string.IsNullOrEmpty(query))
         {
-            return new List<Pacjent>();
+            return new List<Patient>();
         }
 
-        return await _context.Pacjenci
+        return await _context.Patients
             .Where(p =>
             (p.Name != null && p.Name.Contains(query)) ||
             (p.Surname != null && p.Surname.Contains(query)) ||
-            (p.Diagnosis != null && p.Diagnosis.Contains(query)))
+            (p.Symptoms != null && p.Symptoms.Contains(query)) ||
+            (p.Pesel != null && p.Pesel.Contains(query)))
+            .Include(p => p.Doctor)
+            .Include(p => p.Location)
         .ToListAsync();
     }
 }

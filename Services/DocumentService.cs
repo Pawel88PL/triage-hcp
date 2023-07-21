@@ -9,40 +9,41 @@ namespace triage_hcp.Services
     public class DocumentService: IDocumentService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly IDetailsService _editService;
+        private readonly IDetailsService _detailsService;
 
-        public DocumentService(IWebHostEnvironment webHostEnvironment, IDetailsService editService)
+        public DocumentService(IWebHostEnvironment webHostEnvironment, IDetailsService detailsService)
         {
             _webHostEnvironment = webHostEnvironment;
-            _editService = editService;
+            _detailsService = detailsService;
         }
 
-        public async Task <byte[]> GeneratePatientDocumentAsync(int Id)
+        public async Task <byte[]> GeneratePatientDocumentAsync(int PatientId)
         {
 
-            Pacjent pacjent = await _editService.GetAsync(Id);
+            Patient patient = await _detailsService.GetPatientAsync(PatientId);
 
             string templatePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "Documents.docx");
-            string outputPath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{Id}.docx");
+            string outputPath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{PatientId}.docx");
 
 
             Dictionary<string, string> keywordData = new Dictionary<string, string>
             {
-                { "@name", (pacjent.Name ?? "").ToUpper() },
-                { "@sur", (pacjent.Surname ?? "" ).ToUpper() },
-                { "towhom", (pacjent.ToWhomThePatient ?? "").ToUpper() },
-                { "pesel", (pacjent.Pesel ?? "") },
-                { "date", pacjent.DateTime.ToString("g") },
-                { "diagnosis", (pacjent.Diagnosis ?? "").ToUpper() },
-                { "room", (pacjent.Room ?? "") },
-                { "color", (pacjent.Color ?? "") },
-                { "time", pacjent.DateTime.ToString("t") },
-                { "sbp", (pacjent.SBP ?? "") },
-                { "dbp", (pacjent.DBP ?? "") },
-                { "hrr", (pacjent.HeartRate ?? "") },
-                { "spo2", (pacjent.Spo2 ?? "") },
-                { "gccs", (pacjent.GCS ?? "") },
-                { "temp", (pacjent.BodyTemperature ?? "") },
+                { "@name", (patient?.Name ?? "").ToUpper() },
+                { "@sur", (patient ?.Surname ?? "" ).ToUpper() },
+                { "towhom", (patient ?.ToWhomThePatient ?? "").ToUpper() },
+                { "pesel", (patient ?.Pesel ?? "") },
+                { "date", patient.StartTime.ToString("g") },
+                { "diagnosis", (patient?.Symptoms ?? "").ToUpper() },
+                { "room", (patient?.Location?.LocationName ?? "").ToUpper() },
+                { "color", (patient?.Color ?? "") },
+                { "time", patient.StartTime.ToString("t") },
+                { "allergies", (patient?.Allergies ?? "").ToUpper() },
+                { "sbp", (patient?.SBP.ToString() ?? "") },
+                { "dbp", (patient?.DBP.ToString() ?? "") },
+                { "hrr", (patient?.HeartRate.ToString() ?? "") },
+                { "spo2", (patient?.Spo2.ToString()?? "") },
+                { "gccs", (patient?.GCS.ToString() ?? "") },
+                { "temp", (patient?.BodyTemperature.ToString() ?? "") },
 
             };
 

@@ -333,6 +333,7 @@ Data 12.07.2023
 5. Utworzono domyślny widok NotFound w katalogu Shared.
 6. Zarejestrowano nowe serwisy w kontenerze wstrzykiwania zależności (Dependency Injection, DI) w klasie Program.cs.
 7. Na stronie MainList zmieniono nazwy widoków z Edit na WithDoctor i WithoutDoctor.
+
 <h3> Opublikowano wersję 5.4.0. </h3>
 <hr/>
 
@@ -341,3 +342,112 @@ Data 13.07.2023
 1. Przeniesiono bazę danych na lokalny serwer.
 2. W widoku WithDoctor w sekcji "display: none" dodano formularze z parametrami pacjenta. Usunięto tym samym błąd, który powodował
    wyczyszczenie tych pól z bazy danych po wypisywaniu pacjenta z systemu.
+3. Utworzono widoki Partial View do przesyłania ukrytych pól formularzy dla stron "Done", WithDoctor", "WithoutDoctor".
+4. Listę lekarzy przeniesiono do Partial View jako DoctorsList.cshtml.
+5. Listę lokalizacji w SOR przeniesiono do Partial View jako RoomList.cshtml.
+6. Listę rozwijalną "Jaka decyzja?" przeniesiono do Partial View jako WhatDecision.cshtml.
+7. Poprawiono wygląd i funkcjonalność formularza edycji danych pacjenta dla widoku "Admin".
+<hr/>
+
+Data 15.07.2023
+
+1. Usunięto błąd ze strony WithDoctor, który polegał na błędnym odwoładniu to widoku ukrytych pól formularzy PartialView
+   HiddenFormFields.cshtml.
+2. Klasę Pacjent.cs zmieniono na Patient.cs.
+3. W Klasie Patient.cs pole Id zmieniono na IdPacjenta, pole Room zmieniono na LocationId jako klucz obcy do tabeli Locations,
+   pole Doctor zmieniono na DoctorId jako klucz obcy do tabeli Doctors.
+4. Pole Diagnosis zmieniono na Symptoms, pole DateTime zmieniono na StartTime, string Active zmieniono na bool IsActive.
+5. Usunięto pole Epikryza. Pole ObserwacjeRatPiel zmieniono na Remarks, pole CoDalejZPacjentem zmieniono na WhatNext.
+6. Usunięto pole TriageDate.
+7. Dla ciśnienia tętniczego, saturacji, tętna, temperatury i skali GCS pola te zmieniono ze string na int.
+8. Utworzono klasę Location.cs, która będzie modelem do tabeli "Lokalizacja w Sor".
+9. Utworzono klasę Doctor.cs, która będzie modelem do tabeli "Lekarze".
+10. Poprawiono DetailsControler, TriageService, DocumentService, Admin.cshtml o zmienione pola z modelu Patient.
+<h3>Utworzono nową gałąź - version 6.0.0</h3>
+<hr/>
+
+Data 16.07.2023
+
+1. Poprawiono widok AdminList.cshtml, MainList.cshtml, Done.cshtml, Edit.cshtml, WithDoctor.cshtml, WithoutDoctor.cshtml
+   o zmienione pola modelu Patient.
+2. Ciąg dalszy poprawek: - poprawiono widok Statistics.cshtml, TodayEndList.cshtml, SearchPatients.cshtml,
+   DoneFormFields.cshtml, EditFormFields.cshtml, HiddenFormFields.cshtml, AddNewPatient.cshtml.
+3. Przeprowadzono migrację NewTables_Patients_Doctors_And_Locations i update testowej bazy danych.
+4. Do klasy ListService dodano metodę GetAllDoctorsAsync(), która zwraca listę wszystkich lekarzy z tabeli "Doctors".
+5. W widokach MainList.cshtml, WithDoctor.cshtml i WithoutDoctor.cshtml zastosowano listę lekarzy pobieraną z bazy danych.
+6. Poprawiono wyświetlanie lekarza przy danym pacjencie z Id lekarza na jego imię i nazwisko.
+<hr/>
+
+Data 17.07.2023
+
+1. W modelu Patient.cs umożliwiono, aby pola z parametrami jak ciśnienie, tętno, saturacja i skala GCS mogły być null,
+   przeprowadzono migrację Patient_Parameters_Nullable i update bazy danych.
+2. Do modelu Location.cs dodano pole bool IsAvailable, które będzie wskazywać czy dana lokalizacja jest dostępna.
+3. Dodano logikę, która przypisuje wartość 'false' w polu IsAvailable w momencie położenia pacjenta na jakieś łóżko.
+4. Zaimplementowano logikę, która zwalnia łóżko jeśli pacjent jest wypisany z SOR.
+5. W widoku 'AddNewPatient.cshtml' dodano kolumnę, która wyświetla listę dostępnych łóżek.
+6. W widoku 'MainList.cshtml' usunięto wartość null, która była przypisana do formularza wyboru lekarza i generowała błąd
+   w momencie wybrania z listy opcji 'Wybierz lekarza ...'.
+7. W kontrolerze TriageController utworzono metodę SetViewBagLocations(), która przekazuje aktualne łóżka do widoku
+   AddNewPatient.cshtml.
+8. Utworzono LocationServis, w którym są metody odpowiedzialne za generowanie listy dostępnych łóżek, przydzielanie
+   pacjenta do danego łóżka i zwalniania go w momencie wypisania pacjenta.
+9. W widok 'AddNewPatient.cshtml' listę dostępnych łóżek umieszczono w jednym kontenerze 'border shadow' z formularzami.
+<hr/>
+
+Data 18.07.2023
+
+1. W bazie danych zmieniono kolejność lokalizacji, zaczynając od 'LocationID = 1' dla Poczekalni, następnie 'Korytarz'.
+2. W widoku MainList.cshtml zmieniono algorytm wyświetlający lokalizjacę pacjenta, wcześniej 'LocationId = 1' było przypisane
+   dla łókka 'Wituś 1'.
+<hr/>
+
+Data 19.07.2023
+
+1. Usunięto widok Admin.cshtml.
+2. Poprawiono metodę GetPatientAsync() o powiązanie pacjenta z danym lekarzem i lokalizacją.
+3. Usunięto błąd, który powodował 'NullReferenceException' w momencie pobierania listy lokalizacji z bazy danych.
+4. Poprawiono błędne pola formularza '_DoneFormFields.cshtml'.
+5. W kontrolerze DetailsController utworzono widok 'Update.cshtml', który informuje o tym, że nie udało się zaktualizować
+   danych pacjenta.
+6. W widoku 'MainList.cshtml' poprawiono algorytm wyświetlający lokalizacje pacjenta w SOR.
+7. Zrefaktoryzowano DetailsController, przenosząc logikę dotyczącą obsługi błędów i aktualizacji pacjentów do serwisu
+   DetailsService.
+8. Zmieniono sposób obsługi błędów w metodzie Update, tak aby prawidłowo zwracać widok po wystąpieniu błędu.
+<hr/>
+
+Data 20.07.2023
+
+1. Rozwiązano problem System.InvalidOperationException, który był spowodowany próbą śledzenia wielu instancji tego samego
+   obiektu 'Patient' przez Entity Framework Core. Problem rozwiązano, pobierając istniejącego pacjenta z bazy danych,
+   aktualizując właściwości tego obiektu, a następnie zapisując zmiany.
+2. Wprowadzono mechanizm aktualizacji w metodzie `UpdatePatientAsync`, pozwalający na zmiany konkretnych właściwości
+   obiektu 'Patient', takich jak 'Color', 'EndTime', 'TotalTime', 'LocationId', 'DoctorId', 'WhatNext' oraz 'IsActive'. 
+3. Dokonano dostosowań, aby obsłużyć sytuacje, gdy obiekt 'Patient' staje się nieaktywny, co skutkuje aktualizacją statusu
+   powiązanego 'Location' na 'IsAvailable'.
+4. Usprawniono obsługę wyjątków w metodzie `UpdatePatientAsync`, aby dostarczać bardziej znaczące komunikaty o błędach,
+   co poprawia możliwość debugowania i śledzenia błędów.
+5. Zmieniono widok 'Update.cshtml'. Użytkownik dostaje takie komunikat: "Próba zmiany lokalizjacji pacjenta nie powiodła się,
+	ponieważ lokalizacja docelowa jest zajęta. Wróć na stronę LISTA PACJENTÓW i zobacz dostępne lokalizacje". Pod komunikatem
+	znajduje się przycisk kierujący do listy pacjentów.
+6. Do serwisu DetailsService przeniesiono metodę 'CalculatePatientWaitingTime()' z widoku 'MainList.cshtml'.
+7. Utworzono serwis TimeService, w którym umieszczono metody 'CalculatePatientWaitingTime()' i 'CalculateTotalPatientTime'.
+8. Usunięto widok 'AdminList.cshtml'.
+9. Do tabeli 'Patients' dodano nową kolumnę 'StartDiagnosis', w której będzie przechowywana dana i czas rozpoczęcia diagnostyki
+	przez lekarza. Utworzono migrację i update bazy danych.
+10. W serwisie 'DetailsServis', w metodzie 'UpdatePatientAsync()' poprawiono błąd, przez który w bazie danych nie zapisywał się
+	'WaitingTime', 'EndTime' i 'TotalTime'.
+<hr/>
+
+Data 21.07.2023
+
+1. W kontrolerze 'DetailsController' dodano warunek wyświetlania aktualnego czasu oczekiwania na lekarza tylko dla widoku
+	'WithoutDoctor.cshtml'.
+2. W serwisie 'DetailsServis', w metodzie 'UpdatePatientAsync()' dodano rozszerzenie 'ToUpper()' dla stringów 'name',
+	'surname', 'gender', 'whatNext' i 'toWhomThePatient'.
+3. W metodzie 'AddNewPatient()' w kontrolerze 'TriageController' zmieniono przekierowanie na widok 'WithoutDoctor.cshtml'
+	po prawidłowym dodaniu nowego pacjenta.
+4. W widoku 'WithoutDoctor.cshtml' utworzono modal, który pojawia się automatycznie po załadowaniu okna z zapytaniem:
+	"Czy chcesz wydrukować dokumenty pacjenta (imię, nazwisko)?".
+<h3>Opublikowano wersję 6.0.0</h3>
+<hr/>

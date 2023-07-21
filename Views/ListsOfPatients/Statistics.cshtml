@@ -1,4 +1,4 @@
-﻿@model IEnumerable<triage_hcp.Models.Pacjent>
+﻿@model IEnumerable<triage_hcp.Models.Patient>
 
 @{
     ViewData["Title"] = "Statystyki";
@@ -8,10 +8,10 @@
     <h3 class="text-center">Statystyki</h3>
     <br />
     <div class="row">
-            @foreach (var pacjent in Model.OrderByDescending(x => x.TriageDate))
+            @foreach (var patient in Model.OrderByDescending(x => x.StartTime))
             {
                 <div class="border" style="margin: 10px; padding: 5px 5px 5px 15px; border-radius: 5px; max-width: 300px">
-                    <h5>@pacjent.TriageDate.ToString("D") - <b>@pacjent.Id</b></h5>
+                    <h5>@patient.StartTime.ToString("D") - <b>@patient.PatientId</b></h5>
                 </div>
             }
     </div>

@@ -10,6 +10,6 @@ namespace triage_hcp.Services.Interfaces
 
         string DetermineGender(string pesel);
 
-        void SetAgeAndGender(Pacjent pacjent);
+        void SetAgeAndGender(Patient pacjent);
     }
 }

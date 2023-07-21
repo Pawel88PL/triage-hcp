@@ -4,9 +4,9 @@ namespace triage_hcp.Services.Interfaces
 {
     public interface ITriageService
     {
-                
-        Task<int> SaveAsync(Pacjent pacjent);
 
-        void SetDefaultPatientFields(Pacjent pacjent);
+        Task<int> AddNewPatientAsync(Patient pacjent);
+
+        void SetDefaultPatientFields(Patient pacjent);
     }
 }

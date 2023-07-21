@@ -1,0 +1,12 @@
+﻿@model triage_hcp.Models.Patient
+
+
+<div class="container col-lg-6 pt-5">
+    <h5>Nie udało się przenieść pacjenta:</h5>
+    <h3>@Model?.Name?.ToUpper() @Model?.Surname?.ToUpper()</h3>
+    <p>Ponieważ miejsce docelowe jest zajęte przez innego pacjenta. Wróć na stronę "LISTA PACJENTÓW",
+        aby zobaczyć jakie są dostępne lokalizacje.
+    </p>
+    <hr />
+    <a asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-success">POWRÓT DO LISTY</a>
+</div>

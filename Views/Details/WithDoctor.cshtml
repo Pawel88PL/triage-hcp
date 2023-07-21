@@ -1,4 +1,4 @@
-﻿@model triage_hcp.Models.Pacjent
+﻿@model triage_hcp.Models.Patient
 <link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
 
 @{
@@ -10,72 +10,9 @@
     <div class="row">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PatientId" />
 
-            <div style="display:none">
-
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@Model.DateTime</option>
-                </select>
-
-                <select class="form-control" id="TriageDate" name="TriageDate">
-                    <option>@Model.TriageDate</option>
-                </select>
-
-                <select class="form-control" id="WaitingTime" name="WaitingTime">
-                    <option>@Model.WaitingTime</option>
-                </select>
-
-                <select class="form-control" id="Name" name="Name">
-                    <option>@Model.Name?.ToUpper()</option>
-                </select>
-
-                <select class="form-control" id="Surname" name="Surname">
-                    <option>@Model.Surname?.ToUpper()</option>
-                </select>
-
-                <select class="form-control" id="Pesel" name="Pesel">
-                    <option>@Model.Pesel</option>
-                </select>
-
-                <select class="form-control" id="Age" name="Age">
-                    <option>@Model.Age</option>
-                </select>
-
-                <select class="form-control" id="Gender" name="Gender">
-                    <option>@Model.Gender</option>
-                </select>
-
-                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                    <option>@Model.Diagnosis</option>
-                </select>
-
-                <select class="form-control" id="SBP" name="SBP">
-                    <option>@Model.SBP</option>
-                </select>
-
-                <select class="form-control" id="DBP" name="DBP">
-                    <option>@Model.DBP</option>
-                </select>
-
-                <select class="form-control" id="HeartRate" name="HeartRate">
-                    <option>@Model.HeartRate</option>
-                </select>
-
-                <select class="form-control" id="Spo2" name="Spo2">
-                    <option>@Model.Spo2</option>
-                </select>
-
-                <select class="form-control" id="GCS" name="GCS">
-                    <option>@Model.GCS</option>
-                </select>
-
-                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
-                    <option>@Model.BodyTemperature</option>
-                </select>
-
-            </div>
-
+            @await Html.PartialAsync("_HiddenFormFields")
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
 
@@ -90,14 +27,14 @@
                                         <h5>PESEL: @Model.Pesel</h5>
                                     </div>
                                     <div class="col-6">
-                                        <h4>@Model.CoDalejZPacjentem</h4>
-                                        <h4>@Model.DateTime.ToString("D")</h4>
-                                        <h2>@Model.DateTime.ToString("t")</h2>
+                                        <h4>@Model.WhatNext</h4>
+                                        <h4>@Model.StartTime.ToString("D")</h4>
+                                        <h2>@Model.StartTime.ToString("t")</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-4">
-                                <h4>@Model.Diagnosis?.ToUpper()</h4>
+                                <h4>@Model.Symptoms?.ToUpper()</h4>
                             </div>
                         </div>
                     </div>
@@ -121,96 +58,30 @@
 
                             <div class="col-6">
                                 <br />
-                                <select class="form-select" id="Room" name="Room">
-                                    <option>@Model.Room</option>
-                                    <option>Poczekalnia</option>
-                                    <option>Korytarz</option>
-                                    <option>Wituś</option>
-                                    <option>Wituś 1</option>
-                                    <option>Wituś 2</option>
-                                    <option>Wituś 3</option>
-                                    <option>WIT</option>
-                                    <option>WIT 1</option>
-                                    <option>WIT 2</option>
-                                    <option>WIT 3</option>
-                                    <option>WIT 4</option>
-                                    <option>Sala obserwacyjna 5</option>
-                                    <option>Sala obserwacyjna 6</option>
-                                    <option>Sala obserwacyjna 7</option>
-                                    <option>Sala obserwacyjna 8</option>
-                                    <option>Sala obserwacyjna 9</option>
-                                    <option>Sala obserwacyjna 10</option>
-                                    <option>Izolatka Z1</option>
-                                    <option>Izolatka Z2</option>
-                                    <option>Izolatka Z3</option>
-                                    <option>Dekontaminacja</option>
+                                <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
+                                <option>@Model?.Location?.LocationName</option>
                                 </select>
                                 <br />
 
-                                <select class="form-select" id="Color" name="Color">
-                                    <option value="@Model.Color" style="background-color:@Model.Color">Czy zmienić kolor?</option>
-                                    <option value="lightskyblue" style="background-color:lightskyblue">Niebieski</option>
-                                    <option value="lightgreen" style="background-color:lightgreen">Zielony</option>
-                                    <option value="yellow" style="background-color:yellow">Żółty</option>
-                                    <option value="orange" style="background-color:orange">Pomarańczowy</option>
-                                    <option value="red" style="background-color:red">Czerwony</option>
+                                <select asp-for="Color" class="form-select">
+                                    @await Html.PartialAsync("_ColorList")
                                 </select>
                                 <br />
 
-                                <select class="form-select" id="ToWhomThePatient" name="ToWhomThePatient">
-                                    <option>@Model.ToWhomThePatient</option>
+                                <select asp-for="ToWhomThePatient" class="form-select">
+                                    <option>@Model?.ToWhomThePatient</option>
                                     <option>INTERNISTA</option>
                                     <option>CHIRURG</option>
                                 </select>
                                 <br />
 
+                                <div class="form-group">
+                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList" 
+                                        class="form-select">
+                                        <option value="">Wybierz lekarza...</option>
+                                    </select>
+                                </div>
 
-                                <select class="form-select" id="Doctor" name="Doctor">
-                                    <option>@Model.Doctor</option>
-                                    <option>Avdieiev Anton</option>
-                                    <option>Betkowiak Zuzanna</option>
-                                    <option>Binaś Marcin</option>
-                                    <option>Chrzanowski Monica</option>
-                                    <option>Czekała-Karpiński Dawid</option>
-                                    <option>Dabryneuski Uladzimir</option>
-                                    <option>Domin Remigiusz</option>
-                                    <option>Elantkowski Łukasz</option>
-                                    <option>Fritzkiewicz Witold</option>
-                                    <option>Gąsiorowski Mateusz</option>
-                                    <option>Gilier Kamila</option>
-                                    <option>Grymuza Maciej</option>
-                                    <option>Guliński Marcin</option>
-                                    <option>Huzenko Jaroslaw</option>
-                                    <option>Junewicz</option>
-                                    <option>Kłaczyński Mateusz</option>
-                                    <option>Knasiecka Magdalena</option>
-                                    <option>Kochman Karol</option>
-                                    <option>Kohan Anastasiia</option>
-                                    <option>Kosharna Anna</option>
-                                    <option>Lesiak Karol</option>
-                                    <option>Łuczak Agnieszka</option>
-                                    <option>Makowska Agata</option>
-                                    <option>Malik Arkadiusz</option>
-                                    <option>Małkiewicz Tomasz</option>
-                                    <option>Miroshnichenko Yurii</option>
-                                    <option>Nowak Michał</option>
-                                    <option>Pankiewicz Mateusz</option>
-                                    <option>Paszkowiak-Ciesielska Hanna</option>
-                                    <option>Pisula Piotr</option>
-                                    <option>Polupanov Yevhen</option>
-                                    <option>Potyka Marek</option>
-                                    <option>Razumka Krystyna</option>
-                                    <option>Rojna Maciej</option>
-                                    <option>Sesiuk Aleksandra</option>
-                                    <option>Skrzypek Dariusz</option>
-                                    <option>Śliwowski Cezary</option>
-                                    <option>Śmidrowicz Bartosz</option>
-                                    <option>Wierzchowiecki Jerzy</option>
-                                    <option>Woźny Tomasz</option>
-                                    <option>Yakymchuk Yuri</option>
-                                    <option>Zanko Semen</option>
-                                    <option>Zhdanov Sergii</option>
-                                </select>
                             </div>
                         </div>
                         <hr />
@@ -224,26 +95,10 @@
 
                             <div class="col-6">
                                 <div class="form-group">
-                                    <select class="form-select" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
-                                        <option>@Model.CoDalejZPacjentem</option>
+                                    <select asp-for="WhatNext" class="form-select">
+                                        <option>@Model?.WhatNext</option>
                                         <option>W trakcie diagnostyki SOR</option>
-                                        <option>Wypisany do domu</option>
-                                        <option>Interna</option>
-                                        <option>Urologia</option>
-                                        <option>Kardiologia A</option>
-                                        <option>Kardiologia B</option>
-                                        <option>Neurologia</option>
-                                        <option>OIOM</option>
-                                        <option>Chirurgia</option>
-                                        <option>Ortopedia</option>
-                                        <option>Psychiatria</option>
-                                        <option>Przekazany do innego szpitala</option>
-                                        <option>Neurochirurgia</option>
-                                        <option>Ginekologia</option>
-                                        <option>Chirurgia szczękowo-twarzowa</option>
-                                        <option>Oddalił się z SOR</option>
-                                        <option>Przekazano Policji</option>
-                                        <option>Zgon</option>
+                                        @await Html.PartialAsync("_WhatNext")
                                     </select>
                                 </div>
                                 <br />
@@ -254,12 +109,12 @@
 
 
                     <div class="col-6">
-                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
+                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model?.Color">
                             <div style="background-color:white; padding: 10px 10px 40px 10px">
                                 <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="form-group">
                                     <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="9">
-                                        @Model.ObserwacjeRatPiel</textarea>
+                                        @Model?.Remarks</textarea>
                                 </div>
                             </div>
                         </div>
@@ -268,18 +123,18 @@
                 <hr />
 
                 <div class="btn-group" role="group" style="margin-left: 20px">
-                    <button type="submit" class="btn btn-success" id="Active" name="Active" value="Tak">
+                    <button type="submit" class="btn btn-success" id="IsActive" name="IsActive" value="true">
                         ZAPISZ ZMIANY
                     </button>
 
                     <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO LISTY</button>
 
-                    <a href="@Url.Action("Edit","Details", new { Id = Model.Id })"
+                    <a href="@Url.Action("Edit","Details", new { Id = Model?.PatientId })"
                        class="btn btn-warning">
                         EDYTUJ DANE
                     </a>
 
-                    <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.Id })"
+                    <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model?.PatientId })"
                        class="btn btn-secondary">
                         DRUKUJ DOKUMENTY
                     </a>
@@ -296,100 +151,31 @@
 
     <form asp-action="Update">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="PatientId" />
 
         <div style="display:none">
 
-            <select class="form-control" id="DateTime" name="DateTime">
-                <option>@Model.DateTime</option>
-            </select>
-            <span asp-validation-for="DateTime" class="text-danger"></span>
+            @await Html.PartialAsync("_HiddenFormFields")
 
-            <select class="form-control" id="TriageDate" name="TriageDate">
-                <option>@Model.TriageDate</option>
+            <select asp-for="Color" class="form-control">
+                <option>@Model?.Color</option>
             </select>
 
-            <select class="form-control" id="WaitingTime" name="WaitingTime">
-                <option>@Model.WaitingTime</option>
+            <select asp-for="LocationId" class="form-control">
+                <option>@Model?.LocationId</option>
             </select>
 
-            <select class="form-control" id="EndTime" name="EndTime">
-                <option>@Model.EndTime</option>
+            <select asp-for="ToWhomThePatient" class="form-control">
+                <option>@Model?.ToWhomThePatient</option>
             </select>
 
-            <select class="form-control" id="TotalTime" name="TotalTime">
-                <option>
-                    @Model.TotalTime</option>
+            <select asp-for="DoctorId" class="form-control">
+                <option>@Model?.DoctorId</option>
             </select>
 
-            <select class="form-control" id="Name" name="Name">
-                <option>@Model.Name</option>
+            <select asp-for="Remarks" class="form-control">
+                <option>@Model?.Remarks</option>
             </select>
-
-            <select class="form-control" id="Surname" name="Surname">
-                <option>@Model.Surname</option>
-            </select>
-
-            <select class="form-control" id="Pesel" name="Pesel">
-                <option>@Model.Pesel</option>
-            </select>
-
-            <select class="form-control" id="Age" name="Age">
-                <option>@Model.Age</option>
-            </select>
-
-            <select class="form-control" id="Gender" name="Gender">
-                <option>@Model.Gender</option>
-            </select>
-
-            <select class="form-control" id="Diagnosis" name="Diagnosis">
-                <option>@Model.Diagnosis</option>
-            </select>
-
-            <select class="form-control" id="Color" name="Color">
-                <option>@Model.Color</option>
-            </select>
-
-            <select class="form-control" id="Room" name="Room">
-                <option>@Model.Room</option>
-            </select>
-
-            <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                <option>@Model.ToWhomThePatient</option>
-            </select>
-
-            <select class="form-control" id="Doctor" name="Doctor">
-                <option>@Model.Doctor</option>
-            </select>
-
-            <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                <option>@Model.ObserwacjeRatPiel</option>
-            </select>
-
-            <select class="form-control" id="SBP" name="SBP">
-                <option>@Model.SBP</option>
-            </select>
-
-            <select class="form-control" id="DBP" name="DBP">
-                <option>@Model.DBP</option>
-            </select>
-
-            <select class="form-control" id="HeartRate" name="HeartRate">
-                <option>@Model.HeartRate</option>
-            </select>
-
-            <select class="form-control" id="Spo2" name="Spo2">
-                <option>@Model.Spo2</option>
-            </select>
-
-            <select class="form-control" id="GCS" name="GCS">
-                <option>@Model.GCS</option>
-            </select>
-
-            <select class="form-control" id="BodyTemperature" name="BodyTemperature">
-                <option>@Model.BodyTemperature</option>
-            </select>
-
 
         </div>
 
@@ -404,30 +190,14 @@
                         <h4>Jaka decyzja:</h4>
                         <br />
                         <div class="form-group">
-                            <select class="form-select" id="CoDalejZPacjentem" name="CoDalejZPacjentem" required>
-                                <option>Wypisany do domu</option>
-                                <option>Interna</option>
-                                <option>Urologia</option>
-                                <option>Kardiologia A</option>
-                                <option>Kardiologia B</option>
-                                <option>Neurologia</option>
-                                <option>OIOM</option>
-                                <option>Chirurgia</option>
-                                <option>Ortopedia</option>
-                                <option>Psychiatria</option>
-                                <option>Przekazany do innego szpitala</option>
-                                <option>Neurochirurgia</option>
-                                <option>Ginekologia</option>
-                                <option>Chirurgia szczękowo-twarzowa</option>
-                                <option>Oddalił się z SOR</option>
-                                <option>Przekazano Policji</option>
-                                <option>Zgon</option>
+                            <select asp-for="WhatNext" class="form-select">
+                               @await Html.PartialAsync("_WhatNext")
                             </select>
                         </div>
                         <br />
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger" id="Active" name="Active" value="Nie">
+                        <button type="submit" class="btn btn-danger" id="IsActive" name="IsActive" value="false">
                             WYPISZ PACJENTA
                         </button>
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">POWRÓT</button>

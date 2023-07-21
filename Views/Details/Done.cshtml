@@ -1,137 +1,18 @@
-﻿@model triage_hcp.Models.Pacjent
+﻿@model triage_hcp.Models.Patient
 <link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Zakończono";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-
-    string Hours()
-    {
-
-        string hours = Convert.ToString(Model.TotalTime);
-        int controlNumber = int.Parse(hours.Substring(0, 1));
-
-        if (controlNumber == 1)
-        {
-            return "godzina";
-        }
-        else if (controlNumber == 2 || controlNumber == 3 || controlNumber == 4)
-        {
-            return "godziny";
-        }
-        else
-        {
-            return "godzin";
-        }
-
-    }
-
-
 }
 
 <div class="container">
     <div class="row">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="PatientId" />
 
-            <div style="display:none">
-
-                <select class="form-control" id="DateTime" name="DateTime">
-                    <option>@Model.DateTime</option>
-                </select>
-                <span asp-validation-for="DateTime" class="text-danger"></span>
-
-                <select class="form-control" id="TriageDate" name="TriageDate">
-                    <option>@Model.TriageDate</option>
-                </select>
-
-                <select class="form-control" id="Name" name="Name">
-                    <option>@Model.Name</option>
-                </select>
-
-                <select class="form-control" id="Surname" name="Surname">
-                    <option>@Model.Surname</option>
-                </select>
-
-                <select class="form-control" id="Pesel" name="Pesel">
-                    <option>@Model.Pesel</option>
-                </select>
-
-                <select class="form-control" id="Age" name="Age">
-                    <option>@Model.Age</option>
-                </select>
-
-                <select class="form-control" id="Gender" name="Gender">
-                    <option>@Model.Gender</option>
-                </select>
-
-                <select class="form-control" id="Diagnosis" name="Diagnosis">
-                    <option>@Model.Diagnosis</option>
-                </select>
-
-                <select class="form-control" id="Color" name="Color">
-                    <option>@Model.Color</option>
-                </select>
-
-                <select class="form-control" id="Room" name="Room">
-                    <option>@Model.Room</option>
-                </select>
-
-                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                    <option>@Model.ToWhomThePatient</option>
-                </select>
-
-                <select class="form-control" id="Doctor" name="Doctor">
-                    <option>@Model.Doctor</option>
-                </select>
-
-                <select class="form-control" id="CoDalejZPacjentem" name="CoDalejZPacjentem">
-                    <option>@Model.CoDalejZPacjentem</option>
-                </select>
-
-                <select class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel">
-                    <option>@Model.ObserwacjeRatPiel</option>
-                </select>
-
-                <select class="form-control" id="EndTime" name="EndTime">
-                    <option>@Model.EndTime</option>
-                </select>
-
-                <select class="form-control" id="WaitingTime" name="WaitingTime">
-                    <option>@Model.WaitingTime</option>
-                </select>
-
-                <select class="form-control" id="TotalTime" name="TotalTime">
-                    <option>@Model.TotalTime</option>
-                </select>
-
-                <select class="form-control" id="SBP" name="SBP">
-                    <option>@Model.SBP</option>
-                </select>
-
-                <select class="form-control" id="DBP" name="DBP">
-                    <option>@Model.DBP</option>
-                </select>
-
-                <select class="form-control" id="HeartRate" name="HeartRate">
-                    <option>@Model.HeartRate</option>
-                </select>
-
-                <select class="form-control" id="Spo2" name="Spo2">
-                    <option>@Model.Spo2</option>
-                </select>
-
-                <select class="form-control" id="GCS" name="GCS">
-                    <option>@Model.GCS</option>
-                </select>
-
-                <select class="form-control" id="BodyTemperature" name="BodyTemperature">
-                    <option>@Model.BodyTemperature</option>
-                </select>
-            </div>
-
+            @await Html.PartialAsync("_DoneFormFields")
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
 
@@ -140,8 +21,8 @@
                         <div class="row">
                             <div class="col-4">
                                 <h5>Przyjęty w SOR:</h5>
-                                <h4>@Model.DateTime.ToString("D")</h4>
-                                <h1>@Model.DateTime.ToString("t")</h1>
+                                <h4>@Model.StartTime.ToString("D")</h4>
+                                <h1>@Model.StartTime.ToString("t")</h1>
                             </div>
                             <div class="col-5">
                                 <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
@@ -149,16 +30,9 @@
                                 <h5>PESEL: @Model.Pesel</h5>
                             </div>
                             <div class="col-3">
-                                @if (Model.EndTime <= DateTime.MinValue | Model.Active == "Tak")
-                                {
-                                    <h4>Pacjent dalej w SOR</h4>
-                                }
-                                else
-                                {
-                                    <p>Zakończono: </p>
-                                    <h4>@Model.EndTime.ToString("D")</h4>
-                                    <h1>@Model.EndTime.ToString("t")</h1>
-                                }
+                                <p>Zakończono: </p>
+                                <h4>@Model.EndTime.ToString("D")</h4>
+                                <h1>@Model.EndTime.ToString("t")</h1>
                             </div>
                         </div>
                     </div>
@@ -194,43 +68,32 @@
 
                             <div class="col-6">
                                 <br />
-                                <p><b>@Model.Room?.ToUpper()</b></p>
+                                <p><b>@Model?.Location?.LocationName</b></p>
                                 <br />
 
-                                <p><b>@Model.ToWhomThePatient?.ToUpper()</b></p>
+                                <p><b>@Model?.ToWhomThePatient?.ToUpper()</b></p>
                                 <br />
 
-                                <p><b>@Model.WaitingTime</b> minut</p>
+                                <p><b>@Model?.WaitingTime</b> minut</p>
                                 <br />
 
-                                @if (Model.TotalTime < 1)
-                                {
-                                    <p><b>Mniej niż 1 godzinę</b></p>
-                                }
-                                else if (Model.TotalTime > 9)
-                                {
-                                    <p><b>@Model.TotalTime</b> godzin</p>
-                                }
-                                else
-                                {
-                                    <p><b>@Model.TotalTime</b> @Hours()</p>
-                                }
+                                <p><b>@Model?.TotalTime</b> h</p>
                                 <br />
 
-                                <p><b>@Model.Doctor?.ToUpper()</b></p>
+                                <p><b>@Model?.Doctor?.Name @Model?.Doctor?.Surname</b></p>
                                 <br />
 
-                                <p><b>@Model.CoDalejZPacjentem?.ToUpper()</b></p>
+                                <p><b>@Model?.WhatNext?.ToUpper()</b></p>
                                 <br />
 
 
                                 <div class="form-group col-6">
-                                    <select class="form-select" id="Active" name="Active">
-                                        <option>@Model.Active</option>
-                                        <option>Tak</option>
-                                        <option>Nie</option>
+                                    <select asp-for="IsActive" class="form-select" required>
+                                        <option></option>
+                                        <option value="true">Tak</option>
+                                        <option value="false">Nie</option>
                                     </select>
-                                    <span asp-validation-for="Active" class="text-danger"></span>
+                                    <span asp-validation-for="IsActive" class="text-danger"></span>
                                 </div>
                                 <br />
                             </div>
@@ -240,18 +103,18 @@
 
 
                     <div class="col-6">
-                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
+                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model?.Color">
                             <div style="background-color:white; padding: 10px 10px 40px 10px">
                                 <h5 class="text-center">OPIS TRIAGE</h5>
                                 <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
-                                    <h4>@Model.Diagnosis?.ToUpper()</h4>
+                                    <h4>@Model?.Symptoms?.ToUpper()</h4>
                                 </div>
 
                                 <h5>Obserwacje ratowniczo pielęgniarskie</h5>
                                 <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
-                                    <h4>@Model.ObserwacjeRatPiel?.ToUpper()</h4>
+                                    <h4>@Model?.Remarks?.ToUpper()</h4>
                                 </div>
                             </div>
                             <br />

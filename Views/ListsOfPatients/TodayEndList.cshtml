@@ -1,4 +1,4 @@
-﻿@model IEnumerable<triage_hcp.Models.Pacjent>
+﻿@model IEnumerable<triage_hcp.Models.Patient>
 
 <link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
 
@@ -42,42 +42,43 @@
             </div>
             <hr />
             
-            @foreach (var pacjent in Model
-            .Where(x => x.DateTime.Date == DateTime.Today.Date)
-            .OrderByDescending(x => x.DateTime))
+            @foreach (var patient in Model
+            .Where(x => x.StartTime.Date == DateTime.Today.Date)
+            .OrderByDescending(x => x.StartTime))
             {
-                if (!(pacjent.Active == "Tak"))
+                if (patient.IsActive == false)
                 {
-                    <div class="pacjent" style="background-color: @pacjent.Color; max-width: 100%">
-                        <a href="@Url.Action("Done","Details", new { Id = pacjent.Id })"
+                    <div class="patient" style="background-color: @patient.Color; max-width: 100%">
+                        <a href="@Url.Action("Done","Details", new { Id = patient.PatientId })"
                            style="text-decoration:none; color:black">
                             <div class="container">
                                 <div class="row">
                                     <div class="border-end col-1">
-                                        <strong>@pacjent.Id</strong>
+                                        <strong>@patient.PatientId</strong>
                                     </div>
                                     <div class="border-end col-1">
                                         <p>Przyjęto: </p>
-                                        <p><b>@pacjent.DateTime.ToString("g")</b></p>
+                                        <p><b>@patient.StartTime.ToString("g")</b></p>
                                     </div>
                                     <div class="border-end col-1">
                                         <p>Zakończono: </p>
-                                        <p><b>@pacjent.EndTime.ToString("g")</b></p>
+                                        <p><b>@patient.EndTime.ToString("g")</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@pacjent.Surname?.ToUpper() @pacjent.Name?.ToUpper()</b>
+                                        <p><b>@patient.Surname?.ToUpper() @patient.Name?.ToUpper()</b></p>
                                     </div>
                                     <div class="border-end col-1">
-                                        <b>@pacjent.Pesel</b>
+                                        <p><b>@patient.Pesel</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        <b>@pacjent.Diagnosis?.ToUpper()</b>
+                                        <p><b>@patient.Symptoms?.ToUpper()</b></p>
                                     </div>
                                     <div class="border-end col-2">
-                                        lek. prowadzący: <b>@pacjent.Doctor?.ToUpper()</b>
+                                        <p>lek. prowadzący:</p>
+                                        <p><b>@patient?.Doctor?.Name @patient?.Doctor?.Surname </b></p>
                                     </div>
                                     <div class="col-2">
-                                        <b> @pacjent.CoDalejZPacjentem?.ToUpper()</b>
+                                       <p><b> @patient?.WhatNext?.ToUpper()</b></p>
                                     </div>
                                 </div>
                             </div>

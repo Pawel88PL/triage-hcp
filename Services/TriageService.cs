@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace triage_hcp.Services
 {
@@ -17,24 +19,50 @@ namespace triage_hcp.Services
             _logger = logger;
         }
 
+        
 
-        public async Task<int> SaveAsync(Pacjent pacjent)
+
+        public async Task<int> AddNewPatientAsync(Patient patient)
         {
-            await _context.Pacjenci.AddAsync(pacjent);
-            await _context.SaveChangesAsync();
+            var selectedLocation = await _context.Locations.FindAsync(patient.LocationId);
 
-            _logger.LogInformation("Wprowadzono kolejnego pacjenta o Id: {Id}", pacjent.Id);
+            if (selectedLocation != null)
+            {
+                // Lista miejsc, które zawsze są dostępne
+                var alwaysAvailable = new List<string> { "Korytarz", "Poczekalnia", "Wituś", "WIT", "Dekontaminacja" };
 
-            return pacjent.Id;
+                if (alwaysAvailable.Contains(selectedLocation.LocationName) || selectedLocation.IsAvailable)
+                {
+                    _context.Add(patient);
+                    await _context.SaveChangesAsync();
+
+                    // Jeśli miejsce nie jest na liście alwaysAvailable, ustawiamy je jako niedostępne
+                    if (!alwaysAvailable.Contains(selectedLocation.LocationName))
+                    {
+                        selectedLocation.IsAvailable = false;
+                        _context.Update(selectedLocation);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    _logger.LogInformation("Wprowadzono kolejnego pacjenta o Id: {Id}", patient.PatientId);
+
+                    return patient.PatientId;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Wybrane miejsce jest już zajęte.");
+                }
+            }
+
+            throw new InvalidOperationException("Lokalizacja nie została znaleziona.");
         }
 
-        public void SetDefaultPatientFields(Pacjent pacjent)
+        public void SetDefaultPatientFields(Patient pacjent)
         {
-            pacjent.DateTime = DateTime.Now;
-            pacjent.TriageDate = DateTime.Today;
-            pacjent.Doctor = "Wybierz lekarza";
-            pacjent.Active = "Tak";
-            pacjent.CoDalejZPacjentem = "W trakcie diagnostyki SOR";
+            pacjent.StartTime = DateTime.Now;
+            pacjent.DoctorId = null;
+            pacjent.IsActive = true;
+            pacjent.WhatNext = "W trakcie diagnostyki SOR";
         }
 
     }

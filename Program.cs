@@ -24,13 +24,15 @@ namespace triage_hcp
             builder.Services.AddScoped<IDetailsService, DetailsService>();
             builder.Services.AddScoped<IDocumentService, DocumentService>();
             builder.Services.AddScoped<IListService, ListService>();
+            builder.Services.AddScoped<ILocationService, LocationService>();
             builder.Services.AddScoped<IPeselService, PeselService>();
             builder.Services.AddScoped<ISearchPatientService, SearchPatientService>();
+            builder.Services.AddScoped<ITimeService, TimeService>();
             builder.Services.AddScoped<ITriageService, TriageService>();
 
             builder.Services.AddDbContext<DbTriageContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("local"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("new_database"));
             });
 
             builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
