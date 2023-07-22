@@ -456,6 +456,6 @@ Data 22.07.2023
 
 1. W serwisie DetailsService, w metodzie UpdatePatientAsync() wycofano się z sastosowania rozszerzenia '.ToUpper()' dla danych
 	typu string przechowywanych w bazie.
-2. W widoku 'MainList.cshtml' poprawiono wyświetlanie numerów stanowisk dla sal obserwacyjnych.
+2. W widoku 'MainList.cshtml' poprawiono sortowanie listy pacjentów i wyświetlanie numerów stanowisk dla sal obserwacyjnych.
 <h3>Opublikowano wersję 6.0.1</h3>
 <hr/>

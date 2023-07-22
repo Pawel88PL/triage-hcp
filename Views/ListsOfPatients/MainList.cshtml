@@ -481,10 +481,10 @@
                     !(x.DoctorId == null) &
                     (x.WhatNext == "W trakcie diagnostyki SOR")).
                     OrderBy(x => x.Color == "red").
-                    ThenBy(x => x.Color == "orange").
-                    ThenBy(x => x.Color == "yellow").
-                    ThenBy(x => x.Color == "lightgreen").
-                    ThenBy(x => x.Color == "lightskyblue"))
+                    OrderBy(x => x.Color == "orange").
+                    OrderBy(x => x.Color == "yellow").
+                    OrderBy(x => x.Color == "lightgreen").
+                    OrderBy(x => x.Color == "lightskyblue"))
                     {
                         <div class="container">
                             <div class="row">
