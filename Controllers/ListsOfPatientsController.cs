@@ -40,7 +40,7 @@ namespace triage_hcp.Controllers
             return View(patientList);
         }
 
-        public async Task<IActionResult> TodayEndList()
+        public async Task<IActionResult> PatientArchive()
         {
             var patientList = await _listService.GetAllPatientsAsync();
 
