@@ -464,5 +464,10 @@ Data 22.07.2023
 
 Data 27.07.2023
 
-1. W serwisie 'DocumentService.cs' zmieniono metodę, która generuje dokumentacje medyczną pacjenta z pliku szablonu '.docx'
-	na metodę, która korzysta z formularza '.pdf' i tworzy dokument gotowy do druku w formacie '.pdf'.
+1. W serwisie 'DocumentService.cs' zmieniono caøkowicie metodę, która generuje dokumentacje medyczną pacjenta z pliku
+	szablonu '.docx' na metodę, która korzysta z przygotowanego formularza w formacie '.pdf' i następnie metoda ta tworzy
+	dokument gotowy do druku w formacie pliku '.pdf'.
+2. W widoku 'AddNewPatient.cshtml' zmieniono kolejność wypełniania pól pacjenta (przesunięto Spo2 przed Heart Rate).
+3. Do decyzji 'Co dalej z pacjentem' dodano opcje 'Pacjent wypisał się na żądanie'.
+<h3>Opublikowano wersję 7.0.0</h3>
+<hr/>
