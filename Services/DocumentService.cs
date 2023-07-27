@@ -1,12 +1,16 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using iText.Forms;
+using iText.IO.Font;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
 using Microsoft.AspNetCore.Mvc;
 using triage_hcp.Models;
 using triage_hcp.Services.Interfaces;
 
 namespace triage_hcp.Services
 {
-    public class DocumentService: IDocumentService
+    public class DocumentService : IDocumentService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IDetailsService _detailsService;
@@ -17,96 +21,83 @@ namespace triage_hcp.Services
             _detailsService = detailsService;
         }
 
-        public async Task <byte[]> GeneratePatientDocumentAsync(int PatientId)
+        public async Task<byte[]> GeneratePatientDocumentAsync(int PatientId)
         {
 
-            Patient patient = await _detailsService.GetPatientAsync(PatientId);
-
-            string templatePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "Documents.docx");
+            var patient = await _detailsService.GetPatientAsync(PatientId);
+            string fullName = string.Concat(patient?.Surname, " ", patient?.Name);
+            string templatePath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "template.pdf");
             string outputPath = Path.Combine(_webHostEnvironment.WebRootPath, "docs", "files", $"{PatientId}.docx");
+            string fontPath = Path.Combine(_webHostEnvironment.WebRootPath, "fonts", "Lato-Regular.ttf");
 
+            PdfDocument pdfDoc = new PdfDocument(new PdfReader(templatePath), new PdfWriter(outputPath));
+            PdfAcroForm form = PdfAcroForm.GetAcroForm(pdfDoc, true);
+            PdfFont font = PdfFontFactory.CreateFont(fontPath, PdfEncodings.IDENTITY_H);
 
-            Dictionary<string, string> keywordData = new Dictionary<string, string>
+            form.SetGenerateAppearance(false);
+
+            // Page 1
+            if (patient?.Color == "red")
             {
-                { "@name", (patient?.Name ?? "").ToUpper() },
-                { "@sur", (patient ?.Surname ?? "" ).ToUpper() },
-                { "towhom", (patient ?.ToWhomThePatient ?? "").ToUpper() },
-                { "pesel", (patient ?.Pesel ?? "") },
-                { "date", patient.StartTime.ToString("g") },
-                { "diagnosis", (patient?.Symptoms ?? "").ToUpper() },
-                { "room", (patient?.Location?.LocationName ?? "").ToUpper() },
-                { "color", (patient?.Color ?? "") },
-                { "time", patient.StartTime.ToString("t") },
-                { "allergies", (patient?.Allergies ?? "").ToUpper() },
-                { "sbp", (patient?.SBP.ToString() ?? "") },
-                { "dbp", (patient?.DBP.ToString() ?? "") },
-                { "hrr", (patient?.HeartRate.ToString() ?? "") },
-                { "spo2", (patient?.Spo2.ToString()?? "") },
-                { "gccs", (patient?.GCS.ToString() ?? "") },
-                { "temp", (patient?.BodyTemperature.ToString() ?? "") },
-
-            };
-
-            await Task.Run(() => ReplaceKeywordsInDocx(templatePath, outputPath, keywordData));
-
-            await Task.Run(() => SetDocumentAsReadOnly(outputPath));
-
-            return await System.IO.File.ReadAllBytesAsync(outputPath);
-
-        }
-
-        public void ReplaceKeywordsInDocx(string templatePath, string outputPath, Dictionary<string, string> keywordData)
-        {
-
-            System.IO.File.Copy(templatePath, outputPath, true);
-
-            using (WordprocessingDocument doc = WordprocessingDocument.Open(outputPath, true))
-            {
-
-                MainDocumentPart? mainPart = doc.MainDocumentPart;
-
-
-                foreach (var paragraph in mainPart.Document.Body.Descendants<Paragraph>())
-                {
-                    foreach (var run in paragraph.Elements<Run>())
-                    {
-                        foreach (var text in run.Elements<Text>())
-                        {
-                            foreach (var keyword in keywordData)
-                            {
-                                if (text.Text.Contains(keyword.Key))
-                                {
-                                    text.Text = text.Text.Replace(keyword.Key, keyword.Value);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                mainPart.Document.Save();
+                form.GetField("color").SetValue("CZERWONY", font, 9f);
             }
-        }
-
-        public void SetDocumentAsReadOnly(string docxFilePath)
-        {
-            using (WordprocessingDocument doc = WordprocessingDocument.Open(docxFilePath, true))
+            else if (patient?.Color == "orange")
             {
-                DocumentSettingsPart settingsPart = doc.MainDocumentPart.GetPartsOfType<DocumentSettingsPart>().FirstOrDefault();
-                if (settingsPart == null)
-                {
-                    settingsPart = doc.MainDocumentPart.AddNewPart<DocumentSettingsPart>();
-                    settingsPart.Settings = new Settings();
-                }
-
-                DocumentProtection documentProtection = new DocumentProtection()
-                {
-                    Edit = DocumentProtectionValues.ReadOnly,
-                    Enforcement = true,
-                };
-
-                settingsPart.Settings.AppendChild(documentProtection);
-                settingsPart.Settings.Save();
+                form.GetField("color").SetValue("POMARAŃCZOWY", font, 9f);
             }
+            else if (patient?.Color == "yellow")
+            {
+                form.GetField("color").SetValue("ŻÓŁTY", font, 9f);
+            }
+            else if (patient?.Color == "lightgreen")
+            {
+                form.GetField("color").SetValue("ZIELONY", font, 9f);
+            }
+            else
+            {
+                form.GetField("color").SetValue("NIEBIESKI", font, 9f);
+            }
+
+            form.GetField("name").SetValue(fullName, font, 9f);
+            form.GetField("pesel").SetValue(patient?.Pesel, font, 9f);
+            form.GetField("allergies").SetValue(patient?.Allergies, font, 9f);
+            form.GetField("datetime").SetValue(patient?.StartTime.ToString("g"), font, 9f);
+            form.GetField("toWhom").SetValue(patient?.ToWhomThePatient, font, 9f);
+            form.GetField("location").SetValue(patient?.Location?.LocationName, font, 9f);
+            form.GetField("symptoms").SetValue(patient?.Symptoms, font, 9f);
+            form.GetField("time").SetValue(patient?.StartTime.ToString("t"), font, 9f);
+            form.GetField("sbp").SetValue(patient?.SBP.ToString(), font, 9f);
+            form.GetField("dbp").SetValue(patient?.DBP.ToString(), font, 9f);
+            form.GetField("heartRate").SetValue(patient?.HeartRate.ToString(), font, 9f);
+            form.GetField("o2").SetValue(patient?.Spo2.ToString(), font, 9f);
+            form.GetField("gcs").SetValue(patient?.GCS.ToString(), font, 9f);
+            form.GetField("temp").SetValue(patient?.BodyTemperature.ToString(), font, 9f);
+
+            // Page 2
+            form.GetField("name2").SetValue(fullName, font, 9f);
+            form.GetField("pesel2").SetValue(patient?.Pesel, font, 9f);
+            form.GetField("allergies2").SetValue(patient?.Allergies, font, 9f);
+            form.GetField("symptoms2").SetValue(patient?.Symptoms, font, 9f);
+            form.GetField("datetime2").SetValue(patient?.StartTime.ToString("g"), font, 9f);
+            form.GetField("location2").SetValue(patient?.Location?.LocationName, font, 9f);
+            form.GetField("age").SetValue(patient?.Age, font, 9f);
+
+            // Page 3
+            form.GetField("name3").SetValue(fullName, font, 9f);
+            form.GetField("pesel3").SetValue(patient?.Pesel, font, 9f);
+
+            // Page 4
+            form.GetField("name4").SetValue(fullName, font, 9f);
+            form.GetField("pesel4").SetValue(patient?.Pesel, font, 9f);
+
+            // Page 5
+            form.GetField("name5").SetValue(fullName, font, 9f);
+            form.GetField("pesel5").SetValue(patient?.Pesel, font, 9f);
+
+            form.FlattenFields();
+            pdfDoc.Close();
+
+            return await File.ReadAllBytesAsync(outputPath);
         }
     }
 }

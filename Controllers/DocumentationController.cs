@@ -16,11 +16,12 @@ namespace triage_hcp.Controllers
         public async Task<IActionResult> GeneratePatientDocument(int Id)
         {
             var fileBytes = await _documentService.GeneratePatientDocumentAsync(Id);
-            var fileName = $"{Id}.docx";
+            var fileName = $"{Id}.pdf";
 
             Response.Headers.Add("Content-Disposition", $"attachment; filename={fileName}");
 
-            return File(fileBytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            return File(fileBytes, "application/pdf");
         }
+
     }
 }

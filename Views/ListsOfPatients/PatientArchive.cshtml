@@ -4,14 +4,14 @@
 
 @{
     ViewData["Title"] = "Zakończono";
-    var count = Model.Count();
+    var lastSevenDays = Model.Where(x => x.StartTime.Date >= DateTime.Today.AddDays(-7)).Count();
 
 }
 
 <div class="container">
     <div class="row">
         <div class="border shadow p-3 mb-5 bg-white rounded">
-            <h2 class="text-center">Pacjenci z dzisiejszego dyżuru, z zakończoną obsługą w SOR</h2>
+            <h2 class="text-center">Archiwum pacjentów z ostatnich 7 dni. Łacznie: @lastSevenDays pacjentów.</h2>
             <br />
 
             <div class="row" style="padding-left:55px">
@@ -43,7 +43,7 @@
             <hr />
             
             @foreach (var patient in Model
-            .Where(x => x.StartTime.Date == DateTime.Today.Date)
+            .Where(x => x.StartTime.Date >= DateTime.Today.AddDays(-7))
             .OrderByDescending(x => x.StartTime))
             {
                 if (patient.IsActive == false)

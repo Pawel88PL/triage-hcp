@@ -451,3 +451,23 @@ Data 21.07.2023
 	"Czy chcesz wydrukować dokumenty pacjenta (imię, nazwisko)?".
 <h3>Opublikowano wersję 6.0.0</h3>
 <hr/>
+
+Data 22.07.2023
+
+1. W serwisie DetailsService, w metodzie UpdatePatientAsync() wycofano się z sastosowania rozszerzenia '.ToUpper()' dla danych
+	typu string przechowywanych w bazie.
+2. W widoku 'MainList.cshtml' poprawiono sortowanie listy pacjentów i wyświetlanie numerów stanowisk dla sal obserwacyjnych.
+3. Na prośbę personelu medycznego widok 'TodayEndList.cshtml' zmieniono na 'PatientArchive.cshtml', zmieniono w nim zakres
+	wyświetlania pacjentów z ostatniego dyżuru na ostatnie 7 dni.
+<h3>Opublikowano wersję 6.0.2</h3>
+<hr/>
+
+Data 27.07.2023
+
+1. W serwisie 'DocumentService.cs' zmieniono caøkowicie metodę, która generuje dokumentacje medyczną pacjenta z pliku
+	szablonu '.docx' na metodę, która korzysta z przygotowanego formularza w formacie '.pdf' i następnie metoda ta tworzy
+	dokument gotowy do druku w formacie pliku '.pdf'.
+2. W widoku 'AddNewPatient.cshtml' zmieniono kolejność wypełniania pól pacjenta (przesunięto Spo2 przed Heart Rate).
+3. Do decyzji 'Co dalej z pacjentem' dodano opcje 'Pacjent wypisał się na żądanie'.
+<h3>Opublikowano wersję 7.0.0</h3>
+<hr/>
