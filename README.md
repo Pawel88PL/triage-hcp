@@ -461,3 +461,8 @@ Data 22.07.2023
 	wyświetlania pacjentów z ostatniego dyżuru na ostatnie 7 dni.
 <h3>Opublikowano wersję 6.0.2</h3>
 <hr/>
+
+Data 27.07.2023
+
+1. W serwisie 'DocumentService.cs' zmieniono metodę, która generuje dokumentacje medyczną pacjenta z pliku szablonu '.docx'
+	na metodę, która korzysta z formularza '.pdf' i tworzy dokument gotowy do druku w formacie '.pdf'.
