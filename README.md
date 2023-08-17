@@ -471,3 +471,8 @@ Data 27.07.2023
 3. Do decyzji 'Co dalej z pacjentem' dodano opcje 'Pacjent wypisał się na żądanie'.
 <h3>Opublikowano wersję 7.0.0</h3>
 <hr/>
+
+Data 17.08.2023
+
+	Utworzono alert informujący o dacie zakończenia darmowej wersji programu.
+1. Poprawiono wygląd strony 'MainList.cshtml'.

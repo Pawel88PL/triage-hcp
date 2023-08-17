@@ -12,6 +12,10 @@ span.animation {
     animation-iteration-count: infinite
 }
 
+.tooltip-btn {
+    font-size: 10px;
+}
+
 @keyframes datetime {
     from {
         color: black;

@@ -1,42 +1,38 @@
-﻿html{
-    font-size: 9px;
+﻿html {
+    font-size: 10px;
 }
 
-
-div.container{
-    margin: 0px 10px 0px 20px;
+.mainPage {
+    margin-top: 8rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
 }
 
-div.patient {
+.patient {
     border-radius: 10px;
     border-inline-color: black;
     border-color: black;
     border: solid;
-    max-width: 90%;
+    max-width: 95%;
     margin: 5px;
     padding: 5px 10px 0px 15px;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
 }
 
-    div.patient:hover {
-        
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    .patient:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        transform: scale(1.02);
     }
 
-div.patientBez {
+.doctor {
+    margin: 1rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 4rem;
+    border: groove;
     border-radius: 10px;
-    border-inline-color: black;
-    border-color: black;
-    border: solid;
-    max-width: 90%;
-    margin: 5px;
-    padding: 5px 10px 0px 15px;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    animation-name: border;
-    animation-duration: 1s;
-    animation-iteration-count: infinite
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
-
 
 div.nr_lozka {
     border: solid;
@@ -49,7 +45,7 @@ div.nr_lozka {
     margin: 2px 5px;
 }
 
-div.patient_sala {
+.patient_sala {
     border: solid;
     border-radius: 10px;
     max-height: 70%;
@@ -57,18 +53,13 @@ div.patient_sala {
     text-align: center;
     font-size: 11px;
     margin: 2px;
+    transition: transform 0.3s ease-in-out;
 }
 
-div.patient_sala:hover {
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    .patient_sala:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: scale(1.02);
     }
-
-div.doctor {
-    padding: 15px 0px 0px 15px;
-    margin: 20px 0px 20px 10px;
-    max-width: 70%;
-    border-radius: 10px;
-}
 
 span.animation {
     animation-name: datetime;
@@ -83,16 +74,5 @@ span.animation {
 
     to {
         color: red;
-    }
-}
-
-
-@keyframes border {
-    from {
-        border-color: black;
-    }
-
-    to {
-        border-color: red;
     }
 }

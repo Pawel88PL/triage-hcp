@@ -1,0 +1,44 @@
+﻿@model IEnumerable<triage_hcp.Models.Patient>
+
+@foreach (var patient in Model.
+               Where(x => x.IsActive == true &
+               !(x.DoctorId == null) &
+               (x.WhatNext == "W trakcie diagnostyki SOR")).
+               OrderBy(x => x.Color == "red").
+               OrderBy(x => x.Color == "orange").
+               OrderBy(x => x.Color == "yellow").
+               OrderBy(x => x.Color == "lightgreen").
+               OrderBy(x => x.Color == "lightskyblue"))
+{
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="patient" style="background-color: @patient.Color">
+                <a href="@Url.Action("WithDoctor","Details", new { Id = patient.PatientId })"
+                   style="text-decoration:none; color:black">
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>@patient.Surname?.ToUpper() @patient.Name?.ToUpper()</h5>
+                            <p>@patient.Gender @patient.Age lat</p>
+                            <p>PESEL: <b>@patient.Pesel</b></p>
+                        </div>
+                        <div class="col-4">
+                            <p><b>@patient.Symptoms?.ToUpper()</b></p>
+                        </div>
+                        <div class="col-4">
+                            <h5>
+                                @patient.StartTime.ToString("g")
+                            </h5>
+                            <p>do kogo: <b>@patient.ToWhomThePatient</b></p>
+                            <p>Lokalizacja: <b>@patient?.Location?.LocationName</b></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 doctor">
+            <p>lekarz prowadzący:</p>
+            <p><b>@patient?.Doctor?.Name?.ToUpper() @patient?.Doctor?.Surname?.ToUpper()</b></p>
+        </div>
+    </div>
+}

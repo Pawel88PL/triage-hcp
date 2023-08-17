@@ -11,7 +11,5 @@ namespace triage_hcp.Controllers
         {
             return View();
         }
-
-
     }
 }
