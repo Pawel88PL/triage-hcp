@@ -1,18 +1,17 @@
 ﻿@model PatientSearchViewModel
-
 <link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Wyszukiwanie";
     var count = Model?.Patients?.Count();
-
 }
 
-<div class="container">
+<div class="mainPage">
     <div class="row">
-        <div class="border shadow p-3 mb-5 bg-white rounded">
+        <div class="p-3 mb-5">
             <h2 class="text-center">
-                @(string.IsNullOrEmpty(Model?.Query) ? "Wyszukaj pacjentów" : $"Wyniki wyszukiwania dla \"{Model.Query}\"")
+                @(string.IsNullOrEmpty(Model?.Query) ? "Wyszukaj pacjentów" : $"Wyniki wyszukiwania dla \"{Model.Query}\""),
+                 znaleziono @count wyników.
             </h2>
             <br />
 

@@ -108,7 +108,7 @@
                     <hr />
                     <div>
                         @{
-                            var endOfTrialDate = new DateTime(2023, 7, 30);
+                            var endOfTrialDate = new DateTime(2023, 9, 30);
 
                             if (endOfTrialDate > DateTime.Today)
                             {
@@ -169,5 +169,5 @@
 </div>
 
 @section scripts {
-    <script src="~/js/alerts.js" asp-append-version="true"></script>
+    <script src="~/js/triage_alerts.js" asp-append-version="true"></script>
 }

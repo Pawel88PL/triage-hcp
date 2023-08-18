@@ -1,5 +1,5 @@
 ﻿@model triage_hcp.Models.Patient
-<link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/details.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Szczegóły";
@@ -15,27 +15,24 @@
             @await Html.PartialAsync("_HiddenFormFields")
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
-
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
-                                        <h5>@Model.Gender @Model.Age lat</h5>
-                                        <h5>PESEL: @Model.Pesel</h5>
-                                    </div>
-                                    <div class="col-6">
-                                        <h4>@Model.WhatNext</h4>
-                                        <h4>@Model.StartTime.ToString("D")</h4>
-                                        <h2>@Model.StartTime.ToString("t")</h2>
-                                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
+                                    <h5>@Model.Gender @Model.Age lat</h5>
+                                    <h5>PESEL: @Model.Pesel</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h4>@Model.WhatNext</h4>
+                                    <h4>@Model.StartTime.ToString("D")</h4>
+                                    <h2>@Model.StartTime.ToString("t")</h2>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <h4>@Model.Symptoms?.ToUpper()</h4>
-                            </div>
+                        </div>
+                        <div class="col-4">
+                            <h4>@Model.Symptoms?.ToUpper()</h4>
                         </div>
                     </div>
                 </div>
@@ -59,7 +56,7 @@
                             <div class="col-6">
                                 <br />
                                 <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
-                                <option>@Model?.Location?.LocationName</option>
+                                    <option>@Model?.Location?.LocationName</option>
                                 </select>
                                 <br />
 
@@ -76,8 +73,8 @@
                                 <br />
 
                                 <div class="form-group">
-                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList" 
-                                        class="form-select">
+                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList"
+                                            class="form-select">
                                         <option value="">Wybierz lekarza...</option>
                                     </select>
                                 </div>
@@ -191,7 +188,7 @@
                         <br />
                         <div class="form-group">
                             <select asp-for="WhatNext" class="form-select">
-                               @await Html.PartialAsync("_WhatNext")
+                                @await Html.PartialAsync("_WhatNext")
                             </select>
                         </div>
                         <br />

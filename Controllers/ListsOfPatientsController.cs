@@ -32,8 +32,8 @@ namespace triage_hcp.Controllers
             var doctors = await _listService.GetAllDoctorsAsync();
             var doctorSelectList = doctors.Select(d => new {
                 d.DoctorId,
-                FullName = d.Name + " " + d.Surname
-            }).ToList();
+                FullName = d.Surname + " " + d.Name
+            }).OrderBy(d => d.FullName).ToList();
 
             ViewData["Doctors"] = new SelectList(doctorSelectList, "DoctorId", "FullName");
 

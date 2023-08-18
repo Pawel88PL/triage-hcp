@@ -476,3 +476,8 @@ Data 17.08.2023
 
 	Utworzono alert informujący o dacie zakończenia darmowej wersji programu.
 1. Poprawiono wygląd strony 'MainList.cshtml'.
+2. Poprawiono wyświetlanie widoków w folderze 'Details'.
+3. Listę lekarzy posortowano alfabetycznie według nazwiska.
+4. Zamiast modala w widoku 'WithoutDoctor' zastosowano SweetAlert2.
+<h3>Opublikowano wersję 8.0.0</h3>
+<hr/>

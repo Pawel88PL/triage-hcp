@@ -1,0 +1,19 @@
+﻿html{
+    font-size: 11px;
+}
+.logo{
+    margin: auto;
+}
+
+.container{
+    margin-top: 7rem;
+    padding: 3rem;
+}
+
+div.welcome h1 {
+    color: darkblue;
+}
+
+div.welcome h3 {
+    color: crimson;
+}

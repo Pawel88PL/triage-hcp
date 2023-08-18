@@ -71,7 +71,7 @@ namespace triage_hcp.Models
         public int? GCS { get; set; }
 
         [Column(TypeName = "decimal(3,1)")]
-        [Range(15, 45)]
+        [Range(15, 45, ErrorMessage ="Temperatura pacjenta musi mieścić się w przedziale 15 - 45. Liczę po przecinku oddziel ','.")]
         public decimal BodyTemperature { get; set; }
 
 

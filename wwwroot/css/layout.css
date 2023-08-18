@@ -4,10 +4,16 @@ html {
     min-height: 100%;
 }
 
+.main{
+    margin-bottom: 80px;
+}
+
 footer {
     position: absolute;
     bottom: 0;
-    font-size: 8px;
+    font-size: 9px;
+    width: 100%;
+    padding: 1rem;
 }
 
 .tooltip-btn {

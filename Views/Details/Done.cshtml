@@ -1,12 +1,12 @@
 ﻿@model triage_hcp.Models.Patient
-<link rel="stylesheet" href="~/css/Details.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/details.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Zakończono";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container col-md-10 offset-1">
     <div class="row">
         <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -15,25 +15,22 @@
             @await Html.PartialAsync("_DoneFormFields")
 
             <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
-
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-4">
-                                <h5>Przyjęty w SOR:</h5>
-                                <h4>@Model.StartTime.ToString("D")</h4>
-                                <h1>@Model.StartTime.ToString("t")</h1>
-                            </div>
-                            <div class="col-5">
-                                <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
-                                <h5>@Model.Gender @Model.Age lat</h5>
-                                <h5>PESEL: @Model.Pesel</h5>
-                            </div>
-                            <div class="col-3">
-                                <p>Zakończono: </p>
-                                <h4>@Model.EndTime.ToString("D")</h4>
-                                <h1>@Model.EndTime.ToString("t")</h1>
-                            </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <h5>Przyjęty w SOR:</h5>
+                            <h4>@Model.StartTime.ToString("D")</h4>
+                            <h1>@Model.StartTime.ToString("t")</h1>
+                        </div>
+                        <div class="col-5">
+                            <h2>@Model.Name?.ToUpper() @Model.Surname?.ToUpper()</h2>
+                            <h5>@Model.Gender @Model.Age lat</h5>
+                            <h5>PESEL: @Model.Pesel</h5>
+                        </div>
+                        <div class="col-3">
+                            <p>Zakończono: </p>
+                            <h4>@Model.EndTime.ToString("D")</h4>
+                            <h1>@Model.EndTime.ToString("t")</h1>
                         </div>
                     </div>
                 </div>
@@ -106,13 +103,13 @@
                         <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model?.Color">
                             <div style="background-color:white; padding: 10px 10px 40px 10px">
                                 <h5 class="text-center">OPIS TRIAGE</h5>
-                                <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
+                                <div class="border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
                                     <h4>@Model?.Symptoms?.ToUpper()</h4>
                                 </div>
 
                                 <h5>Obserwacje ratowniczo pielęgniarskie</h5>
-                                <div class="container border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
+                                <div class="border" style="min-height: 100px; padding-bottom: 10px; margin-bottom: 30px">
                                     <br />
                                     <h4>@Model?.Remarks?.ToUpper()</h4>
                                 </div>

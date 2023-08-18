@@ -1,4 +1,12 @@
-﻿.shadow-textarea textarea.form-control::placeholder {
+﻿html{
+    font-size: 12px;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.shadow-textarea textarea.form-control::placeholder {
     font-weight: 300;
 }
 
@@ -25,8 +33,3 @@ span.animation {
         color: red;
     }
 }
-
-button.btn, a.btn{
-    font-size: 16px;
-}
-

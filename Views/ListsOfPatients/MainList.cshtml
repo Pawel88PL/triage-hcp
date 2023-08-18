@@ -22,18 +22,21 @@
         <div class="col-lg-9">
             <div class="withoutDoctor mb-5">
                 <h4 class="text-center">Pacjenci bez przypisanego lekarza: @withoutDoctor</h4>
+                <hr />
                 @await Html.PartialAsync("~/Views/Shared/MainList/_withoutDoctor.cshtml")
             </div>
-            <hr />
+            <br />
 
             <div class="withDoctor my-5">
                 <h4 class="text-center">Pacjenci w trakcie diagnostyki w SOR: @inProgress</h4>
+                <hr />
                 @await Html.PartialAsync("~/Views/Shared/MainList/_withDoctor.cshtml")
             </div>
-            <hr />
+            <br />
 
             <div class="admissionToDepartment my-5">
                 <h4 class="text-center">Pacjenci z ustalonym przyjęciem na oddział lub oczekujący na transport: @done</h4>
+                <hr />
                 @await Html.PartialAsync("~/Views/Shared/MainList/_admissionToDepartment.cshtml")
             </div>
         </div>
@@ -568,7 +571,7 @@
                 </div>
 
                 <br />
-                <h5 class="text-center">WIT</h5>
+                <h5 class="text-center">Sala WIT</h5>
                 <hr />
 
                 <div id="WIT 1">

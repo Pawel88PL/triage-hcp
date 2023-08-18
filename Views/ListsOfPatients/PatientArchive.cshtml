@@ -1,16 +1,14 @@
 ﻿@model IEnumerable<triage_hcp.Models.Patient>
-
 <link rel="stylesheet" href="~/css/list.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Zakończono";
     var lastSevenDays = Model.Where(x => x.StartTime.Date >= DateTime.Today.AddDays(-7)).Count();
-
 }
 
-<div class="container">
+<div class="container mainPage">
     <div class="row">
-        <div class="border shadow p-3 mb-5 bg-white rounded">
+        <div class="p-3 mb-5">
             <h2 class="text-center">Archiwum pacjentów z ostatnich 7 dni. Łacznie: @lastSevenDays pacjentów.</h2>
             <br />
 
