@@ -1,12 +1,25 @@
-﻿
-@{
-    static int DaysToEndOfTrial()
+﻿@{
+
+    DateTime endDate = new DateTime(2023, 10, 01);
+
+    static int DaysToEndOfTrial(DateTime endDate)
     {
-        var endDate = new DateTime(2023, 10, 01);
         var today = DateTime.Now;
         var daysLeft = (endDate - today).Days;
         return daysLeft;
     }
 }
 
-<button onclick="endOfTrialInfo(); return false" class="btn btn-danger m-2">Pozostało @DaysToEndOfTrial() dni do końca wesrsji darmowej</button>
+
+@if (endDate > DateTime.Now)
+{
+    <button onclick="endOfTrialInfo(); return false" class="btn btn-danger m-2">
+        Pozostało @DaysToEndOfTrial(endDate) dni do końca wesrsji darmowej
+    </button>
+}
+else
+{
+    <button onclick="endOfTrialAlert(); return false" class="btn btn-danger m-2">
+        Wersja darmowa wygasła!
+    </button>
+}

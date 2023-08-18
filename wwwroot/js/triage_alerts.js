@@ -10,18 +10,9 @@ function endOfTrialAlert() {
     });
 }
 
-function endOfTrialInfo() {
-    Swal.fire({
-        icon: 'info',
-        title: 'Korzystasz z darmowej wersji!',
-        text: 'Darmowa wersja programu wygasa 30.09.2023.',
-        footer: 'Aby dalej korzystać z programu wykup wersję płatną'
-    });
-}
-
-
 function endOfTrialDate() {
-    const trialEndDate = new Date('2023-09-30');
+    const trialEndDateStr = document.querySelector('span[data-end-trial-date]').getAttribute('data-end-trial-date');
+    const trialEndDate = new Date(trialEndDateStr);
 
     const currentDate = new Date();
     const timeDiff = trialEndDate - currentDate;
@@ -33,10 +24,14 @@ function endOfTrialDate() {
 function endOfTrialRemainder() {
     const daysLeft = endOfTrialDate();
 
-    Swal.fire({
-        icon: 'info',
-        title: 'Korzystasz z darmowej wersji!',
-        text: `Darmowa wersja programu wygasa za ${daysLeft} dni.`,
-        footer: 'Aby dalej korzystać z programu wykup wersję płatną'
-    });
+    if (daysLeft <= 0) {
+        endOfTrialAlert();
+    } else {
+        Swal.fire({
+            icon: 'info',
+            title: 'Korzystasz z darmowej wersji!',
+            text: `Darmowa wersja programu wygasa za ${daysLeft} dni.`,
+            footer: 'Aby dalej korzystać z programu wykup wersję płatną'
+        });
+    }
 }

@@ -108,7 +108,8 @@
                     <hr />
                     <div>
                         @{
-                            var endOfTrialDate = new DateTime(2023, 9, 30);
+                            DateTime endOfTrialDate = new DateTime(2023, 09, 30);
+                            <span data-end-trial-date="@endOfTrialDate.ToString("yyyy-MM-dd")"></span>
 
                             if (endOfTrialDate > DateTime.Today)
                             {

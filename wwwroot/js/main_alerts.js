@@ -7,3 +7,11 @@ function endOfTrialInfo() {
         footer: 'Aby dalej korzystać z programu wykup wersję płatną'
     });
 }
+
+function endOfTrialAlert() {
+    Swal.fire({
+        title: 'Przepraszamy, darmowa wersja wygasła',
+        text: 'Aby dalej korzystać z programu wykup wersję płatną.',
+        icon: 'warning',
+    });
+}
