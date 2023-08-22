@@ -119,10 +119,11 @@ namespace triage_hcp.Controllers
 
                 if (!transferResult.IsSuccess)
                 {
-                    return HandleUpdateError(transferResult.Error, patient);
+                    return HandleUpdateError(transferResult.Error!, patient);
                 }
             }
 
+            
             var result = await _detailsService.UpdatePatientAsync(patient);
 
             if (result.IsSuccess)
@@ -130,7 +131,7 @@ namespace triage_hcp.Controllers
                 return RedirectToAction("MainList", "ListsOfPatients");
             }
 
-            return HandleUpdateError(result.Error, patient);
+            return HandleUpdateError(result.Error!, patient);
         }
 
         private IActionResult HandleUpdateError(Exception ex, Patient patient)

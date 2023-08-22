@@ -24,7 +24,7 @@ namespace triage_hcp.Services
 
         public async Task<Location?> GetLocationAsync(int locationId)
         {
-            var location = await _context.Locations.FindAsync(locationId);
+            var location = await _context!.Locations!.FindAsync(locationId);
 
             if (location == null)
             {
@@ -44,27 +44,27 @@ namespace triage_hcp.Services
         {
             try
             {
-                var patient = await _context.Patients.FindAsync(patientId);
+                var patient = await _context!.Patients!.FindAsync(patientId);
 
-                if (patient.LocationId != oldLocationId)
+                if (patient!.LocationId != oldLocationId)
                 {
                     throw new Exception("Pacjent nie jest w oczekiwanej lokalizacji.");
                 }
 
-                var oldLocation = await _context.Locations.FindAsync(oldLocationId);
+                var oldLocation = await _context!.Locations!.FindAsync(oldLocationId);
 
                 var newLocation = await _context.Locations.FindAsync(newLocationId);
 
-                if (newLocation.IsAvailable || AlwaysAvailable.Contains(newLocation.LocationName))
+                if (newLocation!.IsAvailable || AlwaysAvailable.Contains(newLocation!.LocationName!))
                 {
                     patient.LocationId = newLocationId;
 
-                    if (!AlwaysAvailable.Contains(oldLocation.LocationName))
+                    if (!AlwaysAvailable.Contains(oldLocation!.LocationName!))
                     {
                         oldLocation.IsAvailable = true;
                     }
 
-                    if (!AlwaysAvailable.Contains(newLocation.LocationName))
+                    if (!AlwaysAvailable.Contains(newLocation!.LocationName!))
                     {
                         newLocation.IsAvailable = false;
                     }

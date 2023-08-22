@@ -16,39 +16,45 @@
 
                     <div class="row p-4 m-3">
                         <div class="col-md-6">
-                            <h5><i class="bi bi-person-check"></i> Imię: </h5>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                            <br />
+                            <div class="form-floating mb-4">
+                                <input asp-for="Name" type="text" class="form-control" placeholder="Imię:" />
+                                <label for="floatingInput"><i class="bi bi-person-check"></i> Imię:</label>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
 
-                            <h5><i class="bi bi-person-check"></i> Nazwisko: </h5>
-                            <input asp-for="Surname" class="form-control" />
-                            <span asp-validation-for="Surname" class="text-danger"></span>
-                            <br />
+                            <div class="form-floating mb-4">
+                                <input asp-for="Surname" type="text" class="form-control" placeholder="Nazwisko:" />
+                                <label for="floatingInput"><i class="bi bi-person-check"></i> Nazwisko:</label>
+                                <span asp-validation-for="Surname" class="text-danger"></span>
+                            </div>
 
-                            <h5><i class="bi bi-calendar"></i> PESEL: </h5>
-                            <input asp-for="Pesel" class="form-control" />
-                            <span asp-validation-for="Pesel" class="text-danger"></span>
-                            <br />
+                            <div class="form-floating mb-4">
+                                <input asp-for="Pesel" type="text" class="form-control" placeholder="Pesel:" />
+                                <label for="floatingInput"><i class="bi bi-calendar"></i> Pesel:</label>
+                                <span asp-validation-for="Pesel" class="text-danger"></span>
+                            </div>
 
-                            <h5><i class="bi bi-house-heart"></i> Lokalizacja w SOR:</h5>
-                            <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
-                            </select>
-
-
+                            <div class="form-floating mb-4">
+                                <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
+                                </select>
+                                <label for="floatingSelectGrid"><i class="bi bi-house-heart"></i> Lokalizacja w SOR:</label>
+                            </div>
                             <br />
                         </div>
 
                         <div class="col-md-6">
-                            <h5><i class="bi bi-chat-dots"></i> Objawy: </h5>
-                            <textarea asp-for="Symptoms" class="form-control" rows="5"></textarea>
-                            <span asp-validation-for="Symptoms" class="text-danger"></span>
-                            <br />
+                            <div class="form-floating mb-4">
+                                <textarea asp-for="Symptoms" class="form-control" style="height: 97px"
+                                    placeholder="Objawy:" id="floatingTextarea" ></textarea>
+                                <span asp-validation-for="Symptoms" class="text-danger"></span>
+                                <label for="floatingTextarea2"><i class="bi bi-chat-dots"></i> Objawy: </label>
+                            </div>
 
-                            <h5><i class="bi bi-capsule-pill"></i> Alergie na leki: </h5>
-                            <input asp-for="Allergies" class="form-control" />
-                            <span asp-validation-for="Allergies" class="text-danger"></span>
-                            <br />
+                            <div class="form-floating mb-4">
+                                <input asp-for="Allergies" type="text" class="form-control" placeholder="Alergie na leki: " />
+                                <label for="floatingInput"><i class="bi bi-capsule-pill"></i> Alergie na leki: </label>
+                                <span asp-validation-for="Allergies" class="text-danger"></span>
+                            </div>
 
                             <h5><i class="bi bi-person-circle"></i> Dla kogo pacjent:</h5>
                             <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient" required>
@@ -99,7 +105,8 @@
 
                             <div class="col-md-4">
                                 <h5><i class="bi bi-thermometer"></i> Temperatura:</h5>
-                                <input asp-for="BodyTemperature" type="text" class="form-control" style="max-width: 100px" required />
+                                <input asp-for="BodyTemperature" type="text" class="form-control" style="max-width: 100px"
+                                    required />
                                 <span asp-validation-for="BodyTemperature" class="text-danger"></span>
                                 <br />
                             </div>
@@ -114,21 +121,31 @@
                             if (endOfTrialDate > DateTime.Today)
                             {
                                 <div class="d-flex justify-content-center flex-wrap">
-                                    <button type="submit" class="btn btn-danger btn-lg mx-2" id="Color" name="Color" value="red">CZERWONY</button>
-                                    <button type="submit" class="btn btn-warning btn-lg mx-2" id="Color" name="Color" value="orange">POMARAŃCZOWY</button>
-                                    <button type="submit" class="btn btn-warning btn-lg mx-2" style="background-color: yellow" id="Color" name="Color" value="yellow">ŻÓŁTY</button>
-                                    <button type="submit" class="btn btn-success btn-lg mx-2" id="Color" name="Color" value="lightgreen">ZIELONY</button>
-                                    <button type="submit" class="btn btn-primary btn-lg mx-2" id="Color" name="Color" value="lightskyblue">NIEBIESKI</button>
+                                    <button type="submit" class="btn btn-danger btn-lg mx-2" id="Color" name="Color"
+                                        value="red">CZERWONY</button>
+                                    <button type="submit" class="btn btn-warning btn-lg mx-2" id="Color" name="Color"
+                                        value="orange">POMARAŃCZOWY</button>
+                                    <button type="submit" class="btn btn-warning btn-lg mx-2" style="background-color: yellow"
+                                        id="Color" name="Color" value="yellow">ŻÓŁTY</button>
+                                    <button type="submit" class="btn btn-success btn-lg mx-2" id="Color" name="Color"
+                                        value="lightgreen">ZIELONY</button>
+                                    <button type="submit" class="btn btn-primary btn-lg mx-2" id="Color" name="Color"
+                                        value="lightskyblue">NIEBIESKI</button>
                                 </div>
                             }
                             else
                             {
                                 <div class="d-flex justify-content-center flex-wrap">
-                                    <button onclick="endOfTrialAlert(); return false" class="btn btn-danger btn-lg mx-2">CZERWONY</button>
-                                    <button onclick="endOfTrialAlert(); return false" class="btn btn-warning btn-lg mx-2">POMARAŃCZOWY</button>
-                                    <button onclick="endOfTrialAlert(); return false" class="btn btn-warning btn-lg mx-2" style="background-color: yellow">ŻÓŁTY</button>
-                                    <button onclick="endOfTrialAlert(); return false" class="btn btn-success btn-lg mx-2">ZIELONY</button>
-                                    <button onclick="endOfTrialAlert(); return false" class="btn btn-primary btn-lg mx-2">NIEBIESKI</button>
+                                    <button onclick="endOfTrialAlert(); return false"
+                                        class="btn btn-danger btn-lg mx-2">CZERWONY</button>
+                                    <button onclick="endOfTrialAlert(); return false"
+                                        class="btn btn-warning btn-lg mx-2">POMARAŃCZOWY</button>
+                                    <button onclick="endOfTrialAlert(); return false" class="btn btn-warning btn-lg mx-2"
+                                        style="background-color: yellow">ŻÓŁTY</button>
+                                    <button onclick="endOfTrialAlert(); return false"
+                                        class="btn btn-success btn-lg mx-2">ZIELONY</button>
+                                    <button onclick="endOfTrialAlert(); return false"
+                                        class="btn btn-primary btn-lg mx-2">NIEBIESKI</button>
                                 </div>
 
                             }
@@ -143,7 +160,8 @@
             <div class="list-group">
                 @foreach (var location in ViewBag.AvailableLocations)
                 {
-                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a href="#"
+                        class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <span>
                             <i class="fas fa-bed mr-2"></i>
                             @location.LocationName

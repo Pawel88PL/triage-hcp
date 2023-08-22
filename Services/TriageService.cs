@@ -19,25 +19,22 @@ namespace triage_hcp.Services
             _logger = logger;
         }
 
-        
-
-
         public async Task<int> AddNewPatientAsync(Patient patient)
         {
-            var selectedLocation = await _context.Locations.FindAsync(patient.LocationId);
+            var selectedLocation = await _context!.Locations!.FindAsync(patient.LocationId);
 
             if (selectedLocation != null)
             {
                 // Lista miejsc, które zawsze są dostępne
                 var alwaysAvailable = new List<string> { "Korytarz", "Poczekalnia", "Wituś", "WIT", "Dekontaminacja" };
 
-                if (alwaysAvailable.Contains(selectedLocation.LocationName) || selectedLocation.IsAvailable)
+                if (alwaysAvailable.Contains(selectedLocation!.LocationName!) || selectedLocation.IsAvailable)
                 {
                     _context.Add(patient);
                     await _context.SaveChangesAsync();
 
                     // Jeśli miejsce nie jest na liście alwaysAvailable, ustawiamy je jako niedostępne
-                    if (!alwaysAvailable.Contains(selectedLocation.LocationName))
+                    if (!alwaysAvailable.Contains(selectedLocation!.LocationName!))
                     {
                         selectedLocation.IsAvailable = false;
                         _context.Update(selectedLocation);

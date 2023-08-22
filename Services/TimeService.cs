@@ -30,7 +30,7 @@ namespace triage_hcp.Services
 
         public async Task RegisterDoctorAssignmentAsync(Patient patient)
         {
-            var patientInDb = await _context.Patients.FindAsync(patient.PatientId);
+            var patientInDb = await _context!.Patients!.FindAsync(patient.PatientId);
             if (patientInDb != null && patientInDb.DoctorId == null && patient.DoctorId != null)
             {
                 patientInDb.StartDiagnosis = DateTime.Now;

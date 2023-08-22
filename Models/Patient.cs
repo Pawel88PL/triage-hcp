@@ -49,7 +49,7 @@ namespace triage_hcp.Models
 
         public int WaitingTime { get; set; }
 
-        [Column(TypeName = "decimal(4,2)")]
+        [Column(TypeName = "decimal(8,2)")]
         public decimal TotalTime { get; set; }
 
         [StringLength(30)]

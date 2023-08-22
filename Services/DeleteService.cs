@@ -18,7 +18,7 @@ namespace triage_hcp.Services
 
         public async Task<bool> DeletePatientAsync(int id)
         {
-            var pacjent = await _context.Patients.FindAsync(id);
+            var pacjent = await _context!.Patients!.FindAsync(id);
             if (pacjent == null)
             {
                 _logger.LogError("Nie znaleziono pacjenta o Id: {Id}", id);

@@ -335,7 +335,7 @@
             <div class="col-2 pt-4">
                 @using (Html.BeginForm("Update", "Details", FormMethod.Post))
                 {
-                    <input type="hidden" name="PatientId" value="@patient.PatientId" />
+                    <input type="hidden" name="PatientId" value="@patient?.PatientId" />
 
                     <div style="display:none">
 
@@ -344,75 +344,75 @@
                         </select>
 
                         <select class="form-control" id="Name" name="Name">
-                            <option>@patient.Name?.ToUpper()</option>
+                            <option>@patient?.Name?.ToUpper()</option>
                         </select>
 
                         <select class="form-control" id="Surname" name="Surname">
-                            <option>@patient.Surname?.ToUpper()</option>
+                            <option>@patient?.Surname?.ToUpper()</option>
                         </select>
 
                         <select class="form-control" id="Pesel" name="Pesel">
-                            <option>@patient.Pesel</option>
+                            <option>@patient?.Pesel</option>
                         </select>
 
                         <select class="form-control" id="Age" name="Age">
-                            <option>@patient.Age</option>
+                            <option>@patient?.Age</option>
                         </select>
 
                         <select class="form-control" id="Gender" name="Gender">
-                            <option>@patient.Gender</option>
+                            <option>@patient?.Gender</option>
                         </select>
 
                         <select class="form-control" id="Symptoms" name="Symptoms">
-                            <option>@patient.Symptoms?.ToUpper()</option>
+                            <option>@patient?.Symptoms?.ToUpper()</option>
                         </select>
 
                         <select class="form-control" id="LocationId" name="LocationId">
-                            <option>@patient.LocationId</option>
+                            <option>@patient?.LocationId</option>
                         </select>
 
                         <select class="form-control" id="Color" name="Color">
-                            <option>@patient.Color</option>
+                            <option>@patient?.Color</option>
                         </select>
 
                         <select class="form-control" id="WhatNext" name="WhatNext">
-                            <option>@patient.WhatNext</option>
+                            <option>@patient?.WhatNext</option>
                         </select>
 
                         <select class="form-control" id="Remarks" name="Remarks">
-                            <option>@patient.Remarks</option>
+                            <option>@patient?.Remarks</option>
                         </select>
 
                         <select class="form-control" id="IsActive" name="IsActive">
-                            <option>@patient.IsActive</option>
+                            <option>@patient?.IsActive</option>
                         </select>
 
                         <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient">
-                            <option>@patient.ToWhomThePatient</option>
+                            <option>@patient?.ToWhomThePatient</option>
                         </select>
 
                         <select class="form-control" id="SBP" name="SBP">
-                            <option>@patient.SBP</option>
+                            <option>@patient?.SBP</option>
                         </select>
 
                         <select class="form-control" id="DBP" name="DBP">
-                            <option>@patient.DBP</option>
+                            <option>@patient?.DBP</option>
                         </select>
 
                         <select class="form-control" id="HeartRate" name="HeartRate">
-                            <option>@patient.HeartRate</option>
+                            <option>@patient?.HeartRate</option>
                         </select>
 
                         <select class="form-control" id="Spo2" name="Spo2">
-                            <option>@patient.Spo2</option>
+                            <option>@patient?.Spo2</option>
                         </select>
 
                         <select class="form-control" id="GCS" name="GCS">
-                            <option>@patient.GCS</option>
+                            <option>@patient?.GCS</option>
                         </select>
 
                         <select class="form-control" id="BodyTemperature" name="BodyTemperature">
-                            <option>@patient.BodyTemperature</option>
+                            <option>@patient?.BodyTemperature</option>
                         </select>
 
                     </div>

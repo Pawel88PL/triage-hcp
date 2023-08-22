@@ -23,7 +23,7 @@ namespace triage_hcp.Services
 
         public async Task<Patient?> GetPatientAsync(int patientId)
         {
-            var patient = await _context.Patients
+            var patient = await _context!.Patients!
                     .Include(p => p.Doctor)
                     .Include(p => p.Location)
                     .FirstOrDefaultAsync(p => p.PatientId == patientId);
@@ -39,7 +39,7 @@ namespace triage_hcp.Services
         {
             try
             {
-                var patientInDb = await _context.Patients.FindAsync(patient.PatientId);
+                var patientInDb = await _context!.Patients!.FindAsync(patient.PatientId);
                 if (patientInDb != null)
                 {
                     await _timeService.RegisterDoctorAssignmentAsync(patient);
@@ -52,9 +52,9 @@ namespace triage_hcp.Services
                     patientInDb.Color = patient?.Color;
                     patientInDb.DoctorId = patient?.DoctorId;
                     patientInDb.ToWhomThePatient = patient?.ToWhomThePatient?.ToUpper();
-                    patientInDb.LocationId = patient.LocationId;
+                    patientInDb.LocationId = patient!.LocationId;
                     patientInDb.WhatNext = patient?.WhatNext;
-                    patientInDb.IsActive = patient.IsActive;
+                    patientInDb.IsActive = patient!.IsActive;
                     patientInDb.WaitingTime = _timeService.CalculatePatientWaitingTime(patient.StartTime, patient.StartDiagnosis);
 
                     if (!patient.IsActive)
