@@ -18,104 +18,117 @@
                         <div class="col-md-6">
                             <div class="form-floating mb-4">
                                 <input asp-for="Name" type="text" class="form-control" placeholder="Imię:" />
-                                <label for="floatingInput"><i class="bi bi-person-check"></i> Imię:</label>
+                                <label for="floatingInput">Imię:</label>
                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
 
                             <div class="form-floating mb-4">
                                 <input asp-for="Surname" type="text" class="form-control" placeholder="Nazwisko:" />
-                                <label for="floatingInput"><i class="bi bi-person-check"></i> Nazwisko:</label>
+                                <label for="floatingInput">Nazwisko:</label>
                                 <span asp-validation-for="Surname" class="text-danger"></span>
                             </div>
 
                             <div class="form-floating mb-4">
                                 <input asp-for="Pesel" type="text" class="form-control" placeholder="Pesel:" />
-                                <label for="floatingInput"><i class="bi bi-calendar"></i> Pesel:</label>
+                                <label for="floatingInput">Pesel:</label>
                                 <span asp-validation-for="Pesel" class="text-danger"></span>
                             </div>
 
                             <div class="form-floating mb-4">
                                 <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
                                 </select>
-                                <label for="floatingSelectGrid"><i class="bi bi-house-heart"></i> Lokalizacja w SOR:</label>
+                                <label for="floatingSelectGrid">Lokalizacja w SOR:</label>
                             </div>
                             <br />
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-floating mb-4">
-                                <textarea asp-for="Symptoms" class="form-control" style="height: 97px"
-                                    placeholder="Objawy:" id="floatingTextarea" ></textarea>
+                                <textarea asp-for="Symptoms" class="form-control" style="height: 97px" placeholder="Objawy:"
+                                    id="floatingTextarea"></textarea>
                                 <span asp-validation-for="Symptoms" class="text-danger"></span>
-                                <label for="floatingTextarea2"><i class="bi bi-chat-dots"></i> Objawy: </label>
+                                <label for="floatingTextarea2">Objawy:</label>
                             </div>
 
                             <div class="form-floating mb-4">
-                                <input asp-for="Allergies" type="text" class="form-control" placeholder="Alergie na leki: " />
-                                <label for="floatingInput"><i class="bi bi-capsule-pill"></i> Alergie na leki: </label>
+                                <input asp-for="Allergies" type="text" class="form-control"
+                                    placeholder="Alergie na leki: " />
+                                <label for="floatingInput">Alergie na leki: </label>
                                 <span asp-validation-for="Allergies" class="text-danger"></span>
                             </div>
 
-                            <h5><i class="bi bi-person-circle"></i> Dla kogo pacjent:</h5>
-                            <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient" required>
-                                <option></option>
-                                <option>INTERNISTA</option>
-                                <option>CHIRURG</option>
-                            </select>
-                            <br />
+                            <div class="form-floating mb-4">
+                                <select class="form-control" id="ToWhomThePatient" name="ToWhomThePatient" required>
+                                    <option></option>
+                                    <option>INTERNISTA</option>
+                                    <option>CHIRURG</option>
+                                </select>
+                                <label for="floatingSelectGrid">Do kogo pacjent</label>
+                            </div>
                         </div>
                     </div>
 
+                    <h4 class="text-center">Parametry:</h4>
+                    <hr />
+
                     <div class="p-4 m-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <h5><i class="bi bi-heart-pulse"></i> Ciśnienie tętnicze:</h5>
-                                    <div class="col-sm-4">
-                                        <input asp-for="SBP" type="text" class="form-control" style="max-width: 70px" />
-                                        <span asp-validation-for="SBP" class="text-danger"></span>
+                        <div class="row justify-content-around">
+                            <div class="col-md-3">
+                                <div class="row justify-content-around">
+                                    <div class="col-sm-5">
+                                        <div class="form-floating mb-4">
+                                            <input asp-for="SBP" type="text" class="form-control" placeholder="SBP"/>
+                                            <label for="floatingInput">SBP</label>
+                                            <span asp-validation-for="SBP" class="text-danger"></span>
+                                        </div>
                                     </div>
                                     <div class="col-sm-1">
                                         <h3>/</h3>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <input asp-for="DBP" type="text" class="form-control" style="max-width: 70px" />
-                                        <span asp-validation-for="DBP" class="text-danger"></span>
+                                    <div class="col-sm-5">
+                                        <div class="form-floating mb-4">
+                                            <input asp-for="DBP" type="text" class="form-control" placeholder="DBP"/>
+                                            <label for="floatingInput">DBP</label>
+                                            <span asp-validation-for="DBP" class="text-danger"></span>
+                                        </div>
                                     </div>
                                 </div>
-                                <br />
 
-                                <h5><i class="bi bi-lungs"></i> Saturacja SpO<sub>2</sub></h5>
-                                <input asp-for="Spo2" type="text" class="form-control" style="max-width: 100px" />
-                                <span asp-validation-for="Spo2" class="text-danger"></span>
-                                <br />
+                                <div class="form-floating mb-4">
+                                    <input asp-for="Spo2" type="text" class="form-control" placeholder="Saturacja SpO2:" />
+                                    <label for="floatingInput">Saturacja SpO2</label>
+                                    <span asp-validation-for="Spo2" class="text-danger"></span>
+                                </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <h5><i class="bi bi-activity"></i> Puls:</h5>
-                                <input asp-for="HeartRate" type="text" class="form-control" style="max-width: 100px" />
-                                <span asp-validation-for="HeartRate" class="text-danger"></span>
-                                <br />
+                            <div class="col-md-3">
+                                <div class="form-floating mb-4">
+                                    <input asp-for="HeartRate" type="text" class="form-control" placeholder="Puls:" />
+                                    <label for="floatingInput">Puls:</label>
+                                    <span asp-validation-for="HeartRate" class="text-danger"></span>
+                                </div>
 
-                                <h5><i class="bi bi-bell"></i> Skala GCS:</h5>
-                                <input asp-for="GCS" type="text" class="form-control" style="max-width: 100px" />
-                                <span asp-validation-for="GCS" class="text-danger"></span>
-                                <br />
+                                <div class="form-floating mb-4">
+                                    <input asp-for="GCS" type="text" class="form-control" placeholder="Skala GCS:" />
+                                    <label for="floatingInput">Skala GCS:</label>
+                                    <span asp-validation-for="GCS" class="text-danger"></span>
+                                </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <h5><i class="bi bi-thermometer"></i> Temperatura:</h5>
-                                <input asp-for="BodyTemperature" type="text" class="form-control" style="max-width: 100px"
-                                    required />
-                                <span asp-validation-for="BodyTemperature" class="text-danger"></span>
-                                <br />
+                            <div class="col-md-3">
+                                <div class="form-floating mb-4">
+                                    <input asp-for="BodyTemperature" type="text" class="form-control"
+                                        placeholder="Temperatura:" />
+                                    <label for="floatingInput">Temperatura:</label>
+                                    <span asp-validation-for="BodyTemperature" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <hr />
                     <div>
                         @{
-                            DateTime endOfTrialDate = new DateTime(2023, 09, 30);
+                            DateTime endOfTrialDate = new DateTime(2023, 09, 29);
                             <span data-end-trial-date="@endOfTrialDate.ToString("yyyy-MM-dd")"></span>
 
                             if (endOfTrialDate > DateTime.Today)

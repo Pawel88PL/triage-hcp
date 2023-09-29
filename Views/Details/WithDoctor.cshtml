@@ -14,7 +14,8 @@
 
             @await Html.PartialAsync("_HiddenFormFields")
 
-            <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
+            <div class="border shadow p-3 mb-5 bg-white rounded-3"
+                style="padding: 30px; margin:20px; background-color: white">
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
                     <div class="row">
                         <div class="col-8">
@@ -37,102 +38,40 @@
                     </div>
                 </div>
 
-                <div class="row text-center">
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-4">
-                                <br />
-                                <p>Lokalizacja: </p>
-                                <br />
-                                <p>Kolor:</p>
-                                <br />
-                                <p>Do kogo pacjent:</p>
-                                <br />
-                                <p>Lekarz prowadzący:</p>
-                                <br />
+                @await Html.PartialAsync("_Details")
 
-                            </div>
-
-                            <div class="col-6">
-                                <br />
-                                <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
-                                    <option>@Model?.Location?.LocationName</option>
-                                </select>
-                                <br />
-
-                                <select asp-for="Color" class="form-select">
-                                    @await Html.PartialAsync("_ColorList")
-                                </select>
-                                <br />
-
-                                <select asp-for="ToWhomThePatient" class="form-select">
-                                    <option>@Model?.ToWhomThePatient</option>
-                                    <option>INTERNISTA</option>
-                                    <option>CHIRURG</option>
-                                </select>
-                                <br />
-
-                                <div class="form-group">
-                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList"
-                                            class="form-select">
-                                        <option value="">Wybierz lekarza...</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                        </div>
-                        <hr />
-                        <br />
-
-                        <div class="row text-center">
-                            <div class="col-4">
-                                <p><b>JAKIE DECYZJE:</b></p>
-                                <br />
-                            </div>
-
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <select asp-for="WhatNext" class="form-select">
-                                        <option>@Model?.WhatNext</option>
-                                        <option>W trakcie diagnostyki SOR</option>
-                                        @await Html.PartialAsync("_WhatNext")
-                                    </select>
-                                </div>
-                                <br />
-                            </div>
-                        </div>
+                <div class="decision col-md-4 row text-center rounded-3 shadow">
+                    <div class="col-5">
+                        <p><b>JAKIE DECYZJE:</b></p>
                         <br />
                     </div>
 
-
-                    <div class="col-6">
-                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model?.Color">
-                            <div style="background-color:white; padding: 10px 10px 40px 10px">
-                                <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
-                                <div class="form-group">
-                                    <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="9">
-                                        @Model?.Remarks</textarea>
-                                </div>
-                            </div>
+                    <div class="col-7">
+                        <div class="form-group">
+                            <select asp-for="WhatNext" class="form-select">
+                                <option>@Model?.WhatNext</option>
+                                <option>W trakcie diagnostyki SOR</option>
+                                @await Html.PartialAsync("_WhatNext")
+                            </select>
                         </div>
+                        <br />
                     </div>
                 </div>
-                <hr />
 
                 <div class="btn-group" role="group" style="margin-left: 20px">
                     <button type="submit" class="btn btn-success" id="IsActive" name="IsActive" value="true">
                         ZAPISZ ZMIANY
                     </button>
 
-                    <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO LISTY</button>
+                    <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO
+                        LISTY</button>
 
-                    <a href="@Url.Action("Edit","Details", new { Id = Model?.PatientId })"
-                       class="btn btn-warning">
+                    <a href="@Url.Action("Edit","Details", new { Id = Model?.PatientId })" class="btn btn-warning">
                         EDYTUJ DANE
                     </a>
 
                     <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model?.PatientId })"
-                       class="btn btn-secondary">
+                        class="btn btn-secondary">
                         DRUKUJ DOKUMENTY
                     </a>
 
@@ -220,4 +159,4 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    }
+}

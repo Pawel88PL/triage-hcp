@@ -1,0 +1,79 @@
+@model triage_hcp.Models.Patient
+
+<div class="row justify-content-around">
+    <div class="cart col-md-4 text-center border rounded-3 shadow">
+        <div class="row">
+            <div class="col-5">
+                <br />
+                <p>Lokalizacja: </p>
+                <br />
+                <p>Do kogo pacjent:</p>
+                <br />
+                <p>Kolor:</p>
+                <br />
+                <p>Lekarz prowadzący:</p>
+            </div>
+
+            <div class="col-7">
+                <br />
+                <div class="form-group">
+                    <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
+                    </select>
+                </div>
+                <br />
+
+                <select asp-for="ToWhomThePatient" class="form-select">
+                    <option>@Model?.ToWhomThePatient</option>
+                    <option>INTERNISTA</option>
+                    <option>CHIRURG</option>
+                </select>
+                <br />
+
+                <select asp-for="Color" class="form-select">
+                    @await Html.PartialAsync("_ColorList")
+                </select>
+                <br />
+
+                <div class="form-group">
+                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList" class="form-select">
+                        <option value="">@Model?.Doctor?.Surname @Model?.Doctor?.Name</option>
+                    </select>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <div class="cart parm col-md-3 border rounded-3 shadow">
+        <h5 class="text-center">Parametry przy przyjęciu w SOR:</h5>
+        <br>
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <p>Ciśnienie tętnicze:</p>
+                <p>Tętno:</p>
+                <p>Saturacja:</p>
+                <p>Skala GCS:</p>
+                <p>Temeratura:</p>
+                <p>Alergie na leki:</p>
+            </div>
+            <div class="col-sm-5">
+                <p><b>@Model?.SBP / @Model?.DBP</b> mmHg</p>
+                <p><b>@Model?.HeartRate</b> / min</p>
+                <p><b>@Model?.Spo2</b> %</p>
+                <p><b>@Model?.GCS</b> pkt</p>
+                <p><b>@Model?.BodyTemperature</b> st. C.</p>
+                <p><b>@Model?.Allergies</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart col-md-3 border rounded-3 shadow" style="background-color: @Model?.Color">
+        <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
+        <div class="form-group">
+            <textarea asp-for="Remarks" class="form-control" rows="10">
+                @Model?.Remarks</textarea>
+            <span asp-validation-for="Remarks" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<br>

@@ -2,8 +2,26 @@
     font-size: 12px;
 }
 
+.btn-group{
+    margin-left: 4rem;
+    margin-top: 2rem;
+}
+
+.cart{
+    padding: 1rem;
+}
+
 .container{
     margin-top: 100px;
+}
+
+.decision{
+    margin-left: 2rem;
+    padding-top: 2rem;
+}
+
+.parm{
+    padding-left: 2rem;
 }
 
 .shadow-textarea textarea.form-control::placeholder {

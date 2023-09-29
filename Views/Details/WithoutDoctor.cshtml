@@ -1,6 +1,7 @@
 ﻿@model triage_hcp.Models.Patient
 <link rel="stylesheet" href="~/css/details.css" asp-append-version="true" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 @{
     ViewData["Title"] = "Przypisz lekarza!";
@@ -29,12 +30,13 @@
                 <input type="hidden" id="patientName" value="@Model.Name" />
                 <input type="hidden" id="patientSurname" value="@Model.Surname" />
                 <input type="hidden" id="patientDocumentUrl"
-                       value="@Url.Action("GeneratePatientDocument", "Documentation", new { Id = Model.PatientId })" />
+                    value="@Url.Action("GeneratePatientDocument", "Documentation", new { Id = Model.PatientId })" />
 
             </div>
 
 
-            <div class="border shadow p-3 mb-5 bg-white rounded" style="padding: 30px; margin:20px; background-color: white">
+            <div class="border shadow p-3 mb-5 bg-white rounded"
+                style="padding: 30px; margin:20px; background-color: white">
                 <div class="text-center" style="padding: 20px; margin-bottom: 20px; background-color: @Model.Color">
                     <div class="row">
                         <div class="col-8">
@@ -245,86 +247,16 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-6 text-center">
-                        <div class="row">
-                            <div class="col-3">
-                                <br />
-                                <p>Lokalizacja: </p>
-                                <br />
-                                <p>Do kogo pacjent:</p>
-                                <br />
-                                <p>Kolor:</p>
-                                <br />
-                                <span class="animation">
-                                    <p><b>Wybierz lekarza!</b></p>
-                                </span>
-                            </div>
+                @await Html.PartialAsync("_Details")
 
-                            <div class="col-6">
-                                <br />
-                                <div class="form-group">
-                                    <select asp-for="LocationId" class="form-control" asp-items="@ViewBag.Locations">
-                                    </select>
-                                </div>
-                                <br />
-
-                                <select asp-for="ToWhomThePatient" class="form-select">
-                                    <option>@Model?.ToWhomThePatient</option>
-                                    <option>INTERNISTA</option>
-                                    <option>CHIRURG</option>
-                                </select>
-                                <br />
-
-                                <select asp-for="Color" class="form-select">
-                                    @await Html.PartialAsync("_ColorList")
-                                </select>
-                                <br />
-
-                                <div class="form-group">
-                                    <select asp-for="DoctorId" asp-items="@ViewData["Doctors"] as SelectList"
-                                            class="form-select">
-                                        <option value="">Wybierz lekarza...</option>
-                                    </select>
-                                </div>
-
-                                <br />
-                            </div>
-                        </div>
-                        <hr />
-                        <br />
-
-
-                        <div class="row">
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-danger">ZAPISZ ZMIANY</button>
-                            </div>
-                            <div class="col-4">
-                                <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model.PatientId })"
-                                   class="btn btn-secondary">
-                                    DRUKUJ DOKUMENTY
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO LISTY</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-6">
-                        <div class="border" style="padding: 20px; margin-left:40px; background-color: @Model.Color">
-                            <div style="background-color:white; padding: 10px 10px 40px 10px">
-                                <h5 class="text-center">Obserwacje ratowniczo pielęgniarskie</h5>
-                                <div class="form-group">
-                                    <textarea class="form-control" id="ObserwacjeRatPiel" name="ObserwacjeRatPiel" rows="10">
-                                        @Model.Remarks</textarea>
-                                </div>
-                            </div>
-                            <br />
-                        </div>
-                    </div>
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-danger">ZAPISZ ZMIANY</button>
+                    <a href="@Url.Action("GeneratePatientDocument","Documentation", new { Id = Model!.PatientId })"
+                        class="btn btn-secondary">
+                        DRUKUJ DOKUMENTY
+                    </a>
+                    <button asp-controller="ListsOfPatients" asp-action="MainList" class="btn btn-primary">POWRÓT DO
+                        LISTY</button>
                 </div>
             </div>
         </form>

@@ -481,3 +481,8 @@ Data 17.08.2023
 4. Zamiast modala w widoku 'WithoutDoctor' zastosowano SweetAlert2.
 <h3>Opublikowano wersję 8.0.0</h3>
 <hr/>
+
+Data 22.08.2023
+
+   Usunięto 17 ostrzeżeń komilatora w związku z możliwymi wartościami null.
+1. Zmieniono wygląd formularzy dodania nowego pacjenta na 'floating-label'.

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using triage_hcp;
 
@@ -11,9 +12,10 @@ using triage_hcp;
 namespace triage_hcp.Migrations
 {
     [DbContext(typeof(DbTriageContext))]
-    partial class DbTriageContextModelSnapshot : ModelSnapshot
+    [Migration("20230912082832_PatientTotalTimeDecimal8_2")]
+    partial class PatientTotalTimeDecimal8_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
